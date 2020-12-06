@@ -1,0 +1,7 @@
+# Ignore some files when pushing to the repo.
+/ml_privacy_meter/datasets/cifar-100-python
+/ml_privacy_meter/datasets/*.txt
+/ml_privacy_meter/datasets/*.npy
+log
+.idea
+__pycache__
