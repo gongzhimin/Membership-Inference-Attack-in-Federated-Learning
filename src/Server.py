@@ -56,7 +56,7 @@ for ep in range(epoch):
         client.set_global_vars(global_vars)
 
         # train one client
-        prediction, modelY, loss = client.train_epoch(cid=client_id)
+        prediction, modelY, loss, grads = client.train_epoch(cid=client_id)
 
         # obtain current client's vars
         current_client_vars = client.get_client_vars()

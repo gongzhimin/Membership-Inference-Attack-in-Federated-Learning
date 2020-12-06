@@ -53,6 +53,7 @@ class Clients:
         prediction = []
         modelY = []
         loss = []
+        grads = []
         dataset = self.dataset.train[cid]
         print(dataset.size)
         with self.graph.as_default():
@@ -66,7 +67,7 @@ class Clients:
                 }
                 self.sess.run(self.model.train_op, feed_dict=feed_dict)
                 loss = np.hstack((loss, self.sess.run(self.model.loss, feed_dict=feed_dict)))
-                grads = self.sess.run(self.model.grads, feed_dict=feed_dict)
+                grads += self.sess.run(self.model.grads, feed_dict=feed_dict)
         return prediction, modelY, loss, grads
 
     def get_client_vars(self):

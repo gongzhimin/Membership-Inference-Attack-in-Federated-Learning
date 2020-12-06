@@ -76,18 +76,18 @@ class BatchGenerator:
         return
 
     def next_batch(self, batch_size):
-        if self.start + batch_size >= len(self.random_order):
-            # overflow = (self.start + batch_size) - len(self.random_order)
-            # perm0 = self.random_order[self.start:] +\
-            #      self.random_order[:overflow]
-            # self.start = overflow
+        if self.start >= self.size:
+            # The index overflowed, it wouldn't occur usually.
+            print("Overflow!")
+            return None, None
+        elif self.start + batch_size >= self.size:
             perm0 = self.random_order[self.start:]
             self.start = self.size - 1
         else:
-            perm0 = self.random_order[self.start:self.start + batch_size]
+            perm0 = self.random_order[self.start : self.start+batch_size]
             self.start += batch_size
 
-        assert len(perm0) == batch_size
+        # assert len(perm0) == batch_size
 
         return self.x[perm0], self.y[perm0]
 
