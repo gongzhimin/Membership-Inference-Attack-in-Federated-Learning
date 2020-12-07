@@ -1,14 +1,16 @@
 import tensorflow as tf2
 import tensorflow.compat.v1 as tf
+
 tf.disable_eager_execution()
 import numpy as np
 from tensorflow.compat.v1.train import AdamOptimizer
 from tensorflow.compat.v1.train import GradientDescentOptimizer
 
+
 #### Create tf model for Client ####
 
 
-def AlexNet(input_shape, num_classes, learning_rate, graph):
+def CraftedAlexNet(input_shape, num_classes, learning_rate, graph):
     """
         Construct the AlexNet model.
         input_shape: The shape of input (`list` like)
@@ -17,6 +19,7 @@ def AlexNet(input_shape, num_classes, learning_rate, graph):
         graph: The tf computation graph (`tf.Graph`)
     """
     with graph.as_default():
+        flag = False  # Test the ways of passing on parameters, by value, or by reference.
         logdir = "./log"
         X = tf.placeholder(tf.float32, input_shape, name='X')
         Y = tf.placeholder(tf.float32, [None, num_classes], name='Y')
@@ -59,10 +62,10 @@ def AlexNet(input_shape, num_classes, learning_rate, graph):
 
         # 8th Layer: FC and return unscaled activations
         logits = fc_layer(dropout7, 2048, num_classes, relu=False, name='fc8')
+        loss = tf.nn.softmax_cross_entropy_with_logits_v2(logits=logits,
+                                                          labels=Y)
 
         # loss and optimizer
-        loss = tf.nn.softmax_cross_entropy_with_logits_v2(logits=logits,
-                                                                labels=Y)
         loss_op = tf.reduce_mean(loss)
         optimizer = AdamOptimizer(
             learning_rate=learning_rate)
@@ -77,9 +80,11 @@ def AlexNet(input_shape, num_classes, learning_rate, graph):
         correct_pred = tf.equal(pred, tf.argmax(Y, 1))
         accuracy = tf.reduce_mean(
             tf.cast(correct_pred, tf.float32))
-        
+
         # calculate the gradient of loss
         grads = optimizer.compute_gradients(loss_op)
+        if flag:
+            print("OMG, you get it! The flag works!")
         # writer = tf.summary.FileWriter(logdir, tf.get_default_graph())
         # writer.close()
 
@@ -96,8 +101,9 @@ def conv(x, filter_height, filter_width, num_filters,
     input_channels = int(x.get_shape()[-1])
 
     # Create lambda function for the convolution
-    def convolve(i, k): return tf.nn.conv2d(
-        i, k, strides=[1, stride_y, stride_x, 1], padding=padding)
+    def convolve(i, k):
+        return tf.nn.conv2d(
+            i, k, strides=[1, stride_y, stride_x, 1], padding=padding)
 
     with tf.variable_scope(name) as scope:
         # Create tf variables for the weights and biases of the conv layer

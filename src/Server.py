@@ -57,8 +57,6 @@ for ep in range(epoch):
 
         # train one client
         prediction, modelY, loss, grads = client.train_epoch(cid=client_id)
-        if ep == 6 and client_id == 6:
-            client.model.flag = True
         # obtain current client's vars
         current_client_vars = client.get_client_vars()
         # loss = client.loss

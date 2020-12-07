@@ -6,14 +6,18 @@ from collections import namedtuple
 import math
 
 from Model import AlexNet
+from CraftedModel import CraftedAlexNet
 from Dataset import Dataset
 
 # The definition of fed model, a named tuple, what an amazing idea!
-FedModel = namedtuple("FedModel", "X Y DROP_RATE train_op loss_op acc_op loss prediction grads flag")
-CraftModel = namedtuple("CraftModel", "")
+FedModel = namedtuple("FedModel", "X Y DROP_RATE train_op loss_op acc_op loss prediction grads")
+CraftedModel = namedtuple("CraftedModel", "X Y DROP_RATE train_op loss_op acc_op loss prediction grads")
 
 class Clients:
     def __init__(self, input_shape, num_classes, learning_rate, clients_num, dataset_path="../ml_privacy_meter/datasets/cifar100.txt"):
+        self.input_shape = input_shape
+        self.num_classes = num_classes
+        self.learning_rate = learning_rate
         self.graph = tf.Graph()
         tf.reset_default_graph()
         self.sess = tf.Session(graph=self.graph)
@@ -21,6 +25,8 @@ class Clients:
         # Call the create function to build the computational graph of AlexNet
         net = AlexNet(input_shape, num_classes, learning_rate, self.graph)
         self.model = FedModel(*net)
+        crafted_net = CraftedAlexNet(self.input_shape, self.num_classes, self.learning_rate, self.graph)
+        self.crafted_model = CraftedAlexNet(*crafted_net)
 
         # initialize
         with self.graph.as_default():
@@ -45,12 +51,14 @@ class Clients:
         return self.sess.run([self.model.acc_op, self.model.loss_op],
                              feed_dict=feed_dict)
 
-    def train_epoch(self, cid, batch_size=32, dropout_rate=0.5):
+    def train_epoch(self, cid, batch_size=32, dropout_rate=0.5, craft=False):
         """
         Train one client with its own data for one epoch.
         And we leave a back door at here.
         cid: Client id
+        crated_data_hash = []
         """
+        flag = True
         prediction = []
         modelY = []
         loss = []
@@ -65,9 +73,15 @@ class Clients:
                     self.model.Y: batch_y,
                     self.model.DROP_RATE: dropout_rate
                 }
-                self.sess.run(self.model.train_op, feed_dict=feed_dict)
                 loss = np.hstack((loss, self.sess.run(self.model.loss, feed_dict=feed_dict)))
                 grads += self.sess.run(self.model.grads, feed_dict=feed_dict)
+                # crafted_loss = loss
+                # if craft and flag:
+                #     crafted_net = CraftedAlexNet(self.input_shape, self.num_classes, self.learning_rate, self.graph, crafted_loss)
+                #     self.crafted_model = CraftedAlexNet(*crafted_net)
+                #     flag = False
+                self.sess.run(self.model.train_op, feed_dict=feed_dict)
+                self.sess.run(self.crafted_model.train_op, feed_dict=feed_dict)
         return prediction, modelY, loss, grads
 
     def get_client_vars(self):
