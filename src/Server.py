@@ -33,7 +33,7 @@ def run_global_test(client, global_vars, test_num):
 CLIENT_NUMBER = 100
 CLIENT_RATIO_PER_ROUND = 0.12
 # epoch = 360
-epoch = 6   # during debugging
+epoch = 60   # during debugging
 
 #### CREATE CLIENT AND LOAD DATASET ####
 client = buildClients(CLIENT_NUMBER)

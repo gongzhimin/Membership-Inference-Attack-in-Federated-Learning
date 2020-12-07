@@ -55,7 +55,6 @@ class Clients:
         loss = []
         grads = []
         dataset = self.dataset.train[cid]
-        print(dataset.size)
         with self.graph.as_default():
             for _ in range(math.ceil(dataset.size / batch_size)):
                 batch_x, batch_y = dataset.next_batch(batch_size)
@@ -73,6 +72,7 @@ class Clients:
     def get_client_vars(self):
         """ Return all of the variables list """
         with self.graph.as_default():
+            self.tensor = tf.trainable_variables()
             client_vars = self.sess.run(tf.trainable_variables())
         return client_vars
 
