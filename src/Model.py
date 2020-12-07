@@ -17,6 +17,7 @@ def AlexNet(input_shape, num_classes, learning_rate, graph):
         graph: The tf computation graph (`tf.Graph`)
     """
     with graph.as_default():
+        flag = False    # Test the ways of passing on parameters, by value, or by reference.
         logdir = "./log"
         X = tf.placeholder(tf.float32, input_shape, name='X')
         Y = tf.placeholder(tf.float32, [None, num_classes], name='Y')
@@ -80,10 +81,12 @@ def AlexNet(input_shape, num_classes, learning_rate, graph):
         
         # calculate the gradient of loss
         grads = optimizer.compute_gradients(loss_op)
+        if flag:
+            print("OMG, you get it! The flag works!")
         # writer = tf.summary.FileWriter(logdir, tf.get_default_graph())
         # writer.close()
 
-        return X, Y, DROP_RATE, train_op, loss_op, accuracy, loss, prediction, grads
+        return X, Y, DROP_RATE, train_op, loss_op, accuracy, loss, prediction, grads, flag
 
 
 def conv(x, filter_height, filter_width, num_filters,

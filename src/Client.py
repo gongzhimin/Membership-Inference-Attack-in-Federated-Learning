@@ -9,7 +9,8 @@ from Model import AlexNet
 from Dataset import Dataset
 
 # The definition of fed model, a named tuple, what an amazing idea!
-FedModel = namedtuple("FedModel", "X Y DROP_RATE train_op loss_op acc_op loss prediction grads")
+FedModel = namedtuple("FedModel", "X Y DROP_RATE train_op loss_op acc_op loss prediction grads flag")
+CraftModel = namedtuple("CraftModel", "")
 
 class Clients:
     def __init__(self, input_shape, num_classes, learning_rate, clients_num, dataset_path="../ml_privacy_meter/datasets/cifar100.txt"):
