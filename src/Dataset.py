@@ -87,8 +87,6 @@ class BatchGenerator:
             perm0 = self.random_order[self.start : self.start+batch_size]
             self.start += batch_size
 
-        # assert len(perm0) == batch_size
-
         return self.x[perm0], self.y[perm0]
 
     # support slice

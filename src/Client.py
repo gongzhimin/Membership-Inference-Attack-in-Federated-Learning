@@ -100,27 +100,21 @@ class Clients:
                 # self.sess.run(self.crafted_model.train_op, feed_dict=feed_dict)
 
     def craft(self, cid, batch_size=32, dropout_rate=0.5):
+        """
+        Craft adversarial parameter update of certain participant.
+        we apply gradient ascent on a data record x, 
+        i.e., increase it's loss value by manipulating the label.
+        """
         dataset = self.dataset.train[cid]
+        total_x, total_y = dataset.x, dataset.y
+        
         with self.graph.as_default():
-            total_x, total_y = dataset.x, dataset.y
             feed_dict = {
                 self.model.X: total_x,
                 self.model.Y: total_y,
                 self.model.DROP_RATE: dropout_rate
             }
-            loss = self.sess.run(self.model.loss, feed_dict=feed_dict)
-            crafted_loss = loss
-            crafted_net = CraftedAlexNet(
-                self.input_shape, self.num_classes, self.learning_rate, self.graph, crafted_loss)
-            self.crafted_model = CraftedModel(*crafted_net)
-            print("Crafting is performed!")
-            self.sess.run(self.init_op)
-            feed_dict = {
-                self.crafted_model.X: total_x,
-                self.crafted_model.Y: total_y,
-                self.crafted_model.DROP_RATE: dropout_rate
-            }
-            self.sess.run(self.crafted_model.train_op, feed_dict=feed_dict)
+            self.sess.run(self.model.train_op, feed_dict=feed_dict)
 
     def get_client_vars(self):
         """ Return all of the variables list """
