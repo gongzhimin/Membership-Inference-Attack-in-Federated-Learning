@@ -13,6 +13,11 @@ def extract(filepath):
         dataset = f.readlines()
     # dataset = map(lambda i: i.strip('\n').encode('utf-8').decode("utf-8").split(';'), dataset)
     dataset = map(lambda i: i.strip('\n').split(';'), dataset)
+    dataset = list(dataset)
+    for image in dataset:
+        flatten_image = []
+        for channel in image:
+            flatten_image += channel.split(',')
     dataset = np.array(list(dataset))
     return dataset
 
@@ -103,6 +108,8 @@ class Dataset(object):
     # The dataset_path is ./ml_privacy_meter/datasets/cifar100.txt
     def __init__(self, dataset_path, split=0, one_hot=True, input_shape=(32, 32, 3), num_classes=100):
         dataset = extract(dataset_path)
+        print(dataset)
+        print(type(dataset))
         np.random.shuffle(dataset)  # shuffle the dataset to ensure the data records of each participant iid
         features, labels = generate(dataset, input_shape)
 
