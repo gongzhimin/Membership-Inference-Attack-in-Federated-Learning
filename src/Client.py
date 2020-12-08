@@ -68,6 +68,8 @@ class Clients:
         cid: Client id
         crated_data_hash = []
         """
+        selected_records = []
+        self.hashed_selected_records = []
         flag = True
         prediction = []
         modelY = []
