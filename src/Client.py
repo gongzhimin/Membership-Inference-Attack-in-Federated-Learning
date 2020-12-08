@@ -107,7 +107,15 @@ class Clients:
         """
         dataset = self.dataset.train[cid]
         total_x, total_y = dataset.x, dataset.y
-        
+        self.crafted_labels = total_y
+        # Pass by reference.
+        selected_y = total_y[0]
+        size = len(selected_y)
+        for i in range(size):
+            if  0.9999999 <= selected_y[i] <= 1.0000001:
+                selected_y[i] = 0.0
+                selected_y[(i+1)%size] = 1.0
+                break
         with self.graph.as_default():
             feed_dict = {
                 self.model.X: total_x,
