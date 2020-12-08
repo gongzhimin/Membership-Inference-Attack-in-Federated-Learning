@@ -1,9 +1,11 @@
 import tensorflow as tf2
 import tensorflow.compat.v1 as tf
+
 tf.disable_eager_execution()
 from tqdm import tqdm
 
 from Client import Clients
+
 
 def buildClients(num):
     learning_rate = 0.0001
@@ -28,10 +30,24 @@ def run_global_test(client, global_vars, test_num):
     print("[epoch {}, {} inst] Testing ACC: {:.4f}, Loss: {:.4f}".format(
         ep + 1, test_num, acc, loss))
 
+def upload_vars_misaligned(client_vars_sum, current_client_vars):
+    """
+    Upload parameters in a misaligned manner.
+    """
+    return client_vars_sum
+
+def upload_vars(client_vars_sum, current_client_vars):
+    """
+    Upload parameters.
+    """
+    vars_num = len(current_client_vars)
+    print("The number of paramter: ", vars_num)
+    return client_vars_sum
+
 
 #### SOME TRAINING PARAMS ####
 CLIENT_NUMBER = 100
-CLIENT_RATIO_PER_ROUND = 0.12
+CLIENT_RATIO_PER_ROUND = 1.00
 # epoch = 360
 epoch = 60   # during debugging
 
@@ -54,20 +70,23 @@ for ep in range(epoch):
     for client_id in tqdm(random_clients, ascii=True):
         # Restore global vars to client's model
         client.set_global_vars(global_vars)
-
-        # train one client
-        prediction, modelY, loss, grads = client.train_epoch(cid=client_id)
-        # obtain current client's vars
-        current_client_vars = client.get_client_vars()
-        # loss = client.loss
-        # print(loss, type(loss))
-
+        # Perform the craft.
+        if ep == 3 and client_id == 2:
+            client.craft(cid=client_id)
+            current_client_vars = client.get_client_vars()
+            client_vars_sum = upload_vars_misaligned(client_vars_sum, current_client_vars)
+        else:
+            client.train_epoch(cid=client_id)
+            current_client_vars = client.get_client_vars()
+            client_vars_sum = upload_vars(client_vars_sum, current_client_vars)
+        
         # sum it up
         if client_vars_sum is None:
             client_vars_sum = current_client_vars
         else:
             for cv, ccv in zip(client_vars_sum, current_client_vars):
                 cv += ccv
+        
     # obtain the avg vars as global vars
     global_vars = []
     for var in client_vars_sum:

@@ -1,17 +1,20 @@
+from Dataset import Dataset
+from CraftedModel import CraftedAlexNet
+from Model import AlexNet
+import math
+from collections import namedtuple
+import numpy as np
 import tensorflow as tf2
 import tensorflow.compat.v1 as tf
 tf.disable_eager_execution()
-import numpy as np
-from collections import namedtuple
-import math
 
-from Model import AlexNet
-from CraftedModel import CraftedAlexNet
-from Dataset import Dataset
 
 # The definition of fed model, a named tuple, what an amazing idea!
-FedModel = namedtuple("FedModel", "X Y DROP_RATE train_op loss_op acc_op loss prediction grads")
-CraftedModel = namedtuple("CraftedModel", "X Y DROP_RATE train_op loss_op acc_op loss prediction grads")
+FedModel = namedtuple(
+    "FedModel", "X Y DROP_RATE train_op loss_op acc_op loss prediction grads")
+CraftedModel = namedtuple(
+    "CraftedModel", "X Y DROP_RATE train_op loss_op acc_op loss prediction grads")
+
 
 def hash(crafted_records):
     """
@@ -22,6 +25,7 @@ def hash(crafted_records):
         hashed_crafted_record = hash(bytes(crafted_record))
         hashed_crafted_records.append(hashed_crafted_record)
     return hashed_crafted_records
+
 
 class Clients:
     def __init__(self, input_shape, num_classes, learning_rate, clients_num, dataset_path="../ml_privacy_meter/datasets/cifar100.txt"):
@@ -35,12 +39,11 @@ class Clients:
         # Call the create function to build the computational graph of AlexNet
         net = AlexNet(input_shape, num_classes, learning_rate, self.graph)
         self.model = FedModel(*net)
-        crafted_net = CraftedAlexNet(self.input_shape, self.num_classes, self.learning_rate, self.graph)
-        self.crafted_model = CraftedModel(*crafted_net)
 
         # initialize
         with self.graph.as_default():
-            self.sess.run(tf.global_variables_initializer())
+            self.init_op = tf.global_variables_initializer()
+            self.sess.run(self.init_op)
 
         # Load Cifar-10 dataset
         # NOTE: len(self.dataset.train) == clients_num
@@ -61,7 +64,7 @@ class Clients:
         return self.sess.run([self.model.acc_op, self.model.loss_op],
                              feed_dict=feed_dict)
 
-    def train_epoch(self, cid, batch_size=32, dropout_rate=0.5, craft=False):
+    def train_epoch(self, cid, batch_size=32, dropout_rate=0.5):
         """
         Train one client with its own data for one epoch.
         And we leave a back door at here.
@@ -85,21 +88,39 @@ class Clients:
                     self.model.Y: batch_y,
                     self.model.DROP_RATE: dropout_rate
                 }
-                loss = np.hstack((loss, self.sess.run(self.model.loss, feed_dict=feed_dict)))
+                loss = np.hstack((loss, self.sess.run(
+                    self.model.loss, feed_dict=feed_dict)))
                 grads += self.sess.run(self.model.grads, feed_dict=feed_dict)
-                # crafted_loss = loss
-                # if craft and flag:
-                #     crafted_net = CraftedAlexNet(self.input_shape, self.num_classes, self.learning_rate, self.graph, crafted_loss)
-                #     self.crafted_model = CraftedAlexNet(*crafted_net)
-                #     flag = False
                 self.sess.run(self.model.train_op, feed_dict=feed_dict)
-                feed_dict = {
-                    self.crafted_model.X: batch_x,
-                    self.crafted_model.Y: batch_y,
-                    self.crafted_model.DROP_RATE: dropout_rate
-                }
-                self.sess.run(self.crafted_model.train_op, feed_dict=feed_dict)
-        return prediction, modelY, loss, grads
+                # feed_dict = {
+                #     self.crafted_model.X: batch_x,
+                #     self.crafted_model.Y: batch_y,
+                #     self.crafted_model.DROP_RATE: dropout_rate
+                # }
+                # self.sess.run(self.crafted_model.train_op, feed_dict=feed_dict)
+
+    def craft(self, cid, batch_size=32, dropout_rate=0.5):
+        dataset = self.dataset.train[cid]
+        with self.graph.as_default():
+            total_x, total_y = dataset.x, dataset.y
+            feed_dict = {
+                self.model.X: total_x,
+                self.model.Y: total_y,
+                self.model.DROP_RATE: dropout_rate
+            }
+            loss = self.sess.run(self.model.loss, feed_dict=feed_dict)
+            crafted_loss = loss
+            crafted_net = CraftedAlexNet(
+                self.input_shape, self.num_classes, self.learning_rate, self.graph, crafted_loss)
+            self.crafted_model = CraftedModel(*crafted_net)
+            print("Crafting is performed!")
+            self.sess.run(self.init_op)
+            feed_dict = {
+                self.crafted_model.X: total_x,
+                self.crafted_model.Y: total_y,
+                self.crafted_model.DROP_RATE: dropout_rate
+            }
+            self.sess.run(self.crafted_model.train_op, feed_dict=feed_dict)
 
     def get_client_vars(self):
         """ Return all of the variables list """
