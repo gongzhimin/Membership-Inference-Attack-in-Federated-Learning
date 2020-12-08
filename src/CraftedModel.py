@@ -21,47 +21,47 @@ def CraftedAlexNet(input_shape, num_classes, learning_rate, graph):
     with graph.as_default():
         flag = False  # Test the ways of passing on parameters, by value, or by reference.
         logdir = "./log"
-        X = tf.placeholder(tf.float32, input_shape, name='X')
-        Y = tf.placeholder(tf.float32, [None, num_classes], name='Y')
-        DROP_RATE = tf.placeholder(tf.float32, name='drop_rate')
+        X = tf.placeholder(tf.float32, input_shape, name='cX')
+        Y = tf.placeholder(tf.float32, [None, num_classes], name='cY')
+        DROP_RATE = tf.placeholder(tf.float32, name='cdrop_rate')
 
         # 1st Layer: Conv (w ReLu) -> Lrn -> Pool
         # conv1 = conv(X, 11, 11, 96, 4, 4, padding='VALID', name='conv1')
-        conv1 = conv(X, 11, 11, 96, 2, 2, name='conv1')
-        norm1 = lrn(conv1, 2, 2e-05, 0.75, name='norm1')
-        pool1 = max_pool(norm1, 3, 3, 2, 2, padding='VALID', name='pool1')
+        conv1 = conv(X, 11, 11, 96, 2, 2, name='cconv1')
+        norm1 = lrn(conv1, 2, 2e-05, 0.75, name='cnorm1')
+        pool1 = max_pool(norm1, 3, 3, 2, 2, padding='VALID', name='cpool1')
 
         # 2nd Layer: Conv (w ReLu)  -> Lrn -> Pool with 2 groups
-        conv2 = conv(pool1, 5, 5, 256, 1, 1, groups=2, name='conv2')
-        norm2 = lrn(conv2, 2, 2e-05, 0.75, name='norm2')
-        pool2 = max_pool(norm2, 3, 3, 2, 2, padding='VALID', name='pool2')
+        conv2 = conv(pool1, 5, 5, 256, 1, 1, groups=2, name='cconv2')
+        norm2 = lrn(conv2, 2, 2e-05, 0.75, name='cnorm2')
+        pool2 = max_pool(norm2, 3, 3, 2, 2, padding='VALID', name='cpool2')
 
         # 3rd Layer: Conv (w ReLu)
-        conv3 = conv(pool2, 3, 3, 384, 1, 1, name='conv3')
+        conv3 = conv(pool2, 3, 3, 384, 1, 1, name='cconv3')
 
         # 4th Layer: Conv (w ReLu) splitted into two groups
-        conv4 = conv(conv3, 3, 3, 384, 1, 1, groups=2, name='conv4')
+        conv4 = conv(conv3, 3, 3, 384, 1, 1, groups=2, name='cconv4')
 
         # 5th Layer: Conv (w ReLu) -> Pool splitted into two groups
-        conv5 = conv(conv4, 3, 3, 256, 1, 1, groups=2, name='conv5')
+        conv5 = conv(conv4, 3, 3, 256, 1, 1, groups=2, name='cconv5')
         # pool5 = max_pool(conv5, 2, 2, 2, 2, padding='VALID', name='pool5')
-        pool5 = max_pool(conv5, 3, 3, 2, 2, padding='VALID', name='pool5')
+        pool5 = max_pool(conv5, 3, 3, 2, 2, padding='VALID', name='cpool5')
 
         # 6th Layer: Flatten -> FC (w ReLu) -> Dropout
         # flattened = tf.reshape(pool5, [-1, 6*6*256])
         # fc6 = fc(flattened, 6*6*256, 4096, name='fc6')
 
         flattened = tf.reshape(pool5, [-1, 1 * 1 * 256])
-        fc6 = fc_layer(flattened, 1 * 1 * 256, 1024, name='fc6')
+        fc6 = fc_layer(flattened, 1 * 1 * 256, 1024, name='cfc6')
         dropout6 = dropout(fc6, DROP_RATE)
 
         # 7th Layer: FC (w ReLu) -> Dropout
         # fc7 = fc(dropout6, 4096, 4096, name='fc7')
-        fc7 = fc_layer(dropout6, 1024, 2048, name='fc7')
+        fc7 = fc_layer(dropout6, 1024, 2048, name='cfc7')
         dropout7 = dropout(fc7, DROP_RATE)
 
         # 8th Layer: FC and return unscaled activations
-        logits = fc_layer(dropout7, 2048, num_classes, relu=False, name='fc8')
+        logits = fc_layer(dropout7, 2048, num_classes, relu=False, name='cfc8')
         loss = tf.nn.softmax_cross_entropy_with_logits_v2(logits=logits,
                                                           labels=Y)
 

@@ -13,6 +13,16 @@ from Dataset import Dataset
 FedModel = namedtuple("FedModel", "X Y DROP_RATE train_op loss_op acc_op loss prediction grads")
 CraftedModel = namedtuple("CraftedModel", "X Y DROP_RATE train_op loss_op acc_op loss prediction grads")
 
+def hash(crafted_records):
+    """
+    Hash the record objects to identify them.
+    """
+    hashed_crafted_records = []
+    for crafted_record in crafted_records:
+        hashed_crafted_record = hash(bytes(crafted_record))
+        hashed_crafted_records.append(hashed_crafted_record)
+    return hashed_crafted_records
+
 class Clients:
     def __init__(self, input_shape, num_classes, learning_rate, clients_num, dataset_path="../ml_privacy_meter/datasets/cifar100.txt"):
         self.input_shape = input_shape
@@ -26,7 +36,7 @@ class Clients:
         net = AlexNet(input_shape, num_classes, learning_rate, self.graph)
         self.model = FedModel(*net)
         crafted_net = CraftedAlexNet(self.input_shape, self.num_classes, self.learning_rate, self.graph)
-        self.crafted_model = CraftedAlexNet(*crafted_net)
+        self.crafted_model = CraftedModel(*crafted_net)
 
         # initialize
         with self.graph.as_default():
@@ -81,6 +91,11 @@ class Clients:
                 #     self.crafted_model = CraftedAlexNet(*crafted_net)
                 #     flag = False
                 self.sess.run(self.model.train_op, feed_dict=feed_dict)
+                feed_dict = {
+                    self.crafted_model.X: batch_x,
+                    self.crafted_model.Y: batch_y,
+                    self.crafted_model.DROP_RATE: dropout_rate
+                }
                 self.sess.run(self.crafted_model.train_op, feed_dict=feed_dict)
         return prediction, modelY, loss, grads
 
