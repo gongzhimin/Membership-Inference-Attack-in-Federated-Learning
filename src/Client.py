@@ -120,8 +120,6 @@ class Clients:
         """ Assign all of the variables with global vars """
         with self.graph.as_default():
             all_vars = tf.trainable_variables()
-            # for variable, value in zip(all_vars, global_vars):
-            #     variable.load(value, self.sess)
             size = len(all_vars)
             for i in range(size):
                 all_vars[i].load(global_vars[i], self.sess)

@@ -68,7 +68,7 @@ for ep in range(epoch):
         else:
             client.train_epoch(cid=client_id)
 
-        # A passive inference attack can be performed here
+        # A passive inference attack can be performed here after crafting
         # ...
 
         # Cumulative updates
