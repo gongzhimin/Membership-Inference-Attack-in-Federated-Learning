@@ -17,7 +17,7 @@ def AlexNet(input_shape, num_classes, learning_rate, graph):
         graph: The tf computation graph (`tf.Graph`)
     """
     with graph.as_default():
-        logdir = "./log"
+        # logdir = "./log"
         X = tf.placeholder(tf.float32, input_shape, name='X')
         Y = tf.placeholder(tf.float32, [None, num_classes], name='Y')
         DROP_RATE = tf.placeholder(tf.float32, name='drop_rate')
@@ -45,9 +45,6 @@ def AlexNet(input_shape, num_classes, learning_rate, graph):
         pool5 = max_pool(conv5, 3, 3, 2, 2, padding='VALID', name='pool5')
 
         # 6th Layer: Flatten -> FC (w ReLu) -> Dropout
-        # flattened = tf.reshape(pool5, [-1, 6*6*256])
-        # fc6 = fc(flattened, 6*6*256, 4096, name='fc6')
-
         flattened = tf.reshape(pool5, [-1, 1 * 1 * 256])
         fc6 = fc_layer(flattened, 1 * 1 * 256, 1024, name='fc6')
         dropout6 = dropout(fc6, DROP_RATE)
@@ -64,8 +61,7 @@ def AlexNet(input_shape, num_classes, learning_rate, graph):
         loss = tf.nn.softmax_cross_entropy_with_logits_v2(logits=logits,
                                                                 labels=Y)
         loss_op = tf.reduce_mean(loss)
-        optimizer = AdamOptimizer(
-            learning_rate=learning_rate)
+        optimizer = AdamOptimizer(learning_rate=learning_rate)
         # optimizer = GradientDescentOptimizer(learning_rate=learning_rate)
         train_op = optimizer.minimize(loss_op)
 
@@ -75,8 +71,7 @@ def AlexNet(input_shape, num_classes, learning_rate, graph):
 
         # accuracy
         correct_pred = tf.equal(pred, tf.argmax(Y, 1))
-        accuracy = tf.reduce_mean(
-            tf.cast(correct_pred, tf.float32))
+        accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
         
         # calculate the gradient of loss
         grads = optimizer.compute_gradients(loss_op)

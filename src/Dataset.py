@@ -109,7 +109,7 @@ class Dataset(object):
         # features = {ndarray: (60000, 32, 32, 3)}, stored the images
         # labels = {ndarray: (60000,)}, the labels of corresponding images
         # Slice the features as well as labels to accelerate the execution during debugging, forget about accuracy
-        features, labels = features[:5000], labels[:5000]
+        # features, labels = features[:5000], labels[:5000]
 
         # Split the dataset into two parts: train set, test set.
         size = len(features)  # get the size of dataset

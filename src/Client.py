@@ -1,5 +1,4 @@
 from Dataset import Dataset
-from CraftedModel import CraftedAlexNet
 from Model import AlexNet
 import math
 from collections import namedtuple
@@ -12,11 +11,9 @@ tf.disable_eager_execution()
 # The definition of fed model, a named tuple, what an amazing idea!
 FedModel = namedtuple(
     "FedModel", "X Y DROP_RATE train_op loss_op acc_op loss prediction grads")
-CraftedModel = namedtuple(
-    "CraftedModel", "X Y DROP_RATE train_op loss_op acc_op loss prediction grads")
 
 
-def hash(crafted_records):
+def hash_records(crafted_records):
     """
     Hash the record objects to identify them.
     """
@@ -38,6 +35,7 @@ class Clients:
 
         # Call the create function to build the computational graph of AlexNet
         net = AlexNet(input_shape, num_classes, learning_rate, self.graph)
+        self.model_object = net # one of the inputs to inference attack
         self.model = FedModel(*net)
 
         # initialize
@@ -45,13 +43,12 @@ class Clients:
             self.init_op = tf.global_variables_initializer()
             self.sess.run(self.init_op)
 
-        # Load Cifar-10 dataset
-        # NOTE: len(self.dataset.train) == clients_num
-        # self.dataset = Dataset(tf.keras.datasets.cifar10.load_data,
-        #                 split=clients_num)
         self.dataset = Dataset(dataset_path, split=clients_num)
-        # self.dataset = Dataset(tf.keras.datasets.mnist.load_data,
-        #                        split=clients_num)
+        # initialize the status of activate attack
+        self.is_crafted = False
+        self.craft_id = 0
+        self.hashed_crafted_records = []
+        self.labels_crafted = []
 
     def run_test(self, num):
         with self.graph.as_default():
@@ -69,53 +66,42 @@ class Clients:
         Train one client with its own data for one epoch.
         And we leave a back door at here.
         cid: Client id
-        crated_data_hash = []
         """
-        selected_records = []
-        self.hashed_selected_records = []
-        flag = True
-        prediction = []
-        modelY = []
-        loss = []
-        grads = []
         dataset = self.dataset.train[cid]
         with self.graph.as_default():
             for _ in range(math.ceil(dataset.size / batch_size)):
                 batch_x, batch_y = dataset.next_batch(batch_size)
-                # tf.reshape(batch_x, [16, 28, 28, 2])
                 feed_dict = {
                     self.model.X: batch_x,
                     self.model.Y: batch_y,
                     self.model.DROP_RATE: dropout_rate
                 }
-                loss = np.hstack((loss, self.sess.run(
-                    self.model.loss, feed_dict=feed_dict)))
-                grads += self.sess.run(self.model.grads, feed_dict=feed_dict)
                 self.sess.run(self.model.train_op, feed_dict=feed_dict)
-                # feed_dict = {
-                #     self.crafted_model.X: batch_x,
-                #     self.crafted_model.Y: batch_y,
-                #     self.crafted_model.DROP_RATE: dropout_rate
-                # }
-                # self.sess.run(self.crafted_model.train_op, feed_dict=feed_dict)
 
     def craft(self, cid, batch_size=32, dropout_rate=0.5):
         """
-        Craft adversarial parameter update of certain participant.
-        we apply gradient ascent on a data record x, 
-        i.e., increase it's loss value by manipulating the label.
+        Craft adversarial parameter update of certain participant
+        We apply gradient ascent on a data record x,
+        i.e., increase it's loss value by manipulating the true label
         """
+        # Switch the status of active attack
+        self.is_crafted = True
+        self.craft_id = cid
         dataset = self.dataset.train[cid]
-        total_x, total_y = dataset.x, dataset.y
-        self.crafted_labels = total_y
-        # Pass by reference.
-        selected_y = total_y[0]
+        total_x, total_y = dataset.x, dataset.y # The labels were encoded in one-hot
+        selected_y = total_y[0] # Pass by reference
+        # Register the crafted records
+        self.hashed_crafted_records = hash_records([total_x[0]])
+        self.labels_crafted.append(selected_y)  # The registered labels must be the original ones, not the crafted
         size = len(selected_y)
         for i in range(size):
-            if  0.9999999 <= selected_y[i] <= 1.0000001:
+            # if selected_y[i] == 1.0:
+            # In order to avoid the precision bias of float32, the above was discarded
+            if 0.9999999 <= selected_y[i] <= 1.0000001:
                 selected_y[i] = 0.0
                 selected_y[(i+1)%size] = 1.0
                 break
+        # Train with crafted records
         with self.graph.as_default():
             feed_dict = {
                 self.model.X: total_x,
@@ -125,9 +111,8 @@ class Clients:
             self.sess.run(self.model.train_op, feed_dict=feed_dict)
 
     def get_client_vars(self):
-        """ Return all of the variables list """
+        """ Return all of the variables list"""
         with self.graph.as_default():
-            self.tensor = tf.trainable_variables()
             client_vars = self.sess.run(tf.trainable_variables())
         return client_vars
 
@@ -135,8 +120,12 @@ class Clients:
         """ Assign all of the variables with global vars """
         with self.graph.as_default():
             all_vars = tf.trainable_variables()
-            for variable, value in zip(all_vars, global_vars):
-                variable.load(value, self.sess)
+            # for variable, value in zip(all_vars, global_vars):
+            #     variable.load(value, self.sess)
+            size = len(all_vars)
+            for i in range(size):
+                all_vars[i].load(global_vars[i], self.sess)
+
 
     def choose_clients(self, ratio=1.0):
         """ randomly choose some clients """
