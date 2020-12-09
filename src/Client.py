@@ -9,8 +9,7 @@ tf.disable_eager_execution()
 
 
 # The definition of fed model, a named tuple, what an amazing idea!
-FedModel = namedtuple(
-    "FedModel", "X Y DROP_RATE train_op loss_op acc_op loss prediction grads")
+FedModel = namedtuple("FedModel", "X Y DROP_RATE train_op loss_op acc_op loss prediction grads")
 
 
 def hash_records(crafted_records):

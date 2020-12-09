@@ -1,5 +1,6 @@
 import numpy as np
-
+import sys
+sys.path.append("./ml_privacy_meter")
 import ml_privacy_meter
 import tensorflow as tf
 import tensorflow.compat.v1.keras.layers as keraslayers
@@ -9,7 +10,7 @@ from tensorflow.compat.v1.train import Saver
 input_shape = (32, 32, 3)
 
 # Load saved target model to attack
-cprefix = 'alexnet_pretrained'
+cprefix = './models/alexnet_pretrained'
 cmodelA = tf.keras.models.load_model(cprefix)
 
 cmodelA.summary()
