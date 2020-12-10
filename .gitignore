@@ -1,7 +1,8 @@
 # Ignore some files when pushing to the repo.
-/ml_privacy_meter/datasets/cifar-100-python
-/ml_privacy_meter/datasets/*.txt
-/ml_privacy_meter/datasets/*.npy
+/membership_inference_attack/datasets/cifar-100-python
+/membership_inference_attack/datasets/*.txt
+/membership_inference_attack/datasets/*.npy
 log
 .idea
 __pycache__
+/membership_inference_attack/tutorials/models

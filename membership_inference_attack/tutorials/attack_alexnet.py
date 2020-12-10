@@ -1,6 +1,6 @@
 import numpy as np
 import sys
-sys.path.append("./ml_privacy_meter")
+sys.path.append("../")
 import ml_privacy_meter
 import tensorflow as tf
 import tensorflow.compat.v1.keras.layers as keraslayers
@@ -22,12 +22,12 @@ cmodelA.summary()
 # User can store the training data wherever he/she wants but the only requirement
 # is that the file has to be stored in '.npy' format. The contents should be of
 # the same format as the .txt file of the dataset.
-saved_path = "datasets/cifar100_train.txt.npy"
+saved_path = "../datasets/cifar100_train.txt.npy"
 
 # Similar to `saved_path` being used to form the memberset for attack model,
 # `dataset_path` is used for forming the nonmemberset of the training data of
 # attack model.
-dataset_path = 'datasets/cifar100.txt'
+dataset_path = '../datasets/cifar100.txt'
 
 datahandlerA = ml_privacy_meter.utils.attack_data.attack_data(dataset_path=dataset_path,
                                                               member_dataset_path=saved_path,
