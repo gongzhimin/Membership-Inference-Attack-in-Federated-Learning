@@ -76,16 +76,16 @@ class BatchGenerator:
         return
 
     def next_batch(self, batch_size):
-        if self.start >= self.size:
-            # The index overflowed, it wouldn't occur usually.
-            print("Overflow!")
-            return None, None
-        elif self.start + batch_size >= self.size:
-            perm0 = self.random_order[self.start:]
-            self.start = self.size - 1
+        if self.start + batch_size >= len(self.random_order):
+            overflow = (self.start + batch_size) - len(self.random_order)
+            perm0 = self.random_order[self.start:] + \
+                    self.random_order[:overflow]
+            self.start = overflow
         else:
-            perm0 = self.random_order[self.start : self.start+batch_size]
+            perm0 = self.random_order[self.start:self.start + batch_size]
             self.start += batch_size
+
+        assert len(perm0) == batch_size
 
         return self.x[perm0], self.y[perm0]
 
@@ -98,8 +98,6 @@ class Dataset(object):
     """
     Load the dataset from a specific file.
     """
-    # def __init__(self, load_data_func, one_hot=True, split=0):
-    #     (x_train, y_train), (x_test, y_test) = tf.keras.datasets.cifar100.load_data()
     # The dataset_path is ./ml_privacy_meter/datasets/cifar100.txt
     def __init__(self, dataset_path, split=0, one_hot=True, input_shape=(32, 32, 3), num_classes=100):
         dataset = extract(dataset_path)

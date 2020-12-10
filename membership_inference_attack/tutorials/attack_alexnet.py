@@ -10,7 +10,7 @@ from tensorflow.compat.v1.train import Saver
 input_shape = (32, 32, 3)
 
 # Load saved target model to attack
-cprefix = './models/alexnet_pretrained'
+cprefix = "./models/alexnet_pretrained"
 cmodelA = tf.keras.models.load_model(cprefix)
 
 cmodelA.summary()
@@ -27,7 +27,7 @@ saved_path = "../datasets/cifar100_train.txt.npy"
 # Similar to `saved_path` being used to form the memberset for attack model,
 # `dataset_path` is used for forming the nonmemberset of the training data of
 # attack model.
-dataset_path = '../datasets/cifar100.txt'
+dataset_path = "../datasets/cifar100.txt"
 
 datahandlerA = ml_privacy_meter.utils.attack_data.attack_data(dataset_path=dataset_path,
                                                               member_dataset_path=saved_path,

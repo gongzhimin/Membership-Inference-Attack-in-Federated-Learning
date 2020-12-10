@@ -24,7 +24,7 @@ def hash_records(crafted_records):
 
 
 class Clients:
-    def __init__(self, input_shape, num_classes, learning_rate, clients_num, dataset_path="../ml_privacy_meter/datasets/cifar100.txt"):
+    def __init__(self, input_shape, num_classes, learning_rate, clients_num, dataset_path="../membership_inference_attack/datasets/cifar100.txt"):
         self.input_shape = input_shape
         self.num_classes = num_classes
         self.learning_rate = learning_rate
@@ -119,9 +119,8 @@ class Clients:
         """ Assign all of the variables with global vars """
         with self.graph.as_default():
             all_vars = tf.trainable_variables()
-            size = len(all_vars)
-            for i in range(size):
-                all_vars[i].load(global_vars[i], self.sess)
+            for variable, value in zip(all_vars, global_vars):
+                variable.load(value, self.sess)
 
 
     def choose_clients(self, ratio=1.0):

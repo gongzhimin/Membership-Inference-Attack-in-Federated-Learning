@@ -1,14 +1,17 @@
 import tensorflow as tf2
 import tensorflow.compat.v1 as tf
-
+import sys
+sys.path.append("../membership_inference_attack/")
+import ml_privacy_meter
 tf.disable_eager_execution()
 from tqdm import tqdm
+
 
 from Client import Clients
 
 
 def buildClients(num):
-    learning_rate = 0.0001
+    learning_rate = 0.01
     num_input = 32
     num_input_channel = 3
     num_classes = 100
@@ -38,6 +41,8 @@ def upload_vars(client_vars_sum, current_client_vars):
         client_vars_sum[i] += current_client_vars[i]
     return client_vars_sum
 
+#
+
 
 #### SOME TRAINING PARAMS ####
 CLIENT_NUMBER = 100
@@ -63,17 +68,39 @@ for ep in range(epoch):
         # and then train the local model to update their parameters
         client.set_global_vars(global_vars)
         # Perform the craft
-        if ep == 3 and client_id == 2:
+        if ep == 2 and client_id == 2:
             client.craft(cid=client_id)
         else:
             client.train_epoch(cid=client_id)
 
         # A passive inference attack can be performed here after crafting
-        # ...
+        if ep == 4 and client_id == client.craft_id:
+            cmodel = client.model_object
+            cmodel.summarry()
+            datahandler = ml_privacy_meter.utils.attack_data.attack_data(dataset_path=dataset_path,
+                                                                          member_dataset_path=saved_path,
+                                                                          batch_size=100,
+                                                                          attack_percentage=10, input_shape=input_shape,
+                                                                          normalization=True)
+            datahandler.means, datahandler.stddevs = [0.4914, 0.4822, 0.4465], [0.2023, 0.1994, 0.2010]
+            attackobj = ml_privacy_meter.attack.meminf.initialize(
+                target_train_model=cmodel,
+                target_attack_model=cmodel,
+                train_datahandler=datahandler,
+                attack_datahandler=datahandler,
+                layers_to_exploit=[26],
+                gradients_to_exploit=[6],
+                device=None, epochs=10, model_name='blackbox1')
+            attackobj.train_attack()
+            attackobj.test_attack()
 
         # Cumulative updates
         current_client_vars = client.get_client_vars()
-        client_vars_sum = upload_vars(client_vars_sum, current_client_vars)
+        if client_vars_sum is None:
+            client_vars_sum = current_client_vars
+        else:
+            for cv, ccv in zip(client_vars_sum, current_client_vars):
+                cv += ccv
 
     # obtain the avg vars as global vars
     size = len(client_vars_sum)
