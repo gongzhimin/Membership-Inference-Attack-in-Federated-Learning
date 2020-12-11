@@ -1,15 +1,12 @@
-import tensorflow as tf2
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
 import sys
-# sys.path.append("../membership_inference_attack/")
-# import ml_privacy_meter
-tf.disable_eager_execution()
+sys.path.append("../membership_inference_attack/")
+import ml_privacy_meter
 from tqdm import tqdm
-
 
 from Client import Clients
 
-
+tf.compat.v1.disable_eager_execution()
 def buildClients(num):
     learning_rate = 0.0001
     num_input = 32
@@ -49,6 +46,7 @@ CLIENT_NUMBER = 100
 CLIENT_RATIO_PER_ROUND = 1.00
 epoch = 360
 # epoch = 60   # during debugging
+input_shape = (32, 32, 3)   # the type of image in cifar-100
 
 #### CREATE CLIENT AND LOAD DATASET ####
 client = buildClients(CLIENT_NUMBER)
@@ -74,25 +72,25 @@ for ep in range(epoch):
             client.train_epoch(cid=client_id)
 
         # A passive inference attack can be performed here after crafting
-        # if ep == 4 and client_id == client.craft_id:
-        #     cmodel = client.model_object
-        #     cmodel.summarry()
-        #     datahandler = ml_privacy_meter.utils.attack_data.attack_data(dataset_path=dataset_path,
-        #                                                                   member_dataset_path=saved_path,
-        #                                                                   batch_size=100,
-        #                                                                   attack_percentage=10, input_shape=input_shape,
-        #                                                                   normalization=True)
-        #     datahandler.means, datahandler.stddevs = [0.4914, 0.4822, 0.4465], [0.2023, 0.1994, 0.2010]
-        #     attackobj = ml_privacy_meter.attack.meminf.initialize(
-        #         target_train_model=cmodel,
-        #         target_attack_model=cmodel,
-        #         train_datahandler=datahandler,
-        #         attack_datahandler=datahandler,
-        #         layers_to_exploit=[26],
-        #         gradients_to_exploit=[6],
-        #         device=None, epochs=10, model_name='blackbox1')
-        #     attackobj.train_attack()
-        #     attackobj.test_attack()
+        if ep == 4 and client_id == client.craft_id:
+            cmodel = client.model_object
+            cmodel.summarry()
+            datahandler = ml_privacy_meter.utils.attack_data.attack_data(dataset_path=dataset_path,
+                                                                          member_dataset_path=saved_path,
+                                                                          batch_size=32,
+                                                                          attack_percentage=10, input_shape=input_shape,
+                                                                          normalization=True)
+            datahandler.means, datahandler.stddevs = [0.4914, 0.4822, 0.4465], [0.2023, 0.1994, 0.2010]
+            attackobj = ml_privacy_meter.attack.meminf.initialize(
+                target_train_model=cmodel,
+                target_attack_model=cmodel,
+                train_datahandler=datahandler,
+                attack_datahandler=datahandler,
+                layers_to_exploit=[8],
+                gradients_to_exploit=[6],
+                device=None, epochs=10, model_name='blackbox1')
+            attackobj.train_attack()
+            attackobj.test_attack()
 
         # Cumulative updates
         current_client_vars = client.get_client_vars()

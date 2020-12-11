@@ -1,6 +1,5 @@
-import tensorflow as tf2
-import tensorflow.compat.v1 as tf
-tf.disable_eager_execution()
+import tensorflow as tf
+tf.compat.v1.disable_eager_execution()
 import numpy as np
 from tensorflow.compat.v1.train import AdamOptimizer
 from tensorflow.compat.v1.train import GradientDescentOptimizer
@@ -18,9 +17,9 @@ def AlexNet(input_shape, num_classes, learning_rate, graph):
     """
     with graph.as_default():
         # logdir = "./log"
-        X = tf.placeholder(tf.float32, input_shape, name='X')
-        Y = tf.placeholder(tf.float32, [None, num_classes], name='Y')
-        DROP_RATE = tf.placeholder(tf.float32, name='drop_rate')
+        X = tf.compat.v1.placeholder(tf.float32, input_shape, name='X')
+        Y = tf.compat.v1.placeholder(tf.float32, [None, num_classes], name='Y')
+        DROP_RATE = tf.compat.v1.placeholder(tf.float32, name='drop_rate')
 
         # 1st Layer: Conv (w ReLu) -> Lrn -> Pool
         # conv1 = conv(X, 11, 11, 96, 4, 4, padding='VALID', name='conv1')
@@ -58,19 +57,19 @@ def AlexNet(input_shape, num_classes, learning_rate, graph):
         logits = fc_layer(dropout7, 2048, num_classes, relu=False, name='fc8')
 
         # loss and optimizer
-        loss = tf.nn.softmax_cross_entropy_with_logits_v2(logits=logits,
+        loss = tf.compat.v1.nn.softmax_cross_entropy_with_logits_v2(logits=logits,
                                                                 labels=Y)
-        loss_op = tf.reduce_mean(loss)
+        loss_op = tf.compat.v1.reduce_mean(loss)
         optimizer = AdamOptimizer(learning_rate=learning_rate)
         # optimizer = GradientDescentOptimizer(learning_rate=learning_rate)
         train_op = optimizer.minimize(loss_op)
 
         # Evaluate model
-        prediction = tf.nn.softmax(logits)
+        prediction = tf.compat.v1.nn.softmax(logits)
         pred = tf.argmax(prediction, 1)
 
         # accuracy
-        correct_pred = tf.equal(pred, tf.argmax(Y, 1))
+        correct_pred = tf.compat.v1.equal(pred, tf.argmax(Y, 1))
         accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
         
         # calculate the gradient of loss
@@ -94,14 +93,14 @@ def conv(x, filter_height, filter_width, num_filters,
     def convolve(i, k): return tf.nn.conv2d(
         i, k, strides=[1, stride_y, stride_x, 1], padding=padding)
 
-    with tf.variable_scope(name) as scope:
+    with tf.compat.v1.variable_scope(name) as scope:
         # Create tf variables for the weights and biases of the conv layer
-        weights = tf.get_variable('weights',
+        weights = tf.compat.v1.get_variable('weights',
                                   shape=[
                                       filter_height, filter_width,
                                       input_channels // groups, num_filters
                                   ])
-        biases = tf.get_variable('biases', shape=[num_filters])
+        biases = tf.compat.v1.get_variable('biases', shape=[num_filters])
 
     if groups == 1:
         conv = convolve(x, weights)
@@ -109,8 +108,8 @@ def conv(x, filter_height, filter_width, num_filters,
     # In the cases of multiple groups, split inputs & weights and
     else:
         # Split input and weights and convolve them separately
-        input_groups = tf.split(axis=3, num_or_size_splits=groups, value=x)
-        weight_groups = tf.split(axis=3,
+        input_groups = tf.compat.v1.split(axis=3, num_or_size_splits=groups, value=x)
+        weight_groups = tf.compat.v1.split(axis=3,
                                  num_or_size_splits=groups,
                                  value=weights)
         output_groups = [
@@ -121,10 +120,10 @@ def conv(x, filter_height, filter_width, num_filters,
         conv = tf.concat(axis=3, values=output_groups)
 
     # Add biases
-    bias = tf.reshape(tf.nn.bias_add(conv, biases), tf.shape(conv))
+    bias = tf.compat.v1.reshape(tf.nn.bias_add(conv, biases), tf.shape(conv))
 
     # Apply relu function
-    relu = tf.nn.relu(bias, name=scope.name)
+    relu = tf.compat.v1.nn.relu(bias, name=scope.name)
 
     return relu
 
@@ -132,16 +131,16 @@ def conv(x, filter_height, filter_width, num_filters,
 def fc_layer(x, input_size, output_size, name, relu=True, k=20):
     """Create a fully connected layer."""
 
-    with tf.variable_scope(name) as scope:
+    with tf.compat.v1.variable_scope(name) as scope:
         # Create tf variables for the weights and biases.
-        W = tf.get_variable('weights', shape=[input_size, output_size])
-        b = tf.get_variable('biases', shape=[output_size])
+        W = tf.compat.v1.get_variable('weights', shape=[input_size, output_size])
+        b = tf.compat.v1.get_variable('biases', shape=[output_size])
         # Matrix multiply weights and inputs and add biases.
-        z = tf.nn.bias_add(tf.matmul(x, W), b, name=scope.name)
+        z = tf.compat.v1.nn.bias_add(tf.matmul(x, W), b, name=scope.name)
 
     if relu:
         # Apply ReLu non linearity.
-        a = tf.nn.relu(z)
+        a = tf.compat.v1.nn.relu(z)
         return a
 
     else:
@@ -153,7 +152,7 @@ def max_pool(x,
              stride_y, stride_x,
              name, padding='SAME'):
     """Create a max pooling layer."""
-    return tf.nn.max_pool2d(x,
+    return tf.compat.v1.nn.max_pool2d(x,
                             ksize=[1, filter_height, filter_width, 1],
                             strides=[1, stride_y, stride_x, 1],
                             padding=padding,
@@ -162,7 +161,7 @@ def max_pool(x,
 
 def lrn(x, radius, alpha, beta, name, bias=1.0):
     """Create a local response normalization layer."""
-    return tf.nn.local_response_normalization(x,
+    return tf.compat.v1.nn.local_response_normalization(x,
                                               depth_radius=radius,
                                               alpha=alpha,
                                               beta=beta,
@@ -172,4 +171,4 @@ def lrn(x, radius, alpha, beta, name, bias=1.0):
 
 def dropout(x, rate):
     """Create a dropout layer."""
-    return tf.nn.dropout(x, rate=rate)
+    return tf.compat.v1.nn.dropout(x, rate=rate)

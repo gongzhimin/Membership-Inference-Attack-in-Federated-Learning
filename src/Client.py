@@ -3,9 +3,7 @@ from Model import AlexNet
 import math
 from collections import namedtuple
 import numpy as np
-import tensorflow as tf2
-import tensorflow.compat.v1 as tf
-tf.disable_eager_execution()
+import tensorflow as tf
 
 
 # The definition of fed model, a named tuple, what an amazing idea!
@@ -28,9 +26,11 @@ class Clients:
         self.input_shape = input_shape
         self.num_classes = num_classes
         self.learning_rate = learning_rate
-        self.graph = tf.Graph()
-        tf.reset_default_graph()
-        self.sess = tf.Session(graph=self.graph)
+        self.graph = tf.compat.v1.Graph()
+        tf.compat.v1.reset_default_graph()
+        config = tf.compat.v1.ConfigProto(allow_soft_placement=True,
+                                          log_device_placement=True)
+        self.sess = tf.compat.v1.Session(graph=self.graph, config=config)
 
         # Call the create function to build the computational graph of AlexNet
         net = AlexNet(input_shape, num_classes, learning_rate, self.graph)
@@ -39,7 +39,7 @@ class Clients:
 
         # initialize
         with self.graph.as_default():
-            self.init_op = tf.global_variables_initializer()
+            self.init_op = tf.compat.v1.global_variables_initializer()
             self.sess.run(self.init_op)
 
         self.dataset = Dataset(dataset_path, split=clients_num)
@@ -112,13 +112,13 @@ class Clients:
     def get_client_vars(self):
         """ Return all of the variables list"""
         with self.graph.as_default():
-            client_vars = self.sess.run(tf.trainable_variables())
+            client_vars = self.sess.run(tf.compat.v1.trainable_variables())
         return client_vars
 
     def set_global_vars(self, global_vars):
         """ Assign all of the variables with global vars """
         with self.graph.as_default():
-            all_vars = tf.trainable_variables()
+            all_vars = tf.compat.v1.trainable_variables()
             for variable, value in zip(all_vars, global_vars):
                 variable.load(value, self.sess)
 

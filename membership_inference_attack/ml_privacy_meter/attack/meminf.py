@@ -38,17 +38,18 @@ if gpus:
 
 
 # Sets soft placement below for GPU memory issues
-tf.config.set_soft_device_placement(True)
+# tf.config.set_soft_device_placement(True)
 
-ioldinit = tf.compat.v1.Session.__init__
-
-
-def myinit(session_object, target='', graph=None, config=None):
-    config = tf.ConfigProto(allow_soft_placement=True,
-                            log_device_placement=True)
-
-
-tf.compat.v1.Session.__init__ = myinit
+# An incomprehensible approach to redefine the Session's initialisation method.
+# ioldinit = tf.compat.v1.Session.__init__
+#
+#
+# def myinit(session_object, target='', graph=None, config=None):
+#     config = tf.compat.v1.ConfigProto(allow_soft_placement=True,
+#                             log_device_placement=True)
+#
+#
+# tf.compat.v1.Session.__init__ = myinit
 
 
 # To decide what attack component (FCN or CNN) to
