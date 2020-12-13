@@ -58,7 +58,7 @@ class attack_data:
         """
         Extracts dataset from filepath
         """
-        with open(filepath, "r") as f:
+        with open(filepath, 'r') as f:
             dataset = f.readlines()
         dataset = list(map(lambda i: i.strip('\n').split(';'), dataset))
         dataset = np.asarray(dataset)
@@ -72,7 +72,7 @@ class attack_data:
         """
         features, labels = dataset[:, :-1], dataset[:, -1]
         features = map(lambda y: np.array(
-            list(map(lambda i: i.split(","), y))).flatten(), features)
+            list(map(lambda i: i.split(','), y))).flatten(), features)
         features = np.array(list(features))
 
         features = np.ndarray.astype(features, np.float32)
