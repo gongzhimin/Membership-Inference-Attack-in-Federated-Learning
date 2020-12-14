@@ -34,7 +34,7 @@ class Clients:
 
         # Call the create function to build the computational graph of AlexNet
         net = AlexNet(input_shape, num_classes, learning_rate, self.graph)
-        self.model_object = net # one of the inputs to inference attack
+        # self.model_object = net # one of the inputs to inference attack
         self.model = FedModel(*net)
 
         # initialize

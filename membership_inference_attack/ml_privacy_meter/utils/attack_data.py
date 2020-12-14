@@ -21,22 +21,32 @@ def get_tfdataset(features, labels):
     """
     return tf.data.Dataset.from_tensor_slices((features, labels))
 
+def re_categorical(one_hot_labels):
+    """
+    Decode the true labels, as the reverse process of one hot encoding.
+    """
+    pass
+
 
 class attack_data:
     """
     Attack data class to perform operations on dataset.
     """
 
-    def __init__(self, dataset_path, member_dataset_path, batch_size,
+    def __init__(self, test_data, train_data, batch_size,
                  attack_percentage, normalization=False,
                  input_shape=None):
-
+        # Member set is a subset of train_data, while non-member set is a subset of test_data.
+        # Besides, size(member_set) == size(non_member_set)
         self.batch_size = batch_size
 
-        # Loading the training (member) dataset
-        self.train_data = np.load(member_dataset_path)
-        self.training_size = len(self.train_data)
-
+        # Loading the training (member) dataset.
+        # train_data is a BatchGenerator object defined in `Dataset.py`.
+        self.train_data = train_data
+        self.training_size = len(self.train_data.x)
+        # It assumed that a subset of the training set is known to the attacker,
+        # as well as some data from the same underlying distribution that is not contained in the training set.
+        # Clearly, the code implements an application of white-box membership inference attack in a supervised scenario.
         self.attack_size = int(attack_percentage /
                                float(100) * self.training_size)
 
@@ -53,6 +63,8 @@ class attack_data:
 
         # To avoid using any of training examples for testing
         self.train_hashes = compute_hashes(self.train_data)
+        # Initialize the means and standard deviations for normalization.
+        self.means, self.stddevs = None, None
 
     def _extract(self, filepath):
         """
@@ -131,6 +143,13 @@ class attack_data:
 
         m_features, m_labels = self.generate(member_train)
         nm_features, nm_labels = self.generate(self.nonmember_train)
+        # The code above, which serves to generate features
+        # as well as corresponding labels for member set and non-member set,
+        # should be displaced by a more concise version.
+        # In FL, the features and labels are already generated.
+        # The features have been normalized, and the labels have been encoded in one-hot.
+        # What need to do is to pass the member set and non-member set from FL to this method.
+        # And an key point is, the size of non-member set is the same as member set.
         if self.normalization:
             train_features, _ = self.generate(self.train_data)
             if not self.means and not self.stddevs:
