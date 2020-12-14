@@ -1,6 +1,6 @@
 # NISL-FL
 
-Just a demo now.
+Just a prototype now.
 
 Maybe a result delivered.
 
