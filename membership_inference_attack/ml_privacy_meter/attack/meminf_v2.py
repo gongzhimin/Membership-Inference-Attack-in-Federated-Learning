@@ -36,18 +36,21 @@ if gpus:
     except RuntimeError as e:
         print(e)
 
+
 # Sets soft placement below for GPU memory issues
 # tf.config.set_soft_device_placement(True)
-#
+
+# An incomprehensible approach to redefine the Session's initialisation method.
 # ioldinit = tf.compat.v1.Session.__init__
 #
 #
 # def myinit(session_object, target='', graph=None, config=None):
-#     config = tf.ConfigProto(allow_soft_placement=True,
+#     config = tf.compat.v1.ConfigProto(allow_soft_placement=True,
 #                             log_device_placement=True)
 #
 #
 # tf.compat.v1.Session.__init__ = myinit
+
 
 # To decide what attack component (FCN or CNN) to
 # use on the basis of the layer name.
@@ -60,48 +63,58 @@ GRAD_LAYERS_LIST = ['Conv', 'Dense']
 class initialize(object):
     """
     This attack was originally proposed by Nasr et al. It exploits
-    one-hot encoding of true labels, loss value, intermediate layer
-    activations and gradients of intermediate layers of the target model
-    on data points, for training the attack model to infer membership
+    one-hot encoding of true labels, loss value, intermediate layer 
+    activations and gradients of intermediate layers of the target model 
+    on data points, for training the attack model to infer membership 
     in training data.
+
     Paper link: https://arxiv.org/abs/1812.00910
+
     Args:
     ------
-    target_train_model: The target (classification) model that'll
+    target_train_model: The target (classification) model that'll 
                         be used to train the attack model.
+
     target_attack_model: The target (classification) model that we are
-                         interested in quantifying the privacy risk of.
-                         The trained attack model will be used
+                         interested in quantifying the privacy risk of. 
+                         The trained attack model will be used 
                          for attacking this model to quantify its membership
-                         privacy leakage.
+                         privacy leakage. 
+
     train_datahandler: an instance of `ml_privacy_meter.data.attack_data.load`,
-                       that is used to retrieve dataset for training the
+                       that is used to retrieve dataset for training the 
                        attack model. The member set of this training set is
                        a subset of the classification model's
-                       training set. Check Main README on how to
+                       training set. Check Main README on how to 
                        load dataset for the attack.
+
     attack_datahandler: an instance of `ml_privacy_meter.data.attack_data.load`,
-                        used to retrieve dataset for evaluating the attack
+                        used to retrieve dataset for evaluating the attack 
                         model. The member set of this test/evaluation set is
                         a subset of the target attack model's train set minus
                         the training members of the target_train_model.
+
     optimizer: The optimizer op for training the attack model.
                Default op is "adam".
+
     layers_to_exploit: a list of integers specifying the indices of layers,
                        whose activations will be exploited by the attack model.
-                       If the list has only a single element and
+                       If the list has only a single element and 
                        it is equal to the index of last layer,
                        the attack can be considered as a "blackbox" attack.
-    gradients_to_exploit: a list of integers specifying the indices
-                          of layers whose gradients will be
-                          exploited by the attack model.
+
+    gradients_to_exploit: a list of integers specifying the indices 
+                          of layers whose gradients will be 
+                          exploited by the attack model. 
+
     exploit_loss: boolean; whether to exploit loss value of target model or not.
+   
+    exploit_label: boolean; whether to exploit one-hot encoded labels or not.                 
+   
+    learning_rate: learning rate for training the attack model 
+    
+    epochs: Number of epochs to train the attack model 
 
-    exploit_label: boolean; whether to exploit one-hot encoded labels or not.
-
-    learning_rate: learning rate for training the attack model
-
-    epochs: Number of epochs to train the attack model
     Examples:
     """
 
@@ -179,10 +192,10 @@ class initialize(object):
 
     def create_input_containers(self):
         """
-        Creates arrays for inputs to the attack and
-        encoder model.
-        (NOTE: Although the encoder is a part of the attack model,
-        two sets of containers are required for connecting
+        Creates arrays for inputs to the attack and 
+        encoder model. 
+        (NOTE: Although the encoder is a part of the attack model, 
+        two sets of containers are required for connecting 
         the TensorFlow graph).
         """
         self.attackinputs = []
@@ -194,7 +207,7 @@ class initialize(object):
         """
         for l in self.layers_to_exploit:
             # For each layer to exploit, module created and added to self.attackinputs and self.encoderinputs
-            layer = layers[l - 1]
+            layer = layers[l-1]
             input_shape = layer.output_shape[1]
             requires_cnn = map(lambda i: i in layer.__class__.__name__,
                                CNN_COMPONENT_LIST)
@@ -232,7 +245,7 @@ class initialize(object):
         variables = model.variables
         for layerindex in self.gradients_to_exploit:
             # For each gradient to exploit, module created and added to self.attackinputs and self.encoderinputs
-            layer = grad_layers[layerindex - 1]
+            layer = grad_layers[layerindex-1]
             shape = self.attack_utils.get_gradshape(variables, layerindex)
             requires_cnn = map(lambda i: i in layer.__class__.__name__,
                                CNN_COMPONENT_LIST)
@@ -245,7 +258,7 @@ class initialize(object):
 
     def create_attack_components(self, layers):
         """
-        Creates FCN and CNN modules constituting the attack model.
+        Creates FCN and CNN modules constituting the attack model.  
         """
         model = self.target_train_model
 
@@ -279,13 +292,13 @@ class initialize(object):
 
     def get_layer_outputs(self, model, features):
         """
-        Get the intermediate computations (activations) of
+        Get the intermediate computations (activations) of 
         the hidden layers of the given target model.
         """
         layers = model.layers
         for l in self.layers_to_exploit:
             x = model.input
-            y = layers[l - 1].output
+            y = layers[l-1].output
             # Model created to get output of specified layer
             new_model = tf.compat.v1.keras.Model(x, y)
             predicted = new_model(features)
@@ -336,7 +349,7 @@ class initialize(object):
             # gradient_arr is a list of size of number of layers having trainable parameters
             gradients_per_example = []
             for g in self.gradients_to_exploit:
-                g = (g - 1) * 2
+                g = (g-1)*2
                 shape = grads[g].shape
                 reshaped = (int(shape[0]), int(shape[1]), 1)
                 toappend = tf.reshape(grads[g], reshaped)
@@ -428,6 +441,8 @@ class initialize(object):
         model = self.target_train_model
 
         pred = model(nm_features)
+        sess = tf.compat.v1.Session()
+        pred = pred.eval(session=sess)
         acc = accuracy_score(nm_labels, np.argmax(pred, axis=1))
         print('Target model test accuracy', acc)
 
@@ -445,7 +460,7 @@ class initialize(object):
             best_accuracy = 0
             for e in range(self.epochs):
                 zipped = zip(mtrainset, nmtrainset)
-                for ((mfeatures, mlabels), (nmfeatures, nmlabels)) in zipped:
+                for((mfeatures, mlabels), (nmfeatures, nmlabels)) in zipped:
                     with tf.GradientTape() as tape:
                         tape.reset()
                         # Getting outputs of forward pass of attack model
@@ -473,8 +488,8 @@ class initialize(object):
                     best_accuracy = attack_accuracy
 
                 with self.summary_writer.as_default(), tf.name_scope(self.model_name):
-                    tf.summary.scalar('loss', np.average(attackloss), step=e + 1)
-                    tf.summary.scalar('accuracy', attack_accuracy, step=e + 1)
+                    tf.summary.scalar('loss', np.average(attackloss), step=e+1)
+                    tf.summary.scalar('accuracy', attack_accuracy, step=e+1)
 
                 print("Epoch {} over :"
                       "Attack test accuracy: {}, Best accuracy : {}"
@@ -525,7 +540,7 @@ class initialize(object):
         if not os.path.exists(path):
             os.makedirs(path)
         with tf.device(self.device):
-            for (mfeatures, mlabels) in mtrainset:
+            for(mfeatures, mlabels) in mtrainset:
                 # Getting outputs of forward pass of attack model
                 moutputs = self.forward_pass(model, mfeatures, mlabels)
                 mgradientnorm = self.get_gradient_norms(
@@ -538,7 +553,7 @@ class initialize(object):
                 memtrue = np.ones(moutputs.shape)
                 mtrue.extend(memtrue)
 
-            for (nmfeatures, nmlabels) in nmtrainset:
+            for(nmfeatures, nmlabels) in nmtrainset:
                 # Getting outputs of forward pass of attack model
                 nmoutputs = self.forward_pass(
                     model, nmfeatures, nmlabels)
@@ -566,11 +581,9 @@ class initialize(object):
         # Creates a histogram for Membership Probability
         fig = plt.figure(1)
         plt.hist(np.array(mpreds).flatten(), color='xkcd:blue', alpha=0.7, bins=20,
-                 histtype='bar', range=(0, 1), weights=(np.ones_like(mpreds) / len(mpreds)),
-                 label='Training Data (Members)')
+                 histtype='bar', range=(0, 1), weights=(np.ones_like(mpreds) / len(mpreds)), label='Training Data (Members)')
         plt.hist(np.array(nmpreds).flatten(), color='xkcd:light blue', alpha=0.7, bins=20,
-                 histtype='bar', range=(0, 1), weights=(np.ones_like(nmpreds) / len(nmpreds)),
-                 label='Population Data (Non-members)')
+                 histtype='bar', range=(0, 1), weights=(np.ones_like(nmpreds) / len(nmpreds)), label='Population Data (Non-members)')
         plt.xlabel('Membership Probability')
         plt.ylabel('Fraction')
         plt.title('Privacy Risk')
@@ -637,8 +650,7 @@ class initialize(object):
                 if l == lab:
                     labs.append(p)
 
-            plt.hist(np.array(labs).flatten(), color='xkcd:light blue', alpha=0.7, bins=20,
-                     label='Population Data (Non-members)',
+            plt.hist(np.array(labs).flatten(), color='xkcd:light blue', alpha=0.7, bins=20, label='Population Data (Non-members)',
                      histtype='bar', range=(0, 1), weights=(np.ones_like(labs) / len(labs)))
 
             plt.legend()

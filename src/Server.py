@@ -1,17 +1,13 @@
 import tensorflow as tf
-import sys
-sys.path.append("../membership_inference_attack/")
-import ml_privacy_meter
 from tqdm import tqdm
 
 from Client import Clients
 
-tf.compat.v1.disable_eager_execution()
 def buildClients(num):
     learning_rate = 0.0001
-    num_input = 32
-    num_input_channel = 3
-    num_classes = 100
+    num_input = 32  # image shape: 32*32
+    num_input_channel = 3  # image channel: 3
+    num_classes = 10  # Cifar-10 total classes (0-9 digits)
 
     #create Client and model
     return Clients(input_shape=[None, num_input, num_input, num_input_channel],
@@ -26,27 +22,12 @@ def run_global_test(client, global_vars, test_num):
     print("[epoch {}, {} inst] Testing ACC: {:.4f}, Loss: {:.4f}".format(
         ep + 1, test_num, acc, loss))
 
-def upload_vars(client_vars_sum, current_client_vars):
-    """
-    Upload parameters
-    """
-    if client_vars_sum == None:
-        client_vars_sum = current_client_vars
-        return client_vars_sum
-    vars_num = len(current_client_vars)
-    for i in range(vars_num):
-        client_vars_sum[i] += current_client_vars[i]
-    return client_vars_sum
-
-#
-
 
 #### SOME TRAINING PARAMS ####
-CLIENT_NUMBER = 5   # The ml_privacy_meter can't handle the scenario with too many participants.
-CLIENT_RATIO_PER_ROUND = 1.00
+CLIENT_NUMBER = 100
+CLIENT_RATIO_PER_ROUND = 0.12
 epoch = 360
-# epoch = 60   # during debugging
-input_shape = (32, 32, 3)   # the type of image in cifar-100
+
 
 #### CREATE CLIENT AND LOAD DATASET ####
 client = buildClients(CLIENT_NUMBER)
@@ -62,41 +43,16 @@ for ep in range(epoch):
 
     # Train with these clients
     for client_id in tqdm(random_clients, ascii=True):
-        # In each epoch, clients download parameters from the server
-        # and then train the local model to update their parameters
+        # Restore global vars to client's model
         client.set_global_vars(global_vars)
-        # Perform the craft
-        if ep == 2 and client_id == 2:
-            client.craft(cid=client_id)
-        else:
-            client.train_epoch(cid=client_id)
 
-        # A passive inference attack can be performed here after crafting
-        if ep == 4 and client_id == client.craft_id:
-            train_data = client.dataset.train[client_id]
-            test_data = client.dataset.test
+        # train one client
+        client.train_epoch(cid=client_id)
 
-            data_handler = ml_privacy_meter.utils.attack_data.attack_data(test_data=test_data,
-                                                                          train_data=train_data,
-                                                                          batch_size=32,
-                                                                          attack_percentage=50, input_shape=input_shape,
-                                                                          normalization=True)
-            client_model = client.model_object
-            client_model.summarry()
-            # datahandler.means, datahandler.stddevs = [0.4914, 0.4822, 0.4465], [0.2023, 0.1994, 0.2010]
-            attackobj = ml_privacy_meter.attack.meminf.initialize(
-                target_train_model=client_model,
-                target_attack_model=client_model,
-                train_datahandler=data_handler,
-                attack_datahandler=data_handler,
-                layers_to_exploit=[8],
-                gradients_to_exploit=[6],
-                device=None, epochs=10, model_name='blackbox1')
-            attackobj.train_attack()
-            attackobj.test_attack()
-
-        # Cumulative updates
+        # obtain current client's vars
         current_client_vars = client.get_client_vars()
+
+        # sum it up
         if client_vars_sum is None:
             client_vars_sum = current_client_vars
         else:
@@ -104,13 +60,13 @@ for ep in range(epoch):
                 cv += ccv
 
     # obtain the avg vars as global vars
-    size = len(client_vars_sum)
-    for i in range(size):
-        global_vars[i] = client_vars_sum[i] / len(random_clients)
+    global_vars = []
+    for var in client_vars_sum:
+        global_vars.append(var / len(random_clients))
 
     # run test on 1000 instances
     run_global_test(client, global_vars, test_num=600)
 
 
 #### FINAL TEST ####
-run_global_test(client, global_vars, test_num=1000)
+run_global_test(client, global_vars, test_num=10000)
