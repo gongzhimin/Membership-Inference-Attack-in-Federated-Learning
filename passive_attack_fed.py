@@ -19,9 +19,9 @@ def passive_attack(client, client_id):
     # The application of shadow models has been confirmed:
     # https://github.com/privacytrustlab/ml_privacy_meter/issues/19
     target_model = client.model
-    target_model.summary()
+    # target_model.summary()
     shadow_model = classification_cnn(input_shape)
-    attackobj = ml_privacy_meter.attack.meminf_v2.initialize(
+    attackobj = ml_privacy_meter.attack.meminf.initialize(
         target_train_model=shadow_model,
         target_attack_model=target_model,
         train_datahandler=data_handler,
@@ -50,7 +50,8 @@ if __name__ == "__main__":
     client = Clients(input_shape=input_shape,
                     classes_num=classes_num,
                     learning_rate=learning_rate,
-                    clients_num=CLIENT_NUMBER)
+                    clients_num=CLIENT_NUMBER,
+                     dataset_path="./datasets/cifar100.txt")
     server = Server()
 
     """Begin training."""
@@ -65,9 +66,9 @@ if __name__ == "__main__":
             # and then train local models to adapt their parameters.
             client.download_global_parameters(server.global_parameters)
             # Perform passive local membership inference attack, since only get global parameters.
-            if ep == 1 and client_id == 0:
-                print("passive local attack on cid: {} in fed-epoch: {}".format((ep+1), client_id))
-                passive_attack(client, client_id)
+            # if ep == 1 and client_id == 0:
+            #     print("passive local attack on cid: {} in fed-epoch: {}".format((ep+1), client_id))
+            #     passive_attack(client, client_id)
 
             client.train_epoch(cid=client_id)
 

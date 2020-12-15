@@ -24,7 +24,7 @@ def hash_records(crafted_records):
 
 
 class Clients:
-    def __init__(self, input_shape, classes_num, learning_rate, clients_num, dataset_path="./datasets/cifar100.txt"):
+    def __init__(self, input_shape, classes_num, learning_rate, clients_num, dataset_path):
         self.input_shape = input_shape
         self.learning_rate = learning_rate
         # Initialize the Keras model.
@@ -35,7 +35,9 @@ class Clients:
                             optimizer=self.opt,
                             metrics=['accuracy'])
 
-        self.dataset = Dataset(dataset_path, split=clients_num, one_hot=True, input_shape=self.input_shape, classes_num=classes_num)
+        self.dataset = Dataset(dataset_path, split=clients_num,
+                               one_hot=True, input_shape=self.input_shape,
+                               classes_num=classes_num)
         # Initialize the status of activate attack.
         self.is_crafted = False
         self.craft_id = 0
@@ -48,8 +50,6 @@ class Clients:
     def train_epoch(self, cid, batch_size=32, dropout_rate=0.5):
         """
         Train one client with its own data for one epoch.
-        And we leave a back door at here.
-        cid: Client id
         """
         # The data held by each participant should be divided into tow parts:
         # train set and test set, both of which are used to train the local model.
@@ -67,12 +67,11 @@ class Clients:
                         validation_data=(features_test, labels_test),
                         shuffle=True, callbacks=[callback])
 
-
     def craft(self, cid, batch_size=32, dropout_rate=0.5):
         """
         Craft adversarial parameter update of certain participant
         We apply gradient ascent on a data record x,
-        i.e., increase it's loss value by manipulating the true label
+        i.e., increase it's loss value by manipulating the true label.
         """
         # Switch the status of active attack
         self.is_crafted = True
@@ -106,9 +105,8 @@ class Clients:
         for var, value in zip(client_vars, global_vars):
             var.assign(value)
 
-
     def choose_clients(self, ratio=1.0):
-        """ randomly choose some clients """
+        """ Randomly choose some clients """
         client_num = self.get_clients_num()
         choose_num = math.floor(client_num * ratio)
         return np.random.permutation(client_num)[:choose_num]

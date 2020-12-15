@@ -41,8 +41,8 @@ def generate(dataset, input_shape):
 
 def compute_moments(features, input_channels=3):
     """
-            Computes means and standard deviation for 3 dimensional input for normalization.
-            """
+    Computes means and standard deviation for 3 dimensional input for normalization.
+    """
     means = []
     stddevs = []
     for i in range(input_channels):
@@ -96,7 +96,7 @@ class Dataset(object):
     Load the dataset from a specific file.
     """
     # The dataset_path is ./ml_privacy_meter/datasets/cifar100.txt
-    def __init__(self, dataset_path, split=0, one_hot=True, input_shape=(32, 32, 3), classes_num=100):
+    def __init__(self, dataset_path, input_shape, classes_num, split, one_hot):
         dataset = extract(dataset_path)
         np.random.shuffle(dataset)  # shuffle the dataset to ensure the data records of each participant iid
         features, labels = generate(dataset, input_shape)
@@ -108,9 +108,8 @@ class Dataset(object):
 
         # Split the dataset into two parts: train set, test set.
         size = len(features)  # get the size of dataset
-        verge = int(0.8 * size)
-        features_train, labels_train = features[:verge], labels[:verge]
-        features_test, labels_test = features[verge:], labels[verge:]
+        features_train, labels_train = features[:int(0.8*size)], labels[:int(0.8*size)]
+        features_test, labels_test = features[int(0.8*size):], labels[int(0.8*size):]
 
         # Normalize the train features and test features.
         features_train = normalize(features_train)
