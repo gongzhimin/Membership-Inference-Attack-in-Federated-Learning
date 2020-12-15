@@ -171,7 +171,7 @@ class attack_data:
         In FL part, the features and labels are already generated.
         The features have been normalized, and the labels have been encoded in one-hot.
         What need to do is to pass the member set and non-member set from FL to this method.
-        And an key point is, the size of non-member set is the same as member set."""
+        And a key point is, the size of non-member set is the same as member set."""
 
         m_features, m_labels = self.train_data.x[:self.attack_size], self.train_data.y[:self.attack_size]
         nm_features, nm_labels = self.test_data.x[:self.attack_size], self.test_data.y[:self.attack_size]

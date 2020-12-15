@@ -40,19 +40,19 @@ def generate(dataset, input_shape):
     return features, labels
 
 def compute_moments(features, input_channels=3):
-        """
-        Computes means and standard deviation for 3 dimensional input for normalization.
-        """
-        means = []
-        stddevs = []
-        for i in range(input_channels):
-            # very specific to 3-dimensional input
-            pixels = features[:, :, :, i].ravel()
-            means.append(np.mean(pixels, dtype=np.float32))
-            stddevs.append(np.std(pixels, dtype=np.float32))
-        means = list(map(lambda i: np.float32(i/255), means))
-        stddevs = list(map(lambda i: np.float32(i/255), stddevs))
-        return means, stddevs
+    """
+            Computes means and standard deviation for 3 dimensional input for normalization.
+            """
+    means = []
+    stddevs = []
+    for i in range(input_channels):
+        # very specific to 3-dimensional input
+        pixels = features[:, :, :, i].ravel()
+        means.append(np.mean(pixels, dtype=np.float32))
+        stddevs.append(np.std(pixels, dtype=np.float32))
+    means = list(map(lambda i: np.float32(i / 255), means))
+    stddevs = list(map(lambda i: np.float32(i / 255), stddevs))
+    return means, stddevs
 
 def normalize(features):
     """
@@ -104,7 +104,7 @@ class Dataset(object):
         # features = {ndarray: (60000, 32, 32, 3)}, stored the images
         # labels = {ndarray: (60000,)}, the labels of corresponding images
         # Slice the features as well as labels to accelerate the execution during debugging, forget about accuracy
-        features, labels = features[:5000], labels[:5000]
+        # features, labels = features[:5000], labels[:5000]
 
         # Split the dataset into two parts: train set, test set.
         size = len(features)  # get the size of dataset

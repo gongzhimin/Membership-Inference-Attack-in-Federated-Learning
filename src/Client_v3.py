@@ -1,12 +1,14 @@
-from Dataset_v2 import Dataset
 import math
 from collections import namedtuple
 import numpy as np
 import tensorflow as tf
+from Dataset_v2 import Dataset
+from Model_v2 import classification_cnn, scheduler
+
 
 """
-In the third version of `Client.py`, the tensorflow relied on updates to version 2, 
-which really different from version 1 with the graph execution. 
+In the third version of `Client.py`, the tensorflow relied on updates to version 2 with eager execution,
+which really different from version 1 with graph execution.
 """
 
 def hash_records(crafted_records):
@@ -25,16 +27,22 @@ class Clients:
         self.input_shape = input_shape
         self.num_classes = num_classes
         self.learning_rate = learning_rate
-
+        # Initialize the Keras model.
+        self.model = classification_cnn(self.input_shape)
+        # Compile the model.
+        self.opt = tf.compat.v1.keras.optimizers.Adam(learning_rate=self.learning_rate)
+        self.model.compile(loss='categorical_crossentropy',
+                            optimizer=self.opt,
+                            metrics=['accuracy'])
 
         self.dataset = Dataset(dataset_path, split=clients_num)
-        # initialize the status of activate attack
+        # Initialize the status of activate attack.
         self.is_crafted = False
         self.craft_id = 0
         self.hashed_crafted_records = []
         self.labels_crafted = []
 
-    def run_test(self, num):
+    def run_test(self, MODEL):
         pass
 
     def train_epoch(self, cid, batch_size=32, dropout_rate=0.5):
@@ -43,8 +51,22 @@ class Clients:
         And we leave a back door at here.
         cid: Client id
         """
+        # The data held by each participant should be divided into tow parts:
+        # train set and test set, both of which are used to train the local model.
         dataset = self.dataset.train[cid]
-        pass
+        size = len(dataset.x)
+        features_train, labels_train = dataset.x[:int(0.8*size)], dataset.y[:int(0.8*size)]
+        features_test, labels_test = dataset.x[int(0.8*size):], dataset.y[int(0.8*size):]
+
+        # Define the callback method.
+        callback = tf.compat.v1.keras.callbacks.LearningRateScheduler(scheduler)
+
+        # Train the keras model with method `fit`.
+        self.model.fit(features_train, labels_train,
+                        batch_size=32, epochs=100,
+                        validation_data=(features_test, labels_test),
+                        shuffle=True, callbacks=[callback])
+
 
     def craft(self, cid, batch_size=32, dropout_rate=0.5):
         """
@@ -74,11 +96,13 @@ class Clients:
 
     def get_client_vars(self):
         """ Return all of the variables list"""
-        pass
+        return self.model.trainable_variables
 
     def set_global_vars(self, global_vars):
         """ Assign all of the variables with global vars """
-        pass
+        client_vars = self.get_client_vars()
+        for var, value in zip(client_vars, global_vars):
+            var.assign(value)
 
 
     def choose_clients(self, ratio=1.0):
