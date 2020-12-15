@@ -85,7 +85,7 @@ input_shape = (32, 32, 3)
 cmodel = classification_cnn(input_shape)
 
 # Get the datahandler ('tf.data.Dataset' instance)
-dataset_path = "../membership_inference_attack/datasets/cifar100.txt"
+dataset_path = "../datasets/cifar100.txt"
 
 
 def scheduler(epoch):

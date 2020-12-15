@@ -1,8 +1,8 @@
 # Ignore some files when pushing to the repo.
-/membership_inference_attack/datasets/cifar-100-python
-/membership_inference_attack/datasets/*.txt
-/membership_inference_attack/datasets/*.npy
+/datasets/cifar-100-python
+/datasets/*.txt
+/datasets/*.npy
 log
 .idea
 __pycache__
-/membership_inference_attack/tutorials/models
+/tutorials/models

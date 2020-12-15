@@ -94,13 +94,15 @@ class Clients:
         # Train with crafted records
         pass
 
-    def get_client_vars(self):
+    def update_local_parameters(self):
         """ Return all of the variables list"""
         return self.model.trainable_variables
 
-    def set_global_vars(self, global_vars):
+    def download_global_parameters(self, global_vars):
         """ Assign all of the variables with global vars """
-        client_vars = self.get_client_vars()
+        if global_vars == None:
+            return
+        client_vars = self.model.trainable_variables
         for var, value in zip(client_vars, global_vars):
             var.assign(value)
 

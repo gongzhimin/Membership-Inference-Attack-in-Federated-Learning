@@ -21,7 +21,7 @@ def buildClients(num):
 
 
 def run_global_test(client, global_vars, test_num):
-    client.set_global_vars(global_vars)
+    client.download_global_parameters(global_vars)
     acc, loss = client.run_test(test_num)
     print("[epoch {}, {} inst] Testing ACC: {:.4f}, Loss: {:.4f}".format(
         ep + 1, test_num, acc, loss))
@@ -50,7 +50,8 @@ input_shape = (32, 32, 3)   # the type of image in cifar-100
 client = buildClients(CLIENT_NUMBER)
 
 #### BEGIN TRAINING ####
-global_vars = client.get_client_vars()
+# global_vars = client.update_local_parameters()
+global_vars = None
 for ep in range(epoch):
     # We are going to sum up active clients' vars at each epoch
     client_vars_sum = None
@@ -63,7 +64,7 @@ for ep in range(epoch):
         print("[fed-epoch {}] cid: {}".format((ep + 1), client_id))
         # In each epoch, clients download parameters from the server
         # and then train the local model to update their parameters
-        client.set_global_vars(global_vars)
+        client.download_global_parameters(global_vars)
         # Perform the craft
         # if ep == 2 and client_id == 2:
         #     client.craft(cid=client_id)
@@ -98,7 +99,7 @@ for ep in range(epoch):
         #     attackobj.test_attack()
 
         # Cumulative updates
-        current_client_vars = client.get_client_vars()
+        current_client_vars = client.update_local_parameters()
         if client_vars_sum is None:
             client_vars_sum = current_client_vars
         else:

@@ -4,8 +4,8 @@ def unpickle(file):
         dict = pickle.load(fo, encoding="bytes")
     return dict
 
-traindict = unpickle("./cifar-100-python/train")
-testdict  = unpickle("./cifar-100-python/test")
+traindict = unpickle("cifar-100-python/train")
+testdict  = unpickle("cifar-100-python/test")
 
 with open("cifar100.txt", "w+") as f:
     for i in range(len(traindict[b'data'])):
