@@ -441,8 +441,6 @@ class initialize(object):
         model = self.target_train_model
 
         pred = model(nm_features)
-        sess = tf.compat.v1.Session()
-        pred = pred.eval(session=sess)
         acc = accuracy_score(nm_labels, np.argmax(pred, axis=1))
         print('Target model test accuracy', acc)
 

@@ -96,7 +96,7 @@ class Dataset(object):
     Load the dataset from a specific file.
     """
     # The dataset_path is ./ml_privacy_meter/datasets/cifar100.txt
-    def __init__(self, dataset_path, split=0, one_hot=True, input_shape=(32, 32, 3), num_classes=100):
+    def __init__(self, dataset_path, split=0, one_hot=True, input_shape=(32, 32, 3), classes_num=100):
         dataset = extract(dataset_path)
         np.random.shuffle(dataset)  # shuffle the dataset to ensure the data records of each participant iid
         features, labels = generate(dataset, input_shape)
@@ -104,7 +104,7 @@ class Dataset(object):
         # features = {ndarray: (60000, 32, 32, 3)}, stored the images
         # labels = {ndarray: (60000,)}, the labels of corresponding images
         # Slice the features as well as labels to accelerate the execution during debugging, forget about accuracy
-        # features, labels = features[:5000], labels[:5000]
+        features, labels = features[:5000], labels[:5000]
 
         # Split the dataset into two parts: train set, test set.
         size = len(features)  # get the size of dataset
@@ -118,8 +118,8 @@ class Dataset(object):
 
         # Perform one-hot encoding.
         if one_hot:
-            labels_train = to_categorical(labels_train, num_classes)
-            labels_test = to_categorical(labels_test, num_classes)
+            labels_train = to_categorical(labels_train, classes_num)
+            labels_test = to_categorical(labels_test, classes_num)
 
         print("Dataset: train-%d, test-%d" % (len(features_train), len(features_test)))
         # x_train = np.expand_dims(x_train, -1)

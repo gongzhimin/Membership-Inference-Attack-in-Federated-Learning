@@ -2,9 +2,10 @@ import math
 from collections import namedtuple
 import numpy as np
 import tensorflow as tf
-from Dataset_v2 import Dataset
-from Model_v2 import classification_cnn, scheduler
-
+# from Dataset_v2 import Dataset
+# from Model_v2 import classification_cnn, scheduler
+from fed.Dataset_v2 import Dataset
+from fed.Model_v2 import classification_cnn, scheduler
 
 """
 In the third version of `Client.py`, the tensorflow relied on updates to version 2 with eager execution,
@@ -23,9 +24,8 @@ def hash_records(crafted_records):
 
 
 class Clients:
-    def __init__(self, input_shape, num_classes, learning_rate, clients_num, dataset_path="../membership_inference_attack/datasets/cifar100.txt"):
+    def __init__(self, input_shape, classes_num, learning_rate, clients_num, dataset_path="./datasets/cifar100.txt"):
         self.input_shape = input_shape
-        self.num_classes = num_classes
         self.learning_rate = learning_rate
         # Initialize the Keras model.
         self.model = classification_cnn(self.input_shape)
@@ -35,7 +35,7 @@ class Clients:
                             optimizer=self.opt,
                             metrics=['accuracy'])
 
-        self.dataset = Dataset(dataset_path, split=clients_num)
+        self.dataset = Dataset(dataset_path, split=clients_num, one_hot=True, input_shape=self.input_shape, classes_num=classes_num)
         # Initialize the status of activate attack.
         self.is_crafted = False
         self.craft_id = 0
@@ -63,7 +63,7 @@ class Clients:
 
         # Train the keras model with method `fit`.
         self.model.fit(features_train, labels_train,
-                        batch_size=32, epochs=100,
+                        batch_size=32, epochs=2,
                         validation_data=(features_test, labels_test),
                         shuffle=True, callbacks=[callback])
 
@@ -94,7 +94,7 @@ class Clients:
         # Train with crafted records
         pass
 
-    def update_local_parameters(self):
+    def upload_local_parameters(self):
         """ Return all of the variables list"""
         return self.model.trainable_variables
 
