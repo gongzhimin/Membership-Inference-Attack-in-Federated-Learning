@@ -6,3 +6,4 @@ log
 .idea
 __pycache__
 /tutorials/models
+.ipynb_checkpoints

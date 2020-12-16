@@ -67,24 +67,25 @@ class BatchGenerator:
         self.x = x
         self.y = yy
         self.size = len(x)
-        self.random_order = list(range(len(x)))
-        np.random.shuffle(self.random_order)
-        self.start = 0
+        # self.random_order = list(range(len(x)))
+        # np.random.shuffle(self.random_order)
+        # self.start = 0
         return
 
-    def next_batch(self, batch_size):
-        if self.start + batch_size >= len(self.random_order):
-            overflow = (self.start + batch_size) - len(self.random_order)
-            perm0 = self.random_order[self.start:] + \
-                    self.random_order[:overflow]
-            self.start = overflow
-        else:
-            perm0 = self.random_order[self.start:self.start + batch_size]
-            self.start += batch_size
-
-        assert len(perm0) == batch_size
-
-        return self.x[perm0], self.y[perm0]
+    # def next_batch(self, batch_size):
+    #     if self.start + batch_size >= len(self.random_order):
+    #         overflow = (self.start + batch_size) - len(self.random_order)
+    #         perm0 = self.random_order[self.start:] + \
+    #                 self.random_order[:overflow]
+    #         self.start = overflow
+    #     else:
+    #         perm0 = self.random_order[self.start:self.start + batch_size]
+    #         self.start += batch_size
+    #
+    #     assert len(perm0) == batch_size
+    #
+    #     return self.x[perm0], self.y[perm0]
+    # Keras helps with this task.
 
     # support slice
     def __getitem__(self, val):
@@ -98,7 +99,7 @@ class Dataset(object):
     # The dataset_path is ./ml_privacy_meter/datasets/cifar100.txt
     def __init__(self, dataset_path, input_shape, classes_num, split, one_hot):
         dataset = extract(dataset_path)
-        np.random.shuffle(dataset)  # shuffle the dataset to ensure the data records of each participant iid
+        np.random.shuffle(dataset)  # Shuffle the dataset to put participants on the same status.
         features, labels = generate(dataset, input_shape)
 
         # features = {ndarray: (60000, 32, 32, 3)}, stored the images
@@ -133,14 +134,12 @@ class Dataset(object):
         # Create the testing batch.
         self.test = BatchGenerator(features_test, labels_test)
 
-    def splited_batch(self, x_data, y_data, count):
+    def splited_batch(self, x_data, y_data, split):
+        """Assume that the data set held by each participant is equally sized."""
+        if split == 0 or split == 1:
+            return [BatchGenerator(x_data, y_data)]
         res = []
-        l = len(x_data)
-        if count == 0:
-            res.append(BatchGenerator(x_data, y_data))
-            return res
-        for i in range(0, l, l//count):
-            res.append(
-                BatchGenerator(x_data[i:i + l // count],
-                               y_data[i:i + l // count]))
+        for x ,y in zip(np.split(x_data,split), np.split(y_data,split)):
+            assert len(x) == len(y), "Features can't match to labels, as they are in different size!"
+            res.append(BatchGenerator(x, y))
         return res

@@ -108,7 +108,8 @@ class Clients:
     def choose_clients(self, ratio=1.0):
         """ Randomly choose some clients """
         client_num = self.get_clients_num()
-        choose_num = math.floor(client_num * ratio)
+        # choose_num = math.floor(client_num * ratio)
+        choose_num = math.ceil(client_num * ratio)  # To ensure all participants can be covered if necessary.
         return np.random.permutation(client_num)[:choose_num]
 
     def get_clients_num(self):

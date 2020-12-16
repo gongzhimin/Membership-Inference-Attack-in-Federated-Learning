@@ -108,7 +108,7 @@ def generate(dataset, input_shape):
     features. This assumes 'csv' form of data.
     """
     features, labels = dataset[:, :-1], dataset[:, -1]
-    features, labels = features[:500], labels[:500]
+    # features, labels = features[:500], labels[:500]
     features = map(lambda y: np.array(list(map(lambda i: i.split(","), y))).flatten(),
                    features)
 
@@ -189,6 +189,6 @@ if __name__ == '__main__':
                validation_data=(features_test, labels_test),
                shuffle=True, callbacks=[callback])
 
-    model_path = os.path.join('cifar100_model')
-    cmodel.save(model_path)
-    print('Saved trained model at %s ' % model_path)
+    # model_path = os.path.join('cifar100_model')
+    # cmodel.save(model_path)
+    # print('Saved trained model at %s ' % model_path)
