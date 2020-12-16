@@ -56,6 +56,7 @@ if __name__ == "__main__":
 
     """Begin training."""
     for ep in range(epoch):
+        # Empty local_parameters_sum at the beginning of each epoch.
         server.initialize_local_parameters_sum()
         # Choose a random selection of active clients to train in this epoch.
         active_clients = client.choose_clients(CLIENT_RATIO_PER_ROUND)
@@ -69,9 +70,7 @@ if __name__ == "__main__":
             # if ep == 1 and client_id == 0:
             #     print("passive local attack on cid: {} in fed-epoch: {}".format((ep+1), client_id))
             #     passive_attack(client, client_id)
-
             client.train_epoch(cid=client_id)
-
             # Perform passive global membership inference attack, since the target model's parameters are informed.
             if ep == 1 and client_id == 0:
                 print("passive global attack on cid: {} in fed-epoch: {}".format((ep+1), client_id))
