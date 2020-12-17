@@ -5,7 +5,7 @@ import tensorflow as tf
 # from Dataset_v2 import Dataset
 # from Model_v2 import classification_cnn, scheduler
 from fed.Dataset_v2 import Dataset
-from fed.Model_v2 import classification_cnn, scheduler
+from fed.Model_v2 import alexnet, scheduler
 
 """
 In the third version of `Client.py`, the tensorflow relied on updates to version 2 with eager execution,
@@ -28,7 +28,7 @@ class Clients:
         self.input_shape = input_shape
         self.learning_rate = learning_rate
         # Initialize the Keras model.
-        self.model = classification_cnn(self.input_shape)
+        self.model = alexnet(self.input_shape)
         # Compile the model.
         self.opt = tf.compat.v1.keras.optimizers.Adam(learning_rate=self.learning_rate)
         self.model.compile(loss='categorical_crossentropy',

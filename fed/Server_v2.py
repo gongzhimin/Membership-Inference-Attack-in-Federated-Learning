@@ -8,7 +8,7 @@ import copy
 # sys.path.append("../")
 import ml_privacy_meter
 from fed.Client_v3 import Clients
-from fed.Model_v2 import classification_cnn
+from fed.Model_v2 import alexnet
 
 
 def buildClients(num):
@@ -96,7 +96,7 @@ for ep in range(epoch):
             # https://github.com/privacytrustlab/ml_privacy_meter/issues/19
             target_model = client.model
             target_model.summary()
-            shadow_model = classification_cnn(input_shape)
+            shadow_model = alexnet(input_shape)
             attackobj = ml_privacy_meter.attack.meminf_v2.initialize(
                 target_train_model=shadow_model,
                 target_attack_model=target_model,

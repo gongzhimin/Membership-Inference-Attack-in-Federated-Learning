@@ -6,7 +6,7 @@ keras = tf.keras
 keraslayers = tf.compat.v1.keras.layers
 
 
-def classification_cnn(input_shape):
+def alexnet(input_shape):
     """
     AlexNet:
     Described in: http://arxiv.org/pdf/1404.5997v2.pdf
@@ -82,7 +82,7 @@ def classification_cnn(input_shape):
 
 
 input_shape = (32, 32, 3)
-cmodel = classification_cnn(input_shape)
+cmodel = alexnet(input_shape)
 
 # Get the datahandler ('tf.data.Dataset' instance)
 dataset_path = "../datasets/cifar100.txt"

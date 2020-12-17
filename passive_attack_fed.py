@@ -2,7 +2,7 @@ import copy
 
 from fed.Client_v3 import Clients
 from fed.Server_v3 import Server
-from fed.Model_v2 import classification_cnn
+from fed.Model_v2 import alexnet
 import ml_privacy_meter
 
 
@@ -20,7 +20,7 @@ def passive_attack(client, client_id):
     # https://github.com/privacytrustlab/ml_privacy_meter/issues/19
     target_model = client.model
     # target_model.summary()
-    shadow_model = classification_cnn(input_shape)
+    shadow_model = alexnet(input_shape)
     attackobj = ml_privacy_meter.attack.meminf.initialize(
         target_train_model=shadow_model,
         target_attack_model=target_model,
