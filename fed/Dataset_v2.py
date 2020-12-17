@@ -43,13 +43,13 @@ def compute_moments(features, input_channels=3):
     """
     Computes means and standard deviation for 3 dimensional input for normalization.
     """
-    means = []
-    stddevs = []
+    means = np.zeros(input_channels, dtype=np.float32)
+    stddevs = np.zeros(input_channels, dtype=np.float32)
     for i in range(input_channels):
         # very specific to 3-dimensional input
         pixels = features[:, :, :, i].ravel()
-        means.append(np.mean(pixels, dtype=np.float32))
-        stddevs.append(np.std(pixels, dtype=np.float32))
+        means[i] = np.mean(pixels, dtype=np.float32)
+        stddevs[i] = np.std(pixels, dtype=np.float32)
     means = list(map(lambda i: np.float32(i / 255), means))
     stddevs = list(map(lambda i: np.float32(i / 255), stddevs))
     return means, stddevs
@@ -59,7 +59,7 @@ def normalize(features):
     Normalizes data using means and stddevs
     """
     means, stddevs = compute_moments(features)
-    normalized = (features/255 - means) / stddevs
+    normalized = (np.divide(features, 255) - means) / stddevs
     return normalized
 
 class BatchGenerator:

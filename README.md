@@ -4,8 +4,8 @@ Just a prototype now.
 
 Maybe a result delivered.
 
-Welcome and it will delight me if issues posted to reveal faults hidden in my code, 
-since there are many unjustified hypotheses during coding.
+And welcome to post issues to reveal faults hidden in my code, 
+since there were many unjustified hypotheses during coding.
 
 ## Acknowledge
 - Thanks to [Mihir Khandekar](https://github.com/mihirkhandekar) and [Zing22](https://github.com/Zing22), 

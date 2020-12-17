@@ -116,26 +116,26 @@ class attack_data:
     #     labels = np.ndarray.astype(labels, np.float32)
     #     return features, labels
 
-    def compute_moments(self, f):
-        """
-        Computes means and standard deviation for 3 dimensional input for normalization.
-        """
-        self.means = []
-        self.stddevs = []
-        for i in range(self.input_channels):
-            # very specific to 3-dimensional input
-            pixels = f[:, :, :, i].ravel()
-            self.means.append(np.mean(pixels, dtype=np.float32))
-            self.stddevs.append(np.std(pixels, dtype=np.float32))
-        self.means = list(map(lambda i: np.float32(i/255), self.means))
-        self.stddevs = list(map(lambda i: np.float32(i/255), self.stddevs))
-
-    def normalize(self, f):
-        """
-        Normalizes data using means and stddevs
-        """
-        normalized = (f/255 - self.means) / self.stddevs
-        return normalized
+    # def compute_moments(self, f):
+    #     """
+    #     Computes means and standard deviation for 3 dimensional input for normalization.
+    #     """
+    #     self.means = []
+    #     self.stddevs = []
+    #     for i in range(self.input_channels):
+    #         # very specific to 3-dimensional input
+    #         pixels = f[:, :, :, i].ravel()
+    #         self.means.append(np.mean(pixels, dtype=np.float32))
+    #         self.stddevs.append(np.std(pixels, dtype=np.float32))
+    #     self.means = list(map(lambda i: np.float32(i/255), self.means))
+    #     self.stddevs = list(map(lambda i: np.float32(i/255), self.stddevs))
+    #
+    # def normalize(self, f):
+    #     """
+    #     Normalizes data using means and stddevs
+    #     """
+    #     normalized = (f/255 - self.means) / self.stddevs
+    #     return normalized
 
     def load_train(self):
         """
