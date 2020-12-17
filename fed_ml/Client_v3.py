@@ -4,8 +4,8 @@ import numpy as np
 import tensorflow as tf
 # from Dataset_v2 import Dataset
 # from Model_v2 import classification_cnn, scheduler
-from fed.Dataset_v2 import Dataset
-from fed.Model_v2 import alexnet, scheduler
+from fed_ml.Dataset_v2 import Dataset
+from fed_ml.Model_v2 import alexnet, scheduler
 
 """
 In the third version of `Client.py`, the tensorflow relied on updates to version 2 with eager execution,

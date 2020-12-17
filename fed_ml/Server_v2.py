@@ -7,8 +7,8 @@ import copy
 # import sys
 # sys.path.append("../")
 import ml_privacy_meter
-from fed.Client_v3 import Clients
-from fed.Model_v2 import alexnet
+from fed_ml.Client_v3 import Clients
+from fed_ml.Model_v2 import alexnet
 
 
 def buildClients(num):
@@ -70,7 +70,7 @@ for ep in range(epoch):
 
     # Train with these clients
     for client_id in random_clients:
-        print("[fed-epoch {}] cid: {}".format((ep + 1), client_id))
+        print("[fed_ml-epoch {}] cid: {}".format((ep + 1), client_id))
         # In each epoch, clients download parameters from the server
         # and then train the local model to update their parameters
         client.download_global_parameters(global_vars)
@@ -83,7 +83,7 @@ for ep in range(epoch):
 
         # A passive inference attack can be performed here after crafting
         if ep == 1 and client_id == 0:
-            print("[fed-epoch {}] attack cid: {}".format((ep + 1), client_id))
+            print("[fed_ml-epoch {}] attack cid: {}".format((ep + 1), client_id))
             train_data = client.dataset.train[client_id]
             test_data = client.dataset.test
             # test_data and train_data are mutable objects,

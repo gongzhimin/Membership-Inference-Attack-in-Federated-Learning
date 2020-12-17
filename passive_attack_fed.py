@@ -1,8 +1,8 @@
 import copy
 
-from fed.Client_v3 import Clients
-from fed.Server_v3 import Server
-from fed.Model_v2 import alexnet
+from fed_ml.Client_v3 import Clients
+from fed_ml.Server_v3 import Server
+from fed_ml.Model_v2 import alexnet
 import ml_privacy_meter
 
 
@@ -62,18 +62,18 @@ if __name__ == "__main__":
         active_clients = client.choose_clients(CLIENT_RATIO_PER_ROUND)
         # Train these clients.
         for client_id in active_clients:
-            print("[fed-epoch {}] cid: {}".format((ep + 1), client_id))
+            print("[fed_ml-epoch {}] cid: {}".format((ep + 1), client_id))
             # In each epoch, clients download parameters from the server,
             # and then train local models to adapt their parameters.
             client.download_global_parameters(server.global_parameters)
             # Perform passive local membership inference attack, since only get global parameters.
             # if ep == 1 and client_id == 0:
-            #     print("passive local attack on cid: {} in fed-epoch: {}".format((ep+1), client_id))
+            #     print("passive local attack on cid: {} in fed_ml-epoch: {}".format((ep+1), client_id))
             #     passive_attack(client, client_id)
             client.train_epoch(cid=client_id)
             # Perform passive global membership inference attack, since the target model's parameters are informed.
             if ep == 1 and client_id == 0:
-                print("passive global attack on cid: {} in fed-epoch: {}".format((ep+1), client_id))
+                print("passive global attack on cid: {} in fed_ml-epoch: {}".format((ep+1), client_id))
                 passive_attack(client, client_id)
             # Accumulate local parameters.
             current_local_parameters = client.upload_local_parameters()
