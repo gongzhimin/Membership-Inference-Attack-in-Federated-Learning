@@ -97,7 +97,7 @@ for ep in range(epoch):
             target_model = client.model
             target_model.summary()
             shadow_model = alexnet(input_shape)
-            attackobj = ml_privacy_meter.attack.meminf_v2.initialize(
+            attackobj = ml_privacy_meter.attack.meminf.initialize(
                 target_train_model=shadow_model,
                 target_attack_model=target_model,
                 train_datahandler=data_handler,

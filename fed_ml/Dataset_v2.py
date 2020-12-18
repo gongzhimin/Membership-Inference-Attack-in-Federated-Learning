@@ -1,5 +1,6 @@
 import numpy as np
-from tensorflow.keras.utils import to_categorical
+import tensorflow as tf
+from tensorflow.compat.v1.keras.utils import to_categorical
 
 
 def extract(filepath):
@@ -20,8 +21,7 @@ def generate(dataset, input_shape):
     features. This assumes 'csv' form of data.
     """
     features, labels = dataset[:, :-1], dataset[:, -1]
-    features = map(lambda y: np.array(list(map(lambda i: i.split(","), y))).flatten(),
-                   features)
+    features = map(lambda y: np.array(list(map(lambda i: i.split(","), y))).flatten(), features)
 
     features = np.array(list(features))
     features = np.ndarray.astype(features, np.float32)
@@ -30,12 +30,10 @@ def generate(dataset, input_shape):
         if len(input_shape) == 3:
             reshape_input = (
                 len(features),) + (input_shape[2], input_shape[0], input_shape[1])
-            features = np.transpose(np.reshape(
-                features, reshape_input), (0, 2, 3, 1))
+            features = np.transpose(np.reshape(features, reshape_input), (0, 2, 3, 1))
         else:
             reshape_input = (len(features),) + input_shape
             features = np.reshape(features, reshape_input)
-
     labels = np.ndarray.astype(labels, np.float32)
     return features, labels
 
@@ -61,6 +59,29 @@ def normalize(features):
     means, stddevs = compute_moments(features)
     normalized = (np.divide(features, 255) - means) / stddevs
     return normalized
+
+def load_cifar100(dataset_path, input_shape):
+    dataset = extract(dataset_path)
+    np.random.shuffle(dataset)  # Shuffle the dataset to put participants on the same status.
+    features, labels = generate(dataset, input_shape)
+
+    # features = {ndarray: (60000, 32, 32, 3)}, stored the images
+    # labels = {ndarray: (60000,)}, the labels of corresponding images
+    # Slice the features as well as labels to accelerate the execution during debugging, forget about accuracy
+    features, labels = features[:5000], labels[:5000]
+
+    # Split the dataset into two parts: train set, test set.
+    size = len(features)  # get the size of dataset
+    features_train, labels_train = features[:int(0.8 * size)], labels[:int(0.8 * size)]
+    features_test, labels_test = features[int(0.8 * size):], labels[int(0.8 * size):]
+
+    return features_train, labels_train, features_test, labels_test
+
+def load_cifar10():
+    (features_train, labels_train), (features_test, labels_test) = tf.compat.v1.keras.datasets.cifar10.load_data()
+    # features_train, labels_train = features_train[:10000], labels_train[:10000]
+    # features_test, labels_test = features_test[:2000], labels_test[:2000]
+    return features_train, labels_train, features_test, labels_test
 
 class BatchGenerator:
     def __init__(self, x, yy):
@@ -98,19 +119,10 @@ class Dataset(object):
     """
     # The dataset_path is ./ml_privacy_meter/datasets/cifar100.txt
     def __init__(self, dataset_path, input_shape, classes_num, split, one_hot):
-        dataset = extract(dataset_path)
-        np.random.shuffle(dataset)  # Shuffle the dataset to put participants on the same status.
-        features, labels = generate(dataset, input_shape)
-
-        # features = {ndarray: (60000, 32, 32, 3)}, stored the images
-        # labels = {ndarray: (60000,)}, the labels of corresponding images
-        # Slice the features as well as labels to accelerate the execution during debugging, forget about accuracy
-        features, labels = features[:5000], labels[:5000]
-
-        # Split the dataset into two parts: train set, test set.
-        size = len(features)  # get the size of dataset
-        features_train, labels_train = features[:int(0.8*size)], labels[:int(0.8*size)]
-        features_test, labels_test = features[int(0.8*size):], labels[int(0.8*size):]
+        if classes_num == 100:
+            features_train, labels_train, features_test, labels_test = load_cifar100(dataset_path, input_shape)
+        else:   # classes_num == 10
+            features_train, labels_train, features_test, labels_test = load_cifar10()
 
         # Normalize the train features and test features.
         features_train = normalize(features_train)

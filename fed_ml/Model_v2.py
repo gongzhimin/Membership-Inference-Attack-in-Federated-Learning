@@ -2,9 +2,8 @@ import os
 import numpy as np
 import tensorflow as tf
 
-keras = tf.keras
+keras = tf.compat.v1.keras
 keraslayers = tf.compat.v1.keras.layers
-
 
 def alexnet(input_shape, classes_num=100):
     """
@@ -15,7 +14,7 @@ def alexnet(input_shape, classes_num=100):
     """
     # Creating initializer, optimizer and the regularizer ops
     initializer = tf.compat.v1.keras.initializers.random_normal(0.0, 0.01)
-    regularizer = tf.keras.regularizers.l2(5e-4)
+    regularizer = tf.compat.v1.keras.regularizers.l2(5e-4)
 
     inputshape = (input_shape[0], input_shape[1], input_shape[2],)
 
@@ -166,7 +165,7 @@ def load_cifar100(input_shape):
     return features_train, labels_train, features_test, labels_test
 
 def load_cifar10():
-    (features_train, labels_train), (features_test, labels_test) = tf.keras.datasets.cifar10.load_data()
+    (features_train, labels_train), (features_test, labels_test) = tf.compat.v1.keras.datasets.cifar10.load_data()
     # features_train, labels_train = features_train[:10000], labels_train[:10000]
     # features_test, labels_test = features_test[:2000], labels_test[:2000]
     return features_train, labels_train, features_test, labels_test
@@ -195,7 +194,7 @@ if __name__ == '__main__':
     alexnet_model.compile(loss='categorical_crossentropy',
                           optimizer=opt,
                           metrics=['accuracy'])
-    callback = tf.keras.callbacks.LearningRateScheduler(scheduler)
+    callback = tf.compat.v1.keras.callbacks.LearningRateScheduler(scheduler)
     alexnet_model.fit(features_train, labels_train,
                       batch_size=128,
                       epochs=100,

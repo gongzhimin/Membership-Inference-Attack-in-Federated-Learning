@@ -19,16 +19,16 @@ def passive_attack(client, client_id):
     # The application of shadow models has been confirmed:
     # https://github.com/privacytrustlab/ml_privacy_meter/issues/19
     target_model = client.model
-    # target_model.summary()
-    shadow_model = alexnet(input_shape)
+    shadow_model = alexnet(input_shape, client.classes_num)
     attackobj = ml_privacy_meter.attack.meminf.initialize(
-        target_train_model=shadow_model,
+        # target_train_model=shadow_model,
+        target_train_model=target_model,
         target_attack_model=target_model,
         train_datahandler=data_handler,
         attack_datahandler=data_handler,
         layers_to_exploit=[6],
         # gradients_to_exploit=[6],
-        device=None, epochs=10, model_name='blackbox1')
+        device=None, epochs=10, model_name="without gradients")
     attackobj.train_attack()
     attackobj.test_attack()
 
@@ -44,7 +44,8 @@ if __name__ == "__main__":
     CLIENT_RATIO_PER_ROUND = 1.00
     # Some characteristics of the dataset cifar-100.
     input_shape = (32, 32, 3)
-    classes_num = 100
+    # classes_num = 100   # cifar-100
+    classes_num = 10    # cifar-10
 
     """Build clients and server."""
     client = Clients(input_shape=input_shape,
@@ -62,7 +63,7 @@ if __name__ == "__main__":
         active_clients = client.choose_clients(CLIENT_RATIO_PER_ROUND)
         # Train these clients.
         for client_id in active_clients:
-            print("[fed_ml-epoch {}] cid: {}".format((ep + 1), client_id))
+            print("[fed-epoch {}] cid: {}".format((ep + 1), client_id))
             # In each epoch, clients download parameters from the server,
             # and then train local models to adapt their parameters.
             client.download_global_parameters(server.global_parameters)
@@ -72,8 +73,8 @@ if __name__ == "__main__":
             #     passive_attack(client, client_id)
             client.train_epoch(cid=client_id)
             # Perform passive global membership inference attack, since the target model's parameters are informed.
-            if ep == 1 and client_id == 0:
-                print("passive global attack on cid: {} in fed_ml-epoch: {}".format((ep+1), client_id))
+            if client_id == 1:
+                print("passive global attack on cid: {} in fed-epoch: {}".format((ep+1), client_id))
                 passive_attack(client, client_id)
             # Accumulate local parameters.
             current_local_parameters = client.upload_local_parameters()

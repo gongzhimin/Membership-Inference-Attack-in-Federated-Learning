@@ -2,7 +2,6 @@ import tensorflow as tf
 
 keraslayers = tf.compat.v1.keras.layers
 
-
 def fcn_module(inputsize, layer_size=128):
     """
     Creates a FCN submodule. Used in different attack components.

@@ -28,13 +28,13 @@ class Clients:
         self.input_shape = input_shape
         self.learning_rate = learning_rate
         # Initialize the Keras model.
-        self.model = alexnet(self.input_shape)
+        self.model = alexnet(self.input_shape, classes_num=classes_num)
         # Compile the model.
         self.opt = tf.compat.v1.keras.optimizers.Adam(learning_rate=self.learning_rate)
         self.model.compile(loss='categorical_crossentropy',
                             optimizer=self.opt,
                             metrics=['accuracy'])
-
+        self.classes_num = classes_num
         self.dataset = Dataset(dataset_path, split=clients_num,
                                one_hot=True, input_shape=self.input_shape,
                                classes_num=classes_num)
@@ -53,17 +53,21 @@ class Clients:
         """
         # The data held by each participant should be divided into tow parts:
         # train set and test set, both of which are used to train the local model.
-        dataset = self.dataset.train[cid]
-        size = len(dataset.x)
-        features_train, labels_train = dataset.x[:int(0.8*size)], dataset.y[:int(0.8*size)]
-        features_test, labels_test = dataset.x[int(0.8*size):], dataset.y[int(0.8*size):]
+        dataset_train = self.dataset.train[cid]
+        dataset_test = self.dataset.test
+        size = len(dataset_train.x)
+        # features_train, labels_train = dataset_train.x[:int(0.8*size)], dataset_train.y[:int(0.8*size)]
+        # features_test, labels_test = dataset_train.x[int(0.8*size):], dataset_train.y[int(0.8*size):]
+
+        features_train, labels_train = dataset_train.x, dataset_train.y
+        features_test, labels_test = dataset_test.x[:size], dataset_test.y[:size]
 
         # Define the callback method.
         callback = tf.compat.v1.keras.callbacks.LearningRateScheduler(scheduler)
 
         # Train the keras model with method `fit`.
         self.model.fit(features_train, labels_train,
-                        batch_size=32, epochs=2,
+                        batch_size=32, epochs=20,
                         validation_data=(features_test, labels_test),
                         shuffle=True, callbacks=[callback])
 

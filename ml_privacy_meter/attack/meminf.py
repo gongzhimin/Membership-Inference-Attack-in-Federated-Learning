@@ -119,7 +119,8 @@ class initialize(object):
                  exploit_label=True,
                  learning_rate=0.001,
                  epochs=100):
-
+        # change all layers to have dtype float64
+        # tf.keras.backend.set_floatx('float64')
         # Set self.loggers (directory according to todays date)
         time_stamp = datetime.datetime.today().strftime('%Y-%m-%d_%H:%M:%S')
         self.attack_utils = attack_utils()
@@ -397,7 +398,7 @@ class initialize(object):
         """
         Computes attack accuracy of the attack model.
         """
-        attack_acc = tf.keras.metrics.Accuracy(
+        attack_acc = tf.compat.v1.keras.metrics.Accuracy(
             'attack_acc', dtype=tf.float32)
         model = self.target_train_model
 
@@ -432,8 +433,7 @@ class initialize(object):
         print('Target model test accuracy', acc)
 
         mtestset, nmtestset = self.attack_datahandler.load_test()
-        attack_acc = tf.keras.metrics.Accuracy(
-            'attack_acc', dtype=tf.float32)
+        attack_acc = tf.compat.v1.keras.metrics.Accuracy('attack_acc', dtype=tf.float32)
 
         mtestset = self.attack_utils.intersection(
             mtrainset, mtestset, self.attack_datahandler.batch_size)
@@ -450,8 +450,7 @@ class initialize(object):
                         tape.reset()
                         # Getting outputs of forward pass of attack model
                         moutputs = self.forward_pass(model, mfeatures, mlabels)
-                        nmoutputs = self.forward_pass(
-                            model, nmfeatures, nmlabels)
+                        nmoutputs = self.forward_pass(model, nmfeatures, nmlabels)
                         # Computing the true values for loss function according
                         memtrue = tf.ones(moutputs.shape)
                         nonmemtrue = tf.zeros(nmoutputs.shape)
@@ -460,10 +459,8 @@ class initialize(object):
                         attackloss = mse(target, probs)
                     # Computing gradients
 
-                    grads = tape.gradient(attackloss,
-                                          self.attackmodel.variables)
-                    self.optimizer.apply_gradients(zip(grads,
-                                                       self.attackmodel.variables))
+                    grads = tape.gradient(attackloss, self.attackmodel.variables)
+                    self.optimizer.apply_gradients(zip(grads, self.attackmodel.variables))
 
                 # Calculating Attack accuracy
                 attack_acc(probs > 0.5, target)

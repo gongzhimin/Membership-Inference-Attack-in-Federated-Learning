@@ -2,7 +2,6 @@ import tensorflow as tf
 
 keraslayers = tf.compat.v1.keras.layers
 
-
 def create_encoder(encoder_inputs):
     """
     Create encoder model for membership inference attack.

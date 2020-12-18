@@ -2,7 +2,6 @@ import tensorflow as tf
 
 keraslayers = tf.compat.v1.keras.layers
 
-
 def cnn_for_fcn_gradients(input_shape):
     """
     Creates a CNN submodule for Dense layer gradients.
