@@ -1,13 +1,16 @@
 import copy
+from collections import namedtuple
 
 from fed_ml.Client_v3 import Clients
 from fed_ml.Server_v3 import Server
-from fed_ml.Model_v2 import alexnet
+# from fed_ml.Model_v2 import alexnet
 import ml_privacy_meter
 
 
-def passive_attack(client, client_id):
-    train_data = client.dataset.train[client_id]
+ATTACK_MSG = namedtuple("ATTACK_MSG", "attack_type, cid, fed_ep")
+
+def passive_attack(client, attack_msg):
+    train_data = client.dataset.train[int(attack_msg.cid)]
     test_data = client.dataset.test
     # test_data and train_data are mutable objects,
     # hence, they will be changed after passing to `attack_data` method directly.
@@ -20,7 +23,7 @@ def passive_attack(client, client_id):
     # https://github.com/privacytrustlab/ml_privacy_meter/issues/19
     # The answer of coder confused me...
     target_model = client.model
-    shadow_model = alexnet(input_shape, client.classes_num)
+    # shadow_model = alexnet(input_shape, client.classes_num)
     attackobj = ml_privacy_meter.attack.meminf.initialize(
         # target_train_model=shadow_model,
         target_train_model=target_model,
@@ -29,14 +32,15 @@ def passive_attack(client, client_id):
         attack_datahandler=data_handler,
         layers_to_exploit=[6],
         # gradients_to_exploit=[6],
-        device=None, epochs=10, model_name="without gradients")
+        device=None, epochs=10,
+        attack_msg = attack_msg, model_name="meminf_fed")
     attackobj.train_attack()
     attackobj.test_attack()
 
 
 if __name__ == "__main__":
     """Set hyper-parameters."""
-    epoch = 5
+    epoch = 6
     learning_rate = 0.0001
     # The ml_privacy_meter can't handle the scenario with too many participants.
     CLIENT_NUMBER = 5
@@ -77,8 +81,9 @@ if __name__ == "__main__":
             current_local_parameters = client.upload_local_parameters()
             server.accumulate_local_parameters(current_local_parameters)
             # Perform passive global membership inference attack, since the target model's parameters are informed.
-            # if client_id == 1 and ep % 2 == 1:
-            #     print("passive global attack on cid: {} in fed-epoch: {}".format((ep + 1), client_id))
-            #     passive_attack(client, client_id)
+            if client_id == 1 and ep % 2 == 1:
+                attack_msg = ATTACK_MSG(attack_type="PGA", cid=str(client_id), fed_ep=str(ep))
+                print("passive global attack on cid: {} in fed-epoch: {}".format((ep + 1), client_id))
+                passive_attack(client, attack_msg)
         # Update global parameters in each epoch.
         server.update_global_parameters(len(active_clients))

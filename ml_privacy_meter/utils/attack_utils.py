@@ -35,11 +35,11 @@ class attack_utils():
     Utilities required for conducting membership inference attack
     """
 
-    def __init__(self, directory_name='latest'):
+    def __init__(self, directory_name='latest', log_name="logs"):
         self.root_dir = os.path.abspath(os.path.join(
                                         os.path.dirname(__file__),
                                         "..", ".."))
-        self.log_dir = os.path.join(self.root_dir, "logs")
+        self.log_dir = os.path.join(self.root_dir, log_name)
         self.aprefix = os.path.join(self.log_dir,
                                     directory_name,
                                     "attack",

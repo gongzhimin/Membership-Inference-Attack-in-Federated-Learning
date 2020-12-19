@@ -2,7 +2,7 @@ import logging
 import os
 
 
-def get_logger(root_dir, name, nature, filename, time_stamp, level=logging.INFO,
+def get_logger(root_dir, name, nature, filename, time_stamp, level=logging.INFO, log_name="logs",
                formatter='%(asctime)s - %(name)s - %(levelname)s - %(message)s'):
     """
     Logger function to log and flag various training and test
@@ -12,7 +12,7 @@ def get_logger(root_dir, name, nature, filename, time_stamp, level=logging.INFO,
     logger = logging.getLogger(name)
     logger.setLevel(level)
 
-    log_directory = os.path.join(root_dir, "logs",
+    log_directory = os.path.join(root_dir, log_name,
                                  "latest",
                                  nature,
                                  "log_files")

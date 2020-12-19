@@ -118,15 +118,18 @@ class initialize(object):
                  exploit_loss=True,
                  exploit_label=True,
                  learning_rate=0.001,
-                 epochs=100):
+                 epochs=100,
+                 attack_msg=None):
         # change all layers to have dtype float64
         # tf.keras.backend.set_floatx('float64')
         # Set self.loggers (directory according to todays date)
+        self.attack_msg = attack_msg
+        self.log_name = "fed_ep={}-cid={}-{}-logs".format(attack_msg.fed_ep, attack_msg.cid, attack_msg.attack_type)
         time_stamp = datetime.datetime.today().strftime('%Y-%m-%d_%H:%M:%S')
-        self.attack_utils = attack_utils()
-        self.logger = get_logger(self.attack_utils.root_dir, "attack",
-                                 "meminf", "info", time_stamp)
-        self.aprefix = os.path.join('logs',
+        self.attack_utils = attack_utils(log_name=self.log_name)
+        self.logger = get_logger(self.attack_utils.root_dir, attack_msg.attack_type,
+                                 "meminf", "info", time_stamp, log_name=self.log_name)
+        self.aprefix = os.path.join(self.log_name,
                                     "attack", "tensorboard")
         self.summary_writer = tf.summary.create_file_writer(self.aprefix)
         self.target_train_model = target_train_model
@@ -481,8 +484,9 @@ class initialize(object):
         # main training procedure ends
 
         data = None
-        if os.path.isfile('logs/attack/results') and os.stat("logs/attack/results").st_size > 0:
-            with open('logs/attack/results', 'r+') as json_file:
+        file_path = "{}/attack/results".format(self.log_name)
+        if os.path.isfile(file_path) and os.stat(file_path).st_size > 0:
+            with open(file_path, 'r+') as json_file:
                 data = json.load(json_file)
                 if data:
                     data = data['result']
@@ -492,7 +496,7 @@ class initialize(object):
             data = []
         data.append(
             {self.model_name: {'target_acc': float(acc), 'attack_acc': float(best_accuracy.numpy())}})
-        with open('logs/attack/results', 'w+') as json_file:
+        with open(file_path, 'w+') as json_file:
             json.dump({'result': data}, json_file)
 
         # logging best attack accuracy
@@ -503,7 +507,7 @@ class initialize(object):
         '''
         Test the attack model on dataset and save plots for visualization.
         '''
-        mtrainset, nmtrainset, _, _ = self.train_datahandler.load_vis(2048)
+        mtrainset, nmtrainset, _, _ = self.train_datahandler.load_vis(2048, log_name=self.log_name)
         model = self.target_train_model
         mpreds = []
         mlab = []
@@ -515,7 +519,7 @@ class initialize(object):
         nmtrue = []
 
         mgradnorm, nmgradnorm = [], []
-        path = 'logs/plots'
+        path = '{}/plots'.format(self.log_name)
         if not os.path.exists(path):
             os.makedirs(path)
         with tf.device(self.device):
@@ -567,15 +571,15 @@ class initialize(object):
                  label='Population Data (Non-members)')
         plt.xlabel('Membership Probability')
         plt.ylabel('Fraction')
-        plt.title('Privacy Risk')
+        plt.title('Privacy Risk, cid:{} fed-ep:{} {}'.format(self.attack_msg.cid, self.attack_msg.fed_ep, self.attack_msg.attack_type))
         plt.legend(loc='upper left')
-        plt.savefig('logs/plots/privacy_risk.png')
+        plt.savefig("{}/plots/privacy_risk.png".format(self.log_name))
         plt.close()
 
         # Creates ROC curve for membership inference attack
         fpr, tpr, _ = roc_curve(target, probs)
         roc_auc = auc(fpr, tpr)
-        plt.title('ROC of Membership Inference Attack')
+        plt.title('ROC of Membership Inference Attack, cid:{} fed-ep:{} {}'.format(self.attack_msg.cid, self.attack_msg.fed_ep, self.attack_msg.attack_type))
         plt.plot(fpr, tpr, 'b', label='AUC = %0.2f' % roc_auc)
         plt.legend(loc='lower right')
         plt.plot([0, 1], [0, 1], 'r--')
@@ -583,7 +587,7 @@ class initialize(object):
         plt.ylim([0, 1])
         plt.ylabel('True Positive Rate')
         plt.xlabel('False Positive Rate')
-        plt.savefig('logs/plots/roc.png')
+        plt.savefig("{}/plots/roc.png".format(self.log_name))
         plt.close()
 
         # Creates plot for gradient norm per label
@@ -609,11 +613,11 @@ class initialize(object):
             xs.append(lab)
             ys.append(np.mean(gradnorm))
         plt.plot(xs, ys, 'r.', label='Population Data (Non-Members)')
-        plt.title('Average Gradient Norms per Label')
+        plt.title('Average Gradient Norms per Label, cid:{} fed-ep:{} {}'.format(self.attack_msg.cid, self.attack_msg.fed_ep, self.attack_msg.attack_type))
         plt.xlabel('Label')
         plt.ylabel('Average Gradient Norm')
         plt.legend(loc="upper left")
-        plt.savefig('logs/plots/gradient_norm.png')
+        plt.savefig('{}/plots/gradient_norm.png'.format(self.log_name))
         plt.close()
 
         # Collect data and creates histogram for each label separately
@@ -640,10 +644,10 @@ class initialize(object):
             plt.ylabel('Fraction')
 
             plt.title('Privacy Risk - Class ' + str(lab))
-            plt.savefig('logs/plots/privacy_risk_label' + str(lab) + '.png')
+            plt.savefig('{}/plots/privacy_risk_label'.format(self.log_name) + str(lab) + '.png')
             plt.close()
 
-        np.save('logs/member_probs.npy', np.array(mpreds))
-        np.save('logs/nonmember_probs.npy', np.array(nmpreds))
+        np.save('{}/member_probs.npy'.format(self.log_name), np.array(mpreds))
+        np.save('{}/nonmember_probs.npy'.format(self.log_name), np.array(nmpreds))
 
-        compare_models()
+        compare_models(log_name=self.log_name)

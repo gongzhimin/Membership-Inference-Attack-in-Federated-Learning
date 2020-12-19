@@ -5,11 +5,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def compare_models():
+def compare_models(log_name="logs"):
     """
     Compares multiple saved models and creates comparison plot.
     """
-    with open('logs/attack/results', 'r') as json_file:
+    with open('{}/attack/results'.format(log_name), 'r') as json_file:
         data = json.load(json_file)['result']
         n_groups = len(data)
         fig, ax = plt.subplots()
@@ -37,4 +37,4 @@ def compare_models():
         plt.legend()
         plt.tight_layout()
 
-        plt.savefig('logs/attack/comparison.png')
+        plt.savefig('{}/attack/comparison.png'.format(log_name))

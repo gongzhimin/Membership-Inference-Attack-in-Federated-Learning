@@ -184,7 +184,7 @@ class attack_data:
 
         return mtrain, nmtrain, nm_features, nm_labels
 
-    def load_vis(self, batch_size=256):
+    def load_vis(self, batch_size=256, log_name="logs"):
         """
         Loads, normalizes and batches data for visualization.
         Returns a tf.data.Dataset object for visualization testing
@@ -214,10 +214,10 @@ class attack_data:
         m_features, m_labels = self.train_data.x, self.train_data.y
         nm_features, nm_labels = self.test_data.x, self.test_data.y
 
-        np.save('logs/m_features', m_features)
-        np.save('logs/m_labels', m_labels)
-        np.save('logs/nm_features', nm_features)
-        np.save('logs/nm_labels', nm_labels)
+        np.save('{}/m_features'.format(log_name), m_features)
+        np.save('{}/m_labels'.format((log_name)), m_labels)
+        np.save('{}/nm_features'.format(log_name), nm_features)
+        np.save('{}/nm_labels'.format(log_name), nm_labels)
 
         mtrain = get_tfdataset(m_features, m_labels)
         nmtrain = get_tfdataset(nm_features, nm_labels)
