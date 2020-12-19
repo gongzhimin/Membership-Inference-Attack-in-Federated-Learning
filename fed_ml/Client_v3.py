@@ -2,6 +2,8 @@ import math
 from collections import namedtuple
 import numpy as np
 import tensorflow as tf
+import copy
+
 # from Dataset_v2 import Dataset
 # from Model_v2 import classification_cnn, scheduler
 from fed_ml.Dataset_v2 import Dataset
@@ -41,6 +43,7 @@ class Clients:
                                classes_num=classes_num)
         # Settings for isolating attack.
         self.isolated_cid = -1
+        self.isolated_local_parameters = None
         # Initialize the status of activate attack.
         self.is_crafted = False
         self.craft_id = 0
@@ -103,10 +106,14 @@ class Clients:
 
     def upload_local_parameters(self):
         """ Return all of the variables list"""
+        # Isolated participant train in local.
+        if self.current_cid == self.isolated_cid:
+            self.isolated_local_parameters = copy.deepcopy(self.model.trainable_variables)
         return self.model.trainable_variables
 
     def download_global_parameters(self, global_vars):
         """ Assign all of the variables with global vars """
+        # The federated learning environment is just established.
         if global_vars == None:
             # Clear the parameters.
             self.model = alexnet(self.input_shape, classes_num=self.classes_num)
@@ -114,9 +121,14 @@ class Clients:
                                optimizer=self.opt,
                                metrics=['accuracy'])
             return
-        if self.isolated_cid == self.current_cid:
-            return
         client_vars = self.model.trainable_variables
+        # Isolated participant update parameters locally.
+        if self.isolated_cid == self.current_cid:
+            assert self.isolated_local_parameters, "Isolated parameters are not initialized!"
+            for var, value in zip(client_vars, self.isolated_local_parameters):
+                var.assign(value)
+            return
+        # Download global parameters normally.
         for var, value in zip(client_vars, global_vars):
             var.assign(value)
 

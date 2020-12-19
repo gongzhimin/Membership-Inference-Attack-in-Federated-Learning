@@ -78,7 +78,7 @@ if __name__ == "__main__":
             # Perform isolating attack.
             if client_id == target_cid and ep % 2 == 1:
                 attack_msg = ATTACK_MSG(attack_type="IAGA", cid=client_id, fed_ep=ep)
-                print("isolating attack on cid: {} in fed-epoch: {}".format((ep + 1), client_id))
+                print("isolating attack on cid: {} in fed-epoch: {}".format(client_id, (ep + 1)))
                 passive_attack(client, attack_msg)
         # Update global parameters in each epoch.
         server.update_global_parameters(len(active_clients))
