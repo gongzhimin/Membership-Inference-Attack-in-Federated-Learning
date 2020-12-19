@@ -3,7 +3,6 @@ from collections import namedtuple
 
 from fed_ml.Client_v3 import Clients
 from fed_ml.Server_v3 import Server
-# from fed_ml.Model_v2 import alexnet
 import ml_privacy_meter
 
 
@@ -19,13 +18,8 @@ def passive_attack(client, attack_msg):
                                                                      batch_size=32,
                                                                      attack_percentage=10,
                                                                      input_shape=client.input_shape)
-    # The application of shadow models has been confirmed:
-    # https://github.com/privacytrustlab/ml_privacy_meter/issues/19
-    # The answer of coder confused me...
     target_model = client.model
-    # shadow_model = alexnet(input_shape, client.classes_num)
     attackobj = ml_privacy_meter.attack.meminf.initialize(
-        # target_train_model=shadow_model,
         target_train_model=target_model,
         target_attack_model=target_model,
         train_datahandler=data_handler,
@@ -60,8 +54,9 @@ if __name__ == "__main__":
                      dataset_path="./datasets/cifar100.txt")
     server = Server()
 
-    """Target the attack."""
+    """Isolate target participant."""
     target_cid = 1
+    client.isolated_cid = target_cid
 
     """Begin training."""
     for ep in range(epoch):
@@ -76,19 +71,14 @@ if __name__ == "__main__":
             # In each epoch, clients download parameters from the server,
             # and then train local models to adapt their parameters.
             client.download_global_parameters(server.global_parameters)
-            # Perform passive local membership inference attack, since only get global parameters.
-            if client_id == target_cid and ep % 2 == 1:
-                attack_msg = ATTACK_MSG(attack_type="PLA", cid=client_id, fed_ep=ep)
-                print("passive local attack on cid: {} in fed_ml-epoch: {}".format((ep+1), client_id))
-                passive_attack(client, attack_msg)
             client.train_epoch()
             # Accumulate local parameters.
             current_local_parameters = client.upload_local_parameters()
             server.accumulate_local_parameters(current_local_parameters)
-            # Perform passive global membership inference attack, since the target model's parameters are informed.
+            # Perform isolating attack.
             if client_id == target_cid and ep % 2 == 1:
-                attack_msg = ATTACK_MSG(attack_type="PGA", cid=client_id, fed_ep=ep)
-                print("passive global attack on cid: {} in fed-epoch: {}".format((ep + 1), client_id))
+                attack_msg = ATTACK_MSG(attack_type="IAGA", cid=client_id, fed_ep=ep)
+                print("isolating attack on cid: {} in fed-epoch: {}".format((ep + 1), client_id))
                 passive_attack(client, attack_msg)
         # Update global parameters in each epoch.
         server.update_global_parameters(len(active_clients))

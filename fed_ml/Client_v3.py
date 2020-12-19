@@ -25,6 +25,7 @@ def hash_records(crafted_records):
 
 class Clients:
     def __init__(self, input_shape, classes_num, learning_rate, clients_num, dataset_path):
+        self.current_cid = -1
         self.input_shape = input_shape
         self.learning_rate = learning_rate
         self.classes_num = classes_num
@@ -38,6 +39,8 @@ class Clients:
         self.dataset = Dataset(dataset_path, split=clients_num,
                                one_hot=True, input_shape=self.input_shape,
                                classes_num=classes_num)
+        # Settings for isolating attack.
+        self.isolated_cid = -1
         # Initialize the status of activate attack.
         self.is_crafted = False
         self.craft_id = 0
@@ -47,13 +50,14 @@ class Clients:
     def run_test(self, MODEL):
         pass
 
-    def train_epoch(self, cid, batch_size=32, dropout_rate=0.5):
+    def train_epoch(self, batch_size=32, dropout_rate=0.5):
         """
         Train one client with its own data for one epoch.
         """
         # The data held by each participant should be divided into tow parts:
         # train set and test set, both of which are used to train the local model.
-        dataset_train = self.dataset.train[cid]
+        assert self.current_cid != -1, "Forget to register the current cid during federated training!"
+        dataset_train = self.dataset.train[self.current_cid]
         dataset_test = self.dataset.test
         size = len(dataset_train.x)
         # features_train, labels_train = dataset_train.x[:int(0.8*size)], dataset_train.y[:int(0.8*size)]
@@ -109,6 +113,8 @@ class Clients:
             self.model.compile(loss='categorical_crossentropy',
                                optimizer=self.opt,
                                metrics=['accuracy'])
+            return
+        if self.isolated_cid == self.current_cid:
             return
         client_vars = self.model.trainable_variables
         for var, value in zip(client_vars, global_vars):
