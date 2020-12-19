@@ -1,0 +1,9 @@
+@startuml
+actor Participant
+database "Central aggregator"
+autonumber
+Participant -> "Central aggregator": Upload local parameters
+"Central aggregator" -> "Central aggregator": Accumulate local parameters
+"Central aggregator" -> "Central aggregator": Update global parameters
+"Central aggregator" -> Participant: Assign global parameters
+@enduml

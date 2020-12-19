@@ -79,8 +79,8 @@ def load_cifar100(dataset_path, input_shape):
 
 def load_cifar10():
     (features_train, labels_train), (features_test, labels_test) = tf.compat.v1.keras.datasets.cifar10.load_data()
-    # features_train, labels_train = features_train[:10000], labels_train[:10000]
-    # features_test, labels_test = features_test[:2000], labels_test[:2000]
+    # features_train, labels_train = features_train[:100], labels_train[:100]
+    # features_test, labels_test = features_test[:20], labels_test[:20]
     return features_train, labels_train, features_test, labels_test
 
 class BatchGenerator:

@@ -77,8 +77,8 @@ if __name__ == "__main__":
             current_local_parameters = client.upload_local_parameters()
             server.accumulate_local_parameters(current_local_parameters)
             # Perform passive global membership inference attack, since the target model's parameters are informed.
-            if client_id == 1:
-                print("passive global attack on cid: {} in fed-epoch: {}".format((ep + 1), client_id))
-                passive_attack(client, client_id)
+            # if client_id == 1:
+            #     print("passive global attack on cid: {} in fed-epoch: {}".format((ep + 1), client_id))
+            #     passive_attack(client, client_id)
         # Update global parameters in each epoch.
         server.update_global_parameters(len(active_clients))

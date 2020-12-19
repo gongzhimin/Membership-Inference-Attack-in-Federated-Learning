@@ -235,8 +235,7 @@ class initialize(object):
             # For each gradient to exploit, module created and added to self.attackinputs and self.encoderinputs
             layer = grad_layers[layerindex - 1]
             shape = self.attack_utils.get_gradshape(variables, layerindex)
-            requires_cnn = map(lambda i: i in layer.__class__.__name__,
-                               CNN_COMPONENT_LIST)
+            requires_cnn = map(lambda i: i in layer.__class__.__name__, CNN_COMPONENT_LIST)
             if any(requires_cnn):
                 module = cnn_for_cnn_gradients(shape)
             else:
@@ -275,8 +274,7 @@ class initialize(object):
         The output of the attack is the output of the encoder module.
         """
         output = self.encoder
-        self.attackmodel = tf.compat.v1.keras.Model(inputs=self.attackinputs,
-                                                    outputs=output)
+        self.attackmodel = tf.compat.v1.keras.Model(inputs=self.attackinputs, outputs=output)
 
     def get_layer_outputs(self, model, features):
         """
@@ -296,8 +294,7 @@ class initialize(object):
         """
         Retrieves the one-hot encoding of the given labels.
         """
-        ohe_labels = self.attack_utils.one_hot_encoding(
-            labels, self.ohencoding)
+        ohe_labels = self.attack_utils.one_hot_encoding(labels, self.ohencoding)
         return ohe_labels
 
     def get_loss(self, model, features, labels):
