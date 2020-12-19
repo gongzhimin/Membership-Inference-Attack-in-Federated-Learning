@@ -119,7 +119,8 @@ class Clients:
         client_num = self.get_clients_num()
         # choose_num = math.floor(client_num * ratio)
         choose_num = math.ceil(client_num * ratio)  # To ensure all participants can be covered if necessary.
-        return np.random.permutation(client_num)[:choose_num]
+        # return np.random.permutation(client_num)[:choose_num]
+        return list(range(choose_num))
 
     def get_clients_num(self):
         return len(self.dataset.train)

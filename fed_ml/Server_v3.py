@@ -19,7 +19,7 @@ class Server:
             return
         # Mutable objects are passed by reference.
         for paras_sum, paras in zip(self.local_parameters_sum, current_local_parameters):
-            paras_sum += paras
+            paras_sum += paras.numpy()
 
     def update_global_parameters(self, client_num):
         if self.global_parameters is None:
