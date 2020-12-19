@@ -1,0 +1,8 @@
+@startuml
+(*) --> "0. Train local model without downloading global parameters" as node1
+note right: Federated learning environment just established
+node1 --> "1. Upload local parameters to central aggregator" as node2
+node2 -right->[global attack window] "2. Download global parameters from central aggregator" as node3
+node3 -up->[local attack moment] "3. Train local model with global parameters" as node4
+node4 -left-> node2
+@enduml

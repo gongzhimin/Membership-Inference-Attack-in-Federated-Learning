@@ -27,6 +27,7 @@ class Clients:
     def __init__(self, input_shape, classes_num, learning_rate, clients_num, dataset_path):
         self.input_shape = input_shape
         self.learning_rate = learning_rate
+        self.classes_num = classes_num
         # Initialize the Keras model.
         self.model = alexnet(self.input_shape, classes_num=classes_num)
         # Compile the model.
@@ -34,7 +35,6 @@ class Clients:
         self.model.compile(loss='categorical_crossentropy',
                             optimizer=self.opt,
                             metrics=['accuracy'])
-        self.classes_num = classes_num
         self.dataset = Dataset(dataset_path, split=clients_num,
                                one_hot=True, input_shape=self.input_shape,
                                classes_num=classes_num)
@@ -67,7 +67,7 @@ class Clients:
 
         # Train the keras model with method `fit`.
         self.model.fit(features_train, labels_train,
-                        batch_size=32, epochs=20,
+                        batch_size=32, epochs=10,
                         validation_data=(features_test, labels_test),
                         shuffle=True, callbacks=[callback])
 
@@ -104,6 +104,11 @@ class Clients:
     def download_global_parameters(self, global_vars):
         """ Assign all of the variables with global vars """
         if global_vars == None:
+            # Clear the parameters.
+            self.model = alexnet(self.input_shape, classes_num=self.classes_num)
+            self.model.compile(loss='categorical_crossentropy',
+                               optimizer=self.opt,
+                               metrics=['accuracy'])
             return
         client_vars = self.model.trainable_variables
         for var, value in zip(client_vars, global_vars):

@@ -18,6 +18,7 @@ def passive_attack(client, client_id):
                                                                      input_shape=client.input_shape)
     # The application of shadow models has been confirmed:
     # https://github.com/privacytrustlab/ml_privacy_meter/issues/19
+    # The answer of coder confused me...
     target_model = client.model
     shadow_model = alexnet(input_shape, client.classes_num)
     attackobj = ml_privacy_meter.attack.meminf.initialize(
@@ -68,16 +69,16 @@ if __name__ == "__main__":
             # and then train local models to adapt their parameters.
             client.download_global_parameters(server.global_parameters)
             # Perform passive local membership inference attack, since only get global parameters.
-            # if ep == 1 and client_id == 0:
+            # if client_id == 1:
             #     print("passive local attack on cid: {} in fed_ml-epoch: {}".format((ep+1), client_id))
             #     passive_attack(client, client_id)
             client.train_epoch(cid=client_id)
-            # Perform passive global membership inference attack, since the target model's parameters are informed.
-            if client_id == 1:
-                print("passive global attack on cid: {} in fed-epoch: {}".format((ep+1), client_id))
-                passive_attack(client, client_id)
             # Accumulate local parameters.
             current_local_parameters = client.upload_local_parameters()
             server.accumulate_local_parameters(current_local_parameters)
+            # Perform passive global membership inference attack, since the target model's parameters are informed.
+            if client_id == 1:
+                print("passive global attack on cid: {} in fed-epoch: {}".format((ep + 1), client_id))
+                passive_attack(client, client_id)
         # Update global parameters in each epoch.
         server.update_global_parameters(len(active_clients))
