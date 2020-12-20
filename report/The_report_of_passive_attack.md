@@ -1,6 +1,6 @@
 # The Report of Passive Attack
 
-The results of membership inference attack in federated learning will be unfolded in this report. And the black magic of membership inference attack may interest you if you have the relevant prior knowledge.
+<!--The results of membership inference attack in federated learning will be unfolded, and it's black magic may interest you with relevant prior knowledge.-->
 
 ## Global Attack vs Local Attack
 
@@ -119,7 +119,8 @@ passive global attack
 
 - [Help Wanted: How To Apply This Tool?](https://github.com/privacytrustlab/ml_privacy_meter/issues/18)
 - [AttributeError: 'attack_data' object has no attribute 'means'](https://github.com/privacytrustlab/ml_privacy_meter/issues/19)
-- [Help Wanted: What the significance of hyperparameter `CLIENT_RATIO_PER_ROUND`](https://github.com/Zing22/tf-fed-demo/issues/1)
+- [Question: What's the relationship between 'target_train_model' and 'target_attack_model'?](https://github.com/privacytrustlab/ml_privacy_meter/issues/22)
+- [Help Wanted: What the significance of hyperparameter 'CLIENT_RATIO_PER_ROUND'](https://github.com/Zing22/tf-fed-demo/issues/1)
 
 ## Related Work
 
