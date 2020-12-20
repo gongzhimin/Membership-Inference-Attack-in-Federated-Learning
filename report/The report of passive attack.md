@@ -144,9 +144,8 @@ There are two vital issues that still confuse me.
 - What the parameters contain, and what they mean mathematically?
 
 - The target model consists of several layers of neurons, so which layers should be crafted as follow?
-  $$
-  W \gets W + \gamma\frac{\partial L^X}{\partial W}
-  $$
+  
+  ![eq_gradient_ascend](imgs/eq_gradient_ascend.png)
 
 #### The Isolating Attacker
 
