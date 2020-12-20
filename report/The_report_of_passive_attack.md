@@ -6,15 +6,15 @@ The results of membership inference attack in federated learning will be unfolde
 
 To participants, there are 4 kinds of activities during federated training, three of which are in iterations.
 
-![participant activities](imgs/participant-activities.svg)
+<img src="imgs/participant-activities.svg" alt="participant activities" style="zoom: 80%;" />
 
 Attack windows slide to the global attacker after uploading  participants' local parameters to the central aggregator.
 
-![passive global attack](imgs/passive_global_attack.png)
+<img src="imgs/passive_global_attack.png" alt="passive global attack" style="zoom: 67%;" />
 
 And when global parameters are pulled down, the participant introduces a back door for local attackers as well.
 
-![passive local attack](imgs/passive_local_attack.png)
+<img src="imgs/passive_local_attack.png" alt="passive local attack" style="zoom: 67%;" />
 
 Apparently, the difference between global attackers and local attackers is **the timing of attack**.
 
@@ -45,7 +45,7 @@ server.update_global_parameters(len(active_clients))
 
 1. It is assumed that the attacker holds a subset of training set of the target participant, as well as some data from the same underlying distribution that is not contained in the training set.
 
-   ![supervised training](imgs/supervised_training.png)
+   <img src="imgs/supervised_training.png" alt="supervised training" style="zoom: 67%;" />
 
 2. In federated learning, the data set for each participant is the same size and has no intersection.
 
@@ -72,52 +72,53 @@ server.update_global_parameters(len(active_clients))
 
 - PGA: Passive Global Attack
 - PLA: Passive Local Attack
+- IAGA: Isolating Global Attack
 
 ### cid: 1 in fed-epoch: 2
 
 passive local attack
 
-![PLA_cid-1_ep-2](imgs/PLA_cid-1_ep-2.png)
+<img src="imgs/PLA_cid-1_ep-2.png" alt="PLA_cid-1_ep-2" style="zoom:67%;" />
 
-![PLA-cid_1-ep_2-roc](imgs/PLA-cid_1-ep_2-roc.png)
+<img src="imgs/PLA-cid_1-ep_2-roc.png" alt="PLA-cid_1-ep_2-roc" style="zoom:67%;" />
 
 passive global attack 
 
-![PGA_cid-1_ep-2](imgs/PGA_cid-1_ep-2.png)
+<img src="imgs/PGA_cid-1_ep-2.png" alt="PGA_cid-1_ep-2" style="zoom:67%;" />
 
-![PGA-cid_1-ep_2-roc](imgs/PGA-cid_1-ep_2-roc.png)
+<img src="imgs/PGA-cid_1-ep_2-roc.png" alt="PGA-cid_1-ep_2-roc" style="zoom:67%;" />
 
 ### cid: 1 in fed-epoch: 4
 
 passive local attack
 
-![PLA_cid-1_ep-4](imgs/PLA_cid-1_ep-4.png)
+<img src="imgs/PLA_cid-1_ep-4.png" alt="PLA_cid-1_ep-4" style="zoom:67%;" />
 
-![PLA-cid_1-ep_4-roc](imgs/PLA-cid_1-ep_4-roc.png)
+<img src="imgs/PLA-cid_1-ep_4-roc.png" alt="PLA-cid_1-ep_4-roc" style="zoom:67%;" />
 
 passive global attack 
 
-![PGA_cid-1_ep-4](imgs/PGA_cid-1_ep-4.png)
+<img src="imgs/PGA_cid-1_ep-4.png" alt="PGA_cid-1_ep-4" style="zoom:67%;" />
 
-![PGA-cid_1-ep_4-roc](imgs/PGA-cid_1-ep_4-roc.png)
+<img src="imgs/PGA-cid_1-ep_4-roc.png" alt="PGA-cid_1-ep_4-roc" style="zoom:67%;" />
 
 ### cid: 1 in fed-epoch: 6
 
 passive local attack
 
-![PLA_cid-1_ep-6](imgs/PLA_cid-1_ep-6.png)
+<img src="imgs/PLA_cid-1_ep-6.png" alt="PLA_cid-1_ep-6" style="zoom:67%;" />
 
-![PLA-cid_1-ep_6-roc](imgs/PLA-cid_1-ep_6-roc.png)
+<img src="imgs/PLA-cid_1-ep_6-roc.png" alt="PLA-cid_1-ep_6-roc" style="zoom:67%;" />
 
-passive global attack 
+passive global attack
 
-![PGA_cid-1_ep-6](imgs/PGA_cid-1_ep-6.png)
+<img src="imgs/PGA_cid-1_ep-6.png" alt="PGA_cid-1_ep-6" style="zoom: 67%;" />
 
-![PGA-cid_1-ep_6-roc](imgs/PGA-cid_1-ep_6-roc.png)
+<img src="imgs/PGA-cid_1-ep_6-roc.png" alt="PGA-cid_1-ep_6-roc" style="zoom: 67%;" />
 
 > more details  to [passive attack results](./passive_attack_results.txt)  
 
-![reasons to increasing of attack_acc](imgs/reasons_to_increasing_of_attack_acc.png)
+<img src="imgs/reasons_to_increasing_of_attack_acc.png" alt="reasons to increasing of attack_acc" style="zoom:50%;" />
 
 ## Communications
 
@@ -129,7 +130,7 @@ passive global attack
 
 ### Active Inference Attacks
 
-![sc-sequence](imgs/sc-sequence.svg)
+<img src="imgs/sc-sequence.svg" alt="sc-sequence" style="zoom:80%;" />
 
 Attackers have no root to change the training process of target participant (except themselves), since altering the architecture of federated learning is not under consideration in this scenario. 
 
@@ -137,7 +138,7 @@ What the adversary is allowed to manipulate are model parameters, the correspond
 
 #### The Gradient Ascend Attacker
 
-![The principle of ascend gradient](imgs/The_principle_of_ascend_gredient.png)
+<img src="imgs/The_principle_of_ascend_gredient.png" alt="The principle of ascend gradient" style="zoom:50%;" />
 
 There are two vital issues that still confuse me.
 
@@ -145,13 +146,13 @@ There are two vital issues that still confuse me.
 
 - The target model consists of several layers of neurons, so which layers should be crafted as follow?
   
-  ![eq_gradient_ascend](imgs/eq_gradient_ascend.png)
+  <img src="imgs/eq_gradient_ascend.png" alt="eq_gradient_ascend" style="zoom: 67%;" />
 
 #### The Isolating Attacker
 
-![The Isolating Attacker](imgs/The_Isolating_Attacker.png)
+<img src="imgs/The_Isolating_Attacker.png" alt="The Isolating Attacker" style="zoom:50%;" />
 
-The trick in isolating attack is to leave the target participant in the state of stand-alone. Besides, only a global attacker can carry out isolating attacks in this setting.
+The trick in isolating attack is to leave the target participant in the state of stand-alone. Besides, only a global attacker can carry out isolating attacks in this setting. And this strategy tends to overfit the target participant.
 
 
 

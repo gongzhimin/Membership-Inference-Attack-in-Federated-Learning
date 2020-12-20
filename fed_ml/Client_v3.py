@@ -44,11 +44,11 @@ class Clients:
         # Settings for isolating attack.
         self.isolated_cid = -1
         self.isolated_local_parameters = None
-        # Initialize the status of activate attack.
-        self.is_crafted = False
-        self.craft_id = 0
-        self.hashed_crafted_records = []
-        self.labels_crafted = []
+        # # Initialize the status of activate attack.
+        # self.is_crafted = False
+        # self.craft_id = 0
+        # self.hashed_crafted_records = []
+        # self.labels_crafted = []
 
     def run_test(self, MODEL):
         pass
@@ -78,37 +78,40 @@ class Clients:
                         validation_data=(features_test, labels_test),
                         shuffle=True, callbacks=[callback])
 
-    def craft(self, cid, batch_size=32, dropout_rate=0.5):
-        """
-        Craft adversarial parameter update of certain participant
-        We apply gradient ascent on a data record x,
-        i.e., increase it's loss value by manipulating the true label.
-        """
-        # Switch the status of active attack
-        self.is_crafted = True
-        self.craft_id = cid
-        dataset = self.dataset.train[cid]
-        total_x, total_y = dataset.x, dataset.y # The labels were encoded in one-hot
-        selected_y = total_y[0] # Pass by reference
-        # Register the crafted records
-        self.hashed_crafted_records = hash_records([total_x[0]])
-        self.labels_crafted.append(selected_y)  # The registered labels must be the original ones, not the crafted
-        size = len(selected_y)
-        for i in range(size):
-            # if selected_y[i] == 1.0:
-            # In order to avoid the precision bias of float32, the above was discarded
-            if 0.9999999 <= selected_y[i] <= 1.0000001:
-                selected_y[i] = 0.0
-                selected_y[(i+1)%size] = 1.0
-                break
-        # Train with crafted records
-        pass
+    # def craft(self, cid, batch_size=32, dropout_rate=0.5):
+    #     """
+    #     Craft adversarial parameter update of certain participant
+    #     We apply gradient ascent on a data record x,
+    #     i.e., increase it's loss value by manipulating the true label.
+    #     """
+    #     # Switch the status of active attack
+    #     self.is_crafted = True
+    #     self.craft_id = cid
+    #     dataset = self.dataset.train[cid]
+    #     total_x, total_y = dataset.x, dataset.y # The labels were encoded in one-hot
+    #     selected_y = total_y[0] # Pass by reference
+    #     # Register the crafted records
+    #     self.hashed_crafted_records = hash_records([total_x[0]])
+    #     self.labels_crafted.append(selected_y)  # The registered labels must be the original ones, not the crafted
+    #     size = len(selected_y)
+    #     for i in range(size):
+    #         # if selected_y[i] == 1.0:
+    #         # In order to avoid the precision bias of float32, the above was discarded
+    #         if 0.9999999 <= selected_y[i] <= 1.0000001:
+    #             selected_y[i] = 0.0
+    #             selected_y[(i+1)%size] = 1.0
+    #             break
+    #     # Train with crafted records
+    #     pass
 
     def upload_local_parameters(self):
         """ Return all of the variables list"""
         # Isolated participant train in local.
         if self.current_cid == self.isolated_cid:
             self.isolated_local_parameters = copy.deepcopy(self.model.trainable_variables)
+            size = len(self.isolated_local_parameters)
+            for i in range(size):
+                self.isolated_local_parameters[i] = self.model.trainable_variables[i].numpy()
         return self.model.trainable_variables
 
     def download_global_parameters(self, global_vars):
