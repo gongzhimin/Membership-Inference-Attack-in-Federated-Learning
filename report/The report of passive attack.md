@@ -10,11 +10,11 @@ To participants, there are 4 kinds of activities during federated training, thre
 
 Attack windows slide to the global attacker after uploading  participants' local parameters to the central aggregator.
 
-![passive global attack](imgs/passive global attack.png)
+![passive global attack](imgs/passive_global_attack.png)
 
 And when global parameters are pulled down, the participant introduces a back door for local attackers as well.
 
-![passive local attack](imgs/passive local attack.png)
+![passive local attack](imgs/passive_local_attack.png)
 
 Apparently, the difference between global attackers and local attackers is **the timing of attack**.
 
@@ -43,13 +43,13 @@ server.update_global_parameters(len(active_clients))
 
 ## Hypotheses
 
-1. It is assumed that the attacker holds a subset of trianing set of the traget participant, as well as some data from the same underlying distribution that is not contained in the training set.
+1. It is assumed that the attacker holds a subset of training set of the target participant, as well as some data from the same underlying distribution that is not contained in the training set.
 
-   ![supervised training](imgs/supervised training.png)
+   ![supervised training](imgs/supervised_training.png)
 
 2. In federated learning, the data set for each participant is the same size and has no intersection.
 
-3. During federated training, participants wil not adapt their local training processes or hyperparameters.
+3. During federated training, participants will not adapt their local training processes or hyperparameters.
 
 ## Results
 
@@ -115,9 +115,9 @@ passive global attack
 
 ![PGA-cid_1-ep_6-roc](imgs/PGA-cid_1-ep_6-roc.png)
 
-> more details  to [passive attack results]()  
+> more details  to [passive attack results](./passive_attack_results.txt)  
 
-![reasons to increasing of attack_acc](imgs/reasons to increasing of attack_acc.png)
+![reasons to increasing of attack_acc](imgs/reasons_to_increasing_of_attack_acc.png)
 
 ## Communications
 
@@ -135,9 +135,9 @@ Attackers have no root to change the training process of target participant (exc
 
 What the adversary is allowed to manipulate are model parameters, the correspondence between participants and the central aggregator.
 
-#### The Gredient Ascend Attacker
+#### The Gradient Ascend Attacker
 
-![The principle of ascend gredient](imgs/The principle of ascend gredient.png)
+![The principle of ascend gradient](imgs/The_principle_of_ascend_gredient.png)
 
 There are two vital issues that still confuse me.
 
@@ -150,7 +150,7 @@ There are two vital issues that still confuse me.
 
 #### The Isolating Attacker
 
-![The Isolating Attacker](imgs/The Isolating Attacker.png)
+![The Isolating Attacker](imgs/The_Isolating_Attacker.png)
 
 The trick in isolating attack is to leave the target participant in the state of stand-alone. Besides, only a global attacker can carry out isolating attacks in this setting.
 
