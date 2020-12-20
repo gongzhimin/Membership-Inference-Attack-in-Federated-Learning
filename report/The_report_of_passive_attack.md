@@ -167,4 +167,4 @@ The trick in isolating attack is to leave the target participant in the state of
 
 <img src="imgs/IAGA-cid_1-ep_6-roc.png" alt="IAGA-cid_1-ep_6-roc" style="zoom:67%;" />
 
-> more details to [isolating attack results]()
+> more details to [isolating attack results](./isolating_attack_results.txt)
