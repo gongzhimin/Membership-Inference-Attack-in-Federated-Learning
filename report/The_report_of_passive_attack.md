@@ -113,7 +113,15 @@ passive global attack
 
 > more details to [passive attack results](./passive_attack_results.txt)  
 
-<img src="imgs/reasons_to_increasing_of_attack_acc.png" alt="reasons to increasing of attack_acc" style="zoom: 67%;" />
+### Conclusions
+
+- The latter, the more accurate the attack will be.
+
+  <img src="imgs/reasons_to_increasing_of_attack_acc.png" alt="reasons to increasing of attack_acc" style="zoom: 67%;" />
+
+- Global attack is more effective than local attack.
+
+- Overfit leaks more information of training set.
 
 ## Communications
 
