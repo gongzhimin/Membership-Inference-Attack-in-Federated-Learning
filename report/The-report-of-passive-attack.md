@@ -158,9 +158,9 @@ There are two vital issues that still confuse me.
 >
 > When the attacker isolates the target participant, then **the target participant’s model does not get aggregated with the parameters of other parties**. As a result, it stores more information about its training dataset in the model. Thus, simply isolating the training of a target model significantly increases the attack accuracy. 
 
-The trick in isolating attack is to leave the target participant in the state of stand-alone: block the downloading of global parameters, but local parameters can be uploaded normally. 
+The trick in isolating attack is to leave the target participant in the state of stand-alone: the attacker pretends local parameters (uploaded by target participant) as global parameters, and then dispatches **the fake global parameters** to target participant.
 
-Besides, only a global attacker can carry out isolating attacks in this setting. And this strategy tends to overfit the target participant, when the amount of data the participant has is insufficient.
+Besides, only a global attacker can carry out isolating attacks in this setting. And this strategy tends to overfit the target participant, when the amount of data available to the target participant is insufficient.
 
 ##### cid: 1 in fed-epoch: 2
 
