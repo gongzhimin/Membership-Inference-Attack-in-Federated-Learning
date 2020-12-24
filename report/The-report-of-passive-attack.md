@@ -147,10 +147,10 @@ What the adversary is allowed to manipulate are model parameters, the correspond
 
 As known, the purpose of gradient ascend attack is to fool the target model into memorizing more information about the training set (or, record x).
 
-There are two vital issues that still confuse me.
+<!--There are two vital issues that still confuse me.-->
 
-- What do these parameters contain, and what do they mean mathematically?
-- Why the gradient of x can be added directly to the model parameters? 
+- <!--What do these parameters contain, and what do they mean mathematically?-->
+- <!--Why the gradient of x can be added directly to the model parameters?--> 
 
 #### The Isolating Attacker
 
