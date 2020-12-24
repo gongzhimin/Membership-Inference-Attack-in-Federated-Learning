@@ -162,19 +162,19 @@ The trick in isolating attack is to leave the target participant in the state of
 
 Besides, only a global attacker can carry out isolating attacks in this setting. And this strategy tends to overfit the target participant, when the amount of data the participant has is insufficient.
 
-**cid: 1 in fed-epoch: 2**
+##### cid: 1 in fed-epoch: 2
 
 <img src="imgs/IAGA_cid-1_ep-2.png" alt="IAGA_cid-1_ep-2" style="zoom:67%;" />
 
 <img src="imgs/IAGA-cid_1-ep_2-roc.png" alt="IAGA-cid_1-ep_2-roc" style="zoom:67%;" />
 
-**cid: 1 in fed-epoch: 4**
+##### cid: 1 in fed-epoch: 4
 
 <img src="imgs/IAGA_cid-1_ep-4.png" alt="IAGA_cid-1_ep-4" style="zoom:67%;" />
 
 <img src="imgs/IAGA-cid_1-ep_4-roc.png" alt="IAGA-cid_1-ep_4-roc" style="zoom:67%;" />
 
-**cid: 1 in fed-epoch: 6**
+##### cid: 1 in fed-epoch: 6
 
 <img src="imgs/IAGA_cid-1_ep-6.png" alt="IAGA_cid-1_ep-6" style="zoom:67%;" />
 
