@@ -110,7 +110,7 @@ passive global attack
 
 <img src="imgs/PGA-cid_1-ep_6-roc.png" alt="PGA-cid_1-ep_6-roc" style="zoom: 67%;" />
 
-> more details to [passive attack results](./passive_attack_results.txt)  
+> more details to [passive attack results](./passive-attack-results.txt)  
 
 ### Conclusions
 
@@ -180,4 +180,4 @@ Besides, only a global attacker can carry out isolating attacks in this setting.
 
 <img src="imgs/IAGA-cid_1-ep_6-roc.png" alt="IAGA-cid_1-ep_6-roc" style="zoom:67%;" />
 
-> more details to [isolating attack results](./isolating_attack_results.txt)
+> more details to [isolating attack results](./isolating-attack-results.txt)
