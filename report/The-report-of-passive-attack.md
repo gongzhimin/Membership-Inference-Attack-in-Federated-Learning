@@ -149,8 +149,9 @@ As known, the purpose of gradient ascend attack is to fool the target model into
 
 <!--There are two vital issues that still confuse me.-->
 
-- <!--What do these parameters contain, and what do they mean mathematically?-->
-- <!--Why the gradient of x can be added directly to the model parameters?--> 
+<!--- What do these parameters contain, and what do they mean mathematically?-->
+
+<!--- Why the gradient of x can be added directly to the model parameters?--> 
 
 #### The Isolating Attacker
 
