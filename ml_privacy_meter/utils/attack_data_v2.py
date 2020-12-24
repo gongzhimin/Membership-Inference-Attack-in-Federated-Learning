@@ -50,7 +50,7 @@ class attack_data:
         self.batch_size = batch_size
 
         # Loading the training (member) dataset.
-        # train_data is a BatchGenerator object defined in `Dataset_v2.py`, as well as test_data.
+        # train_data is a BatchGenerator object defined in `Dataset.py`, as well as test_data.
         self.train_data = train_data
         self.training_size = len(self.train_data.x)
         # It assumed that a subset of the training set is known to the attacker,

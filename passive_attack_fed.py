@@ -1,8 +1,8 @@
 import copy
 from collections import namedtuple
 
-from fed_ml.Client_v3 import Clients
-from fed_ml.Server_v3 import Server
+from fed_ml.Client import Clients
+from fed_ml.Server import Server
 # from fed_ml.Model_v2 import alexnet
 import ml_privacy_meter
 

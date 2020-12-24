@@ -1,18 +1,11 @@
-import math
-from collections import namedtuple
-import numpy as np
-import tensorflow as tf
 import copy
+import math
 
-# from Dataset_v2 import Dataset
-# from Model_v2 import classification_cnn, scheduler
-from fed_ml.Dataset_v2 import Dataset
-from fed_ml.Model_v2 import alexnet, scheduler
+import tensorflow as tf
 
-"""
-In the third version of `Client.py`, the tensorflow relied on updates to version 2 with eager execution,
-which really different from version 1 with graph execution.
-"""
+from fed_ml.Dataset import Dataset
+from fed_ml.Model import alexnet, scheduler
+
 
 def hash_records(crafted_records):
     """
@@ -50,10 +43,10 @@ class Clients:
         # self.hashed_crafted_records = []
         # self.labels_crafted = []
 
-    def run_test(self, MODEL):
+    def run_test(self, model):
         pass
 
-    def train_epoch(self, batch_size=32, dropout_rate=0.5):
+    def train_epoch(self):
         """
         Train one client with its own data for one epoch.
         """
@@ -117,7 +110,7 @@ class Clients:
     def download_global_parameters(self, global_vars):
         """ Assign all of the variables with global vars """
         # The federated learning environment is just established.
-        if global_vars == None:
+        if global_vars is None:
             # Clear the parameters.
             self.model = alexnet(self.input_shape, classes_num=self.classes_num)
             self.model.compile(loss='categorical_crossentropy',
