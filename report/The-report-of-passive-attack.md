@@ -2,7 +2,7 @@
 
 <!--The results of membership inference attack in federated learning will be unfolded, and it's black magic may interest you with relevant prior knowledge.-->
 
-## Global Attack vs Local Attack
+## Global Attack vs. Local Attack
 
 To participants, there are 4 kinds of activities during federated training, three of which are in iterations.
 
@@ -149,7 +149,7 @@ As known, the purpose of gradient ascend attack is to fool the target model into
 
 There are two vital issues that still confuse me.
 
-- What do these parameters contain, and what is their mathematical significance?
+- What do these parameters contain, and what do they mean mathematically?
 - Why the gradient of x can be added directly to the model parameters? 
 
 #### The Isolating Attacker
