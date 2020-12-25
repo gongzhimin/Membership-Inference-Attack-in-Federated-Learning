@@ -1,35 +1,6 @@
-import copy
-from collections import namedtuple
-
 from fed_ml.Client import Clients
 from fed_ml.Server import Server
-import ml_privacy_meter
-
-
-ATTACK_MSG = namedtuple("ATTACK_MSG", "attack_type, cid, fed_ep")
-
-def passive_attack(client, attack_msg):
-    train_data = client.dataset.train[attack_msg.cid]
-    test_data = client.dataset.test
-    # test_data and train_data are mutable objects,
-    # hence, they will be changed after passing to `attack_data` method directly.
-    data_handler = ml_privacy_meter.utils.attack_data_v2.attack_data(test_data=copy.deepcopy(test_data),
-                                                                     train_data=copy.deepcopy(train_data),
-                                                                     batch_size=32,
-                                                                     attack_percentage=10,
-                                                                     input_shape=client.input_shape)
-    target_model = client.model
-    attackobj = ml_privacy_meter.attack.meminf.initialize(
-        target_train_model=target_model,
-        target_attack_model=target_model,
-        train_datahandler=data_handler,
-        attack_datahandler=data_handler,
-        layers_to_exploit=[6],
-        # gradients_to_exploit=[6],
-        device=None, epochs=10,
-        attack_msg = attack_msg, model_name="meminf_fed")
-    attackobj.train_attack()
-    attackobj.test_attack()
+from fed_ml.Attacker import Attacker
 
 
 if __name__ == "__main__":
@@ -77,8 +48,8 @@ if __name__ == "__main__":
             server.accumulate_local_parameters(current_local_parameters)
             # Perform isolating attack.
             if client_id == target_cid and ep % 2 == 1:
-                attack_msg = ATTACK_MSG(attack_type="IAGA", cid=client_id, fed_ep=ep+1)
                 print("isolating attack on cid: {} in fed-epoch: {}".format(client_id, (ep + 1)))
-                passive_attack(client, attack_msg)
+                isolating_attacker = Attacker("IAGA", client_id, (ep + 1))
+                isolating_attacker.membership_inference_attack(client)
         # Update global parameters in each epoch.
         server.update_global_parameters(len(active_clients))

@@ -7,17 +7,6 @@ from fed_ml.Dataset import Dataset
 from fed_ml.Model import alexnet, scheduler
 
 
-def hash_records(crafted_records):
-    """
-    Hash the record objects to identify them.
-    """
-    hashed_crafted_records = []
-    for crafted_record in crafted_records:
-        hashed_crafted_record = hash(bytes(crafted_record))
-        hashed_crafted_records.append(hashed_crafted_record)
-    return hashed_crafted_records
-
-
 class Clients:
     def __init__(self, input_shape, classes_num, learning_rate, clients_num, dataset_path):
         self.current_cid = -1
@@ -37,14 +26,7 @@ class Clients:
         # Settings for isolating attack.
         self.isolated_cid = -1
         self.isolated_local_parameters = None
-        # # Initialize the status of activate attack.
-        # self.is_crafted = False
-        # self.craft_id = 0
-        # self.hashed_crafted_records = []
-        # self.labels_crafted = []
 
-    def run_test(self, model):
-        pass
 
     def train_epoch(self):
         """
@@ -71,6 +53,7 @@ class Clients:
                         validation_data=(features_test, labels_test),
                         shuffle=True, callbacks=[callback])
 
+
     def upload_local_parameters(self):
         """ Return all of the variables list"""
         # Isolated participant train in local.
@@ -80,6 +63,7 @@ class Clients:
             for i in range(size):
                 self.isolated_local_parameters[i] = self.model.trainable_variables[i].numpy()
         return self.model.trainable_variables
+
 
     def download_global_parameters(self, global_vars):
         """ Assign all of the variables with global vars """
@@ -102,6 +86,7 @@ class Clients:
         for var, value in zip(client_vars, global_vars):
             var.assign(value)
 
+
     def choose_clients(self, ratio=1.0):
         """ Randomly choose some clients """
         client_num = self.get_clients_num()
@@ -109,6 +94,7 @@ class Clients:
         choose_num = math.ceil(client_num * ratio)  # To ensure all participants can be covered if necessary.
         # return np.random.permutation(client_num)[:choose_num]
         return list(range(choose_num))
+
 
     def get_clients_num(self):
         return len(self.dataset.train)

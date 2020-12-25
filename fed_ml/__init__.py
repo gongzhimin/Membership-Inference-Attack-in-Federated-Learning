@@ -1,1 +1,1 @@
-from fed_ml import Client, Dataset, Model, Server
+from fed_ml import Client, Dataset, Model, Server, Attacker

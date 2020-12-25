@@ -1,6 +1,6 @@
 # The Report of Passive Attack
 
-<!--The results of membership inference attack in federated learning will be unfolded, and it's black magic may interest you with relevant prior knowledge.-->
+
 
 ## Global Attack vs. Local Attack
 
@@ -146,12 +146,6 @@ What the adversary is allowed to manipulate are model parameters, the correspond
 > Where γ is the adversarial update rate. The adversary then uploads the adversarially computed parameters to the central server, who will aggregate them with the parameter updates from other participants. The adversary can run this attack on a batch of target data points all at the same time.
 
 As known, the purpose of gradient ascend attack is to fool the target model into memorizing more information about the training set (or, record x).
-
-<!--There are two vital issues that still confuse me.-->
-
-<!--- What do these parameters contain, and what do they mean mathematically?-->
-
-<!--- Why the gradient of x can be added directly to the model parameters?--> 
 
 #### The Isolating Attacker
 

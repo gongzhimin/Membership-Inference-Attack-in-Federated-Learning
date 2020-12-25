@@ -29,6 +29,15 @@ def passive_attack(client, attack_msg):
     attackobj.train_attack()
     attackobj.test_attack()
 
+def select_x(features, labels):
+    x_list = None
+    y_list = None
+    return x_list, y_list
+
+def compute_gradient_x(target_model, x_list, y_list):
+    gradient_x = None
+    return gradient_x
+
 def craft_global_parameters(global_parameters):
     pass
 
@@ -76,7 +85,8 @@ if __name__ == "__main__":
             # Accumulate local parameters.
             current_local_parameters = client.upload_local_parameters()
             server.accumulate_local_parameters(current_local_parameters)
-            # Perform passive global membership inference attack, since the target model's parameters are informed.
+            if client_id == target_cid and ep == 1:
+                gradient_x = compute_gradient_x(client.model)
             if client_id == target_cid and ep == 2:
                 attack_msg = ATTACK_MSG(attack_type="GGAA", cid=client_id, fed_ep=ep+1)
                 print("global gradient ascent attack on cid: {} in fed-epoch: {}".format(client_id, (ep + 1)))
