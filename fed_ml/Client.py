@@ -49,7 +49,7 @@ class Clients:
 
         # Train the keras model with method `fit`.
         self.model.fit(features_train, labels_train,
-                        batch_size=32, epochs=15,
+                        batch_size=32, epochs=1,
                         validation_data=(features_test, labels_test),
                         shuffle=True, callbacks=[callback])
 

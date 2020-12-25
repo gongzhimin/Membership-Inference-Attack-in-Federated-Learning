@@ -1,45 +1,6 @@
-import copy
-from collections import namedtuple
-
 from fed_ml.Client import Clients
 from fed_ml.Server import Server
-import ml_privacy_meter
-
-
-ATTACK_MSG = namedtuple("ATTACK_MSG", "attack_type, cid, fed_ep")
-
-def passive_attack(client, attack_msg):
-    train_data = client.dataset.train[attack_msg.cid]
-    test_data = client.dataset.test
-    data_handler = ml_privacy_meter.utils.attack_data_v2.attack_data(test_data=copy.deepcopy(test_data),
-                                                                     train_data=copy.deepcopy(train_data),
-                                                                     batch_size=32,
-                                                                     attack_percentage=10,
-                                                                     input_shape=client.input_shape)
-    target_model = client.model
-    attackobj = ml_privacy_meter.attack.meminf.initialize(
-        target_train_model=target_model,
-        target_attack_model=target_model,
-        train_datahandler=data_handler,
-        attack_datahandler=data_handler,
-        layers_to_exploit=[6],
-        # gradients_to_exploit=[6],
-        device=None, epochs=10,
-        attack_msg = attack_msg, model_name="meminf_fed")
-    attackobj.train_attack()
-    attackobj.test_attack()
-
-def select_x(features, labels):
-    x_list = None
-    y_list = None
-    return x_list, y_list
-
-def compute_gradient_x(target_model, x_list, y_list):
-    gradient_x = None
-    return gradient_x
-
-def craft_global_parameters(global_parameters):
-    pass
+from fed_ml.Attacker import Attacker
 
 
 if __name__ == "__main__":
@@ -56,13 +17,14 @@ if __name__ == "__main__":
     # classes_num = 100   # cifar-100
     classes_num = 10    # cifar-10
 
-    """Build clients and server."""
+    """Build clients, server and attacker."""
     client = Clients(input_shape=input_shape,
                     classes_num=classes_num,
                     learning_rate=learning_rate,
                     clients_num=CLIENT_NUMBER,
                      dataset_path="./datasets/cifar100.txt")
     server = Server()
+    attacker = Attacker()
 
     """Target the attack."""
     target_cid = 1
@@ -78,7 +40,7 @@ if __name__ == "__main__":
             client.current_cid = client_id
             print("[fed-epoch {}] cid: {}".format((ep + 1), client_id))
             if client_id == target_cid and ep == 2:
-                craft_global_parameters(server.global_parameters)
+                attacker.craft_global_parameters(server.global_parameters)
                 print("The global parameters have been crafted.")
             client.download_global_parameters(server.global_parameters)
             client.train_epoch()
@@ -86,10 +48,11 @@ if __name__ == "__main__":
             current_local_parameters = client.upload_local_parameters()
             server.accumulate_local_parameters(current_local_parameters)
             if client_id == target_cid and ep == 1:
-                gradient_x = compute_gradient_x(client.model)
+                attacker.declare_attack("GGAA", client_id, (ep + 2))
+                attacker.generate_attack_data(client)
+                attacker.generate_target_gradient(client)
             if client_id == target_cid and ep == 2:
-                attack_msg = ATTACK_MSG(attack_type="GGAA", cid=client_id, fed_ep=ep+1)
                 print("global gradient ascent attack on cid: {} in fed-epoch: {}".format(client_id, (ep + 1)))
-                passive_attack(client, attack_msg)
+                attacker.membership_inference_attack(client)
         # Update global parameters in each epoch.
         server.update_global_parameters(len(active_clients))

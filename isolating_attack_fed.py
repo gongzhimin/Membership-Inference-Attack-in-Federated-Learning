@@ -17,13 +17,14 @@ if __name__ == "__main__":
     # classes_num = 100   # cifar-100
     classes_num = 10    # cifar-10
 
-    """Build clients and server."""
+    """Build clients, server and attacker."""
     client = Clients(input_shape=input_shape,
                     classes_num=classes_num,
                     learning_rate=learning_rate,
                     clients_num=CLIENT_NUMBER,
                      dataset_path="./datasets/cifar100.txt")
     server = Server()
+    attacker = Attacker()
 
     """Isolate target participant."""
     target_cid = 1
@@ -49,7 +50,8 @@ if __name__ == "__main__":
             # Perform isolating attack.
             if client_id == target_cid and ep % 2 == 1:
                 print("isolating attack on cid: {} in fed-epoch: {}".format(client_id, (ep + 1)))
-                isolating_attacker = Attacker("IAGA", client_id, (ep + 1))
-                isolating_attacker.membership_inference_attack(client)
+                attacker.declare_attack("IAGA", client_id, (ep + 1))
+                attacker.generate_attack_data(client)
+                attacker.membership_inference_attack(client)
         # Update global parameters in each epoch.
         server.update_global_parameters(len(active_clients))
