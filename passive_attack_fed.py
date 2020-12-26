@@ -28,6 +28,7 @@ if __name__ == "__main__":
 
     """Target the attack."""
     target_cid = 1
+    attacker.generate_attack_data(client)
 
     """Begin training."""
     for ep in range(epoch):
@@ -46,7 +47,6 @@ if __name__ == "__main__":
             if client_id == target_cid and ep % 2 == 1:
                 print("passive local attack on cid: {} in fed_ml-epoch: {}".format(client_id, ep))
                 attacker.declare_attack("PLA", client_id, ep)
-                attacker.generate_attack_data(client)
                 attacker.membership_inference_attack(client)
             client.train_local_model()
             # Accumulate local parameters.
@@ -56,7 +56,6 @@ if __name__ == "__main__":
             if client_id == target_cid and ep % 2 == 1:
                 print("passive global attack on cid: {} in fed-epoch: {}".format(client_id, ep))
                 attacker.declare_attack("PGA", client_id, ep)
-                attacker.generate_attack_data(client)
                 attacker.membership_inference_attack(client)
         # Update global parameters in each epoch.
         server.update_global_parameters(len(active_clients))
