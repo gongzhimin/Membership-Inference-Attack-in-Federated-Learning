@@ -8,3 +8,5 @@ __pycache__
 /tutorials/models
 .ipynb_checkpoints
 /out
+/global_gradient_ascent_attack_fed.py
+/local_gradient_ascent_attack_fed.py

@@ -1,8 +1,6 @@
-# NISL-FL
+# Membership Inference Attack in Federated Learning
 
 Just a prototype now.
-
-<!--Maybe a result delivered.-->
 
 And welcome to post issues to reveal faults hidden in my code, 
 since there were many unjustified hypotheses during coding.
