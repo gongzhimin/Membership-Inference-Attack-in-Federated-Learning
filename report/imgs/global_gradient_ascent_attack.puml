@@ -1,0 +1,6 @@
+@startuml global_gradient_ascent_attack
+cloud "Adversarial Central Aggregator" as ACA
+database "Target Participant" as TP
+
+ACA -down-> TP: crafted global parameters
+@enduml

@@ -66,7 +66,7 @@ server.update_global_parameters(len(active_clients))
 
 - PGA: Passive Global Attack
 - PLA: Passive Local Attack
-- IAGA: Isolating Global Attack
+- IGA: Isolating Global Attack
 
 ### cid: 1 in fed-epoch: 2
 

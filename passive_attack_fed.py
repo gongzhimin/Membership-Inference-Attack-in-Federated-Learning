@@ -38,14 +38,14 @@ if __name__ == "__main__":
         # Train these clients.
         for client_id in active_clients:
             client.current_cid = client_id
-            print("[fed-epoch {}] cid: {}".format((ep + 1), client_id))
+            print("[fed-epoch {}] cid: {}".format(ep, client_id))
             # In each epoch, clients download parameters from the server,
             # and then train local models to adapt their parameters.
             client.download_global_parameters(server.global_parameters)
             # Perform passive local membership inference attack, since only get global parameters.
             if client_id == target_cid and ep % 2 == 1:
-                print("passive local attack on cid: {} in fed_ml-epoch: {}".format(client_id, (ep + 1)))
-                attacker.declare_attack("PLA", client_id, (ep + 1))
+                print("passive local attack on cid: {} in fed_ml-epoch: {}".format(client_id, ep))
+                attacker.declare_attack("PLA", client_id, ep)
                 attacker.generate_attack_data(client)
                 attacker.membership_inference_attack(client)
             client.train_local_model()
@@ -54,8 +54,8 @@ if __name__ == "__main__":
             server.accumulate_local_parameters(current_local_parameters)
             # Perform passive global membership inference attack, since the target model's parameters are informed.
             if client_id == target_cid and ep % 2 == 1:
-                print("passive global attack on cid: {} in fed-epoch: {}".format(client_id, (ep + 1)))
-                attacker.declare_attack("PGA", client_id, (ep+1))
+                print("passive global attack on cid: {} in fed-epoch: {}".format(client_id, ep))
+                attacker.declare_attack("PGA", client_id, ep)
                 attacker.generate_attack_data(client)
                 attacker.membership_inference_attack(client)
         # Update global parameters in each epoch.

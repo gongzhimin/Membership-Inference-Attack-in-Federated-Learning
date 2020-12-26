@@ -2,7 +2,7 @@
 
 Just a prototype now.
 
-And welcome to post issues to reveal faults hidden in my code, 
+And welcome to post issues to reveal hidden faults, 
 since there were many unjustified hypotheses during coding.
 
 ## Acknowledge
