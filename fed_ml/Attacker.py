@@ -20,11 +20,11 @@ class Attacker:
     def generate_attack_data(self, client, attack_percentage=10):
         train_data = client.dataset.train[self.attack_msg.cid]
         test_data = client.dataset.test
-        self.data_handler = ml_privacy_meter.utils.attack_data_v2.attack_data(test_data=copy.deepcopy(test_data),
-                                                                         train_data=copy.deepcopy(train_data),
-                                                                         batch_size=32,
-                                                                         attack_percentage=attack_percentage,
-                                                                         input_shape=client.input_shape)
+        self.data_handler = ml_privacy_meter.utils.attack_data_v2.AttackData(test_data=copy.deepcopy(test_data),
+                                                                             train_data=copy.deepcopy(train_data),
+                                                                             batch_size=32,
+                                                                             attack_percentage=attack_percentage,
+                                                                             input_shape=client.input_shape)
 
     def generate_target_gradient(self, client, instances_num=100):
         self.target_member_features = self.data_handler.exposed_features[:instances_num]
@@ -40,7 +40,7 @@ class Attacker:
         for i in range(size):
             parameters[i] += update_rate * self.target_gradients[i].numpy()
 
-    def craft_local_parameters(self, client, update_rate=1.00):
+    def craft_adversarial_parameters(self, client, update_rate=1.00):
         for var, value in zip(client.model.trainable_variables, self.target_gradients):
             var.assign_add(update_rate * value)
 

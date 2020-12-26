@@ -1,0 +1,8 @@
+@startuml local_gradient_ascent_attack
+cloud "Central Aggregator" as CA
+database "Target Participant" as TP
+database "Adversarial Participant" as AP
+
+AP -right-> CA : adversarial parameters
+CA --> TP : crafted global parameters
+@enduml

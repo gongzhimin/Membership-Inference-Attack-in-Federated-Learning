@@ -48,7 +48,7 @@ if __name__ == "__main__":
                 attacker.declare_attack("PLA", client_id, (ep + 1))
                 attacker.generate_attack_data(client)
                 attacker.membership_inference_attack(client)
-            client.train_epoch()
+            client.train_local_model()
             # Accumulate local parameters.
             current_local_parameters = client.upload_local_parameters()
             server.accumulate_local_parameters(current_local_parameters)

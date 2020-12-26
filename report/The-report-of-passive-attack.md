@@ -29,7 +29,7 @@ for client_id in active_clients:
         print("passive local attack on cid: {} in fed_ml-epoch: {}".format((ep + 1), client_id))
         passive_attack(client, client_id)
     # Train the participant.
-    client.train_epoch(cid=client_id)
+    client.train_local_model(cid=client_id)
     # Accumulate local parameters.
     current_local_parameters = client.upload_local_parameters()
     server.accumulate_local_parameters(current_local_parameters)

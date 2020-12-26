@@ -1,4 +1,4 @@
-@startuml
+@startuml participant-activities
 (*) --> "0. Train local model without downloading global parameters" as node1
 note right: Federated learning environment just established
 node1 --> "1. Upload local parameters to central aggregator" as node2

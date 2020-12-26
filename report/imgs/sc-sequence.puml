@@ -1,4 +1,4 @@
-@startuml
+@startuml sc-sequence
 actor Participant
 database "Central aggregator"
 autonumber

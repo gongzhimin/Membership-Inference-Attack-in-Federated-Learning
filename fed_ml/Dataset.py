@@ -79,8 +79,8 @@ def load_cifar100(dataset_path, input_shape):
 
 def load_cifar10():
     (features_train, labels_train), (features_test, labels_test) = tf.compat.v1.keras.datasets.cifar10.load_data()
-    features_train, labels_train = features_train[:100], labels_train[:100]
-    features_test, labels_test = features_test[:20], labels_test[:20]
+    # features_train, labels_train = features_train[:100], labels_train[:100]
+    # features_test, labels_test = features_test[:20], labels_test[:20]
     return features_train, labels_train, features_test, labels_test
 
 class BatchGenerator:
@@ -88,25 +88,6 @@ class BatchGenerator:
         self.x = x
         self.y = yy
         self.size = len(x)
-        # self.random_order = list(range(len(x)))
-        # np.random.shuffle(self.random_order)
-        # self.start = 0
-        return
-
-    # def next_batch(self, batch_size):
-    #     if self.start + batch_size >= len(self.random_order):
-    #         overflow = (self.start + batch_size) - len(self.random_order)
-    #         perm0 = self.random_order[self.start:] + \
-    #                 self.random_order[:overflow]
-    #         self.start = overflow
-    #     else:
-    #         perm0 = self.random_order[self.start:self.start + batch_size]
-    #         self.start += batch_size
-    #
-    #     assert len(perm0) == batch_size
-    #
-    #     return self.x[perm0], self.y[perm0]
-    # Keras helps with this task.
 
     # support slice
     def __getitem__(self, val):
@@ -117,7 +98,6 @@ class Dataset(object):
     """
     Load the dataset from a specific file.
     """
-    # The dataset_path is ./ml_privacy_meter/datasets/cifar100.txt
     def __init__(self, dataset_path, input_shape, classes_num, split, one_hot):
         if classes_num == 100:
             features_train, labels_train, features_test, labels_test = load_cifar100(dataset_path, input_shape)
@@ -134,8 +114,6 @@ class Dataset(object):
             labels_test = to_categorical(labels_test, classes_num)
 
         print("Dataset: train-%d, test-%d" % (len(features_train), len(features_test)))
-        # x_train = np.expand_dims(x_train, -1)
-        # x_test = np.expand_dims(x_test, -1)
 
         # Register
         self.features_train, self.labels_train = features_train, labels_train
@@ -152,6 +130,6 @@ class Dataset(object):
             return [BatchGenerator(x_data, y_data)]
         res = []
         for x ,y in zip(np.split(x_data,split), np.split(y_data,split)):
-            assert len(x) == len(y), "Features can't match to labels, as they are in different size!"
+            assert len(x) == len(y), "Features can't match to labels, since they are in different size!"
             res.append(BatchGenerator(x, y))
         return res

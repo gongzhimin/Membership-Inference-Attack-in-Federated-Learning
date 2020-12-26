@@ -1,7 +1,5 @@
 import numpy as np
-
 import tensorflow as tf
-from sklearn.utils import shuffle
 
 
 def compute_hashes(to_compute):
@@ -38,7 +36,7 @@ def re_categorical(one_hot_labels):
 
 
 
-class attack_data:
+class AttackData:
     """
     Attack data class to perform operations on dataset.
     """
@@ -103,7 +101,7 @@ class attack_data:
         nm_features, nm_labels = self.test_data.x, self.test_data.y
 
         np.save('{}/m_features'.format(log_name), m_features)
-        np.save('{}/m_labels'.format((log_name)), m_labels)
+        np.save('{}/m_labels'.format(log_name), m_labels)
         np.save('{}/nm_features'.format(log_name), nm_features)
         np.save('{}/nm_labels'.format(log_name), nm_labels)
 

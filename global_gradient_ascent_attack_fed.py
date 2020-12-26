@@ -43,7 +43,7 @@ if __name__ == "__main__":
                 attacker.craft_global_parameters(server.global_parameters)
                 print("The global parameters have been crafted.")
             client.download_global_parameters(server.global_parameters)
-            client.train_epoch()
+            client.train_local_model()
             # Accumulate local parameters.
             current_local_parameters = client.upload_local_parameters()
             server.accumulate_local_parameters(current_local_parameters)
