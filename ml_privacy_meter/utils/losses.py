@@ -11,6 +11,7 @@ def CrossEntropyLoss(logits, labels):
     labels = tf.cast(labels, tf.int64)
     loss = tf.nn.sparse_softmax_cross_entropy_with_logits(
         logits=logits, labels=labels)
+    # loss = tf.reduce_mean(loss)
     return loss
 
 

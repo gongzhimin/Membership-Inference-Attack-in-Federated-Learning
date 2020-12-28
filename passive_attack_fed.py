@@ -8,7 +8,7 @@ if __name__ == "__main__":
     epoch = 6
     learning_rate = 0.0001
     # The ml_privacy_meter can't handle the scenario with too many participants.
-    CLIENT_NUMBER = 5
+    CLIENT_NUMBER = 4
     # And as federated learning is online,
     # participants are uncertain about their online status in each training epoch.
     CLIENT_RATIO_PER_ROUND = 1.00

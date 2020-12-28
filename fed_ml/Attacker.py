@@ -26,7 +26,7 @@ class Attacker:
                                                                              attack_percentage=attack_percentage,
                                                                              input_shape=client.input_shape)
 
-    def generate_target_gradient(self, client, instances_num=10):
+    def generate_target_gradient(self, client, instances_num=5):    # 100， 10， 50， 5
         self.target_member_features = self.data_handler.exposed_features[:instances_num]
         self.target_member_labels = self.data_handler.exposed_labels[:instances_num]
         with tf.GradientTape() as tape:
