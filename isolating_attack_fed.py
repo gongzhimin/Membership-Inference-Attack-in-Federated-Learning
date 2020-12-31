@@ -8,7 +8,7 @@ if __name__ == "__main__":
     epoch = 6
     learning_rate = 0.0001
     # The ml_privacy_meter can't handle the scenario with too many participants.
-    CLIENT_NUMBER = 5
+    CLIENT_NUMBER = 4
     # And as federated learning is online,
     # participants are uncertain about their online status in each training epoch.
     CLIENT_RATIO_PER_ROUND = 1.00
@@ -50,7 +50,7 @@ if __name__ == "__main__":
             # Perform isolating attack.
             if client_id == target_cid and ep % 2 == 1:
                 print("isolating attack on cid: {} in fed-epoch: {}".format(client_id, ep))
-                attacker.declare_attack("IGA", client_id, ep)
+                attacker.declare_attack("IA", client_id, ep)
                 attacker.generate_attack_data(client)
                 attacker.membership_inference_attack(client)
         # Update global parameters in each epoch.

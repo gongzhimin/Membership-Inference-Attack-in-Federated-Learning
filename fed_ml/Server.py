@@ -1,6 +1,5 @@
 """Server"""
 import copy
-import numpy as np
 
 class Server:
     def __init__(self):

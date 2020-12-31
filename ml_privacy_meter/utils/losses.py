@@ -8,7 +8,8 @@ def CrossEntropyLoss(logits, labels):
     Calculates the softmax cross entropy loss for classification
     predictions.
     """
-    labels = tf.cast(labels, tf.int64)
+    # labels = tf.cast(labels, tf.int64)
+    labels = tf.cast(labels, tf.int32)
     loss = tf.nn.sparse_softmax_cross_entropy_with_logits(
         logits=logits, labels=labels)
     # loss = tf.reduce_mean(loss)

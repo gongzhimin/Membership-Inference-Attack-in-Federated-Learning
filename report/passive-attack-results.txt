@@ -1,288 +1,288 @@
 Dataset: train-50000, test-10000
+[fed-epoch 0] cid: 0
+Train on 10000 samples, validate on 10000 samples
+Using learning rate 0.0001
+Epoch 1/15
+10000/10000 [==============================] - 9s 886us/sample - loss: 2.1549 - accuracy: 0.1866 - val_loss: 1.9608 - val_accuracy: 0.2425
+Using learning rate 0.0001
+Epoch 2/15
+10000/10000 [==============================] - 8s 815us/sample - loss: 1.9236 - accuracy: 0.2571 - val_loss: 1.8434 - val_accuracy: 0.2976
+Using learning rate 0.0001
+Epoch 3/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.8501 - accuracy: 0.2842 - val_loss: 1.7977 - val_accuracy: 0.3120
+Using learning rate 0.0001
+Epoch 4/15
+10000/10000 [==============================] - 8s 807us/sample - loss: 1.7753 - accuracy: 0.3183 - val_loss: 1.7747 - val_accuracy: 0.3257
+Using learning rate 0.0001
+Epoch 5/15
+10000/10000 [==============================] - 8s 807us/sample - loss: 1.7135 - accuracy: 0.3390 - val_loss: 1.6859 - val_accuracy: 0.3625
+Using learning rate 0.0001
+Epoch 6/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.6541 - accuracy: 0.3718 - val_loss: 1.6470 - val_accuracy: 0.3898
+Using learning rate 0.0001
+Epoch 7/15
+10000/10000 [==============================] - 8s 806us/sample - loss: 1.5991 - accuracy: 0.3994 - val_loss: 1.6210 - val_accuracy: 0.4041
+Using learning rate 0.0001
+Epoch 8/15
+10000/10000 [==============================] - 8s 807us/sample - loss: 1.5291 - accuracy: 0.4335 - val_loss: 1.6095 - val_accuracy: 0.4176
+Using learning rate 0.0001
+Epoch 9/15
+10000/10000 [==============================] - 8s 806us/sample - loss: 1.4566 - accuracy: 0.4751 - val_loss: 1.5181 - val_accuracy: 0.4605
+Using learning rate 0.0001
+Epoch 10/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.3962 - accuracy: 0.5002 - val_loss: 1.5177 - val_accuracy: 0.4666
+Using learning rate 0.0001
+Epoch 11/15
+10000/10000 [==============================] - 8s 807us/sample - loss: 1.3339 - accuracy: 0.5229 - val_loss: 1.4707 - val_accuracy: 0.4854
+Using learning rate 0.0001
+Epoch 12/15
+10000/10000 [==============================] - 8s 806us/sample - loss: 1.2811 - accuracy: 0.5482 - val_loss: 1.5259 - val_accuracy: 0.4767
+Using learning rate 0.0001
+Epoch 13/15
+10000/10000 [==============================] - 8s 807us/sample - loss: 1.2067 - accuracy: 0.5792 - val_loss: 1.5176 - val_accuracy: 0.4852
+Using learning rate 0.0001
+Epoch 14/15
+10000/10000 [==============================] - 8s 806us/sample - loss: 1.1619 - accuracy: 0.5928 - val_loss: 1.4436 - val_accuracy: 0.5028
+Using learning rate 0.0001
+Epoch 15/15
+10000/10000 [==============================] - 8s 807us/sample - loss: 1.0889 - accuracy: 0.6247 - val_loss: 1.5144 - val_accuracy: 0.5100
+[fed-epoch 0] cid: 1
+Train on 10000 samples, validate on 10000 samples
+Using learning rate 0.0001
+Epoch 1/15
+10000/10000 [==============================] - 9s 876us/sample - loss: 2.1041 - accuracy: 0.1675 - val_loss: 1.9985 - val_accuracy: 0.1792
+Using learning rate 0.0001
+Epoch 2/15
+10000/10000 [==============================] - 8s 801us/sample - loss: 1.9813 - accuracy: 0.2008 - val_loss: 1.9370 - val_accuracy: 0.2424
+Using learning rate 0.0001
+Epoch 3/15
+10000/10000 [==============================] - 8s 802us/sample - loss: 1.8848 - accuracy: 0.2578 - val_loss: 1.8020 - val_accuracy: 0.2938
+Using learning rate 0.0001
+Epoch 4/15
+10000/10000 [==============================] - 8s 802us/sample - loss: 1.7753 - accuracy: 0.3154 - val_loss: 1.7663 - val_accuracy: 0.3222
+Using learning rate 0.0001
+Epoch 5/15
+10000/10000 [==============================] - 8s 802us/sample - loss: 1.6988 - accuracy: 0.3378 - val_loss: 1.7020 - val_accuracy: 0.3460
+Using learning rate 0.0001
+Epoch 6/15
+10000/10000 [==============================] - 8s 802us/sample - loss: 1.6262 - accuracy: 0.3774 - val_loss: 1.6242 - val_accuracy: 0.3966
+Using learning rate 0.0001
+Epoch 7/15
+10000/10000 [==============================] - 8s 801us/sample - loss: 1.5488 - accuracy: 0.4204 - val_loss: 1.5744 - val_accuracy: 0.4250
+Using learning rate 0.0001
+Epoch 8/15
+10000/10000 [==============================] - 8s 800us/sample - loss: 1.4881 - accuracy: 0.4453 - val_loss: 1.5301 - val_accuracy: 0.4548
+Using learning rate 0.0001
+Epoch 9/15
+10000/10000 [==============================] - 8s 802us/sample - loss: 1.4138 - accuracy: 0.4869 - val_loss: 1.5202 - val_accuracy: 0.4606
+Using learning rate 0.0001
+Epoch 10/15
+10000/10000 [==============================] - 8s 802us/sample - loss: 1.3443 - accuracy: 0.5071 - val_loss: 1.4882 - val_accuracy: 0.4726
+Using learning rate 0.0001
+Epoch 11/15
+10000/10000 [==============================] - 8s 803us/sample - loss: 1.2803 - accuracy: 0.5392 - val_loss: 1.4827 - val_accuracy: 0.4818
+Using learning rate 0.0001
+Epoch 12/15
+10000/10000 [==============================] - 8s 802us/sample - loss: 1.2252 - accuracy: 0.5603 - val_loss: 1.5436 - val_accuracy: 0.4683
+Using learning rate 0.0001
+Epoch 13/15
+10000/10000 [==============================] - 8s 802us/sample - loss: 1.1809 - accuracy: 0.5791 - val_loss: 1.4964 - val_accuracy: 0.4980
+Using learning rate 0.0001
+Epoch 14/15
+10000/10000 [==============================] - 8s 802us/sample - loss: 1.1103 - accuracy: 0.6121 - val_loss: 1.5021 - val_accuracy: 0.4990
+Using learning rate 0.0001
+Epoch 15/15
+10000/10000 [==============================] - 8s 801us/sample - loss: 1.0410 - accuracy: 0.6316 - val_loss: 1.5446 - val_accuracy: 0.5083
+[fed-epoch 0] cid: 2
+Train on 10000 samples, validate on 10000 samples
+Using learning rate 0.0001
+Epoch 1/15
+10000/10000 [==============================] - 9s 881us/sample - loss: 2.0757 - accuracy: 0.1817 - val_loss: 2.0532 - val_accuracy: 0.2079
+Using learning rate 0.0001
+Epoch 2/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.8555 - accuracy: 0.2659 - val_loss: 1.8135 - val_accuracy: 0.2912
+Using learning rate 0.0001
+Epoch 3/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.7598 - accuracy: 0.3137 - val_loss: 1.7421 - val_accuracy: 0.3242
+Using learning rate 0.0001
+Epoch 4/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.6882 - accuracy: 0.3472 - val_loss: 1.6951 - val_accuracy: 0.3683
+Using learning rate 0.0001
+Epoch 5/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.6290 - accuracy: 0.3820 - val_loss: 1.6497 - val_accuracy: 0.3940
+Using learning rate 0.0001
+Epoch 6/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.5632 - accuracy: 0.4106 - val_loss: 1.6178 - val_accuracy: 0.4169
+Using learning rate 0.0001
+Epoch 7/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.5100 - accuracy: 0.4413 - val_loss: 1.5838 - val_accuracy: 0.4275
+Using learning rate 0.0001
+Epoch 8/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.4431 - accuracy: 0.4706 - val_loss: 1.5862 - val_accuracy: 0.4273
+Using learning rate 0.0001
+Epoch 9/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.3953 - accuracy: 0.4901 - val_loss: 1.5301 - val_accuracy: 0.4564
+Using learning rate 0.0001
+Epoch 10/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.3387 - accuracy: 0.5201 - val_loss: 1.5465 - val_accuracy: 0.4634
+Using learning rate 0.0001
+Epoch 11/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.2860 - accuracy: 0.5361 - val_loss: 1.6520 - val_accuracy: 0.4441
+Using learning rate 0.0001
+Epoch 12/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.2214 - accuracy: 0.5682 - val_loss: 1.5421 - val_accuracy: 0.4771
+Using learning rate 0.0001
+Epoch 13/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.1551 - accuracy: 0.5939 - val_loss: 1.5438 - val_accuracy: 0.4958
+Using learning rate 0.0001
+Epoch 14/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.0939 - accuracy: 0.6209 - val_loss: 1.6052 - val_accuracy: 0.4895
+Using learning rate 0.0001
+Epoch 15/15
+10000/10000 [==============================] - 8s 807us/sample - loss: 1.0431 - accuracy: 0.6446 - val_loss: 1.5462 - val_accuracy: 0.5037
+[fed-epoch 0] cid: 3
+Train on 10000 samples, validate on 10000 samples
+Using learning rate 0.0001
+Epoch 1/15
+10000/10000 [==============================] - 9s 881us/sample - loss: 2.0943 - accuracy: 0.1703 - val_loss: 1.9862 - val_accuracy: 0.1863
+Using learning rate 0.0001
+Epoch 2/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.9666 - accuracy: 0.2018 - val_loss: 1.8885 - val_accuracy: 0.2609
+Using learning rate 0.0001
+Epoch 3/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.8477 - accuracy: 0.2740 - val_loss: 1.7890 - val_accuracy: 0.3028
+Using learning rate 0.0001
+Epoch 4/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.7588 - accuracy: 0.3074 - val_loss: 1.7578 - val_accuracy: 0.3223
+Using learning rate 0.0001
+Epoch 5/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.7151 - accuracy: 0.3322 - val_loss: 1.7082 - val_accuracy: 0.3308
+Using learning rate 0.0001
+Epoch 6/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.6617 - accuracy: 0.3579 - val_loss: 1.6801 - val_accuracy: 0.3739
+Using learning rate 0.0001
+Epoch 7/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.6145 - accuracy: 0.3911 - val_loss: 1.6262 - val_accuracy: 0.4005
+Using learning rate 0.0001
+Epoch 8/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.5379 - accuracy: 0.4342 - val_loss: 1.6402 - val_accuracy: 0.3902
+Using learning rate 0.0001
+Epoch 9/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.4885 - accuracy: 0.4604 - val_loss: 1.5757 - val_accuracy: 0.4311
+Using learning rate 0.0001
+Epoch 10/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.4145 - accuracy: 0.4925 - val_loss: 1.6145 - val_accuracy: 0.4297
+Using learning rate 0.0001
+Epoch 11/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.3504 - accuracy: 0.5148 - val_loss: 1.5513 - val_accuracy: 0.4545
+Using learning rate 0.0001
+Epoch 12/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.2906 - accuracy: 0.5396 - val_loss: 1.5154 - val_accuracy: 0.4722
+Using learning rate 0.0001
+Epoch 13/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.2161 - accuracy: 0.5697 - val_loss: 1.5329 - val_accuracy: 0.4755
+Using learning rate 0.0001
+Epoch 14/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.1518 - accuracy: 0.5922 - val_loss: 1.5472 - val_accuracy: 0.4875
+Using learning rate 0.0001
+Epoch 15/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.0883 - accuracy: 0.6218 - val_loss: 1.5725 - val_accuracy: 0.4854
+[fed-epoch 0] cid: 4
+Train on 10000 samples, validate on 10000 samples
+Using learning rate 0.0001
+Epoch 1/15
+10000/10000 [==============================] - 9s 885us/sample - loss: 2.1037 - accuracy: 0.1575 - val_loss: 2.0350 - val_accuracy: 0.1794
+Using learning rate 0.0001
+Epoch 2/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.9794 - accuracy: 0.2046 - val_loss: 1.9316 - val_accuracy: 0.2457
+Using learning rate 0.0001
+Epoch 3/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.8558 - accuracy: 0.2806 - val_loss: 1.8069 - val_accuracy: 0.3198
+Using learning rate 0.0001
+Epoch 4/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.7719 - accuracy: 0.3161 - val_loss: 1.7699 - val_accuracy: 0.3305
+Using learning rate 0.0001
+Epoch 5/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.6832 - accuracy: 0.3695 - val_loss: 1.6862 - val_accuracy: 0.3756
+Using learning rate 0.0001
+Epoch 6/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.6117 - accuracy: 0.4046 - val_loss: 1.6040 - val_accuracy: 0.4145
+Using learning rate 0.0001
+Epoch 7/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.5375 - accuracy: 0.4355 - val_loss: 1.5709 - val_accuracy: 0.4247
+Using learning rate 0.0001
+Epoch 8/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.4616 - accuracy: 0.4634 - val_loss: 1.5726 - val_accuracy: 0.4392
+Using learning rate 0.0001
+Epoch 9/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.3940 - accuracy: 0.4955 - val_loss: 1.5361 - val_accuracy: 0.4479
+Using learning rate 0.0001
+Epoch 10/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.3505 - accuracy: 0.5234 - val_loss: 1.4923 - val_accuracy: 0.4752
+Using learning rate 0.0001
+Epoch 11/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.2829 - accuracy: 0.5467 - val_loss: 1.4953 - val_accuracy: 0.4766
+Using learning rate 0.0001
+Epoch 12/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.2244 - accuracy: 0.5682 - val_loss: 1.4793 - val_accuracy: 0.4890
+Using learning rate 0.0001
+Epoch 13/15
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.1660 - accuracy: 0.5938 - val_loss: 1.5070 - val_accuracy: 0.4954
+Using learning rate 0.0001
+Epoch 14/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.1197 - accuracy: 0.6177 - val_loss: 1.5334 - val_accuracy: 0.4929
+Using learning rate 0.0001
+Epoch 15/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.0502 - accuracy: 0.6439 - val_loss: 1.5393 - val_accuracy: 0.5042
 [fed-epoch 1] cid: 0
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 9s 893us/sample - loss: 2.1516 - accuracy: 0.1987 - val_loss: 1.9993 - val_accuracy: 0.2469
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.9954 - accuracy: 0.2090 - val_loss: 1.9024 - val_accuracy: 0.2590
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.9160 - accuracy: 0.2677 - val_loss: 1.8429 - val_accuracy: 0.3012
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.8034 - accuracy: 0.2894 - val_loss: 1.7951 - val_accuracy: 0.3082
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 806us/sample - loss: 1.8373 - accuracy: 0.2977 - val_loss: 1.8604 - val_accuracy: 0.3055
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.7182 - accuracy: 0.3395 - val_loss: 1.7060 - val_accuracy: 0.3539
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 806us/sample - loss: 1.7665 - accuracy: 0.3237 - val_loss: 1.7739 - val_accuracy: 0.3319
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.6180 - accuracy: 0.3792 - val_loss: 1.6475 - val_accuracy: 0.3831
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.7003 - accuracy: 0.3567 - val_loss: 1.7091 - val_accuracy: 0.3529
+10000/10000 [==============================] - 8s 808us/sample - loss: 1.5569 - accuracy: 0.4116 - val_loss: 1.5797 - val_accuracy: 0.4153
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.6199 - accuracy: 0.3962 - val_loss: 1.6236 - val_accuracy: 0.4064
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.5069 - accuracy: 0.4299 - val_loss: 1.5808 - val_accuracy: 0.4228
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.5470 - accuracy: 0.4323 - val_loss: 1.5895 - val_accuracy: 0.4229
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.4398 - accuracy: 0.4573 - val_loss: 1.5414 - val_accuracy: 0.4398
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 806us/sample - loss: 1.4851 - accuracy: 0.4545 - val_loss: 1.5364 - val_accuracy: 0.4442
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.3931 - accuracy: 0.4796 - val_loss: 1.6017 - val_accuracy: 0.4287
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 806us/sample - loss: 1.4246 - accuracy: 0.4896 - val_loss: 1.5284 - val_accuracy: 0.4619
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.3289 - accuracy: 0.5091 - val_loss: 1.5106 - val_accuracy: 0.4627
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 806us/sample - loss: 1.3626 - accuracy: 0.5136 - val_loss: 1.5211 - val_accuracy: 0.4584
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.2637 - accuracy: 0.5383 - val_loss: 1.4757 - val_accuracy: 0.4761
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.3127 - accuracy: 0.5325 - val_loss: 1.4702 - val_accuracy: 0.4854
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.2096 - accuracy: 0.5571 - val_loss: 1.4726 - val_accuracy: 0.4902
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 806us/sample - loss: 1.2514 - accuracy: 0.5571 - val_loss: 1.4900 - val_accuracy: 0.4789
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.1687 - accuracy: 0.5760 - val_loss: 1.4506 - val_accuracy: 0.4978
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 806us/sample - loss: 1.1983 - accuracy: 0.5757 - val_loss: 1.5097 - val_accuracy: 0.4992
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.0926 - accuracy: 0.6083 - val_loss: 1.5786 - val_accuracy: 0.4738
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.1277 - accuracy: 0.6080 - val_loss: 1.5350 - val_accuracy: 0.4842
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.0282 - accuracy: 0.6385 - val_loss: 1.5190 - val_accuracy: 0.5012
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 805us/sample - loss: 1.0857 - accuracy: 0.6218 - val_loss: 1.5270 - val_accuracy: 0.5062
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.9746 - accuracy: 0.6585 - val_loss: 1.5129 - val_accuracy: 0.5164
 [fed-epoch 1] cid: 1
-Train on 10000 samples, validate on 10000 samples
-Using learning rate 0.0001
-Epoch 1/15
-10000/10000 [==============================] - 9s 884us/sample - loss: 2.0901 - accuracy: 0.1759 - val_loss: 1.9617 - val_accuracy: 0.2105
-Using learning rate 0.0001
-Epoch 2/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.8914 - accuracy: 0.2646 - val_loss: 1.8143 - val_accuracy: 0.2943
-Using learning rate 0.0001
-Epoch 3/15
-10000/10000 [==============================] - 8s 806us/sample - loss: 1.7896 - accuracy: 0.3082 - val_loss: 1.7585 - val_accuracy: 0.3212
-Using learning rate 0.0001
-Epoch 4/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.7276 - accuracy: 0.3327 - val_loss: 1.7064 - val_accuracy: 0.3410
-Using learning rate 0.0001
-Epoch 5/15
-10000/10000 [==============================] - 8s 816us/sample - loss: 1.6816 - accuracy: 0.3557 - val_loss: 1.6987 - val_accuracy: 0.3479
-Using learning rate 0.0001
-Epoch 6/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.6349 - accuracy: 0.3808 - val_loss: 1.7012 - val_accuracy: 0.3620
-Using learning rate 0.0001
-Epoch 7/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.5825 - accuracy: 0.3975 - val_loss: 1.6578 - val_accuracy: 0.3912
-Using learning rate 0.0001
-Epoch 8/15
-10000/10000 [==============================] - 8s 806us/sample - loss: 1.5299 - accuracy: 0.4327 - val_loss: 1.6193 - val_accuracy: 0.4139
-Using learning rate 0.0001
-Epoch 9/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.4851 - accuracy: 0.4494 - val_loss: 1.5702 - val_accuracy: 0.4255
-Using learning rate 0.0001
-Epoch 10/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.4256 - accuracy: 0.4709 - val_loss: 1.5614 - val_accuracy: 0.4402
-Using learning rate 0.0001
-Epoch 11/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.3645 - accuracy: 0.5022 - val_loss: 1.6514 - val_accuracy: 0.4277
-Using learning rate 0.0001
-Epoch 12/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.3062 - accuracy: 0.5216 - val_loss: 1.5261 - val_accuracy: 0.4684
-Using learning rate 0.0001
-Epoch 13/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.2449 - accuracy: 0.5498 - val_loss: 1.6090 - val_accuracy: 0.4498
-Using learning rate 0.0001
-Epoch 14/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.1936 - accuracy: 0.5771 - val_loss: 1.5509 - val_accuracy: 0.4817
-Using learning rate 0.0001
-Epoch 15/15
-10000/10000 [==============================] - 8s 806us/sample - loss: 1.1219 - accuracy: 0.6056 - val_loss: 1.5382 - val_accuracy: 0.4944
-[fed-epoch 1] cid: 2
-Train on 10000 samples, validate on 10000 samples
-Using learning rate 0.0001
-Epoch 1/15
-10000/10000 [==============================] - 9s 879us/sample - loss: 2.0691 - accuracy: 0.1827 - val_loss: 1.9118 - val_accuracy: 0.2633
-Using learning rate 0.0001
-Epoch 2/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.8310 - accuracy: 0.2807 - val_loss: 1.7939 - val_accuracy: 0.2994
-Using learning rate 0.0001
-Epoch 3/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.7377 - accuracy: 0.3256 - val_loss: 1.7134 - val_accuracy: 0.3344
-Using learning rate 0.0001
-Epoch 4/15
-10000/10000 [==============================] - 8s 805us/sample - loss: 1.6602 - accuracy: 0.3694 - val_loss: 1.6711 - val_accuracy: 0.3817
-Using learning rate 0.0001
-Epoch 5/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.5949 - accuracy: 0.4042 - val_loss: 1.6226 - val_accuracy: 0.4079
-Using learning rate 0.0001
-Epoch 6/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.5327 - accuracy: 0.4377 - val_loss: 1.6008 - val_accuracy: 0.4135
-Using learning rate 0.0001
-Epoch 7/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.4741 - accuracy: 0.4627 - val_loss: 1.6053 - val_accuracy: 0.4224
-Using learning rate 0.0001
-Epoch 8/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.4197 - accuracy: 0.4842 - val_loss: 1.5420 - val_accuracy: 0.4544
-Using learning rate 0.0001
-Epoch 9/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.3665 - accuracy: 0.5069 - val_loss: 1.5095 - val_accuracy: 0.4654
-Using learning rate 0.0001
-Epoch 10/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.2971 - accuracy: 0.5371 - val_loss: 1.5261 - val_accuracy: 0.4756
-Using learning rate 0.0001
-Epoch 11/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.2196 - accuracy: 0.5706 - val_loss: 1.4879 - val_accuracy: 0.4922
-Using learning rate 0.0001
-Epoch 12/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.1649 - accuracy: 0.5901 - val_loss: 1.4948 - val_accuracy: 0.4990
-Using learning rate 0.0001
-Epoch 13/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.0964 - accuracy: 0.6220 - val_loss: 1.5362 - val_accuracy: 0.4909
-Using learning rate 0.0001
-Epoch 14/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.0383 - accuracy: 0.6453 - val_loss: 1.5416 - val_accuracy: 0.5078
-Using learning rate 0.0001
-Epoch 15/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 0.9854 - accuracy: 0.6646 - val_loss: 1.5386 - val_accuracy: 0.5187
-[fed-epoch 1] cid: 3
-Train on 10000 samples, validate on 10000 samples
-Using learning rate 0.0001
-Epoch 1/15
-10000/10000 [==============================] - 9s 879us/sample - loss: 2.1344 - accuracy: 0.1631 - val_loss: 1.9909 - val_accuracy: 0.1848
-Using learning rate 0.0001
-Epoch 2/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.9334 - accuracy: 0.2345 - val_loss: 1.8453 - val_accuracy: 0.2740
-Using learning rate 0.0001
-Epoch 3/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.8224 - accuracy: 0.2880 - val_loss: 1.8431 - val_accuracy: 0.2873
-Using learning rate 0.0001
-Epoch 4/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.7469 - accuracy: 0.3279 - val_loss: 1.7000 - val_accuracy: 0.3436
-Using learning rate 0.0001
-Epoch 5/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.6739 - accuracy: 0.3669 - val_loss: 1.7104 - val_accuracy: 0.3613
-Using learning rate 0.0001
-Epoch 6/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.6135 - accuracy: 0.3942 - val_loss: 1.6286 - val_accuracy: 0.3923
-Using learning rate 0.0001
-Epoch 7/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.5547 - accuracy: 0.4260 - val_loss: 1.5734 - val_accuracy: 0.4263
-Using learning rate 0.0001
-Epoch 8/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.4991 - accuracy: 0.4544 - val_loss: 1.5487 - val_accuracy: 0.4355
-Using learning rate 0.0001
-Epoch 9/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.4451 - accuracy: 0.4768 - val_loss: 1.5747 - val_accuracy: 0.4289
-Using learning rate 0.0001
-Epoch 10/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.3886 - accuracy: 0.5008 - val_loss: 1.5028 - val_accuracy: 0.4652
-Using learning rate 0.0001
-Epoch 11/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.3347 - accuracy: 0.5238 - val_loss: 1.4805 - val_accuracy: 0.4825
-Using learning rate 0.0001
-Epoch 12/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.2928 - accuracy: 0.5390 - val_loss: 1.4906 - val_accuracy: 0.4780
-Using learning rate 0.0001
-Epoch 13/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.2332 - accuracy: 0.5681 - val_loss: 1.4995 - val_accuracy: 0.4879
-Using learning rate 0.0001
-Epoch 14/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.1935 - accuracy: 0.5781 - val_loss: 1.4715 - val_accuracy: 0.4987
-Using learning rate 0.0001
-Epoch 15/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.1361 - accuracy: 0.6018 - val_loss: 1.5207 - val_accuracy: 0.4824
-[fed-epoch 1] cid: 4
-Train on 10000 samples, validate on 10000 samples
-Using learning rate 0.0001
-Epoch 1/15
-10000/10000 [==============================] - 9s 879us/sample - loss: 2.1411 - accuracy: 0.1650 - val_loss: 2.0000 - val_accuracy: 0.2152
-Using learning rate 0.0001
-Epoch 2/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.9431 - accuracy: 0.2341 - val_loss: 1.8877 - val_accuracy: 0.2675
-Using learning rate 0.0001
-Epoch 3/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.8421 - accuracy: 0.2830 - val_loss: 1.7978 - val_accuracy: 0.2959
-Using learning rate 0.0001
-Epoch 4/15
-10000/10000 [==============================] - 8s 806us/sample - loss: 1.7790 - accuracy: 0.3060 - val_loss: 1.7829 - val_accuracy: 0.3055
-Using learning rate 0.0001
-Epoch 5/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.7352 - accuracy: 0.3321 - val_loss: 1.7473 - val_accuracy: 0.3219
-Using learning rate 0.0001
-Epoch 6/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.7009 - accuracy: 0.3456 - val_loss: 1.6922 - val_accuracy: 0.3609
-Using learning rate 0.0001
-Epoch 7/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.6557 - accuracy: 0.3696 - val_loss: 1.6826 - val_accuracy: 0.3667
-Using learning rate 0.0001
-Epoch 8/15
-10000/10000 [==============================] - 8s 805us/sample - loss: 1.6187 - accuracy: 0.3844 - val_loss: 1.6578 - val_accuracy: 0.3782
-Using learning rate 0.0001
-Epoch 9/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.5879 - accuracy: 0.3993 - val_loss: 1.6335 - val_accuracy: 0.3934
-Using learning rate 0.0001
-Epoch 10/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.5447 - accuracy: 0.4201 - val_loss: 1.6508 - val_accuracy: 0.3989
-Using learning rate 0.0001
-Epoch 11/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.5068 - accuracy: 0.4396 - val_loss: 1.5734 - val_accuracy: 0.4208
-Using learning rate 0.0001
-Epoch 12/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.4560 - accuracy: 0.4628 - val_loss: 1.5870 - val_accuracy: 0.4231
-Using learning rate 0.0001
-Epoch 13/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.4203 - accuracy: 0.4809 - val_loss: 1.5762 - val_accuracy: 0.4334
-Using learning rate 0.0001
-Epoch 14/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.3791 - accuracy: 0.4947 - val_loss: 1.5383 - val_accuracy: 0.4443
-Using learning rate 0.0001
-Epoch 15/15
-10000/10000 [==============================] - 8s 806us/sample - loss: 1.3519 - accuracy: 0.5027 - val_loss: 1.5564 - val_accuracy: 0.4427
-[fed-epoch 2] cid: 0
-Train on 10000 samples, validate on 10000 samples
-Using learning rate 0.0001
-Epoch 1/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.9890 - accuracy: 0.2213 - val_loss: 1.8407 - val_accuracy: 0.2833
-Using learning rate 0.0001
-Epoch 2/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.7904 - accuracy: 0.2973 - val_loss: 1.7281 - val_accuracy: 0.3341
-Using learning rate 0.0001
-Epoch 3/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.6896 - accuracy: 0.3513 - val_loss: 1.6671 - val_accuracy: 0.3672
-Using learning rate 0.0001
-Epoch 4/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.6040 - accuracy: 0.3888 - val_loss: 1.5832 - val_accuracy: 0.4147
-Using learning rate 0.0001
-Epoch 5/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.5280 - accuracy: 0.4299 - val_loss: 1.5688 - val_accuracy: 0.4246
-Using learning rate 0.0001
-Epoch 6/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.4578 - accuracy: 0.4552 - val_loss: 1.5167 - val_accuracy: 0.4516
-Using learning rate 0.0001
-Epoch 7/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.3842 - accuracy: 0.4983 - val_loss: 1.5894 - val_accuracy: 0.4446
-Using learning rate 0.0001
-Epoch 8/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.3142 - accuracy: 0.5229 - val_loss: 1.4387 - val_accuracy: 0.4923
-Using learning rate 0.0001
-Epoch 9/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.2588 - accuracy: 0.5463 - val_loss: 1.5001 - val_accuracy: 0.4834
-Using learning rate 0.0001
-Epoch 10/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.1924 - accuracy: 0.5787 - val_loss: 1.4563 - val_accuracy: 0.5024
-Using learning rate 0.0001
-Epoch 11/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.1377 - accuracy: 0.5966 - val_loss: 1.4968 - val_accuracy: 0.4931
-Using learning rate 0.0001
-Epoch 12/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.0731 - accuracy: 0.6195 - val_loss: 1.4701 - val_accuracy: 0.5105
-Using learning rate 0.0001
-Epoch 13/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.0041 - accuracy: 0.6521 - val_loss: 1.5707 - val_accuracy: 0.5057
-Using learning rate 0.0001
-Epoch 14/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.9399 - accuracy: 0.6789 - val_loss: 1.6176 - val_accuracy: 0.5029
-Using learning rate 0.0001
-Epoch 15/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.8881 - accuracy: 0.6983 - val_loss: 1.5447 - val_accuracy: 0.5162
-[fed-epoch 2] cid: 1
-passive local attack on cid: 2 in fed_ml-epoch: 1
+passive local attack on cid: 1 in fed_ml-epoch: 1
 WARNING:tensorflow:Layer conv2d_25 is casting an input tensor from dtype float64 to the layer's dtype of float32, which is new behavior in TensorFlow 2.  The layer has dtype float32 because it's dtype defaults to floatx.
 If you intended to run this layer in float32, you can safely ignore this warning. If in doubt, this warning is likely only an issue if you are porting a TensorFlow 1.X model to TensorFlow 2.
 To change all layers to have dtype float64 by default, call `tf.keras.backend.set_floatx('float64')`. To change just this layer, pass dtype='float64' to the layer constructor. If you are the author of this layer, you can disable autocasting by passing autocast=False to the base Layer constructor.
@@ -292,7 +292,7 @@ Epoch 1 over :Attack test accuracy: 0.5, Best accuracy : 0.5
 Epoch 2 over :Attack test accuracy: 0.5, Best accuracy : 0.5
 Epoch 3 over :Attack test accuracy: 0.5, Best accuracy : 0.5
 Epoch 4 over :Attack test accuracy: 0.4967222213745117, Best accuracy : 0.5
-Epoch 5 over :Attack test accuracy: 0.4967222213745117, Best accuracy : 0.5
+Epoch 5 over :Attack test accuracy: 0.49755555391311646, Best accuracy : 0.5
 Epoch 6 over :Attack test accuracy: 0.4967222213745117, Best accuracy : 0.5
 Epoch 7 over :Attack test accuracy: 0.4967222213745117, Best accuracy : 0.5
 Epoch 8 over :Attack test accuracy: 0.4967222213745117, Best accuracy : 0.5
@@ -300,1187 +300,1187 @@ Epoch 9 over :Attack test accuracy: 0.4967222213745117, Best accuracy : 0.5
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 2.1144 - accuracy: 0.1811 - val_loss: 1.9501 - val_accuracy: 0.2214
+10000/10000 [==============================] - 8s 814us/sample - loss: 2.0646 - accuracy: 0.1925 - val_loss: 1.9277 - val_accuracy: 0.2250
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.9450 - accuracy: 0.2218 - val_loss: 1.9093 - val_accuracy: 0.2527
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.9120 - accuracy: 0.2353 - val_loss: 1.8382 - val_accuracy: 0.2672
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.8554 - accuracy: 0.2681 - val_loss: 1.8017 - val_accuracy: 0.2916
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.8225 - accuracy: 0.2794 - val_loss: 1.7939 - val_accuracy: 0.2923
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.7678 - accuracy: 0.3118 - val_loss: 1.7406 - val_accuracy: 0.3214
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.7627 - accuracy: 0.3077 - val_loss: 1.7839 - val_accuracy: 0.3114
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.7024 - accuracy: 0.3405 - val_loss: 1.6893 - val_accuracy: 0.3552
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.7269 - accuracy: 0.3280 - val_loss: 1.7242 - val_accuracy: 0.3302
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.6726 - accuracy: 0.3565 - val_loss: 1.6919 - val_accuracy: 0.3666
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.6803 - accuracy: 0.3471 - val_loss: 1.6640 - val_accuracy: 0.3860
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.6180 - accuracy: 0.3873 - val_loss: 1.6141 - val_accuracy: 0.3940
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.6016 - accuracy: 0.3927 - val_loss: 1.6306 - val_accuracy: 0.3904
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.5555 - accuracy: 0.4149 - val_loss: 1.5922 - val_accuracy: 0.4108
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.5442 - accuracy: 0.4288 - val_loss: 1.5588 - val_accuracy: 0.4218
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.5007 - accuracy: 0.4382 - val_loss: 1.5991 - val_accuracy: 0.4098
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.4813 - accuracy: 0.4504 - val_loss: 1.5179 - val_accuracy: 0.4427
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.4342 - accuracy: 0.4661 - val_loss: 1.5406 - val_accuracy: 0.4432
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.4343 - accuracy: 0.4765 - val_loss: 1.5959 - val_accuracy: 0.4328
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.3810 - accuracy: 0.4915 - val_loss: 1.5342 - val_accuracy: 0.4398
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.3774 - accuracy: 0.4970 - val_loss: 1.5404 - val_accuracy: 0.4576
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.3120 - accuracy: 0.5213 - val_loss: 1.4865 - val_accuracy: 0.4698
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.3378 - accuracy: 0.5181 - val_loss: 1.4837 - val_accuracy: 0.4791
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.2663 - accuracy: 0.5410 - val_loss: 1.4968 - val_accuracy: 0.4722
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.2820 - accuracy: 0.5402 - val_loss: 1.4600 - val_accuracy: 0.4800
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 1.2075 - accuracy: 0.5639 - val_loss: 1.4694 - val_accuracy: 0.4880
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.2394 - accuracy: 0.5571 - val_loss: 1.4365 - val_accuracy: 0.5000
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.1353 - accuracy: 0.5914 - val_loss: 1.4818 - val_accuracy: 0.5016
-passive global attack on cid: 2 in fed-epoch: 1
-Target model test accuracy 0.494
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.1754 - accuracy: 0.5835 - val_loss: 1.5466 - val_accuracy: 0.4842
+passive global attack on cid: 1 in fed-epoch: 1
+Target model test accuracy 0.485
 Epoch 0 over :Attack test accuracy: 0.5, Best accuracy : 0.5
-Epoch 1 over :Attack test accuracy: 0.5673888921737671, Best accuracy : 0.5673888921737671
-Epoch 2 over :Attack test accuracy: 0.523888885974884, Best accuracy : 0.5673888921737671
-Epoch 3 over :Attack test accuracy: 0.5712222456932068, Best accuracy : 0.5712222456932068
-Epoch 4 over :Attack test accuracy: 0.5688333511352539, Best accuracy : 0.5712222456932068
-Epoch 5 over :Attack test accuracy: 0.558055579662323, Best accuracy : 0.5712222456932068
-Epoch 6 over :Attack test accuracy: 0.5671111345291138, Best accuracy : 0.5712222456932068
-Epoch 7 over :Attack test accuracy: 0.5586666464805603, Best accuracy : 0.5712222456932068
-Epoch 8 over :Attack test accuracy: 0.566277801990509, Best accuracy : 0.5712222456932068
-Epoch 9 over :Attack test accuracy: 0.5525555610656738, Best accuracy : 0.5712222456932068
+Epoch 1 over :Attack test accuracy: 0.5491666793823242, Best accuracy : 0.5491666793823242
+Epoch 2 over :Attack test accuracy: 0.5288333296775818, Best accuracy : 0.5491666793823242
+Epoch 3 over :Attack test accuracy: 0.5386666655540466, Best accuracy : 0.5491666793823242
+Epoch 4 over :Attack test accuracy: 0.5377222299575806, Best accuracy : 0.5491666793823242
+Epoch 5 over :Attack test accuracy: 0.535444438457489, Best accuracy : 0.5491666793823242
+Epoch 6 over :Attack test accuracy: 0.5360555648803711, Best accuracy : 0.5491666793823242
+Epoch 7 over :Attack test accuracy: 0.5364444255828857, Best accuracy : 0.5491666793823242
+Epoch 8 over :Attack test accuracy: 0.5358889102935791, Best accuracy : 0.5491666793823242
+Epoch 9 over :Attack test accuracy: 0.5331110954284668, Best accuracy : 0.5491666793823242
+[fed-epoch 1] cid: 2
+Train on 10000 samples, validate on 10000 samples
+Using learning rate 0.0001
+Epoch 1/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 2.1397 - accuracy: 0.1616 - val_loss: 1.9588 - val_accuracy: 0.2203
+Using learning rate 0.0001
+Epoch 2/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.9158 - accuracy: 0.2226 - val_loss: 1.8811 - val_accuracy: 0.2524
+Using learning rate 0.0001
+Epoch 3/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.8228 - accuracy: 0.2772 - val_loss: 1.7916 - val_accuracy: 0.2895
+Using learning rate 0.0001
+Epoch 4/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.7485 - accuracy: 0.3029 - val_loss: 1.7445 - val_accuracy: 0.3229
+Using learning rate 0.0001
+Epoch 5/15
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.6886 - accuracy: 0.3336 - val_loss: 1.7035 - val_accuracy: 0.3405
+Using learning rate 0.0001
+Epoch 6/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.6486 - accuracy: 0.3575 - val_loss: 1.6803 - val_accuracy: 0.3728
+Using learning rate 0.0001
+Epoch 7/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.5852 - accuracy: 0.4078 - val_loss: 1.5978 - val_accuracy: 0.4098
+Using learning rate 0.0001
+Epoch 8/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.4971 - accuracy: 0.4441 - val_loss: 1.5518 - val_accuracy: 0.4350
+Using learning rate 0.0001
+Epoch 9/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.4296 - accuracy: 0.4731 - val_loss: 1.5432 - val_accuracy: 0.4438
+Using learning rate 0.0001
+Epoch 10/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.3728 - accuracy: 0.4926 - val_loss: 1.5160 - val_accuracy: 0.4634
+Using learning rate 0.0001
+Epoch 11/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.2996 - accuracy: 0.5297 - val_loss: 1.4779 - val_accuracy: 0.4867
+Using learning rate 0.0001
+Epoch 12/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.2388 - accuracy: 0.5624 - val_loss: 1.5099 - val_accuracy: 0.4847
+Using learning rate 0.0001
+Epoch 13/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.1868 - accuracy: 0.5738 - val_loss: 1.4480 - val_accuracy: 0.5111
+Using learning rate 0.0001
+Epoch 14/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.1123 - accuracy: 0.6084 - val_loss: 1.4843 - val_accuracy: 0.5055
+Using learning rate 0.0001
+Epoch 15/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.0728 - accuracy: 0.6251 - val_loss: 1.4641 - val_accuracy: 0.5194
+[fed-epoch 1] cid: 3
+Train on 10000 samples, validate on 10000 samples
+Using learning rate 0.0001
+Epoch 1/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 2.1655 - accuracy: 0.1582 - val_loss: 1.9662 - val_accuracy: 0.1975
+Using learning rate 0.0001
+Epoch 2/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.9491 - accuracy: 0.2203 - val_loss: 1.8966 - val_accuracy: 0.2488
+Using learning rate 0.0001
+Epoch 3/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.8974 - accuracy: 0.2391 - val_loss: 1.8525 - val_accuracy: 0.2496
+Using learning rate 0.0001
+Epoch 4/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.8284 - accuracy: 0.2751 - val_loss: 1.7827 - val_accuracy: 0.2900
+Using learning rate 0.0001
+Epoch 5/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.7761 - accuracy: 0.2937 - val_loss: 1.7515 - val_accuracy: 0.3148
+Using learning rate 0.0001
+Epoch 6/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.7373 - accuracy: 0.3160 - val_loss: 1.7167 - val_accuracy: 0.3353
+Using learning rate 0.0001
+Epoch 7/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.7060 - accuracy: 0.3270 - val_loss: 1.7226 - val_accuracy: 0.3163
+Using learning rate 0.0001
+Epoch 8/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.6767 - accuracy: 0.3505 - val_loss: 1.6908 - val_accuracy: 0.3716
+Using learning rate 0.0001
+Epoch 9/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.6002 - accuracy: 0.3856 - val_loss: 1.6261 - val_accuracy: 0.3955
+Using learning rate 0.0001
+Epoch 10/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.5429 - accuracy: 0.4155 - val_loss: 1.5682 - val_accuracy: 0.4133
+Using learning rate 0.0001
+Epoch 11/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.4979 - accuracy: 0.4368 - val_loss: 1.5596 - val_accuracy: 0.4244
+Using learning rate 0.0001
+Epoch 12/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.4671 - accuracy: 0.4525 - val_loss: 1.5556 - val_accuracy: 0.4240
+Using learning rate 0.0001
+Epoch 13/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.4077 - accuracy: 0.4743 - val_loss: 1.5356 - val_accuracy: 0.4402
+Using learning rate 0.0001
+Epoch 14/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.3724 - accuracy: 0.4855 - val_loss: 1.5337 - val_accuracy: 0.4502
+Using learning rate 0.0001
+Epoch 15/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.3260 - accuracy: 0.5103 - val_loss: 1.5639 - val_accuracy: 0.4497
+[fed-epoch 1] cid: 4
+Train on 10000 samples, validate on 10000 samples
+Using learning rate 0.0001
+Epoch 1/15
+10000/10000 [==============================] - 8s 814us/sample - loss: 2.1691 - accuracy: 0.1564 - val_loss: 1.9713 - val_accuracy: 0.2193
+Using learning rate 0.0001
+Epoch 2/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.9445 - accuracy: 0.2273 - val_loss: 1.8800 - val_accuracy: 0.2503
+Using learning rate 0.0001
+Epoch 3/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.8590 - accuracy: 0.2645 - val_loss: 1.8248 - val_accuracy: 0.2775
+Using learning rate 0.0001
+Epoch 4/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.7807 - accuracy: 0.3037 - val_loss: 1.7477 - val_accuracy: 0.3031
+Using learning rate 0.0001
+Epoch 5/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.7312 - accuracy: 0.3211 - val_loss: 1.7362 - val_accuracy: 0.3330
+Using learning rate 0.0001
+Epoch 6/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.6850 - accuracy: 0.3489 - val_loss: 1.7174 - val_accuracy: 0.3392
+Using learning rate 0.0001
+Epoch 7/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.6315 - accuracy: 0.3797 - val_loss: 1.6192 - val_accuracy: 0.3961
+Using learning rate 0.0001
+Epoch 8/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.5267 - accuracy: 0.4316 - val_loss: 1.5453 - val_accuracy: 0.4322
+Using learning rate 0.0001
+Epoch 9/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.4507 - accuracy: 0.4667 - val_loss: 1.5522 - val_accuracy: 0.4394
+Using learning rate 0.0001
+Epoch 10/15
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.3835 - accuracy: 0.4996 - val_loss: 1.4905 - val_accuracy: 0.4613
+Using learning rate 0.0001
+Epoch 11/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.3223 - accuracy: 0.5285 - val_loss: 1.4689 - val_accuracy: 0.4776
+Using learning rate 0.0001
+Epoch 12/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.2746 - accuracy: 0.5439 - val_loss: 1.4631 - val_accuracy: 0.4894
+Using learning rate 0.0001
+Epoch 13/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.2059 - accuracy: 0.5683 - val_loss: 1.4303 - val_accuracy: 0.5036
+Using learning rate 0.0001
+Epoch 14/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.1611 - accuracy: 0.5910 - val_loss: 1.4451 - val_accuracy: 0.5073
+Using learning rate 0.0001
+Epoch 15/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.0841 - accuracy: 0.6189 - val_loss: 1.5251 - val_accuracy: 0.4984
+[fed-epoch 2] cid: 0
+Train on 10000 samples, validate on 10000 samples
+Using learning rate 0.0001
+Epoch 1/15
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.5109 - accuracy: 0.4482 - val_loss: 1.5895 - val_accuracy: 0.4239
+Using learning rate 0.0001
+Epoch 2/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.3547 - accuracy: 0.5063 - val_loss: 1.3918 - val_accuracy: 0.5076
+Using learning rate 0.0001
+Epoch 3/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.2683 - accuracy: 0.5455 - val_loss: 1.3549 - val_accuracy: 0.5191
+Using learning rate 0.0001
+Epoch 4/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.1830 - accuracy: 0.5835 - val_loss: 1.4037 - val_accuracy: 0.5136
+Using learning rate 0.0001
+Epoch 5/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.1169 - accuracy: 0.6136 - val_loss: 1.3902 - val_accuracy: 0.5361
+Using learning rate 0.0001
+Epoch 6/15
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.0420 - accuracy: 0.6377 - val_loss: 1.3649 - val_accuracy: 0.5447
+Using learning rate 0.0001
+Epoch 7/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.9357 - accuracy: 0.6830 - val_loss: 1.4683 - val_accuracy: 0.5374
+Using learning rate 0.0001
+Epoch 8/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.8734 - accuracy: 0.7109 - val_loss: 1.5118 - val_accuracy: 0.5308
+Using learning rate 0.0001
+Epoch 9/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.7795 - accuracy: 0.7488 - val_loss: 1.5436 - val_accuracy: 0.5423
+Using learning rate 0.0001
+Epoch 10/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.6988 - accuracy: 0.7796 - val_loss: 1.6087 - val_accuracy: 0.5450
+Using learning rate 0.0001
+Epoch 11/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.6358 - accuracy: 0.8018 - val_loss: 1.6620 - val_accuracy: 0.5508
+Using learning rate 0.0001
+Epoch 12/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.5549 - accuracy: 0.8377 - val_loss: 1.7199 - val_accuracy: 0.5477
+Using learning rate 0.0001
+Epoch 13/15
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.5117 - accuracy: 0.8551 - val_loss: 1.8950 - val_accuracy: 0.5317
+Using learning rate 0.0001
+Epoch 14/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.4364 - accuracy: 0.8844 - val_loss: 1.9356 - val_accuracy: 0.5517
+Using learning rate 0.0001
+Epoch 15/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.4161 - accuracy: 0.8915 - val_loss: 2.1318 - val_accuracy: 0.5316
+[fed-epoch 2] cid: 1
+Train on 10000 samples, validate on 10000 samples
+Using learning rate 0.0001
+Epoch 1/15
+10000/10000 [==============================] - 8s 816us/sample - loss: 1.5289 - accuracy: 0.4514 - val_loss: 1.4123 - val_accuracy: 0.4893
+Using learning rate 0.0001
+Epoch 2/15
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.3726 - accuracy: 0.5095 - val_loss: 1.4276 - val_accuracy: 0.4818
+Using learning rate 0.0001
+Epoch 3/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.3168 - accuracy: 0.5315 - val_loss: 1.3873 - val_accuracy: 0.5143
+Using learning rate 0.0001
+Epoch 4/15
+10000/10000 [==============================] - 8s 809us/sample - loss: 1.2411 - accuracy: 0.5622 - val_loss: 1.3726 - val_accuracy: 0.5201
+Using learning rate 0.0001
+Epoch 5/15
+10000/10000 [==============================] - 8s 814us/sample - loss: 1.1961 - accuracy: 0.5789 - val_loss: 1.4029 - val_accuracy: 0.5192
+Using learning rate 0.0001
+Epoch 6/15
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.1233 - accuracy: 0.6088 - val_loss: 1.3691 - val_accuracy: 0.5398
+Using learning rate 0.0001
+Epoch 7/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.0485 - accuracy: 0.6326 - val_loss: 1.3663 - val_accuracy: 0.5501
+Using learning rate 0.0001
+Epoch 8/15
+10000/10000 [==============================] - 8s 814us/sample - loss: 0.9876 - accuracy: 0.6608 - val_loss: 1.4619 - val_accuracy: 0.5427
+Using learning rate 0.0001
+Epoch 9/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.8950 - accuracy: 0.6980 - val_loss: 1.4796 - val_accuracy: 0.5430
+Using learning rate 0.0001
+Epoch 10/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.8323 - accuracy: 0.7231 - val_loss: 1.5786 - val_accuracy: 0.5263
+Using learning rate 0.0001
+Epoch 11/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.7551 - accuracy: 0.7513 - val_loss: 1.5799 - val_accuracy: 0.5492
+Using learning rate 0.0001
+Epoch 12/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.6606 - accuracy: 0.7894 - val_loss: 1.7875 - val_accuracy: 0.5278
+Using learning rate 0.0001
+Epoch 13/15
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.6230 - accuracy: 0.8088 - val_loss: 1.6513 - val_accuracy: 0.5594
+Using learning rate 0.0001
+Epoch 14/15
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.5304 - accuracy: 0.8449 - val_loss: 1.8143 - val_accuracy: 0.5490
+Using learning rate 0.0001
+Epoch 15/15
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.5084 - accuracy: 0.8496 - val_loss: 1.9929 - val_accuracy: 0.5223
 [fed-epoch 2] cid: 2
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 812us/sample - loss: 2.1870 - accuracy: 0.1552 - val_loss: 2.1049 - val_accuracy: 0.2004
+10000/10000 [==============================] - 8s 814us/sample - loss: 1.5033 - accuracy: 0.4546 - val_loss: 1.5343 - val_accuracy: 0.4498
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.9546 - accuracy: 0.2167 - val_loss: 1.8903 - val_accuracy: 0.2474
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.3554 - accuracy: 0.5130 - val_loss: 1.3795 - val_accuracy: 0.5084
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.8273 - accuracy: 0.2630 - val_loss: 1.8124 - val_accuracy: 0.2881
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.2763 - accuracy: 0.5379 - val_loss: 1.3883 - val_accuracy: 0.5174
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.7567 - accuracy: 0.2990 - val_loss: 1.7567 - val_accuracy: 0.3059
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.2061 - accuracy: 0.5758 - val_loss: 1.3487 - val_accuracy: 0.5313
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.7076 - accuracy: 0.3250 - val_loss: 1.7195 - val_accuracy: 0.3341
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.1432 - accuracy: 0.5994 - val_loss: 1.3632 - val_accuracy: 0.5335
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.6439 - accuracy: 0.3566 - val_loss: 1.7326 - val_accuracy: 0.3724
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.0771 - accuracy: 0.6260 - val_loss: 1.3431 - val_accuracy: 0.5455
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.6038 - accuracy: 0.3932 - val_loss: 1.6119 - val_accuracy: 0.4020
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.0218 - accuracy: 0.6443 - val_loss: 1.4610 - val_accuracy: 0.5258
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.5199 - accuracy: 0.4301 - val_loss: 1.5854 - val_accuracy: 0.4228
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.9490 - accuracy: 0.6833 - val_loss: 1.4762 - val_accuracy: 0.5365
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 1.4579 - accuracy: 0.4556 - val_loss: 1.5649 - val_accuracy: 0.4375
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.8645 - accuracy: 0.7079 - val_loss: 1.4459 - val_accuracy: 0.5524
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.3877 - accuracy: 0.4880 - val_loss: 1.6080 - val_accuracy: 0.4368
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.7930 - accuracy: 0.7362 - val_loss: 1.5575 - val_accuracy: 0.5366
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.3408 - accuracy: 0.5101 - val_loss: 1.4787 - val_accuracy: 0.4704
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.7128 - accuracy: 0.7728 - val_loss: 1.5832 - val_accuracy: 0.5290
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.2686 - accuracy: 0.5339 - val_loss: 1.5088 - val_accuracy: 0.4803
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.6492 - accuracy: 0.7952 - val_loss: 1.6597 - val_accuracy: 0.5446
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.1958 - accuracy: 0.5692 - val_loss: 1.5308 - val_accuracy: 0.4803
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.5953 - accuracy: 0.8180 - val_loss: 1.7122 - val_accuracy: 0.5463
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.1373 - accuracy: 0.5917 - val_loss: 1.5301 - val_accuracy: 0.4919
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.5308 - accuracy: 0.8417 - val_loss: 1.9075 - val_accuracy: 0.5354
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.0716 - accuracy: 0.6165 - val_loss: 1.5484 - val_accuracy: 0.4983
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.4863 - accuracy: 0.8620 - val_loss: 1.9595 - val_accuracy: 0.5504
 [fed-epoch 2] cid: 3
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 2.1856 - accuracy: 0.1535 - val_loss: 1.9710 - val_accuracy: 0.2340
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.5284 - accuracy: 0.4483 - val_loss: 1.4583 - val_accuracy: 0.4605
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.9569 - accuracy: 0.2278 - val_loss: 1.9094 - val_accuracy: 0.2274
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.3876 - accuracy: 0.4989 - val_loss: 1.3734 - val_accuracy: 0.5098
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.8940 - accuracy: 0.2519 - val_loss: 1.8181 - val_accuracy: 0.2930
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.3263 - accuracy: 0.5272 - val_loss: 1.3900 - val_accuracy: 0.5023
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.8045 - accuracy: 0.2885 - val_loss: 1.7858 - val_accuracy: 0.3066
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.2528 - accuracy: 0.5563 - val_loss: 1.4214 - val_accuracy: 0.5102
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.7609 - accuracy: 0.3038 - val_loss: 1.7151 - val_accuracy: 0.3222
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.2010 - accuracy: 0.5758 - val_loss: 1.4107 - val_accuracy: 0.5198
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.7148 - accuracy: 0.3316 - val_loss: 1.7052 - val_accuracy: 0.3267
+10000/10000 [==============================] - 8s 814us/sample - loss: 1.1455 - accuracy: 0.6008 - val_loss: 1.3687 - val_accuracy: 0.5350
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.6658 - accuracy: 0.3603 - val_loss: 1.6904 - val_accuracy: 0.3664
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.0641 - accuracy: 0.6240 - val_loss: 1.3927 - val_accuracy: 0.5346
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.5966 - accuracy: 0.3973 - val_loss: 1.6381 - val_accuracy: 0.3981
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.9954 - accuracy: 0.6559 - val_loss: 1.3499 - val_accuracy: 0.5514
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.5373 - accuracy: 0.4278 - val_loss: 1.5614 - val_accuracy: 0.4225
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.9187 - accuracy: 0.6872 - val_loss: 1.4714 - val_accuracy: 0.5305
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.4839 - accuracy: 0.4468 - val_loss: 1.5518 - val_accuracy: 0.4326
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.8679 - accuracy: 0.7056 - val_loss: 1.4819 - val_accuracy: 0.5353
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.4237 - accuracy: 0.4728 - val_loss: 1.5139 - val_accuracy: 0.4500
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.7612 - accuracy: 0.7498 - val_loss: 1.6301 - val_accuracy: 0.5297
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.3656 - accuracy: 0.5052 - val_loss: 1.5914 - val_accuracy: 0.4373
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.7059 - accuracy: 0.7683 - val_loss: 1.5486 - val_accuracy: 0.5535
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.2982 - accuracy: 0.5321 - val_loss: 1.4847 - val_accuracy: 0.4832
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.6445 - accuracy: 0.7953 - val_loss: 1.6014 - val_accuracy: 0.5531
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.2456 - accuracy: 0.5596 - val_loss: 1.4805 - val_accuracy: 0.4848
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.5497 - accuracy: 0.8393 - val_loss: 1.7970 - val_accuracy: 0.5406
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.1556 - accuracy: 0.5960 - val_loss: 1.4742 - val_accuracy: 0.5058
+10000/10000 [==============================] - 8s 814us/sample - loss: 0.5289 - accuracy: 0.8442 - val_loss: 1.9579 - val_accuracy: 0.5347
 [fed-epoch 2] cid: 4
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 2.2034 - accuracy: 0.1520 - val_loss: 2.0921 - val_accuracy: 0.1871
+10000/10000 [==============================] - 8s 814us/sample - loss: 1.5172 - accuracy: 0.4602 - val_loss: 1.5014 - val_accuracy: 0.4612
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.9855 - accuracy: 0.2194 - val_loss: 1.9130 - val_accuracy: 0.2366
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.3622 - accuracy: 0.5144 - val_loss: 1.4606 - val_accuracy: 0.4654
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.8865 - accuracy: 0.2483 - val_loss: 1.8206 - val_accuracy: 0.2845
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.2885 - accuracy: 0.5455 - val_loss: 1.3634 - val_accuracy: 0.5217
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.7997 - accuracy: 0.2915 - val_loss: 1.7852 - val_accuracy: 0.2931
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.2171 - accuracy: 0.5695 - val_loss: 1.3730 - val_accuracy: 0.5221
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.7410 - accuracy: 0.3116 - val_loss: 1.7441 - val_accuracy: 0.3122
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.1550 - accuracy: 0.5890 - val_loss: 1.4340 - val_accuracy: 0.5089
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.6967 - accuracy: 0.3445 - val_loss: 1.6838 - val_accuracy: 0.3612
+10000/10000 [==============================] - 8s 810us/sample - loss: 1.0950 - accuracy: 0.6204 - val_loss: 1.3776 - val_accuracy: 0.5322
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.6323 - accuracy: 0.3843 - val_loss: 1.6244 - val_accuracy: 0.3939
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.0204 - accuracy: 0.6494 - val_loss: 1.4416 - val_accuracy: 0.5301
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.5542 - accuracy: 0.4199 - val_loss: 1.5900 - val_accuracy: 0.4150
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.9398 - accuracy: 0.6763 - val_loss: 1.4844 - val_accuracy: 0.5215
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.5010 - accuracy: 0.4502 - val_loss: 1.5828 - val_accuracy: 0.4261
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.8873 - accuracy: 0.6983 - val_loss: 1.5043 - val_accuracy: 0.5381
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 1.4467 - accuracy: 0.4728 - val_loss: 1.5478 - val_accuracy: 0.4476
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.8137 - accuracy: 0.7327 - val_loss: 1.5331 - val_accuracy: 0.5413
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.3722 - accuracy: 0.5049 - val_loss: 1.4879 - val_accuracy: 0.4677
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.7248 - accuracy: 0.7693 - val_loss: 1.5924 - val_accuracy: 0.5463
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.3127 - accuracy: 0.5259 - val_loss: 1.4692 - val_accuracy: 0.4826
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.6616 - accuracy: 0.7913 - val_loss: 1.6135 - val_accuracy: 0.5434
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.2483 - accuracy: 0.5539 - val_loss: 1.4748 - val_accuracy: 0.4949
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.6113 - accuracy: 0.8159 - val_loss: 1.8748 - val_accuracy: 0.5288
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.1979 - accuracy: 0.5805 - val_loss: 1.6384 - val_accuracy: 0.4563
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.5233 - accuracy: 0.8485 - val_loss: 1.9283 - val_accuracy: 0.5227
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.1294 - accuracy: 0.6038 - val_loss: 1.5046 - val_accuracy: 0.4962
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.4732 - accuracy: 0.8693 - val_loss: 1.9584 - val_accuracy: 0.5418
 [fed-epoch 3] cid: 0
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 1.4884 - accuracy: 0.4621 - val_loss: 1.4054 - val_accuracy: 0.5041
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.1545 - accuracy: 0.6198 - val_loss: 1.3421 - val_accuracy: 0.5505
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.3335 - accuracy: 0.5154 - val_loss: 1.3668 - val_accuracy: 0.5161
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.9700 - accuracy: 0.6790 - val_loss: 1.3610 - val_accuracy: 0.5720
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.2400 - accuracy: 0.5594 - val_loss: 1.4213 - val_accuracy: 0.5072
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.8483 - accuracy: 0.7274 - val_loss: 1.4329 - val_accuracy: 0.5641
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 812us/sample - loss: 1.1649 - accuracy: 0.5934 - val_loss: 1.3677 - val_accuracy: 0.5305
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.7461 - accuracy: 0.7670 - val_loss: 1.4293 - val_accuracy: 0.5670
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.0682 - accuracy: 0.6297 - val_loss: 1.3538 - val_accuracy: 0.5458
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.6447 - accuracy: 0.8042 - val_loss: 1.9229 - val_accuracy: 0.5008
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.9870 - accuracy: 0.6622 - val_loss: 1.4895 - val_accuracy: 0.5108
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.5521 - accuracy: 0.8390 - val_loss: 1.6386 - val_accuracy: 0.5763
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.9225 - accuracy: 0.6882 - val_loss: 1.4719 - val_accuracy: 0.5383
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.4920 - accuracy: 0.8651 - val_loss: 1.7675 - val_accuracy: 0.5673
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.8441 - accuracy: 0.7163 - val_loss: 1.4975 - val_accuracy: 0.5363
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.4010 - accuracy: 0.9009 - val_loss: 1.9118 - val_accuracy: 0.5593
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.7405 - accuracy: 0.7622 - val_loss: 1.5381 - val_accuracy: 0.5510
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.3742 - accuracy: 0.9163 - val_loss: 2.0358 - val_accuracy: 0.5641
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.6753 - accuracy: 0.7867 - val_loss: 1.6661 - val_accuracy: 0.5359
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.3502 - accuracy: 0.9198 - val_loss: 1.9671 - val_accuracy: 0.5698
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.6044 - accuracy: 0.8227 - val_loss: 1.6507 - val_accuracy: 0.5511
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.3166 - accuracy: 0.9347 - val_loss: 2.2010 - val_accuracy: 0.5594
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.5307 - accuracy: 0.8515 - val_loss: 1.8661 - val_accuracy: 0.5398
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2864 - accuracy: 0.9459 - val_loss: 2.2449 - val_accuracy: 0.5622
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.4745 - accuracy: 0.8687 - val_loss: 1.9803 - val_accuracy: 0.5371
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.2758 - accuracy: 0.9485 - val_loss: 2.3405 - val_accuracy: 0.5696
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.4198 - accuracy: 0.8895 - val_loss: 2.1709 - val_accuracy: 0.5363
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2487 - accuracy: 0.9592 - val_loss: 2.4802 - val_accuracy: 0.5626
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3868 - accuracy: 0.9050 - val_loss: 2.2104 - val_accuracy: 0.5370
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2448 - accuracy: 0.9603 - val_loss: 2.5185 - val_accuracy: 0.5528
 [fed-epoch 3] cid: 1
+passive local attack on cid: 1 in fed_ml-epoch: 3
+Target model test accuracy 0.581
+Epoch 0 over :Attack test accuracy: 0.5, Best accuracy : 0.5
+Epoch 1 over :Attack test accuracy: 0.5, Best accuracy : 0.5
+Epoch 2 over :Attack test accuracy: 0.511555552482605, Best accuracy : 0.511555552482605
+Epoch 3 over :Attack test accuracy: 0.49783334136009216, Best accuracy : 0.511555552482605
+Epoch 4 over :Attack test accuracy: 0.49900001287460327, Best accuracy : 0.511555552482605
+Epoch 5 over :Attack test accuracy: 0.5000555515289307, Best accuracy : 0.511555552482605
+Epoch 6 over :Attack test accuracy: 0.5024999976158142, Best accuracy : 0.511555552482605
+Epoch 7 over :Attack test accuracy: 0.5038889050483704, Best accuracy : 0.511555552482605
+Epoch 8 over :Attack test accuracy: 0.5082777738571167, Best accuracy : 0.511555552482605
+Epoch 9 over :Attack test accuracy: 0.5097777843475342, Best accuracy : 0.511555552482605
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 812us/sample - loss: 1.5065 - accuracy: 0.4590 - val_loss: 1.4198 - val_accuracy: 0.4923
+10000/10000 [==============================] - 8s 816us/sample - loss: 1.1964 - accuracy: 0.6087 - val_loss: 1.2919 - val_accuracy: 0.5763
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.3642 - accuracy: 0.5126 - val_loss: 1.3641 - val_accuracy: 0.5133
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.0184 - accuracy: 0.6627 - val_loss: 1.3586 - val_accuracy: 0.5719
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.2927 - accuracy: 0.5411 - val_loss: 1.4645 - val_accuracy: 0.4908
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.9007 - accuracy: 0.7069 - val_loss: 1.3787 - val_accuracy: 0.5720
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.2302 - accuracy: 0.5607 - val_loss: 1.3763 - val_accuracy: 0.5194
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.7927 - accuracy: 0.7456 - val_loss: 1.3952 - val_accuracy: 0.5794
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.1556 - accuracy: 0.5952 - val_loss: 1.3655 - val_accuracy: 0.5244
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.6940 - accuracy: 0.7847 - val_loss: 1.6343 - val_accuracy: 0.5501
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.0950 - accuracy: 0.6146 - val_loss: 1.3871 - val_accuracy: 0.5309
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.6112 - accuracy: 0.8146 - val_loss: 1.5662 - val_accuracy: 0.5782
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 1.0154 - accuracy: 0.6504 - val_loss: 1.4888 - val_accuracy: 0.5228
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.5151 - accuracy: 0.8516 - val_loss: 1.7426 - val_accuracy: 0.5688
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.9499 - accuracy: 0.6731 - val_loss: 1.4607 - val_accuracy: 0.5299
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.4478 - accuracy: 0.8860 - val_loss: 1.7674 - val_accuracy: 0.5760
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.8795 - accuracy: 0.7052 - val_loss: 1.5443 - val_accuracy: 0.5233
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.4203 - accuracy: 0.8919 - val_loss: 1.9863 - val_accuracy: 0.5578
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.7860 - accuracy: 0.7416 - val_loss: 1.4985 - val_accuracy: 0.5492
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.3488 - accuracy: 0.9202 - val_loss: 2.0478 - val_accuracy: 0.5737
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.7312 - accuracy: 0.7703 - val_loss: 1.5386 - val_accuracy: 0.5434
+10000/10000 [==============================] - 8s 815us/sample - loss: 0.3062 - accuracy: 0.9402 - val_loss: 2.1536 - val_accuracy: 0.5702
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.6563 - accuracy: 0.7916 - val_loss: 1.8774 - val_accuracy: 0.5001
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.3363 - accuracy: 0.9254 - val_loss: 2.0924 - val_accuracy: 0.5748
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.5923 - accuracy: 0.8230 - val_loss: 1.9323 - val_accuracy: 0.5044
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2773 - accuracy: 0.9482 - val_loss: 2.4164 - val_accuracy: 0.5456
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.5158 - accuracy: 0.8513 - val_loss: 1.8416 - val_accuracy: 0.5341
+10000/10000 [==============================] - 8s 814us/sample - loss: 0.2513 - accuracy: 0.9594 - val_loss: 2.4014 - val_accuracy: 0.5602
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.4747 - accuracy: 0.8697 - val_loss: 2.1349 - val_accuracy: 0.5124
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2455 - accuracy: 0.9598 - val_loss: 2.3675 - val_accuracy: 0.5655
+passive global attack on cid: 1 in fed-epoch: 3
+Target model test accuracy 0.582
+Epoch 0 over :Attack test accuracy: 0.7225000262260437, Best accuracy : 0.7225000262260437
+Epoch 1 over :Attack test accuracy: 0.7156111001968384, Best accuracy : 0.7225000262260437
+Epoch 2 over :Attack test accuracy: 0.7350000143051147, Best accuracy : 0.7350000143051147
+Epoch 3 over :Attack test accuracy: 0.7350555658340454, Best accuracy : 0.7350555658340454
+Epoch 4 over :Attack test accuracy: 0.7285555601119995, Best accuracy : 0.7350555658340454
+Epoch 5 over :Attack test accuracy: 0.7135555744171143, Best accuracy : 0.7350555658340454
+Epoch 6 over :Attack test accuracy: 0.7342222332954407, Best accuracy : 0.7350555658340454
+Epoch 7 over :Attack test accuracy: 0.7192777991294861, Best accuracy : 0.7350555658340454
+Epoch 8 over :Attack test accuracy: 0.7200000286102295, Best accuracy : 0.7350555658340454
+Epoch 9 over :Attack test accuracy: 0.7329444289207458, Best accuracy : 0.7350555658340454
 [fed-epoch 3] cid: 2
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 812us/sample - loss: 1.4840 - accuracy: 0.4687 - val_loss: 1.4238 - val_accuracy: 0.4847
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.1430 - accuracy: 0.6203 - val_loss: 1.3065 - val_accuracy: 0.5719
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.3345 - accuracy: 0.5233 - val_loss: 1.3814 - val_accuracy: 0.5112
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.9747 - accuracy: 0.6795 - val_loss: 1.3225 - val_accuracy: 0.5771
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.2563 - accuracy: 0.5480 - val_loss: 1.4499 - val_accuracy: 0.4981
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.8694 - accuracy: 0.7150 - val_loss: 1.3917 - val_accuracy: 0.5785
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.1906 - accuracy: 0.5830 - val_loss: 1.3751 - val_accuracy: 0.5223
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.7759 - accuracy: 0.7559 - val_loss: 1.6499 - val_accuracy: 0.5318
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.1146 - accuracy: 0.6079 - val_loss: 1.4130 - val_accuracy: 0.5272
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.6736 - accuracy: 0.7949 - val_loss: 1.5749 - val_accuracy: 0.5612
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.0410 - accuracy: 0.6393 - val_loss: 1.4018 - val_accuracy: 0.5246
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.5750 - accuracy: 0.8315 - val_loss: 1.5780 - val_accuracy: 0.5715
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.9708 - accuracy: 0.6682 - val_loss: 1.4218 - val_accuracy: 0.5397
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.5241 - accuracy: 0.8487 - val_loss: 1.6924 - val_accuracy: 0.5722
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.8961 - accuracy: 0.6994 - val_loss: 1.4691 - val_accuracy: 0.5332
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.4366 - accuracy: 0.8845 - val_loss: 1.8970 - val_accuracy: 0.5606
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.8177 - accuracy: 0.7290 - val_loss: 1.4750 - val_accuracy: 0.5442
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.3800 - accuracy: 0.9091 - val_loss: 2.0298 - val_accuracy: 0.5634
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.7288 - accuracy: 0.7653 - val_loss: 1.7299 - val_accuracy: 0.5139
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.3557 - accuracy: 0.9189 - val_loss: 2.0111 - val_accuracy: 0.5629
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.6887 - accuracy: 0.7808 - val_loss: 1.6377 - val_accuracy: 0.5461
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.3226 - accuracy: 0.9333 - val_loss: 2.1267 - val_accuracy: 0.5705
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.6061 - accuracy: 0.8144 - val_loss: 1.8246 - val_accuracy: 0.5251
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.3125 - accuracy: 0.9358 - val_loss: 2.1665 - val_accuracy: 0.5514
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.5462 - accuracy: 0.8407 - val_loss: 1.8509 - val_accuracy: 0.5397
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2799 - accuracy: 0.9482 - val_loss: 2.2291 - val_accuracy: 0.5523
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.4964 - accuracy: 0.8617 - val_loss: 2.1121 - val_accuracy: 0.4992
+10000/10000 [==============================] - 8s 815us/sample - loss: 0.2475 - accuracy: 0.9617 - val_loss: 2.2528 - val_accuracy: 0.5692
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.4426 - accuracy: 0.8840 - val_loss: 1.9378 - val_accuracy: 0.5397
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2410 - accuracy: 0.9626 - val_loss: 2.3972 - val_accuracy: 0.5667
 [fed-epoch 3] cid: 3
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 812us/sample - loss: 1.5128 - accuracy: 0.4579 - val_loss: 1.4027 - val_accuracy: 0.4965
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.1989 - accuracy: 0.6029 - val_loss: 1.3187 - val_accuracy: 0.5637
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.3714 - accuracy: 0.5061 - val_loss: 1.4071 - val_accuracy: 0.4941
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.0247 - accuracy: 0.6599 - val_loss: 1.3261 - val_accuracy: 0.5650
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.2856 - accuracy: 0.5387 - val_loss: 1.3692 - val_accuracy: 0.5154
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.9054 - accuracy: 0.7012 - val_loss: 1.3161 - val_accuracy: 0.5794
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.2315 - accuracy: 0.5591 - val_loss: 1.4625 - val_accuracy: 0.4856
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.7918 - accuracy: 0.7485 - val_loss: 1.4646 - val_accuracy: 0.5566
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.1587 - accuracy: 0.5910 - val_loss: 1.4357 - val_accuracy: 0.5184
+10000/10000 [==============================] - 8s 815us/sample - loss: 0.6909 - accuracy: 0.7824 - val_loss: 1.5657 - val_accuracy: 0.5622
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.0836 - accuracy: 0.6199 - val_loss: 1.4936 - val_accuracy: 0.5042
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.6079 - accuracy: 0.8149 - val_loss: 1.6256 - val_accuracy: 0.5581
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.0101 - accuracy: 0.6474 - val_loss: 1.4177 - val_accuracy: 0.5295
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.5144 - accuracy: 0.8552 - val_loss: 1.7339 - val_accuracy: 0.5516
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.9297 - accuracy: 0.6813 - val_loss: 1.5514 - val_accuracy: 0.5196
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.4737 - accuracy: 0.8722 - val_loss: 1.7929 - val_accuracy: 0.5760
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.8925 - accuracy: 0.7014 - val_loss: 1.5608 - val_accuracy: 0.5177
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.4145 - accuracy: 0.8913 - val_loss: 1.9177 - val_accuracy: 0.5489
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.7775 - accuracy: 0.7518 - val_loss: 1.5686 - val_accuracy: 0.5349
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.3615 - accuracy: 0.9167 - val_loss: 2.1925 - val_accuracy: 0.5429
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.7289 - accuracy: 0.7655 - val_loss: 1.7396 - val_accuracy: 0.5068
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.3220 - accuracy: 0.9322 - val_loss: 2.2622 - val_accuracy: 0.5479
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.6429 - accuracy: 0.7982 - val_loss: 1.7937 - val_accuracy: 0.5347
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.3023 - accuracy: 0.9376 - val_loss: 2.3735 - val_accuracy: 0.5359
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.5808 - accuracy: 0.8232 - val_loss: 1.7595 - val_accuracy: 0.5306
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2792 - accuracy: 0.9494 - val_loss: 2.2381 - val_accuracy: 0.5741
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.5100 - accuracy: 0.8530 - val_loss: 1.9225 - val_accuracy: 0.5262
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2398 - accuracy: 0.9645 - val_loss: 2.3051 - val_accuracy: 0.5715
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.4868 - accuracy: 0.8620 - val_loss: 2.0554 - val_accuracy: 0.5281
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.2582 - accuracy: 0.9556 - val_loss: 2.3913 - val_accuracy: 0.5486
 [fed-epoch 3] cid: 4
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 1.5035 - accuracy: 0.4714 - val_loss: 1.4270 - val_accuracy: 0.4935
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.1646 - accuracy: 0.6182 - val_loss: 1.2839 - val_accuracy: 0.5777
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.3544 - accuracy: 0.5204 - val_loss: 1.4016 - val_accuracy: 0.5025
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.0031 - accuracy: 0.6648 - val_loss: 1.3097 - val_accuracy: 0.5786
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 1.2819 - accuracy: 0.5419 - val_loss: 1.3787 - val_accuracy: 0.5147
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.8812 - accuracy: 0.7123 - val_loss: 1.3890 - val_accuracy: 0.5681
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.2037 - accuracy: 0.5745 - val_loss: 1.4616 - val_accuracy: 0.5018
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.7821 - accuracy: 0.7478 - val_loss: 1.4190 - val_accuracy: 0.5741
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.1546 - accuracy: 0.6017 - val_loss: 1.4184 - val_accuracy: 0.5161
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.7009 - accuracy: 0.7804 - val_loss: 1.6142 - val_accuracy: 0.5587
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.0826 - accuracy: 0.6234 - val_loss: 1.4391 - val_accuracy: 0.5207
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.5815 - accuracy: 0.8300 - val_loss: 1.6096 - val_accuracy: 0.5623
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 1.0072 - accuracy: 0.6575 - val_loss: 1.4266 - val_accuracy: 0.5311
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.5108 - accuracy: 0.8604 - val_loss: 1.6276 - val_accuracy: 0.5705
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.9237 - accuracy: 0.6856 - val_loss: 1.4535 - val_accuracy: 0.5298
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.4754 - accuracy: 0.8695 - val_loss: 1.9594 - val_accuracy: 0.5389
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.8374 - accuracy: 0.7250 - val_loss: 1.6862 - val_accuracy: 0.4978
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.3996 - accuracy: 0.9017 - val_loss: 1.9725 - val_accuracy: 0.5549
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.7830 - accuracy: 0.7488 - val_loss: 1.6177 - val_accuracy: 0.5265
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.3795 - accuracy: 0.9124 - val_loss: 1.9875 - val_accuracy: 0.5656
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.6921 - accuracy: 0.7841 - val_loss: 1.7102 - val_accuracy: 0.5358
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.3178 - accuracy: 0.9337 - val_loss: 2.2378 - val_accuracy: 0.5518
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.6401 - accuracy: 0.8047 - val_loss: 1.8340 - val_accuracy: 0.5066
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.3038 - accuracy: 0.9394 - val_loss: 2.2031 - val_accuracy: 0.5572
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.5834 - accuracy: 0.8264 - val_loss: 1.8061 - val_accuracy: 0.5278
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2761 - accuracy: 0.9507 - val_loss: 2.1841 - val_accuracy: 0.5768
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.5313 - accuracy: 0.8506 - val_loss: 1.9272 - val_accuracy: 0.5268
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2757 - accuracy: 0.9472 - val_loss: 2.2547 - val_accuracy: 0.5552
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.4507 - accuracy: 0.8753 - val_loss: 2.0599 - val_accuracy: 0.5308
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2473 - accuracy: 0.9592 - val_loss: 2.5568 - val_accuracy: 0.5473
 [fed-epoch 4] cid: 0
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 1.1764 - accuracy: 0.6109 - val_loss: 1.3151 - val_accuracy: 0.5686
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.0374 - accuracy: 0.6772 - val_loss: 1.3806 - val_accuracy: 0.5740
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.9618 - accuracy: 0.6817 - val_loss: 1.3758 - val_accuracy: 0.5538
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.7569 - accuracy: 0.7641 - val_loss: 1.4891 - val_accuracy: 0.5695
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.8362 - accuracy: 0.7286 - val_loss: 1.4446 - val_accuracy: 0.5580
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.6008 - accuracy: 0.8169 - val_loss: 1.5366 - val_accuracy: 0.5929
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.7413 - accuracy: 0.7645 - val_loss: 1.5287 - val_accuracy: 0.5578
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.4603 - accuracy: 0.8754 - val_loss: 1.7428 - val_accuracy: 0.5760
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.6600 - accuracy: 0.7975 - val_loss: 1.5354 - val_accuracy: 0.5706
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.3882 - accuracy: 0.9034 - val_loss: 1.8725 - val_accuracy: 0.5626
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.5534 - accuracy: 0.8409 - val_loss: 1.6476 - val_accuracy: 0.5520
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.3342 - accuracy: 0.9278 - val_loss: 2.0050 - val_accuracy: 0.5783
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.4811 - accuracy: 0.8685 - val_loss: 1.8186 - val_accuracy: 0.5550
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.3171 - accuracy: 0.9327 - val_loss: 2.0084 - val_accuracy: 0.5908
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.4095 - accuracy: 0.8993 - val_loss: 2.1532 - val_accuracy: 0.5318
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2604 - accuracy: 0.9541 - val_loss: 2.3835 - val_accuracy: 0.5594
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.4109 - accuracy: 0.8973 - val_loss: 2.1167 - val_accuracy: 0.5360
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2523 - accuracy: 0.9555 - val_loss: 2.1468 - val_accuracy: 0.5808
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3420 - accuracy: 0.9250 - val_loss: 2.1669 - val_accuracy: 0.5480
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2430 - accuracy: 0.9609 - val_loss: 2.4030 - val_accuracy: 0.5505
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3025 - accuracy: 0.9387 - val_loss: 2.2109 - val_accuracy: 0.5545
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2394 - accuracy: 0.9600 - val_loss: 2.3033 - val_accuracy: 0.5694
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2874 - accuracy: 0.9423 - val_loss: 2.3179 - val_accuracy: 0.5684
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2202 - accuracy: 0.9679 - val_loss: 2.2824 - val_accuracy: 0.5852
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 806us/sample - loss: 0.2633 - accuracy: 0.9523 - val_loss: 2.3037 - val_accuracy: 0.5564
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2189 - accuracy: 0.9691 - val_loss: 2.3680 - val_accuracy: 0.5657
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2639 - accuracy: 0.9525 - val_loss: 2.4110 - val_accuracy: 0.5468
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2217 - accuracy: 0.9671 - val_loss: 2.4137 - val_accuracy: 0.5714
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.2387 - accuracy: 0.9602 - val_loss: 2.5288 - val_accuracy: 0.5413
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.1913 - accuracy: 0.9792 - val_loss: 2.4629 - val_accuracy: 0.5698
 [fed-epoch 4] cid: 1
-passive local attack on cid: 4 in fed_ml-epoch: 1
-Target model test accuracy 0.576
-Epoch 0 over :Attack test accuracy: 0.5, Best accuracy : 0.5
-Epoch 1 over :Attack test accuracy: 0.5, Best accuracy : 0.5
-Epoch 2 over :Attack test accuracy: 0.5055000185966492, Best accuracy : 0.5055000185966492
-Epoch 3 over :Attack test accuracy: 0.5096666812896729, Best accuracy : 0.5096666812896729
-Epoch 4 over :Attack test accuracy: 0.4986666738986969, Best accuracy : 0.5096666812896729
-Epoch 5 over :Attack test accuracy: 0.4972222149372101, Best accuracy : 0.5096666812896729
-Epoch 6 over :Attack test accuracy: 0.4978888928890228, Best accuracy : 0.5096666812896729
-Epoch 7 over :Attack test accuracy: 0.49944445490837097, Best accuracy : 0.5096666812896729
-Epoch 8 over :Attack test accuracy: 0.4992222189903259, Best accuracy : 0.5096666812896729
-Epoch 9 over :Attack test accuracy: 0.5034444332122803, Best accuracy : 0.5096666812896729
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 812us/sample - loss: 1.2096 - accuracy: 0.5993 - val_loss: 1.3444 - val_accuracy: 0.5547
+10000/10000 [==============================] - 8s 812us/sample - loss: 1.1035 - accuracy: 0.6528 - val_loss: 1.4033 - val_accuracy: 0.5625
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 1.0217 - accuracy: 0.6555 - val_loss: 1.3415 - val_accuracy: 0.5608
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.8300 - accuracy: 0.7336 - val_loss: 1.3791 - val_accuracy: 0.5932
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.9010 - accuracy: 0.7036 - val_loss: 1.4192 - val_accuracy: 0.5543
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.6648 - accuracy: 0.7989 - val_loss: 1.5019 - val_accuracy: 0.5812
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.7829 - accuracy: 0.7490 - val_loss: 1.3933 - val_accuracy: 0.5720
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.5139 - accuracy: 0.8558 - val_loss: 1.6232 - val_accuracy: 0.5739
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.6950 - accuracy: 0.7868 - val_loss: 1.5665 - val_accuracy: 0.5533
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.4291 - accuracy: 0.8897 - val_loss: 1.7521 - val_accuracy: 0.5824
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 812us/sample - loss: 0.6026 - accuracy: 0.8187 - val_loss: 1.7353 - val_accuracy: 0.5446
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.3570 - accuracy: 0.9154 - val_loss: 2.0157 - val_accuracy: 0.5614
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.5313 - accuracy: 0.8448 - val_loss: 1.7574 - val_accuracy: 0.5537
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.3076 - accuracy: 0.9380 - val_loss: 1.9562 - val_accuracy: 0.5818
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.4652 - accuracy: 0.8781 - val_loss: 1.8502 - val_accuracy: 0.5568
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2618 - accuracy: 0.9540 - val_loss: 2.1465 - val_accuracy: 0.5785
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.4434 - accuracy: 0.8838 - val_loss: 1.9343 - val_accuracy: 0.5490
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2937 - accuracy: 0.9420 - val_loss: 2.0330 - val_accuracy: 0.5916
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.3441 - accuracy: 0.9237 - val_loss: 2.2942 - val_accuracy: 0.5376
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2476 - accuracy: 0.9625 - val_loss: 2.3024 - val_accuracy: 0.5594
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.3352 - accuracy: 0.9245 - val_loss: 2.2765 - val_accuracy: 0.5450
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2163 - accuracy: 0.9728 - val_loss: 2.1624 - val_accuracy: 0.5758
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.3005 - accuracy: 0.9373 - val_loss: 2.3154 - val_accuracy: 0.5333
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2403 - accuracy: 0.9602 - val_loss: 2.2797 - val_accuracy: 0.5848
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2962 - accuracy: 0.9388 - val_loss: 2.3075 - val_accuracy: 0.5561
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.1822 - accuracy: 0.9825 - val_loss: 2.4792 - val_accuracy: 0.5735
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2678 - accuracy: 0.9529 - val_loss: 2.4052 - val_accuracy: 0.5598
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2184 - accuracy: 0.9695 - val_loss: 2.3448 - val_accuracy: 0.5897
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2540 - accuracy: 0.9549 - val_loss: 2.5327 - val_accuracy: 0.5254
-passive global attack on cid: 4 in fed-epoch: 1
-Target model test accuracy 0.532
-Epoch 0 over :Attack test accuracy: 0.7044444680213928, Best accuracy : 0.7044444680213928
-Epoch 1 over :Attack test accuracy: 0.5863333344459534, Best accuracy : 0.7044444680213928
-Epoch 2 over :Attack test accuracy: 0.6895555257797241, Best accuracy : 0.7044444680213928
-Epoch 3 over :Attack test accuracy: 0.7186111211776733, Best accuracy : 0.7186111211776733
-Epoch 4 over :Attack test accuracy: 0.7173333168029785, Best accuracy : 0.7186111211776733
-Epoch 5 over :Attack test accuracy: 0.7185555696487427, Best accuracy : 0.7186111211776733
-Epoch 6 over :Attack test accuracy: 0.7198888659477234, Best accuracy : 0.7198888659477234
-Epoch 7 over :Attack test accuracy: 0.7221666574478149, Best accuracy : 0.7221666574478149
-Epoch 8 over :Attack test accuracy: 0.7222222089767456, Best accuracy : 0.7222222089767456
-Epoch 9 over :Attack test accuracy: 0.7201111316680908, Best accuracy : 0.7222222089767456
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.2081 - accuracy: 0.9730 - val_loss: 2.6352 - val_accuracy: 0.5545
 [fed-epoch 4] cid: 2
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 1.1745 - accuracy: 0.6089 - val_loss: 1.3735 - val_accuracy: 0.5579
+10000/10000 [==============================] - 8s 811us/sample - loss: 1.0588 - accuracy: 0.6652 - val_loss: 1.3288 - val_accuracy: 0.5923
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.9729 - accuracy: 0.6801 - val_loss: 1.3847 - val_accuracy: 0.5592
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.7852 - accuracy: 0.7550 - val_loss: 1.4424 - val_accuracy: 0.5789
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.8485 - accuracy: 0.7220 - val_loss: 1.3887 - val_accuracy: 0.5661
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.6320 - accuracy: 0.8097 - val_loss: 1.5279 - val_accuracy: 0.5832
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.7570 - accuracy: 0.7629 - val_loss: 1.4878 - val_accuracy: 0.5569
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.5132 - accuracy: 0.8559 - val_loss: 1.6183 - val_accuracy: 0.5842
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.6675 - accuracy: 0.7925 - val_loss: 1.5973 - val_accuracy: 0.5556
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.3973 - accuracy: 0.9032 - val_loss: 1.7662 - val_accuracy: 0.5876
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.5844 - accuracy: 0.8275 - val_loss: 1.6372 - val_accuracy: 0.5653
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.3589 - accuracy: 0.9145 - val_loss: 1.9878 - val_accuracy: 0.5638
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.5006 - accuracy: 0.8566 - val_loss: 1.8195 - val_accuracy: 0.5408
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.3059 - accuracy: 0.9331 - val_loss: 2.2459 - val_accuracy: 0.5471
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.4374 - accuracy: 0.8804 - val_loss: 1.8984 - val_accuracy: 0.5623
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2961 - accuracy: 0.9394 - val_loss: 2.0793 - val_accuracy: 0.5841
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.3821 - accuracy: 0.9055 - val_loss: 2.1431 - val_accuracy: 0.5417
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2219 - accuracy: 0.9714 - val_loss: 2.2782 - val_accuracy: 0.5887
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3475 - accuracy: 0.9189 - val_loss: 2.0185 - val_accuracy: 0.5571
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2412 - accuracy: 0.9599 - val_loss: 2.4356 - val_accuracy: 0.5594
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3223 - accuracy: 0.9334 - val_loss: 2.2498 - val_accuracy: 0.5533
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.2456 - accuracy: 0.9569 - val_loss: 2.2837 - val_accuracy: 0.5814
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2986 - accuracy: 0.9394 - val_loss: 2.2296 - val_accuracy: 0.5498
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2110 - accuracy: 0.9712 - val_loss: 2.3808 - val_accuracy: 0.5718
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2634 - accuracy: 0.9550 - val_loss: 2.3622 - val_accuracy: 0.5543
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2197 - accuracy: 0.9676 - val_loss: 2.4858 - val_accuracy: 0.5507
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2564 - accuracy: 0.9546 - val_loss: 2.2815 - val_accuracy: 0.5696
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.2300 - accuracy: 0.9646 - val_loss: 2.4236 - val_accuracy: 0.5658
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2359 - accuracy: 0.9600 - val_loss: 2.4784 - val_accuracy: 0.5573
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.1985 - accuracy: 0.9752 - val_loss: 2.4676 - val_accuracy: 0.5775
 [fed-epoch 4] cid: 3
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 812us/sample - loss: 1.1985 - accuracy: 0.6077 - val_loss: 1.2854 - val_accuracy: 0.5751
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.1027 - accuracy: 0.6524 - val_loss: 1.3325 - val_accuracy: 0.5957
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 1.0178 - accuracy: 0.6611 - val_loss: 1.3352 - val_accuracy: 0.5703
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.8317 - accuracy: 0.7401 - val_loss: 1.4508 - val_accuracy: 0.5673
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.8944 - accuracy: 0.7037 - val_loss: 1.3827 - val_accuracy: 0.5577
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.6573 - accuracy: 0.7997 - val_loss: 1.4921 - val_accuracy: 0.5933
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.7652 - accuracy: 0.7593 - val_loss: 1.4524 - val_accuracy: 0.5706
+10000/10000 [==============================] - 8s 814us/sample - loss: 0.5332 - accuracy: 0.8479 - val_loss: 1.7656 - val_accuracy: 0.5533
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.6858 - accuracy: 0.7869 - val_loss: 1.5661 - val_accuracy: 0.5524
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.4198 - accuracy: 0.8931 - val_loss: 1.7783 - val_accuracy: 0.5810
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.5928 - accuracy: 0.8213 - val_loss: 1.7327 - val_accuracy: 0.5350
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.3471 - accuracy: 0.9225 - val_loss: 1.9696 - val_accuracy: 0.5682
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.5151 - accuracy: 0.8592 - val_loss: 1.7755 - val_accuracy: 0.5504
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.3139 - accuracy: 0.9350 - val_loss: 2.3658 - val_accuracy: 0.5370
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.4533 - accuracy: 0.8790 - val_loss: 1.8550 - val_accuracy: 0.5467
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2772 - accuracy: 0.9466 - val_loss: 2.3530 - val_accuracy: 0.5497
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.4125 - accuracy: 0.8964 - val_loss: 2.0320 - val_accuracy: 0.5398
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.2567 - accuracy: 0.9551 - val_loss: 2.2931 - val_accuracy: 0.5667
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.3369 - accuracy: 0.9277 - val_loss: 2.0965 - val_accuracy: 0.5539
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2634 - accuracy: 0.9538 - val_loss: 2.3075 - val_accuracy: 0.5486
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.3378 - accuracy: 0.9275 - val_loss: 2.1598 - val_accuracy: 0.5411
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2221 - accuracy: 0.9693 - val_loss: 2.2695 - val_accuracy: 0.5805
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2860 - accuracy: 0.9479 - val_loss: 2.2211 - val_accuracy: 0.5607
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.1977 - accuracy: 0.9766 - val_loss: 2.3309 - val_accuracy: 0.5826
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3169 - accuracy: 0.9360 - val_loss: 2.3102 - val_accuracy: 0.5525
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2208 - accuracy: 0.9682 - val_loss: 2.3209 - val_accuracy: 0.5792
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2464 - accuracy: 0.9597 - val_loss: 2.5396 - val_accuracy: 0.5375
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.2279 - accuracy: 0.9647 - val_loss: 2.4886 - val_accuracy: 0.5530
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2638 - accuracy: 0.9500 - val_loss: 2.3296 - val_accuracy: 0.5480
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.1830 - accuracy: 0.9828 - val_loss: 2.4941 - val_accuracy: 0.5743
 [fed-epoch 4] cid: 4
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 812us/sample - loss: 1.1676 - accuracy: 0.6177 - val_loss: 1.3161 - val_accuracy: 0.5657
+10000/10000 [==============================] - 8s 813us/sample - loss: 1.0752 - accuracy: 0.6629 - val_loss: 1.3564 - val_accuracy: 0.5751
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 813us/sample - loss: 0.9944 - accuracy: 0.6701 - val_loss: 1.3770 - val_accuracy: 0.5429
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.8055 - accuracy: 0.7510 - val_loss: 1.3167 - val_accuracy: 0.6011
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.8804 - accuracy: 0.7174 - val_loss: 1.3888 - val_accuracy: 0.5713
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.6382 - accuracy: 0.8098 - val_loss: 1.5085 - val_accuracy: 0.5759
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.7618 - accuracy: 0.7585 - val_loss: 1.4257 - val_accuracy: 0.5759
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.5107 - accuracy: 0.8575 - val_loss: 1.6945 - val_accuracy: 0.5761
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.6639 - accuracy: 0.7962 - val_loss: 1.5339 - val_accuracy: 0.5712
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.4063 - accuracy: 0.8962 - val_loss: 1.9231 - val_accuracy: 0.5705
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.6029 - accuracy: 0.8243 - val_loss: 1.6374 - val_accuracy: 0.5667
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.3875 - accuracy: 0.9029 - val_loss: 1.9472 - val_accuracy: 0.5860
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.4999 - accuracy: 0.8636 - val_loss: 1.8338 - val_accuracy: 0.5539
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.3110 - accuracy: 0.9342 - val_loss: 2.2547 - val_accuracy: 0.5559
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.4473 - accuracy: 0.8845 - val_loss: 1.9404 - val_accuracy: 0.5437
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2428 - accuracy: 0.9607 - val_loss: 2.2306 - val_accuracy: 0.5804
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.3958 - accuracy: 0.9050 - val_loss: 2.1404 - val_accuracy: 0.5349
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2543 - accuracy: 0.9577 - val_loss: 2.2579 - val_accuracy: 0.5768
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3855 - accuracy: 0.9043 - val_loss: 2.3058 - val_accuracy: 0.5312
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2397 - accuracy: 0.9634 - val_loss: 2.3100 - val_accuracy: 0.5793
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.3180 - accuracy: 0.9301 - val_loss: 2.2463 - val_accuracy: 0.5512
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2544 - accuracy: 0.9546 - val_loss: 2.1943 - val_accuracy: 0.5758
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 0.3040 - accuracy: 0.9393 - val_loss: 2.2560 - val_accuracy: 0.5412
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.2166 - accuracy: 0.9693 - val_loss: 2.5627 - val_accuracy: 0.5635
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2879 - accuracy: 0.9433 - val_loss: 2.5374 - val_accuracy: 0.5259
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.1851 - accuracy: 0.9811 - val_loss: 2.4287 - val_accuracy: 0.5824
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3064 - accuracy: 0.9393 - val_loss: 2.3222 - val_accuracy: 0.5518
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.1871 - accuracy: 0.9794 - val_loss: 2.4071 - val_accuracy: 0.5710
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2581 - accuracy: 0.9554 - val_loss: 2.4096 - val_accuracy: 0.5540
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2192 - accuracy: 0.9681 - val_loss: 2.3919 - val_accuracy: 0.5743
 [fed-epoch 5] cid: 0
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 1.0392 - accuracy: 0.6693 - val_loss: 1.3070 - val_accuracy: 0.5870
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.9307 - accuracy: 0.7153 - val_loss: 1.3710 - val_accuracy: 0.5939
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.7395 - accuracy: 0.7699 - val_loss: 1.4763 - val_accuracy: 0.5788
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.6058 - accuracy: 0.8174 - val_loss: 1.5401 - val_accuracy: 0.5927
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.5711 - accuracy: 0.8342 - val_loss: 1.6473 - val_accuracy: 0.5729
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.4251 - accuracy: 0.8888 - val_loss: 1.7581 - val_accuracy: 0.5873
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.4853 - accuracy: 0.8669 - val_loss: 1.9619 - val_accuracy: 0.5591
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.3589 - accuracy: 0.9126 - val_loss: 1.8697 - val_accuracy: 0.5819
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.3939 - accuracy: 0.8985 - val_loss: 1.9221 - val_accuracy: 0.5692
+10000/10000 [==============================] - 8s 815us/sample - loss: 0.2652 - accuracy: 0.9506 - val_loss: 2.1501 - val_accuracy: 0.5800
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3430 - accuracy: 0.9188 - val_loss: 2.1382 - val_accuracy: 0.5550
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2422 - accuracy: 0.9588 - val_loss: 2.2104 - val_accuracy: 0.5802
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3086 - accuracy: 0.9343 - val_loss: 2.2506 - val_accuracy: 0.5622
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2208 - accuracy: 0.9653 - val_loss: 2.4126 - val_accuracy: 0.5749
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2547 - accuracy: 0.9561 - val_loss: 2.2119 - val_accuracy: 0.5682
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2316 - accuracy: 0.9612 - val_loss: 2.3328 - val_accuracy: 0.5855
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2801 - accuracy: 0.9445 - val_loss: 2.3140 - val_accuracy: 0.5633
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2282 - accuracy: 0.9632 - val_loss: 2.3617 - val_accuracy: 0.5854
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2385 - accuracy: 0.9607 - val_loss: 2.2814 - val_accuracy: 0.5783
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.1672 - accuracy: 0.9866 - val_loss: 2.3468 - val_accuracy: 0.5867
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.2362 - accuracy: 0.9617 - val_loss: 2.3489 - val_accuracy: 0.5752
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.1950 - accuracy: 0.9738 - val_loss: 2.3355 - val_accuracy: 0.5833
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.2017 - accuracy: 0.9736 - val_loss: 2.5537 - val_accuracy: 0.5610
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.1970 - accuracy: 0.9733 - val_loss: 2.4167 - val_accuracy: 0.5747
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2506 - accuracy: 0.9561 - val_loss: 2.3201 - val_accuracy: 0.5746
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.1742 - accuracy: 0.9814 - val_loss: 2.3692 - val_accuracy: 0.5865
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.2121 - accuracy: 0.9698 - val_loss: 2.3745 - val_accuracy: 0.5736
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.1712 - accuracy: 0.9836 - val_loss: 2.5337 - val_accuracy: 0.5812
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.1901 - accuracy: 0.9768 - val_loss: 2.4665 - val_accuracy: 0.5677
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.1364 - accuracy: 0.9954 - val_loss: 2.5179 - val_accuracy: 0.5804
 [fed-epoch 5] cid: 1
+passive local attack on cid: 1 in fed_ml-epoch: 5
+Target model test accuracy 0.632
+Epoch 0 over :Attack test accuracy: 0.5, Best accuracy : 0.5
+Epoch 1 over :Attack test accuracy: 0.5595555305480957, Best accuracy : 0.5595555305480957
+Epoch 2 over :Attack test accuracy: 0.5214444398880005, Best accuracy : 0.5595555305480957
+Epoch 3 over :Attack test accuracy: 0.5584444403648376, Best accuracy : 0.5595555305480957
+Epoch 4 over :Attack test accuracy: 0.5571666955947876, Best accuracy : 0.5595555305480957
+Epoch 5 over :Attack test accuracy: 0.5622222423553467, Best accuracy : 0.5622222423553467
+Epoch 6 over :Attack test accuracy: 0.5541666746139526, Best accuracy : 0.5622222423553467
+Epoch 7 over :Attack test accuracy: 0.5538889169692993, Best accuracy : 0.5622222423553467
+Epoch 8 over :Attack test accuracy: 0.543055534362793, Best accuracy : 0.5622222423553467
+Epoch 9 over :Attack test accuracy: 0.5431666374206543, Best accuracy : 0.5622222423553467
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 1.1137 - accuracy: 0.6520 - val_loss: 1.3515 - val_accuracy: 0.5690
+10000/10000 [==============================] - 8s 816us/sample - loss: 0.9983 - accuracy: 0.6848 - val_loss: 1.4309 - val_accuracy: 0.5790
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.8365 - accuracy: 0.7355 - val_loss: 1.4737 - val_accuracy: 0.5580
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.6591 - accuracy: 0.8013 - val_loss: 1.4990 - val_accuracy: 0.5843
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.6687 - accuracy: 0.7948 - val_loss: 1.5386 - val_accuracy: 0.5687
+10000/10000 [==============================] - 8s 814us/sample - loss: 0.4883 - accuracy: 0.8656 - val_loss: 1.6723 - val_accuracy: 0.5905
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.5382 - accuracy: 0.8406 - val_loss: 1.6123 - val_accuracy: 0.5783
+10000/10000 [==============================] - 8s 816us/sample - loss: 0.3621 - accuracy: 0.9146 - val_loss: 1.8808 - val_accuracy: 0.5833
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.4278 - accuracy: 0.8905 - val_loss: 1.9114 - val_accuracy: 0.5628
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.2816 - accuracy: 0.9422 - val_loss: 1.9441 - val_accuracy: 0.5926
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3836 - accuracy: 0.9050 - val_loss: 1.9873 - val_accuracy: 0.5652
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.2731 - accuracy: 0.9462 - val_loss: 2.2086 - val_accuracy: 0.5829
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.3251 - accuracy: 0.9245 - val_loss: 2.0631 - val_accuracy: 0.5765
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2597 - accuracy: 0.9525 - val_loss: 2.0295 - val_accuracy: 0.5988
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2901 - accuracy: 0.9410 - val_loss: 2.2794 - val_accuracy: 0.5587
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.1992 - accuracy: 0.9754 - val_loss: 2.3563 - val_accuracy: 0.5845
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.2757 - accuracy: 0.9482 - val_loss: 2.4330 - val_accuracy: 0.5382
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.1905 - accuracy: 0.9789 - val_loss: 2.4069 - val_accuracy: 0.5875
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2751 - accuracy: 0.9463 - val_loss: 2.3234 - val_accuracy: 0.5596
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.2316 - accuracy: 0.9620 - val_loss: 2.2976 - val_accuracy: 0.5908
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2306 - accuracy: 0.9663 - val_loss: 2.3822 - val_accuracy: 0.5629
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.2007 - accuracy: 0.9740 - val_loss: 2.3349 - val_accuracy: 0.5804
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2534 - accuracy: 0.9541 - val_loss: 2.4009 - val_accuracy: 0.5512
+10000/10000 [==============================] - 8s 814us/sample - loss: 0.1768 - accuracy: 0.9823 - val_loss: 2.4352 - val_accuracy: 0.5793
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.2011 - accuracy: 0.9746 - val_loss: 2.5050 - val_accuracy: 0.5634
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.1933 - accuracy: 0.9753 - val_loss: 2.4244 - val_accuracy: 0.5802
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2025 - accuracy: 0.9740 - val_loss: 2.4316 - val_accuracy: 0.5669
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.1970 - accuracy: 0.9744 - val_loss: 2.3575 - val_accuracy: 0.5886
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2330 - accuracy: 0.9621 - val_loss: 2.2878 - val_accuracy: 0.5589
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.1928 - accuracy: 0.9767 - val_loss: 2.3363 - val_accuracy: 0.5872
+passive global attack on cid: 1 in fed-epoch: 5
+Target model test accuracy 0.592
+Epoch 0 over :Attack test accuracy: 0.7133888602256775, Best accuracy : 0.7133888602256775
+Epoch 1 over :Attack test accuracy: 0.7170555591583252, Best accuracy : 0.7170555591583252
+Epoch 2 over :Attack test accuracy: 0.7327777743339539, Best accuracy : 0.7327777743339539
+Epoch 3 over :Attack test accuracy: 0.6460000276565552, Best accuracy : 0.7327777743339539
+Epoch 4 over :Attack test accuracy: 0.7160000205039978, Best accuracy : 0.7327777743339539
+Epoch 5 over :Attack test accuracy: 0.7465000152587891, Best accuracy : 0.7465000152587891
+Epoch 6 over :Attack test accuracy: 0.7452222108840942, Best accuracy : 0.7465000152587891
+Epoch 7 over :Attack test accuracy: 0.7369999885559082, Best accuracy : 0.7465000152587891
+Epoch 8 over :Attack test accuracy: 0.7261666655540466, Best accuracy : 0.7465000152587891
+Epoch 9 over :Attack test accuracy: 0.7264999747276306, Best accuracy : 0.7465000152587891
 [fed-epoch 5] cid: 2
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 812us/sample - loss: 1.0456 - accuracy: 0.6676 - val_loss: 1.3586 - val_accuracy: 0.5800
+10000/10000 [==============================] - 8s 814us/sample - loss: 0.9322 - accuracy: 0.7126 - val_loss: 1.3141 - val_accuracy: 0.5995
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.7802 - accuracy: 0.7557 - val_loss: 1.3948 - val_accuracy: 0.5814
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.6048 - accuracy: 0.8222 - val_loss: 1.5287 - val_accuracy: 0.5922
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.6095 - accuracy: 0.8166 - val_loss: 1.6110 - val_accuracy: 0.5754
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.4500 - accuracy: 0.8791 - val_loss: 1.6989 - val_accuracy: 0.5938
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.4783 - accuracy: 0.8701 - val_loss: 1.6617 - val_accuracy: 0.5824
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.3644 - accuracy: 0.9107 - val_loss: 1.8615 - val_accuracy: 0.5851
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.4246 - accuracy: 0.8893 - val_loss: 1.8658 - val_accuracy: 0.5668
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2786 - accuracy: 0.9442 - val_loss: 1.9861 - val_accuracy: 0.5853
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.3459 - accuracy: 0.9206 - val_loss: 2.1463 - val_accuracy: 0.5506
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2385 - accuracy: 0.9600 - val_loss: 2.3156 - val_accuracy: 0.5743
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2931 - accuracy: 0.9401 - val_loss: 2.0974 - val_accuracy: 0.5670
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.2294 - accuracy: 0.9635 - val_loss: 2.2715 - val_accuracy: 0.5809
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2634 - accuracy: 0.9507 - val_loss: 2.2155 - val_accuracy: 0.5616
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.2434 - accuracy: 0.9591 - val_loss: 2.3488 - val_accuracy: 0.5737
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2574 - accuracy: 0.9543 - val_loss: 2.2170 - val_accuracy: 0.5666
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.2079 - accuracy: 0.9715 - val_loss: 2.4609 - val_accuracy: 0.5609
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2357 - accuracy: 0.9617 - val_loss: 2.3314 - val_accuracy: 0.5682
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.1930 - accuracy: 0.9764 - val_loss: 2.4049 - val_accuracy: 0.5825
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.2791 - accuracy: 0.9468 - val_loss: 2.2537 - val_accuracy: 0.5685
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.1982 - accuracy: 0.9737 - val_loss: 2.1752 - val_accuracy: 0.5841
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2191 - accuracy: 0.9682 - val_loss: 2.2603 - val_accuracy: 0.5617
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.1777 - accuracy: 0.9817 - val_loss: 2.3110 - val_accuracy: 0.5844
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 0.1934 - accuracy: 0.9764 - val_loss: 2.5831 - val_accuracy: 0.5443
+10000/10000 [==============================] - 8s 814us/sample - loss: 0.2103 - accuracy: 0.9686 - val_loss: 2.4264 - val_accuracy: 0.5733
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.1946 - accuracy: 0.9776 - val_loss: 2.5831 - val_accuracy: 0.5662
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.1637 - accuracy: 0.9871 - val_loss: 2.3724 - val_accuracy: 0.6009
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.1773 - accuracy: 0.9804 - val_loss: 2.4271 - val_accuracy: 0.5592
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.1555 - accuracy: 0.9877 - val_loss: 2.4663 - val_accuracy: 0.5837
 [fed-epoch 5] cid: 3
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 1.0934 - accuracy: 0.6538 - val_loss: 1.4087 - val_accuracy: 0.5580
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.9941 - accuracy: 0.6916 - val_loss: 1.4373 - val_accuracy: 0.5551
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 812us/sample - loss: 0.8205 - accuracy: 0.7394 - val_loss: 1.3742 - val_accuracy: 0.5756
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.6460 - accuracy: 0.8092 - val_loss: 1.4965 - val_accuracy: 0.5911
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.6357 - accuracy: 0.8141 - val_loss: 1.5160 - val_accuracy: 0.5746
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.4779 - accuracy: 0.8660 - val_loss: 1.6696 - val_accuracy: 0.5861
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.5161 - accuracy: 0.8540 - val_loss: 1.6794 - val_accuracy: 0.5669
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.3497 - accuracy: 0.9165 - val_loss: 1.8607 - val_accuracy: 0.5841
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.4251 - accuracy: 0.8916 - val_loss: 1.7737 - val_accuracy: 0.5722
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.2984 - accuracy: 0.9360 - val_loss: 1.8953 - val_accuracy: 0.5996
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3452 - accuracy: 0.9209 - val_loss: 1.9505 - val_accuracy: 0.5638
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2379 - accuracy: 0.9634 - val_loss: 2.1578 - val_accuracy: 0.5833
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3098 - accuracy: 0.9326 - val_loss: 2.1320 - val_accuracy: 0.5666
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2480 - accuracy: 0.9565 - val_loss: 2.1363 - val_accuracy: 0.5831
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.2695 - accuracy: 0.9482 - val_loss: 2.1470 - val_accuracy: 0.5607
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2237 - accuracy: 0.9660 - val_loss: 2.3096 - val_accuracy: 0.5752
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2585 - accuracy: 0.9536 - val_loss: 2.3486 - val_accuracy: 0.5571
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.1954 - accuracy: 0.9748 - val_loss: 2.4423 - val_accuracy: 0.5779
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.2684 - accuracy: 0.9503 - val_loss: 2.3985 - val_accuracy: 0.5519
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2378 - accuracy: 0.9606 - val_loss: 2.2171 - val_accuracy: 0.5922
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.2025 - accuracy: 0.9752 - val_loss: 2.4291 - val_accuracy: 0.5613
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.1793 - accuracy: 0.9805 - val_loss: 2.3411 - val_accuracy: 0.5818
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2554 - accuracy: 0.9522 - val_loss: 2.4842 - val_accuracy: 0.5504
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.1621 - accuracy: 0.9877 - val_loss: 2.4663 - val_accuracy: 0.5847
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.1874 - accuracy: 0.9797 - val_loss: 2.4963 - val_accuracy: 0.5659
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.1679 - accuracy: 0.9845 - val_loss: 2.5278 - val_accuracy: 0.5762
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2304 - accuracy: 0.9622 - val_loss: 2.5611 - val_accuracy: 0.5529
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.2230 - accuracy: 0.9635 - val_loss: 2.3334 - val_accuracy: 0.5882
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.1963 - accuracy: 0.9771 - val_loss: 2.6274 - val_accuracy: 0.5604
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.1748 - accuracy: 0.9817 - val_loss: 2.4181 - val_accuracy: 0.5766
 [fed-epoch 5] cid: 4
 Train on 10000 samples, validate on 10000 samples
 Using learning rate 0.0001
 Epoch 1/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 1.0654 - accuracy: 0.6634 - val_loss: 1.3713 - val_accuracy: 0.5736
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.9753 - accuracy: 0.6952 - val_loss: 1.3244 - val_accuracy: 0.5955
 Using learning rate 0.0001
 Epoch 2/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.7955 - accuracy: 0.7493 - val_loss: 1.5208 - val_accuracy: 0.5578
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.6299 - accuracy: 0.8158 - val_loss: 1.4807 - val_accuracy: 0.6014
 Using learning rate 0.0001
 Epoch 3/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.6400 - accuracy: 0.8053 - val_loss: 1.5711 - val_accuracy: 0.5813
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.4455 - accuracy: 0.8805 - val_loss: 1.7528 - val_accuracy: 0.5786
 Using learning rate 0.0001
 Epoch 4/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.5050 - accuracy: 0.8571 - val_loss: 1.8279 - val_accuracy: 0.5564
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.3587 - accuracy: 0.9155 - val_loss: 1.9223 - val_accuracy: 0.5769
 Using learning rate 0.0001
 Epoch 5/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.4091 - accuracy: 0.8947 - val_loss: 1.9199 - val_accuracy: 0.5625
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2980 - accuracy: 0.9372 - val_loss: 2.0287 - val_accuracy: 0.5808
 Using learning rate 0.0001
 Epoch 6/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.3521 - accuracy: 0.9174 - val_loss: 2.0066 - val_accuracy: 0.5687
+10000/10000 [==============================] - 8s 810us/sample - loss: 0.2457 - accuracy: 0.9572 - val_loss: 2.2519 - val_accuracy: 0.5693
 Using learning rate 0.0001
 Epoch 7/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3140 - accuracy: 0.9331 - val_loss: 2.0239 - val_accuracy: 0.5677
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.2544 - accuracy: 0.9540 - val_loss: 2.1235 - val_accuracy: 0.5859
 Using learning rate 0.0001
 Epoch 8/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2832 - accuracy: 0.9448 - val_loss: 2.1718 - val_accuracy: 0.5660
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.1951 - accuracy: 0.9758 - val_loss: 2.2194 - val_accuracy: 0.5839
 Using learning rate 0.0001
 Epoch 9/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2688 - accuracy: 0.9495 - val_loss: 2.4120 - val_accuracy: 0.5561
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2173 - accuracy: 0.9680 - val_loss: 2.3723 - val_accuracy: 0.5884
 Using learning rate 0.0001
 Epoch 10/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.2456 - accuracy: 0.9578 - val_loss: 2.2801 - val_accuracy: 0.5659
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.2060 - accuracy: 0.9727 - val_loss: 2.3507 - val_accuracy: 0.5808
 Using learning rate 0.0001
 Epoch 11/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2209 - accuracy: 0.9673 - val_loss: 2.6052 - val_accuracy: 0.5610
+10000/10000 [==============================] - 8s 813us/sample - loss: 0.1538 - accuracy: 0.9922 - val_loss: 2.4452 - val_accuracy: 0.5937
 Using learning rate 0.0001
 Epoch 12/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2328 - accuracy: 0.9629 - val_loss: 2.5663 - val_accuracy: 0.5545
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.2090 - accuracy: 0.9708 - val_loss: 2.2971 - val_accuracy: 0.5885
 Using learning rate 0.0001
 Epoch 13/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2265 - accuracy: 0.9654 - val_loss: 2.3942 - val_accuracy: 0.5586
+10000/10000 [==============================] - 8s 812us/sample - loss: 0.2062 - accuracy: 0.9700 - val_loss: 2.3921 - val_accuracy: 0.5814
 Using learning rate 0.0001
 Epoch 14/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.1980 - accuracy: 0.9747 - val_loss: 2.4241 - val_accuracy: 0.5764
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.1867 - accuracy: 0.9774 - val_loss: 2.4028 - val_accuracy: 0.5981
 Using learning rate 0.0001
 Epoch 15/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.1941 - accuracy: 0.9771 - val_loss: 2.4863 - val_accuracy: 0.5735
-[fed-epoch 6] cid: 0
-Train on 10000 samples, validate on 10000 samples
-Using learning rate 0.0001
-Epoch 1/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.9090 - accuracy: 0.7161 - val_loss: 1.3840 - val_accuracy: 0.5871
-Using learning rate 0.0001
-Epoch 2/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.5912 - accuracy: 0.8228 - val_loss: 1.5394 - val_accuracy: 0.5809
-Using learning rate 0.0001
-Epoch 3/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.4447 - accuracy: 0.8804 - val_loss: 1.8999 - val_accuracy: 0.5365
-Using learning rate 0.0001
-Epoch 4/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.3334 - accuracy: 0.9250 - val_loss: 1.9927 - val_accuracy: 0.5831
-Using learning rate 0.0001
-Epoch 5/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2984 - accuracy: 0.9353 - val_loss: 2.0900 - val_accuracy: 0.5833
-Using learning rate 0.0001
-Epoch 6/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2457 - accuracy: 0.9557 - val_loss: 2.2728 - val_accuracy: 0.5776
-Using learning rate 0.0001
-Epoch 7/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2275 - accuracy: 0.9628 - val_loss: 2.3544 - val_accuracy: 0.5767
-Using learning rate 0.0001
-Epoch 8/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.2141 - accuracy: 0.9696 - val_loss: 2.3191 - val_accuracy: 0.5815
-Using learning rate 0.0001
-Epoch 9/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2383 - accuracy: 0.9590 - val_loss: 2.2563 - val_accuracy: 0.5850
-Using learning rate 0.0001
-Epoch 10/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.1991 - accuracy: 0.9723 - val_loss: 2.6230 - val_accuracy: 0.5586
-Using learning rate 0.0001
-Epoch 11/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2322 - accuracy: 0.9605 - val_loss: 2.3204 - val_accuracy: 0.5637
-Using learning rate 0.0001
-Epoch 12/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.1874 - accuracy: 0.9776 - val_loss: 2.5586 - val_accuracy: 0.5686
-Using learning rate 0.0001
-Epoch 13/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.1804 - accuracy: 0.9802 - val_loss: 2.5027 - val_accuracy: 0.5743
-Using learning rate 0.0001
-Epoch 14/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.1943 - accuracy: 0.9739 - val_loss: 2.4505 - val_accuracy: 0.5746
-Using learning rate 0.0001
-Epoch 15/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.1562 - accuracy: 0.9878 - val_loss: 2.4774 - val_accuracy: 0.5870
-[fed-epoch 6] cid: 1
-passive local attack on cid: 6 in fed_ml-epoch: 1
-Target model test accuracy 0.622
-Epoch 0 over :Attack test accuracy: 0.5, Best accuracy : 0.5
-Epoch 1 over :Attack test accuracy: 0.5, Best accuracy : 0.5
-Epoch 2 over :Attack test accuracy: 0.5592222213745117, Best accuracy : 0.5592222213745117
-Epoch 3 over :Attack test accuracy: 0.5473889112472534, Best accuracy : 0.5592222213745117
-Epoch 4 over :Attack test accuracy: 0.5538889169692993, Best accuracy : 0.5592222213745117
-Epoch 5 over :Attack test accuracy: 0.5583333373069763, Best accuracy : 0.5592222213745117
-Epoch 6 over :Attack test accuracy: 0.5473889112472534, Best accuracy : 0.5592222213745117
-Epoch 7 over :Attack test accuracy: 0.5387222170829773, Best accuracy : 0.5592222213745117
-Epoch 8 over :Attack test accuracy: 0.5397777557373047, Best accuracy : 0.5592222213745117
-Epoch 9 over :Attack test accuracy: 0.5389444231987, Best accuracy : 0.5592222213745117
-Train on 10000 samples, validate on 10000 samples
-Using learning rate 0.0001
-Epoch 1/15
-10000/10000 [==============================] - 8s 812us/sample - loss: 1.0160 - accuracy: 0.6816 - val_loss: 1.5325 - val_accuracy: 0.5527
-Using learning rate 0.0001
-Epoch 2/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.6750 - accuracy: 0.7954 - val_loss: 1.5359 - val_accuracy: 0.5814
-Using learning rate 0.0001
-Epoch 3/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.5063 - accuracy: 0.8582 - val_loss: 1.8680 - val_accuracy: 0.5595
-Using learning rate 0.0001
-Epoch 4/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.3819 - accuracy: 0.9065 - val_loss: 1.8541 - val_accuracy: 0.5687
-Using learning rate 0.0001
-Epoch 5/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3156 - accuracy: 0.9300 - val_loss: 2.0459 - val_accuracy: 0.5739
-Using learning rate 0.0001
-Epoch 6/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2679 - accuracy: 0.9482 - val_loss: 2.1354 - val_accuracy: 0.5714
-Using learning rate 0.0001
-Epoch 7/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2479 - accuracy: 0.9559 - val_loss: 2.1900 - val_accuracy: 0.5771
-Using learning rate 0.0001
-Epoch 8/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.2260 - accuracy: 0.9644 - val_loss: 2.3040 - val_accuracy: 0.5718
-Using learning rate 0.0001
-Epoch 9/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2348 - accuracy: 0.9604 - val_loss: 2.3017 - val_accuracy: 0.5796
-Using learning rate 0.0001
-Epoch 10/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2060 - accuracy: 0.9706 - val_loss: 2.3194 - val_accuracy: 0.5782
-Using learning rate 0.0001
-Epoch 11/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.1918 - accuracy: 0.9758 - val_loss: 2.4872 - val_accuracy: 0.5792
-Using learning rate 0.0001
-Epoch 12/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.1929 - accuracy: 0.9728 - val_loss: 2.4158 - val_accuracy: 0.5667
-Using learning rate 0.0001
-Epoch 13/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.1950 - accuracy: 0.9744 - val_loss: 2.4270 - val_accuracy: 0.5802
-Using learning rate 0.0001
-Epoch 14/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.1777 - accuracy: 0.9793 - val_loss: 2.4707 - val_accuracy: 0.5746
-Using learning rate 0.0001
-Epoch 15/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.1917 - accuracy: 0.9750 - val_loss: 2.4842 - val_accuracy: 0.5761
-passive global attack on cid: 6 in fed-epoch: 1
-Target model test accuracy 0.583
-Epoch 0 over :Attack test accuracy: 0.7470555305480957, Best accuracy : 0.7470555305480957
-Epoch 1 over :Attack test accuracy: 0.6142222285270691, Best accuracy : 0.7470555305480957
-Epoch 2 over :Attack test accuracy: 0.7229999899864197, Best accuracy : 0.7470555305480957
-Epoch 3 over :Attack test accuracy: 0.7184444665908813, Best accuracy : 0.7470555305480957
-Epoch 4 over :Attack test accuracy: 0.7523333430290222, Best accuracy : 0.7523333430290222
-Epoch 5 over :Attack test accuracy: 0.7307222485542297, Best accuracy : 0.7523333430290222
-Epoch 6 over :Attack test accuracy: 0.7493333220481873, Best accuracy : 0.7523333430290222
-Epoch 7 over :Attack test accuracy: 0.7515000104904175, Best accuracy : 0.7523333430290222
-Epoch 8 over :Attack test accuracy: 0.7427777647972107, Best accuracy : 0.7523333430290222
-Epoch 9 over :Attack test accuracy: 0.7374444603919983, Best accuracy : 0.7523333430290222
-[fed-epoch 6] cid: 2
-Train on 10000 samples, validate on 10000 samples
-Using learning rate 0.0001
-Epoch 1/15
-10000/10000 [==============================] - 8s 812us/sample - loss: 0.9496 - accuracy: 0.7039 - val_loss: 1.3396 - val_accuracy: 0.5960
-Using learning rate 0.0001
-Epoch 2/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.6232 - accuracy: 0.8150 - val_loss: 1.5409 - val_accuracy: 0.5838
-Using learning rate 0.0001
-Epoch 3/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.4457 - accuracy: 0.8802 - val_loss: 1.8293 - val_accuracy: 0.5645
-Using learning rate 0.0001
-Epoch 4/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.3813 - accuracy: 0.9025 - val_loss: 1.7922 - val_accuracy: 0.5910
-Using learning rate 0.0001
-Epoch 5/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2821 - accuracy: 0.9449 - val_loss: 2.0286 - val_accuracy: 0.5842
-Using learning rate 0.0001
-Epoch 6/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2441 - accuracy: 0.9579 - val_loss: 2.2282 - val_accuracy: 0.5622
-Using learning rate 0.0001
-Epoch 7/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2508 - accuracy: 0.9533 - val_loss: 2.1165 - val_accuracy: 0.5806
-Using learning rate 0.0001
-Epoch 8/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2429 - accuracy: 0.9565 - val_loss: 2.2119 - val_accuracy: 0.5814
-Using learning rate 0.0001
-Epoch 9/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.1670 - accuracy: 0.9866 - val_loss: 2.4739 - val_accuracy: 0.5804
-Using learning rate 0.0001
-Epoch 10/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.1708 - accuracy: 0.9837 - val_loss: 2.6027 - val_accuracy: 0.5630
-Using learning rate 0.0001
-Epoch 11/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2221 - accuracy: 0.9649 - val_loss: 2.4488 - val_accuracy: 0.5646
-Using learning rate 0.0001
-Epoch 12/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2213 - accuracy: 0.9615 - val_loss: 2.3619 - val_accuracy: 0.5634
-Using learning rate 0.0001
-Epoch 13/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.1838 - accuracy: 0.9800 - val_loss: 2.4306 - val_accuracy: 0.5726
-Using learning rate 0.0001
-Epoch 14/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.1532 - accuracy: 0.9890 - val_loss: 2.4952 - val_accuracy: 0.5805
-Using learning rate 0.0001
-Epoch 15/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.1762 - accuracy: 0.9799 - val_loss: 2.7316 - val_accuracy: 0.5532
-[fed-epoch 6] cid: 3
-Train on 10000 samples, validate on 10000 samples
-Using learning rate 0.0001
-Epoch 1/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.9725 - accuracy: 0.6923 - val_loss: 1.3792 - val_accuracy: 0.5905
-Using learning rate 0.0001
-Epoch 2/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.6351 - accuracy: 0.8081 - val_loss: 1.7117 - val_accuracy: 0.5605
-Using learning rate 0.0001
-Epoch 3/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.4715 - accuracy: 0.8705 - val_loss: 1.6430 - val_accuracy: 0.5840
-Using learning rate 0.0001
-Epoch 4/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3670 - accuracy: 0.9124 - val_loss: 1.8941 - val_accuracy: 0.5675
-Using learning rate 0.0001
-Epoch 5/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2855 - accuracy: 0.9403 - val_loss: 2.1051 - val_accuracy: 0.5675
-Using learning rate 0.0001
-Epoch 6/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.2732 - accuracy: 0.9433 - val_loss: 2.1372 - val_accuracy: 0.5844
-Using learning rate 0.0001
-Epoch 7/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2571 - accuracy: 0.9509 - val_loss: 2.1969 - val_accuracy: 0.5795
-Using learning rate 0.0001
-Epoch 8/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2183 - accuracy: 0.9658 - val_loss: 2.3219 - val_accuracy: 0.5818
-Using learning rate 0.0001
-Epoch 9/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.1587 - accuracy: 0.9886 - val_loss: 2.4892 - val_accuracy: 0.5701
-Using learning rate 0.0001
-Epoch 10/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2107 - accuracy: 0.9670 - val_loss: 2.4425 - val_accuracy: 0.5602
-Using learning rate 0.0001
-Epoch 11/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2295 - accuracy: 0.9611 - val_loss: 2.3558 - val_accuracy: 0.5800
-Using learning rate 0.0001
-Epoch 12/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.1822 - accuracy: 0.9784 - val_loss: 2.3604 - val_accuracy: 0.5721
-Using learning rate 0.0001
-Epoch 13/15
-10000/10000 [==============================] - 8s 807us/sample - loss: 0.2185 - accuracy: 0.9642 - val_loss: 2.3938 - val_accuracy: 0.5718
-Using learning rate 0.0001
-Epoch 14/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.1836 - accuracy: 0.9780 - val_loss: 2.6332 - val_accuracy: 0.5499
-Using learning rate 0.0001
-Epoch 15/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.1794 - accuracy: 0.9778 - val_loss: 2.6092 - val_accuracy: 0.5532
-[fed-epoch 6] cid: 4
-Train on 10000 samples, validate on 10000 samples
-Using learning rate 0.0001
-Epoch 1/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.9321 - accuracy: 0.7065 - val_loss: 1.5135 - val_accuracy: 0.5738
-Using learning rate 0.0001
-Epoch 2/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.6130 - accuracy: 0.8197 - val_loss: 1.5795 - val_accuracy: 0.5782
-Using learning rate 0.0001
-Epoch 3/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.4520 - accuracy: 0.8728 - val_loss: 1.6670 - val_accuracy: 0.5832
-Using learning rate 0.0001
-Epoch 4/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.3586 - accuracy: 0.9106 - val_loss: 1.9865 - val_accuracy: 0.5698
-Using learning rate 0.0001
-Epoch 5/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2956 - accuracy: 0.9355 - val_loss: 2.0382 - val_accuracy: 0.5810
-Using learning rate 0.0001
-Epoch 6/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.2622 - accuracy: 0.9517 - val_loss: 2.1572 - val_accuracy: 0.5766
-Using learning rate 0.0001
-Epoch 7/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.2397 - accuracy: 0.9600 - val_loss: 2.3368 - val_accuracy: 0.5644
-Using learning rate 0.0001
-Epoch 8/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.2330 - accuracy: 0.9596 - val_loss: 2.3610 - val_accuracy: 0.5552
-Using learning rate 0.0001
-Epoch 9/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.1968 - accuracy: 0.9737 - val_loss: 2.4130 - val_accuracy: 0.5751
-Using learning rate 0.0001
-Epoch 10/15
-10000/10000 [==============================] - 8s 808us/sample - loss: 0.1924 - accuracy: 0.9736 - val_loss: 2.4785 - val_accuracy: 0.5783
-Using learning rate 0.0001
-Epoch 11/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.1915 - accuracy: 0.9753 - val_loss: 2.3397 - val_accuracy: 0.5784
-Using learning rate 0.0001
-Epoch 12/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.2145 - accuracy: 0.9652 - val_loss: 2.3986 - val_accuracy: 0.5823
-Using learning rate 0.0001
-Epoch 13/15
-10000/10000 [==============================] - 8s 810us/sample - loss: 0.1894 - accuracy: 0.9756 - val_loss: 2.4826 - val_accuracy: 0.5698
-Using learning rate 0.0001
-Epoch 14/15
-10000/10000 [==============================] - 8s 811us/sample - loss: 0.1783 - accuracy: 0.9791 - val_loss: 2.5154 - val_accuracy: 0.5757
-Using learning rate 0.0001
-Epoch 15/15
-10000/10000 [==============================] - 8s 809us/sample - loss: 0.1525 - accuracy: 0.9888 - val_loss: 2.6485 - val_accuracy: 0.5632
+10000/10000 [==============================] - 8s 811us/sample - loss: 0.1922 - accuracy: 0.9754 - val_loss: 2.2805 - val_accuracy: 0.5873

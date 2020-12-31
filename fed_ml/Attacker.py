@@ -26,22 +26,22 @@ class Attacker:
                                                                              attack_percentage=attack_percentage,
                                                                              input_shape=client.input_shape)
 
-    def generate_target_gradient(self, client, instances_num=3):    # 100， 10， 50， 5, 1, 3
-        self.target_member_features = self.data_handler.exposed_features[:instances_num]
-        self.target_member_labels = self.data_handler.exposed_labels[:instances_num]
+    def generate_target_gradient(self, client, instances_num=1):    # 100， 10， 50， 5, 1, 3
+        self.target_member_features = self.data_handler.exposed_features[: instances_num]
+        self.target_member_labels = self.data_handler.exposed_labels[: instances_num]
         with tf.GradientTape() as tape:
             logits = client.model(self.target_member_features)
             loss = CrossEntropyLoss(logits, self.target_member_labels)
-            loss = tf.reduce_mean(loss)
+            # loss = tf.reduce_mean(loss)
         target_var = client.model.trainable_variables
         self.target_gradients = copy.deepcopy(tape.gradient(loss, target_var))
 
-    def craft_global_parameters(self, parameters, update_rate=1.00):
+    def craft_global_parameters(self, parameters, update_rate=0.5):
         size = len(parameters)
         for i in range(size):
             parameters[i] += update_rate * self.target_gradients[i].numpy()
 
-    def craft_adversarial_parameters(self, client, update_rate=1.00):
+    def craft_adversarial_parameters(self, client, update_rate=0.5):
         for var, value in zip(client.model.trainable_variables, self.target_gradients):
             var.assign_add(update_rate * value)
 
