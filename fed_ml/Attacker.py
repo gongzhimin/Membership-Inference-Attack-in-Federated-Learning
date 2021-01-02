@@ -36,7 +36,7 @@ class Attacker:
         target_var = client.model.trainable_variables
         self.target_gradients = copy.deepcopy(tape.gradient(loss, target_var))
 
-    def craft_global_parameters(self, parameters, update_rate=0.5):
+    def craft_global_parameters(self, parameters, update_rate=0.5): # 1.0, 0.1, 0.5, 0.001
         size = len(parameters)
         for i in range(size):
             parameters[i] += update_rate * self.target_gradients[i].numpy()
