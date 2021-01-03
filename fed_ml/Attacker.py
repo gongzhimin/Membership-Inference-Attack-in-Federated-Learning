@@ -13,8 +13,8 @@ class Attacker:
         self.data_handler = None
         self.target_member_features = None
         self.target_member_labels = None
-        gpus = tf.config.experimental.list_physical_devices('GPU')
-        self.gpu = gpus[0].name
+        # gpus = tf.config.experimental.list_physical_devices('GPU')
+        # self.gpu = gpus[0].name
 
     def declare_attack(self, attack_type, cid, fed_ep):
         self.attack_msg = ATTACK_MSG(attack_type, cid, fed_ep)
@@ -38,14 +38,14 @@ class Attacker:
         target_var = client.model.trainable_variables
         self.target_gradients = copy.deepcopy(tape.gradient(loss, target_var))
 
-    def craft_global_parameters(self, parameters, update_rate=0.5): # 1.0, 0.1, 0.5, 0.001
-        size = len(parameters)
-        for i in range(size):
-            parameters[i] += update_rate * self.target_gradients[i].numpy()
+    def craft_global_parameters(self, parameters, learning_rate=0.001): # 1.0, 0.1, 0.5, 0.001
+       size = len(parameters)
+       for i in range(size):
+            parameters[i] += learning_rate * self.target_gradients[i].numpy()
 
-    def craft_adversarial_parameters(self, client, update_rate=0.5):
+    def craft_adversarial_parameters(self, client, learning_rate=0.001):
         for var, value in zip(client.model.trainable_variables, self.target_gradients):
-            var.assign_add(update_rate * value)
+            var.assign_add(learning_rate * value)
 
     def membership_inference_attack(self, client):
         target_model = client.model
@@ -56,9 +56,9 @@ class Attacker:
             attack_datahandler=self.data_handler,
             layers_to_exploit=[6],
             gradients_to_exploit=[6],
-            device=self.gpu, epochs=10,
+            # device=self.gpu,
+            epochs=10,
             attack_msg=self.attack_msg,
             model_name=self.attack_msg.attack_type)
         attackobj.train_attack()
         # attackobj.test_attack()
-

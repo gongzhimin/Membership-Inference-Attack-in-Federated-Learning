@@ -110,7 +110,7 @@ class initialize(object):
                  target_attack_model,
                  train_datahandler,
                  attack_datahandler,
-                 device=None,
+                 # device=None,
                  optimizer="adam",
                  model_name="sample_model",
                  layers_to_exploit=None,
@@ -140,7 +140,7 @@ class initialize(object):
         self.layers_to_exploit = layers_to_exploit
         self.gradients_to_exploit = gradients_to_exploit
         self.exploit_loss = exploit_loss
-        self.device = device
+        # self.device = device
         self.exploit_label = exploit_label
         self.epochs = epochs
         self.learning_rate = learning_rate
@@ -441,46 +441,46 @@ class initialize(object):
             nmtrainset, nmtestset, self.attack_datahandler.batch_size)
         # main training procedure begins
 
-        with tf.device(self.device):
-            best_accuracy = 0
-            for e in range(self.epochs):
-                zipped = zip(mtrainset, nmtrainset)
-                for ((mfeatures, mlabels), (nmfeatures, nmlabels)) in zipped:
-                    with tf.GradientTape() as tape:
-                        tape.reset()
-                        # Getting outputs of forward pass of attack model
-                        moutputs = self.forward_pass(model, mfeatures, mlabels)
-                        nmoutputs = self.forward_pass(model, nmfeatures, nmlabels)
-                        # Computing the true values for loss function according
-                        memtrue = tf.ones(moutputs.shape)
-                        nonmemtrue = tf.zeros(nmoutputs.shape)
-                        target = tf.concat((memtrue, nonmemtrue), 0)
-                        probs = tf.concat((moutputs, nmoutputs), 0)
-                        attackloss = mse(target, probs)
-                    # Computing gradients
+        # with tf.device(self.device):
+        best_accuracy = 0
+        for e in range(self.epochs):
+            zipped = zip(mtrainset, nmtrainset)
+            for ((mfeatures, mlabels), (nmfeatures, nmlabels)) in zipped:
+                with tf.GradientTape() as tape:
+                    tape.reset()
+                    # Getting outputs of forward pass of attack model
+                    moutputs = self.forward_pass(model, mfeatures, mlabels)
+                    nmoutputs = self.forward_pass(model, nmfeatures, nmlabels)
+                    # Computing the true values for loss function according
+                    memtrue = tf.ones(moutputs.shape)
+                    nonmemtrue = tf.zeros(nmoutputs.shape)
+                    target = tf.concat((memtrue, nonmemtrue), 0)
+                    probs = tf.concat((moutputs, nmoutputs), 0)
+                    attackloss = mse(target, probs)
+                # Computing gradients
 
-                    grads = tape.gradient(attackloss, self.attackmodel.variables)
-                    self.optimizer.apply_gradients(zip(grads, self.attackmodel.variables))
+                grads = tape.gradient(attackloss, self.attackmodel.variables)
+                self.optimizer.apply_gradients(zip(grads, self.attackmodel.variables))
 
-                # Calculating Attack accuracy
-                attack_acc(probs > 0.5, target)
+            # Calculating Attack accuracy
+            attack_acc(probs > 0.5, target)
 
-                attack_accuracy = self.attack_accuracy(mtestset, nmtestset)
-                if attack_accuracy > best_accuracy:
-                    best_accuracy = attack_accuracy
+            attack_accuracy = self.attack_accuracy(mtestset, nmtestset)
+            if attack_accuracy > best_accuracy:
+                best_accuracy = attack_accuracy
 
-                with self.summary_writer.as_default(), tf.name_scope(self.model_name):
-                    tf.summary.scalar('loss', np.average(attackloss), step=e + 1)
-                    tf.summary.scalar('accuracy', attack_accuracy, step=e + 1)
+            with self.summary_writer.as_default(), tf.name_scope(self.model_name):
+                tf.summary.scalar('loss', np.average(attackloss), step=e + 1)
+                tf.summary.scalar('accuracy', attack_accuracy, step=e + 1)
 
-                print("Epoch {} over :"
-                      "Attack test accuracy: {}, Best accuracy : {}"
-                      .format(e, attack_accuracy, best_accuracy))
+            print("Epoch {} over :"
+                  "Attack test accuracy: {}, Best accuracy : {}"
+                  .format(e, attack_accuracy, best_accuracy))
 
-                self.logger.info("Epoch {} over,"
-                                 "Attack loss: {},"
-                                 "Attack accuracy: {}"
-                                 .format(e, attackloss, attack_accuracy))
+            self.logger.info("Epoch {} over,"
+                             "Attack loss: {},"
+                             "Attack accuracy: {}"
+                             .format(e, attackloss, attack_accuracy))
         # main training procedure ends
 
         data = None
@@ -522,36 +522,36 @@ class initialize(object):
         path = '{}/plots'.format(self.log_name)
         if not os.path.exists(path):
             os.makedirs(path)
-        with tf.device(self.device):
-            for (mfeatures, mlabels) in mtrainset:
-                # Getting outputs of forward pass of attack model
-                moutputs = self.forward_pass(model, mfeatures, mlabels)
-                mgradientnorm = self.get_gradient_norms(
-                    model, mfeatures, mlabels)
-                # Computing the true values for loss function according
-                mpreds.extend(moutputs.numpy())
-                mlab.extend(mlabels)
-                mfeat.extend(mfeatures)
-                mgradnorm.extend(mgradientnorm)
-                memtrue = np.ones(moutputs.shape)
-                mtrue.extend(memtrue)
+        # with tf.device(self.device):
+        for (mfeatures, mlabels) in mtrainset:
+            # Getting outputs of forward pass of attack model
+            moutputs = self.forward_pass(model, mfeatures, mlabels)
+            mgradientnorm = self.get_gradient_norms(
+                model, mfeatures, mlabels)
+            # Computing the true values for loss function according
+            mpreds.extend(moutputs.numpy())
+            mlab.extend(mlabels)
+            mfeat.extend(mfeatures)
+            mgradnorm.extend(mgradientnorm)
+            memtrue = np.ones(moutputs.shape)
+            mtrue.extend(memtrue)
 
-            for (nmfeatures, nmlabels) in nmtrainset:
-                # Getting outputs of forward pass of attack model
-                nmoutputs = self.forward_pass(
-                    model, nmfeatures, nmlabels)
-                nmgradientnorm = self.get_gradient_norms(
-                    model, nmfeatures, nmlabels)
-                # Computing the true values for loss function according
-                nmpreds.extend(nmoutputs.numpy())
-                nmlab.extend(nmlabels)
-                nmfeat.extend(nmfeatures)
-                nmgradnorm.extend(nmgradientnorm)
-                nonmemtrue = np.zeros(nmoutputs.shape)
-                nmtrue.extend(nonmemtrue)
+        for (nmfeatures, nmlabels) in nmtrainset:
+            # Getting outputs of forward pass of attack model
+            nmoutputs = self.forward_pass(
+                model, nmfeatures, nmlabels)
+            nmgradientnorm = self.get_gradient_norms(
+                model, nmfeatures, nmlabels)
+            # Computing the true values for loss function according
+            nmpreds.extend(nmoutputs.numpy())
+            nmlab.extend(nmlabels)
+            nmfeat.extend(nmfeatures)
+            nmgradnorm.extend(nmgradientnorm)
+            nonmemtrue = np.zeros(nmoutputs.shape)
+            nmtrue.extend(nonmemtrue)
 
-            target = tf.concat((mtrue, nmtrue), 0)
-            probs = tf.concat((mpreds, nmpreds), 0)
+        target = tf.concat((mtrue, nmtrue), 0)
+        probs = tf.concat((mpreds, nmpreds), 0)
 
         font = {
             'weight': 'bold',
