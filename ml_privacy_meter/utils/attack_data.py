@@ -1,7 +1,6 @@
 import numpy as np
 
 import tensorflow as tf
-from sklearn.utils import shuffle
 
 
 def compute_hashes(to_compute):
