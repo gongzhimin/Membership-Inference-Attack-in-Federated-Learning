@@ -28,13 +28,13 @@ from .meminf_modules.create_cnn import (cnn_for_cnn_gradients,
                                         cnn_for_fcn_gradients)
 from .meminf_modules.create_fcn import fcn_module
 
-gpus = tf.config.experimental.list_physical_devices('GPU')
-if gpus:
-    try:
-        for gpu in gpus:
-            tf.config.experimental.set_memory_growth(gpu, True)
-    except RuntimeError as e:
-        print(e)
+# gpus = tf.config.experimental.list_physical_devices('GPU')
+# if gpus:
+#     try:
+#         for gpu in gpus:
+#             tf.config.experimental.set_memory_growth(gpu, True)
+#     except RuntimeError as e:
+#         print(e)
 
 # Sets soft placement below for GPU memory issues
 # tf.config.set_soft_device_placement(True)

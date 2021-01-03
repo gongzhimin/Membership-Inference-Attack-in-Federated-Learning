@@ -13,6 +13,8 @@ class Attacker:
         self.data_handler = None
         self.target_member_features = None
         self.target_member_labels = None
+        gpus = tf.config.experimental.list_physical_devices('GPU')
+        self.gpu = gpus[0].name
 
     def declare_attack(self, attack_type, cid, fed_ep):
         self.attack_msg = ATTACK_MSG(attack_type, cid, fed_ep)
@@ -54,7 +56,7 @@ class Attacker:
             attack_datahandler=self.data_handler,
             layers_to_exploit=[6],
             gradients_to_exploit=[6],
-            device=None, epochs=10,
+            device=self.gpu, epochs=10,
             attack_msg=self.attack_msg,
             model_name=self.attack_msg.attack_type)
         attackobj.train_attack()
