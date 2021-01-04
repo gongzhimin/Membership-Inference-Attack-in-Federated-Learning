@@ -1,0 +1,22 @@
+@startuml memberinf_fed_class_diagram
+class Server {
+    +globalParameters
+    +accumulateLocalParameters()
+    +updateGlobalParameters()
+}
+
+class Client {
+    +localParameters
+    +downloadGlobalParameters()
+    +trainLocalModel()
+    +updateLocalParameters()
+}
+
+class Attacker {
+    +attackMessage
+    +membershipInferenceAttack()
+}
+
+Client ...left> Server
+Attacker ...up> Client
+@enduml

@@ -13,8 +13,6 @@ class Attacker:
         self.data_handler = None
         self.target_member_features = None
         self.target_member_labels = None
-        # gpus = tf.config.experimental.list_physical_devices('GPU')
-        # self.gpu = gpus[0].name
 
     def declare_attack(self, attack_type, cid, fed_ep):
         self.attack_msg = ATTACK_MSG(attack_type, cid, fed_ep)
@@ -28,7 +26,7 @@ class Attacker:
                                                                              attack_percentage=attack_percentage,
                                                                              input_shape=client.input_shape)
 
-    def generate_target_gradient(self, client, instances_num=1):    # 100， 10， 50， 5, 1, 3
+    def generate_target_gradient(self, client, instances_num=100):    # 100， 10， 50， 5, 1, 3
         self.target_member_features = self.data_handler.exposed_features[: instances_num]
         self.target_member_labels = self.data_handler.exposed_labels[: instances_num]
         with tf.GradientTape() as tape:
@@ -55,10 +53,9 @@ class Attacker:
             train_datahandler=self.data_handler,
             attack_datahandler=self.data_handler,
             layers_to_exploit=[6],
-            gradients_to_exploit=[6],
-            # device=self.gpu,
+            # gradients_to_exploit=[6],
             epochs=10,
             attack_msg=self.attack_msg,
             model_name=self.attack_msg.attack_type)
         attackobj.train_attack()
-        # attackobj.test_attack()
+        attackobj.test_attack()
