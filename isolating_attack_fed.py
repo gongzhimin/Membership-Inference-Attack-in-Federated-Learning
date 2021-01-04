@@ -50,7 +50,7 @@ if __name__ == "__main__":
             current_local_parameters = client.upload_local_parameters()
             server.accumulate_local_parameters(current_local_parameters)
             # Perform isolating attack.
-            if client_id == target_cid and ep % 2 == 1:
+            if client_id == target_cid:
                 print("isolating attack on cid: {} in fed-epoch: {}".format(client_id, ep))
                 attacker.declare_attack("IA", target_cid, ep)
                 # attacker.generate_attack_data(client)

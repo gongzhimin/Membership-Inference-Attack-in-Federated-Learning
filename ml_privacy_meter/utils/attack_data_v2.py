@@ -66,8 +66,10 @@ class AttackData:
         train_data.y = re_categorical(train_data.y)
         test_data.y = re_categorical(test_data.y)
 
-        self.exposed_features = self.train_data.x[:self.attack_size]
-        self.exposed_labels = self.train_data.y[:self.attack_size]
+        self.exposed_member_features = self.train_data.x[:self.attack_size]
+        self.exposed_member_labels = self.train_data.y[:self.attack_size]
+        self.exposed_nonmember_features = self.test_data.x[:self.attack_size]
+        self.exposed_nonmember_labels = self.test_data.y[:self.attack_size]
 
         self.input_channels = self.input_shape[-1]
 
@@ -80,7 +82,7 @@ class AttackData:
         Loads, normalizes and batches training data.
         Returns a tf.data.Dataset object for training
         """
-        m_features, m_labels = self.exposed_features, self.exposed_labels
+        m_features, m_labels = self.exposed_member_features, self.exposed_member_labels
         nm_features, nm_labels = self.test_data.x[:self.attack_size], self.test_data.y[:self.attack_size]
 
         mtrain = get_tfdataset(m_features, m_labels)

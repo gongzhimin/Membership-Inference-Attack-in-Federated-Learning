@@ -42,11 +42,11 @@ if __name__ == "__main__":
         for client_id in active_clients:
             client.current_cid = client_id
             print("[fed-epoch {}] cid: {}".format(ep, client_id))
-            if ep == target_ep and client_id == target_cid:
+            if client_id == target_cid:
+                print("Craft the global parameters in each epoch.")
                 client.download_global_parameters(server.global_parameters)
                 attacker.generate_target_gradient(client)
                 attacker.craft_global_parameters(server.global_parameters)
-                print("the global parameters have been crafted.")
             client.download_global_parameters(server.global_parameters)
             client.train_local_model()
             # Accumulate local parameters.

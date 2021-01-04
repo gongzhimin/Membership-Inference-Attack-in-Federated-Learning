@@ -28,26 +28,26 @@ from .meminf_modules.create_cnn import (cnn_for_cnn_gradients,
                                         cnn_for_fcn_gradients)
 from .meminf_modules.create_fcn import fcn_module
 
-# gpus = tf.config.experimental.list_physical_devices('GPU')
-# if gpus:
-#     try:
-#         for gpu in gpus:
-#             tf.config.experimental.set_memory_growth(gpu, True)
-#     except RuntimeError as e:
-#         print(e)
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+    try:
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+    except RuntimeError as e:
+        print(e)
 
 # Sets soft placement below for GPU memory issues
-# tf.config.set_soft_device_placement(True)
-#
-# ioldinit = tf.compat.v1.Session.__init__
-#
-#
-# def myinit(session_object, target='', graph=None, config=None):
-#     config = tf.ConfigProto(allow_soft_placement=True,
-#                             log_device_placement=True)
-#
-#
-# tf.compat.v1.Session.__init__ = myinit
+tf.config.set_soft_device_placement(True)
+
+ioldinit = tf.compat.v1.Session.__init__
+
+
+def myinit(session_object, target='', graph=None, config=None):
+    config = tf.compat.v1.ConfigProto(allow_soft_placement=True,
+                            log_device_placement=True)
+
+
+tf.compat.v1.Session.__init__ = myinit
 
 # To decide what attack component (FCN or CNN) to
 # use on the basis of the layer name.

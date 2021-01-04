@@ -27,11 +27,15 @@ class Attacker:
                                                                              input_shape=client.input_shape)
 
     def generate_target_gradient(self, client, instances_num=100):    # 100， 10， 50， 5, 1, 3
-        self.target_member_features = self.data_handler.exposed_features[: instances_num]
-        self.target_member_labels = self.data_handler.exposed_labels[: instances_num]
+        self.target_member_features = self.data_handler.exposed_member_features[: instances_num]
+        self.target_member_labels = self.data_handler.exposed_member_labels[: instances_num]
+        self.target_nonmember_features = self.data_handler.exposed_nonmember_features[: instances_num]
+        self.target_nonmember_labels = self.data_handler.exposed_nonmember_labels[: instances_num]
+        self.target_features = self.target_member_features + self.target_nonmember_features
+        self.target_labels = self.target_member_labels + self.target_nonmember_labels
         with tf.GradientTape() as tape:
-            logits = client.model(self.target_member_features)
-            loss = CrossEntropyLoss(logits, self.target_member_labels)
+            logits = client.model(self.target_features)
+            loss = CrossEntropyLoss(logits, self.target_labels)
             # loss = tf.reduce_mean(loss)
         target_var = client.model.trainable_variables
         self.target_gradients = copy.deepcopy(tape.gradient(loss, target_var))
