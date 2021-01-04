@@ -41,8 +41,11 @@ class Attacker:
         self.target_gradients = copy.deepcopy(tape.gradient(loss, target_var))
 
     def craft_global_parameters(self, parameters, learning_rate=0.001): # 1.0, 0.1, 0.5, 0.001
-       size = len(parameters)
-       for i in range(size):
+        if parameters is None:
+            # There is no global parameters at the first epoch.
+            return
+        size = len(parameters)
+        for i in range(size):
             parameters[i] += learning_rate * self.target_gradients[i].numpy()
 
     def craft_adversarial_parameters(self, client, learning_rate=0.001):

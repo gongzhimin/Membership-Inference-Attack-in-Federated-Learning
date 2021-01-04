@@ -28,8 +28,8 @@ if __name__ == "__main__":
 
     """Target the attack."""
     target_cid = 1
-    target_ep = 5
-    attacker.declare_attack("GGAA", target_cid, target_ep)
+    # target_ep = 5
+    attacker.declare_attack("GGAA", target_cid, 1)
     attacker.generate_attack_data(client)
 
     """Begin training."""
@@ -42,8 +42,9 @@ if __name__ == "__main__":
         for client_id in active_clients:
             client.current_cid = client_id
             print("[fed-epoch {}] cid: {}".format(ep, client_id))
+            # The attacker repeats gradient ascend algorithm for each epoch of the training.
             if client_id == target_cid:
-                print("Craft the global parameters in each epoch.")
+                print("Craft the global parameters received by cid: {} in fed-epoch: {}.".format(client_id, ep))
                 client.download_global_parameters(server.global_parameters)
                 attacker.generate_target_gradient(client)
                 attacker.craft_global_parameters(server.global_parameters)
@@ -52,8 +53,9 @@ if __name__ == "__main__":
             # Accumulate local parameters.
             current_local_parameters = client.upload_local_parameters()
             server.accumulate_local_parameters(current_local_parameters)
-            if ep == target_ep and client_id == target_cid:
+            if ep % 2 == 1 and client_id == target_cid:
                 print("global gradient ascent attack on cid: {} in fed-epoch: {}".format(client_id, ep))
+                attacker.declare_attack("GGAA", target_cid, ep)
                 attacker.membership_inference_attack(client)
         # Update global parameters in each epoch.
         server.update_global_parameters(len(active_clients))
