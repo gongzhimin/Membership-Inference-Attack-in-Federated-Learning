@@ -507,7 +507,7 @@ class initialize(object):
         '''
         Test the attack model on dataset and save plots for visualization.
         '''
-        mtrainset, nmtrainset, _, _ = self.train_datahandler.load_vis(2048, log_name=self.log_name)
+        mtrainset, nmtrainset, _, _ = self.train_datahandler.load_vis(256, log_name=self.log_name)
         model = self.target_train_model
         mpreds = []
         mlab = []

@@ -68,8 +68,7 @@ mkl_fft=1.2.0=py37h23d657b_0
 mkl_random=1.1.1=py37h0573a6f_0
 multidict=4.7.6=py37h7b6447c_1
 ncurses=6.2=he6710b0_1
-numpy=1.19.2=py37h54aff64_0
-numpy-base=1.19.2=py37hfa32c7d_0
+numpy=1.18.1=pypi_0
 oauthlib=3.1.0=py_0
 olefile=0.46=py37_0
 openssl=1.1.1i=h27cfd23_0
