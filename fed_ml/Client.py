@@ -30,7 +30,7 @@ class Clients:
         # self.adversarial_cid = -1
 
 
-    def train_local_model(self):
+    def train_local_model(self, local_epochs=15):
         """
         Train one client with its own data for one fed-epoch.
         """
@@ -51,7 +51,7 @@ class Clients:
 
         # Train the keras model with method `fit`.
         self.model.fit(features_train, labels_train,
-                        batch_size=32, epochs=15,
+                        batch_size=32, epochs=local_epochs,
                         validation_data=(features_test, labels_test),
                         shuffle=True, callbacks=[callback])
 
