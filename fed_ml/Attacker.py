@@ -13,6 +13,10 @@ class Attacker:
         self.data_handler = None
         self.target_member_features = None
         self.target_member_labels = None
+        self.target_nonmember_features = None
+        self.target_nonmember_labels = None
+        self.target_features = None
+        self.target_labels = None
 
     def declare_attack(self, attack_type, cid, fed_ep):
         self.attack_msg = ATTACK_MSG(attack_type, cid, fed_ep)
@@ -26,7 +30,7 @@ class Attacker:
                                                                              attack_percentage=attack_percentage,
                                                                              input_shape=client.input_shape)
 
-    def generate_target_gradient(self, client, instances_num=100):    # 100， 10， 50， 5, 1, 3
+    def generate_target_gradient(self, client, instances_num=20):    # 100, 20
         self.target_member_features = self.data_handler.exposed_member_features[: instances_num]
         self.target_member_labels = self.data_handler.exposed_member_labels[: instances_num]
         self.target_nonmember_features = self.data_handler.exposed_nonmember_features[: instances_num]
@@ -40,15 +44,16 @@ class Attacker:
         target_var = client.model.trainable_variables
         self.target_gradients = copy.deepcopy(tape.gradient(loss, target_var))
 
-    def craft_global_parameters(self, parameters, learning_rate=0.001): # 1.0, 0.1, 0.5, 0.001
+    def craft_global_parameters(self, parameters, learning_rate=0.0001): # 1.0, 0.1, 0.5, 0.001. 0.0001
         if parameters is None:
             # There is no global parameters at the first epoch.
             return
+        parameters_copyed = copy.deepcopy(parameters)
         size = len(parameters)
         for i in range(size):
-            parameters[i] += learning_rate * self.target_gradients[i].numpy()
+            parameters_copyed[i] += learning_rate * self.target_gradients[i].numpy()
 
-    def craft_adversarial_parameters(self, client, learning_rate=0.001):
+    def craft_adversarial_parameters(self, client, learning_rate=0.0001):
         for var, value in zip(client.model.trainable_variables, self.target_gradients):
             var.assign_add(learning_rate * value)
 
@@ -65,4 +70,4 @@ class Attacker:
             attack_msg=self.attack_msg,
             model_name=self.attack_msg.attack_type)
         attackobj.train_attack()
-        attackobj.test_attack()
+        # attackobj.test_attack()
