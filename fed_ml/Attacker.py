@@ -30,13 +30,15 @@ class Attacker:
                                                                              attack_percentage=attack_percentage,
                                                                              input_shape=client.input_shape)
 
-    def generate_target_gradient(self, client, instances_num=20):    # 100, 20
+    def generate_target_gradient(self, client, instances_num=1):    # 100, 20, 5, 1
         self.target_member_features = self.data_handler.exposed_member_features[: instances_num]
         self.target_member_labels = self.data_handler.exposed_member_labels[: instances_num]
-        self.target_nonmember_features = self.data_handler.exposed_nonmember_features[: instances_num]
-        self.target_nonmember_labels = self.data_handler.exposed_nonmember_labels[: instances_num]
-        self.target_features = self.target_member_features + self.target_nonmember_features
-        self.target_labels = self.target_member_labels + self.target_nonmember_labels
+        # self.target_nonmember_features = self.data_handler.exposed_nonmember_features[: instances_num]
+        # self.target_nonmember_labels = self.data_handler.exposed_nonmember_labels[: instances_num]
+        # self.target_features = self.target_member_features + self.target_nonmember_features
+        # self.target_labels = self.target_member_labels + self.target_nonmember_labels
+        self.target_features = self.target_member_features
+        self.target_labels = self.target_member_labels
         with tf.GradientTape() as tape:
             logits = client.model(self.target_features)
             loss = CrossEntropyLoss(logits, self.target_labels)
@@ -44,14 +46,13 @@ class Attacker:
         target_var = client.model.trainable_variables
         self.target_gradients = copy.deepcopy(tape.gradient(loss, target_var))
 
-    def craft_global_parameters(self, parameters, learning_rate=0.0001): # 1.0, 0.1, 0.5, 0.001. 0.0001
+    def craft_global_parameters(self, parameters, learning_rate=0.00001): # 1.0, 0.1, 0.5, 0.001. 0.0001
         if parameters is None:
             # There is no global parameters at the first epoch.
             return
-        parameters_copyed = copy.deepcopy(parameters)
         size = len(parameters)
         for i in range(size):
-            parameters_copyed[i] += learning_rate * self.target_gradients[i].numpy()
+            parameters[i] += learning_rate * self.target_gradients[i].numpy()
 
     def craft_adversarial_parameters(self, client, learning_rate=0.0001):
         for var, value in zip(client.model.trainable_variables, self.target_gradients):
