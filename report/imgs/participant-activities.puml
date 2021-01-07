@@ -1,4 +1,5 @@
 @startuml participant-activities
+skinparam handwritten true
 (*) --> "0. Train local model without downloading global parameters" as node1
 note right: Federated learning environment was just established
 

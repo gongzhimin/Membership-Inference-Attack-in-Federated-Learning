@@ -30,7 +30,9 @@ class Attacker:
                                                                              attack_percentage=attack_percentage,
                                                                              input_shape=client.input_shape)
 
-    def generate_target_gradient(self, client, instances_num=1):    # 100, 20, 5, 1
+    def generate_target_gradient(self, client, instances_num=40):    # 100, 20, 5, 1
+        # self.target_member_features = self.data_handler.exposed_member_features
+        # self.target_member_labels = self.data_handler.exposed_member_labels
         self.target_member_features = self.data_handler.exposed_member_features[: instances_num]
         self.target_member_labels = self.data_handler.exposed_member_labels[: instances_num]
         # self.target_nonmember_features = self.data_handler.exposed_nonmember_features[: instances_num]
@@ -46,7 +48,7 @@ class Attacker:
         target_var = client.model.trainable_variables
         self.target_gradients = copy.deepcopy(tape.gradient(loss, target_var))
 
-    def craft_global_parameters(self, parameters, learning_rate=0.00001): # 1.0, 0.1, 0.5, 0.001. 0.0001
+    def craft_global_parameters(self, parameters, learning_rate=0.0001): # 1.0, 0.1, 0.5, 0.001. 0.0001
         if parameters is None:
             # There is no global parameters at the first epoch.
             return
@@ -65,8 +67,8 @@ class Attacker:
             target_attack_model=target_model,
             train_datahandler=self.data_handler,
             attack_datahandler=self.data_handler,
-            layers_to_exploit=[6],
-            # gradients_to_exploit=[6],
+            layers_to_exploit=[],
+            gradients_to_exploit=[6],
             epochs=10,
             attack_msg=self.attack_msg,
             model_name=self.attack_msg.attack_type)

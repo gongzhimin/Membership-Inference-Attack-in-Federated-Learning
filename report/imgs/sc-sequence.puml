@@ -1,4 +1,5 @@
 @startuml sc-sequence
+skinparam handwritten true
 actor Participant
 database "Central aggregator"
 autonumber

@@ -1,4 +1,5 @@
 @startuml memberinf_fed_deployment_diagram
+skinparam handwritten true
 skinparam rectangle {
     RoundCorner 25
 }

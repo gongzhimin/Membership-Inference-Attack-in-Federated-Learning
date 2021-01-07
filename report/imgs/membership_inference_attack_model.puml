@@ -1,0 +1,15 @@
+@startuml membership_inference_attack_model
+skinparam handwritten true
+skinparam rectangle {
+    RoundCorner 25
+}
+rectangle "Target Model" as tm
+rectangle "Attack Model" as am
+note right: data ∈ training set?
+card "(data record, class label)" as record {
+    
+}
+record -right-> tm : "predict(data)"
+record -down-> am : "label"
+tm --> am : prediction
+@enduml
