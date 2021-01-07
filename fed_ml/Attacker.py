@@ -67,7 +67,7 @@ class Attacker:
             target_attack_model=target_model,
             train_datahandler=self.data_handler,
             attack_datahandler=self.data_handler,
-            layers_to_exploit=[],
+            layers_to_exploit=[6],
             gradients_to_exploit=[6],
             epochs=10,
             attack_msg=self.attack_msg,

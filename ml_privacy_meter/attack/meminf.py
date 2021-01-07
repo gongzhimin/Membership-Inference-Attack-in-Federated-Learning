@@ -324,6 +324,8 @@ class initialize(object):
                 loss = CrossEntropyLoss(logits, label)
             # TODO: key point to perform gradient ascent
             targetvars = model.variables
+            if self.is_gradient_ascent:
+                pass
             grads = tape.gradient(loss, targetvars)
             # Add gradient wrt crossentropy loss to gradient_arr
             gradient_arr.append(grads)
