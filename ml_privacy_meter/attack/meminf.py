@@ -119,7 +119,8 @@ class initialize(object):
                  exploit_label=True,
                  learning_rate=0.001,
                  epochs=100,
-                 attack_msg=None):
+                 attack_msg=None,
+                 is_gradient_ascent=False):
         # change all layers to have dtype float64
         # tf.keras.backend.set_floatx('float64')
         # Set self.loggers (directory according to todays date)
@@ -147,6 +148,7 @@ class initialize(object):
         self.output_size = int(target_train_model.output.shape[1])
         self.ohencoding = self.attack_utils.createOHE(self.output_size)
         self.model_name = model_name
+        self.is_gradient_ascent = is_gradient_ascent
 
         # Create input containers for attack & encoder model.
         self.create_input_containers()
@@ -320,6 +322,7 @@ class initialize(object):
             with tf.GradientTape() as tape:
                 logits = model(feature)
                 loss = CrossEntropyLoss(logits, label)
+            # TODO: key point to perform gradient ascent
             targetvars = model.variables
             grads = tape.gradient(loss, targetvars)
             # Add gradient wrt crossentropy loss to gradient_arr

@@ -43,11 +43,11 @@ if __name__ == "__main__":
             client.current_cid = client_id
             print("[fed-epoch {}] cid: {}".format(ep, client_id))
             # The attacker repeats gradient ascend algorithm for each epoch of the training.
-            if ep == target_ep and client_id == target_cid:
-                print("Craft the global parameters received by cid: {} in fed-epoch: {}".format(client_id, ep))
-                client.download_global_parameters(server.global_parameters)
-                attacker.generate_target_gradient(client)
-                attacker.craft_global_parameters(server.global_parameters)
+            # if ep == target_ep and client_id == target_cid:
+            #     print("Craft the global parameters received by cid: {} in fed-epoch: {}".format(client_id, ep))
+            #     client.download_global_parameters(server.global_parameters)
+            #     attacker.generate_target_gradient(client)
+            #     attacker.craft_global_parameters(server.global_parameters)
             client.download_global_parameters(server.global_parameters)
             client.train_local_model(local_epochs=1)
             # Accumulate local parameters.
@@ -56,6 +56,6 @@ if __name__ == "__main__":
             if ep == target_ep  and client_id == target_cid:
                 print("global gradient ascent attack on cid: {} in fed-epoch: {}".format(client_id, ep))
                 # attacker.declare_attack("GGAA", target_cid, ep)
-                attacker.membership_inference_attack(client)
+                attacker.membership_inference_attack(client, is_gradient_ascent=True)
         # Update global parameters in each epoch.
         server.update_global_parameters(len(active_clients))
