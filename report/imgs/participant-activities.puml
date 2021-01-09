@@ -1,14 +1,26 @@
 @startuml participant-activities
-skinparam handwritten true
-(*) --> "0. Train local model without downloading global parameters" as node1
-note right: Federated learning environment was just established
+' skinparam handwritten true
+' (*) --> "0. Train local model without downloading global parameters" as node1
+' note right: Federated learning environment was just established
 
-partition "Federated Modeling"
-node1 --> "1. Upload local parameters to central aggregator" as node2
-node2 -right->[global attack window] "2. Download global parameters from central aggregator" as node3
-node3 -up->[local attack window] "3. Train local model with global parameters" as node4
+' partition "Federated Modeling"
+' node1 --> "1. Upload local parameters to central aggregator" as node2
+' node2 -right->[global attack window] "2. Download global parameters from central aggregator" as node3
+' node3 -up->[local attack window] "3. Train local model with global parameters" as node4
+' node4 -left-> node2
+' end partition
+
+' node3 -down->[after n iterations] (*)
+
+(*) --> "0. 在未下载全局参数的情况下训练本地模型" as node1
+note right: 联邦学习环境刚刚搭建
+
+partition "联合建模"
+node1 --> "1. 上传本地参数至服务器" as node2
+node2 -right-> "2. 从服务器下载全局参数" as node3
+node3 -up-> "3. 使用全局参数训练本地模型" as node4
 node4 -left-> node2
 end partition
 
-node3 -down->[...] (*)
+node3 -down->[在n次迭代后] (*)
 @enduml

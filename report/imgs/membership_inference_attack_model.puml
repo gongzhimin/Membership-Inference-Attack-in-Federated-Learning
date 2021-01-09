@@ -1,15 +1,25 @@
 @startuml membership_inference_attack_model
-skinparam handwritten true
+' skinparam handwritten true
 skinparam rectangle {
     RoundCorner 25
 }
-rectangle "Target Model" as tm
-rectangle "Attack Model" as am
-note right: data ∈ training set?
-card "(data record, class label)" as record {
+' rectangle "Target Model" as tm
+' rectangle "Attack Model" as am
+' note right: data ∈ training set?
+' card "(data record, class label)" as record {
+    
+' }
+' record -right-> tm : "predict(data)"
+' record -down-> am : "label"
+' tm --> am : prediction
+
+rectangle 目标模型 as tm
+rectangle 攻击模型 as am
+note right: x 是否属于训练集
+card "x(特征值, 成员资格标签)" as record {
     
 }
-record -right-> tm : "predict(data)"
-record -down-> am : "label"
-tm --> am : prediction
+record -right-> tm : "特征值"
+record -down-> am : "成员资格标签"
+tm -down-> am : 预测向量
 @enduml

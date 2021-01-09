@@ -1,5 +1,5 @@
 @startuml memberinf_fed_class_diagram
-skinparam handwritten true
+' skinparam handwritten true
 class Server {
     +globalParameters
     +accumulateLocalParameters()

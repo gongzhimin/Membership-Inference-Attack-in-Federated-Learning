@@ -71,7 +71,7 @@ class AttackData:
         self.exposed_nonmember_features = self.test_data.x[:self.attack_size]
         self.exposed_nonmember_labels = self.test_data.y[:self.attack_size]
 
-        self.input_channels = self.input_shape[-1]
+        # self.input_channels = self.input_shape[-1]
 
         # Initialize the means and standard deviations for normalization.
         self.means, self.stddevs = None, None

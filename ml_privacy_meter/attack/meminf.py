@@ -311,6 +311,19 @@ class initialize(object):
 
         return loss
 
+    def ascent_gradients(self, model):
+        target_features = self.train_datahandler.exposed_member_features
+        target_labels = self.train_datahandler.exposed_member_labels
+        with tf.GradientTape() as tape:
+            logits = model(target_features)
+            loss = CrossEntropyLoss(logits, target_labels)
+        original_vars = model.variables
+        grads_ascent = tape.gradient(loss, original_vars)
+        return grads_ascent
+
+
+
+
     def compute_gradients(self, model, features, labels):
         """
         Computes gradients given the features and labels using the loss
@@ -322,10 +335,7 @@ class initialize(object):
             with tf.GradientTape() as tape:
                 logits = model(feature)
                 loss = CrossEntropyLoss(logits, label)
-            # TODO: key point to perform gradient ascent
             targetvars = model.variables
-            if self.is_gradient_ascent:
-                pass
             grads = tape.gradient(loss, targetvars)
             # Add gradient wrt crossentropy loss to gradient_arr
             gradient_arr.append(grads)

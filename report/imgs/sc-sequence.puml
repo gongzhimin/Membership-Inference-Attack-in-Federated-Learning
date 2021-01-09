@@ -1,10 +1,17 @@
 @startuml sc-sequence
-skinparam handwritten true
-actor Participant
-database "Central aggregator"
+' skinparam handwritten true
+' actor Participant
+' database "Central aggregator"
+' autonumber
+' Participant -> "Central aggregator": Upload local parameters
+' "Central aggregator" -> "Central aggregator": Accumulate local parameters
+' "Central aggregator" -> "Central aggregator": Update global parameters
+' "Central aggregator" -> Participant: Assign global parameters
+actor 参与者
+database 服务器
 autonumber
-Participant -> "Central aggregator": Upload local parameters
-"Central aggregator" -> "Central aggregator": Accumulate local parameters
-"Central aggregator" -> "Central aggregator": Update global parameters
-"Central aggregator" -> Participant: Assign global parameters
+参与者 -> 服务器:收集本地参数
+服务器 -> 服务器:聚合各方参数
+服务器 -> 服务器:更新全局参数
+服务器 -> 参与者:广播全局参数
 @enduml

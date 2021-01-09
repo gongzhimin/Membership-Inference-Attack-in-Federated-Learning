@@ -1,22 +1,52 @@
 @startuml memberinf_fed_deployment_diagram
-skinparam handwritten true
+' skinparam handwritten true
 skinparam rectangle {
     RoundCorner 25
 }
-cloud "Aggregrator (global parameters <b>W</b>)" as server
-rectangle Participant1 as p1 {
+' cloud "Aggregrator (global parameters <b>W</b>)" as server
+' rectangle Participant1 as p1 {
+'     database "D<sub>1</sub>" as D1
+'     card "f(<b>x</b>; <b>W</b><sub>1</sub><sup>{t}</sup>)" as model1
+'     model1 <-- D1
+'     model1 --> D1
+' }
+' rectangle Participant2 as p2 {
+'     database "D<sub>2</sub>" as D2
+'     card "f(<b>x</b>; <b>W</b><sub>2</sub><sup>{t}</sup>)" as model2
+'     model2 <-- D2
+'     model2 --> D2
+' }
+' rectangle Participant3 as p3 {
+'     database "D<sub>3</sub>" as D3
+'     card "f(<b>x</b>; <b>W</b><sub>3</sub><sup>{t}</sup>)" as model3
+'     model3 <-- D3
+'     model3 --> D3
+' }
+' rectangle "..." as pn {
+'     database "D<sub>n</sub>" as Dn
+'     card "f(<b>x</b>; <b>W</b><sub>n</sub><sup>{t}</sup>)" as modeln
+'     modeln <-- Dn
+'     modeln --> Dn
+' }
+' server <--> p1
+' server <--> p2 : "up=<b>W</b><sub>i</sub><sup>{t}</sup> down=<b>W</b><sup>{t}</sup>"
+' server <--> p3
+' server <--> pn
+
+cloud "服务器 (全局参数 <b>W</b>)" as server
+rectangle 参与者1 as p1 {
     database "D<sub>1</sub>" as D1
     card "f(<b>x</b>; <b>W</b><sub>1</sub><sup>{t}</sup>)" as model1
     model1 <-- D1
     model1 --> D1
 }
-rectangle Participant2 as p2 {
+rectangle 参与者2 as p2 {
     database "D<sub>2</sub>" as D2
     card "f(<b>x</b>; <b>W</b><sub>2</sub><sup>{t}</sup>)" as model2
     model2 <-- D2
     model2 --> D2
 }
-rectangle Participant3 as p3 {
+rectangle 参与者3 as p3 {
     database "D<sub>3</sub>" as D3
     card "f(<b>x</b>; <b>W</b><sub>3</sub><sup>{t}</sup>)" as model3
     model3 <-- D3
