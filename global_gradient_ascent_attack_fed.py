@@ -5,7 +5,7 @@ from fed_ml.Attacker import Attacker
 
 if __name__ == "__main__":
     """Set hyper-parameters."""
-    epoch = 100  # 50, 100
+    epoch = 5  # 50, 100
     learning_rate = 0.0001
     # The ml_privacy_meter can't handle the scenario with too many participants.
     CLIENT_NUMBER = 4
@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     """Target the attack."""
     target_cid = 1
-    target_ep = 95  # 45, 95
+    target_ep = 4  # 45, 95
     attacker.declare_attack("GGAA", target_cid, target_ep)
     attacker.generate_attack_data(client)
 
@@ -49,7 +49,7 @@ if __name__ == "__main__":
             #     attacker.generate_target_gradient(client)
             #     attacker.craft_global_parameters(server.global_parameters)
             client.download_global_parameters(server.global_parameters)
-            client.train_local_model(local_epochs=1)
+            client.train_local_model(local_epochs=30)
             # Accumulate local parameters.
             current_local_parameters = client.upload_local_parameters()
             server.accumulate_local_parameters(current_local_parameters)

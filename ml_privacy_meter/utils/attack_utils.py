@@ -17,7 +17,7 @@ def sanity_check(layers, layers_to_exploit):
             "layer index greater than the last layer"
 
 
-def time_taken(self, start_time, end_time):
+def time_taken(start_time, end_time):
     """
     Calculates difference between 2 times
     """

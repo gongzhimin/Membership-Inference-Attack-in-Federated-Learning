@@ -99,8 +99,8 @@ class AttackData:
         Returns a tf.data.Dataset object for visualization testing
         """
 
-        m_features, m_labels = self.train_data.x, self.train_data.y
-        nm_features, nm_labels = self.test_data.x, self.test_data.y
+        m_features, m_labels = self.train_data.x[2*self.attack_size:], self.train_data.y[2*self.attack_size:]
+        nm_features, nm_labels = self.test_data.x[2*self.attack_size:], self.test_data.y[2*self.attack_size:]
 
         np.save('{}/m_features'.format(log_name), m_features)
         np.save('{}/m_labels'.format(log_name), m_labels)
@@ -120,8 +120,8 @@ class AttackData:
         Loads, normalizes and batches data for testing.
         Returns a tf.data.Dataset object for testing
         """
-        m_features, m_labels = self.train_data.x[self.attack_size:], self.train_data.y[self.attack_size:]
-        nm_features, nm_labels = self.test_data.x[self.attack_size:], self.test_data.y[self.attack_size:]
+        m_features, m_labels = self.train_data.x[self.attack_size : 2*self.attack_size], self.train_data.y[self.attack_size : 2*self.attack_size]
+        nm_features, nm_labels = self.test_data.x[self.attack_size : 2*self.attack_size], self.test_data.y[self.attack_size : 2*self.attack_size]
 
         mtest = get_tfdataset(m_features, m_labels)
         nmtest = get_tfdataset(nm_features, nm_labels)

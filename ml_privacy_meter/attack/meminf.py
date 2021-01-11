@@ -52,7 +52,7 @@ tf.compat.v1.Session.__init__ = myinit
 # To decide what attack component (FCN or CNN) to
 # use on the basis of the layer name.
 # CNN_COMPONENTS_LIST are the layers requiring each input in 3 dimensions.
-# GRAD_COMPONENTS_LIST are the layers which have trainable components for computing gradients
+# GRAD_COMPONENTS_LIST are the layers which have trainable attacker_components for computing gradients
 CNN_COMPONENT_LIST = ['Conv', 'MaxPool']
 GRAD_LAYERS_LIST = ['Conv', 'Dense']
 
@@ -158,7 +158,7 @@ class initialize(object):
         sanity_check(layers, layers_to_exploit)
         sanity_check(layers, gradients_to_exploit)
 
-        # Create individual attack components
+        # Create individual attack attacker_components
         self.create_attack_components(layers)
 
         # Initialize the attack model
@@ -181,7 +181,7 @@ class initialize(object):
             self.gradients_to_exploit))
         self.logger.info("Number of Epochs: {}".format(self.epochs))
         self.logger.info("Learning Rate: {}".format(self.learning_rate))
-        self.logger.info("Optimizer: {}".format(self.learning_rate))
+        self.logger.info("Optimizer: {}".format(self.optimizer))
 
     def create_input_containers(self):
         """
@@ -196,14 +196,13 @@ class initialize(object):
 
     def create_layer_components(self, layers):
         """
-        Creates CNN or FCN components for layers to exploit
+        Creates CNN or FCN attacker_components for layers to exploit
         """
         for l in self.layers_to_exploit:
             # For each layer to exploit, module created and added to self.attackinputs and self.encoderinputs
             layer = layers[l - 1]
             input_shape = layer.output_shape[1]
-            requires_cnn = map(lambda i: i in layer.__class__.__name__,
-                               CNN_COMPONENT_LIST)
+            requires_cnn = map(lambda i: i in layer.__class__.__name__, CNN_COMPONENT_LIST)
             if any(requires_cnn):
                 module = cnn_for_cnn_layeroutputs(layer.output_shape)
             else:

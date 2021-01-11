@@ -75,4 +75,4 @@ class Attacker:
             is_gradient_ascent=is_gradient_ascent
         )
         attackobj.train_attack()
-        # attackobj.test_attack()
+        attackobj.test_attack()

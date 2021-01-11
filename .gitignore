@@ -12,3 +12,5 @@ __pycache__
 #/local_gradient_ascent_attack_fed.py
 #/isolating_gradient_ascent_attack_fed.py
 /membership_inference_attack
+/demos
+/models
