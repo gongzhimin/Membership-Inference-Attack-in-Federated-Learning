@@ -200,7 +200,8 @@ class initialize(object):
         """
         for l in self.layers_to_exploit:
             # For each layer to exploit, module created and added to self.attackinputs and self.encoderinputs
-            layer = layers[l - 1]
+            # layer = layers[l - 1]
+            layer = layers[l]
             input_shape = layer.output_shape[1]
             requires_cnn = map(lambda i: i in layer.__class__.__name__, CNN_COMPONENT_LIST)
             if any(requires_cnn):
@@ -237,7 +238,8 @@ class initialize(object):
         variables = model.variables
         for layerindex in self.gradients_to_exploit:
             # For each gradient to exploit, module created and added to self.attackinputs and self.encoderinputs
-            layer = grad_layers[layerindex - 1]
+            # layer = grad_layers[layerindex - 1]
+            layer = grad_layers[layerindex]
             shape = self.attack_utils.get_gradshape(variables, layerindex)
             requires_cnn = map(lambda i: i in layer.__class__.__name__, CNN_COMPONENT_LIST)
             if any(requires_cnn):

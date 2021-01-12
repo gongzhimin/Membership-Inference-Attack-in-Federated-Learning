@@ -60,11 +60,11 @@ class Clients:
         """ Return all of the variables list"""
         # Isolated participant train in local.
         if self.current_cid == self.isolated_cid:
-            self.isolated_local_parameters = copy.deepcopy(self.model.trainable_variables)
+            self.isolated_local_parameters = copy.deepcopy(self.model.variables)
             size = len(self.isolated_local_parameters)
             for i in range(size):
-                self.isolated_local_parameters[i] = self.model.trainable_variables[i].numpy()
-        return self.model.trainable_variables
+                self.isolated_local_parameters[i] = self.model.variables[i].numpy()
+        return self.model.variables
 
 
     def download_global_parameters(self, global_vars):
@@ -77,7 +77,7 @@ class Clients:
                                optimizer=self.opt,
                                metrics=['accuracy'])
             return
-        client_vars = self.model.trainable_variables
+        client_vars = self.model.variables
         # Isolated participant update parameters locally.
         if self.isolated_cid == self.current_cid:
             assert self.isolated_local_parameters, "Isolated parameters are not initialized!"
