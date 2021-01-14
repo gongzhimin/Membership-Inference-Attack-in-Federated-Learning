@@ -11,6 +11,6 @@ __pycache__
 #/global_gradient_ascent_attack_fed.py
 #/local_gradient_ascent_attack_fed.py
 #/isolating_gradient_ascent_attack_fed.py
-/membership_inference_attack
-/demos
-/models
+#/membership_inference_attack
+#/demos
+#/models

@@ -22,7 +22,8 @@ def fcn_module(inputsize, layer_size=128):
                 bias_initializer='zeros'
             ),
             keraslayers.Dense(
-                64,
+                # 64,
+                1,
                 activation=tf.nn.relu,
                 kernel_initializer=initializer,
                 bias_initializer='zeros'

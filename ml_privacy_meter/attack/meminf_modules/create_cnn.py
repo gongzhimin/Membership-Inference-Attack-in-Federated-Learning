@@ -29,7 +29,7 @@ def cnn_for_fcn_gradients(input_shape):
             keraslayers.Flatten(),
             keraslayers.Dropout(0.2),
             keraslayers.Dense(
-                2024,
+                1024,
                 activation=tf.nn.relu,
                 kernel_initializer=initializer,
                 bias_initializer='zeros'

@@ -130,8 +130,7 @@ class initialize(object):
         self.attack_utils = attack_utils(log_name=self.log_name)
         self.logger = get_logger(self.attack_utils.root_dir, attack_msg.attack_type,
                                  "meminf", "info", time_stamp, log_name=self.log_name)
-        self.aprefix = os.path.join(self.log_name,
-                                    "attack", "tensorboard")
+        self.aprefix = os.path.join(self.log_name, "attack", "tensorboard")
         self.summary_writer = tf.summary.create_file_writer(self.aprefix)
         self.target_train_model = target_train_model
         self.target_attack_model = target_attack_model
@@ -200,14 +199,15 @@ class initialize(object):
         """
         for l in self.layers_to_exploit:
             # For each layer to exploit, module created and added to self.attackinputs and self.encoderinputs
-            # layer = layers[l - 1]
-            layer = layers[l]
+            layer = layers[l - 1]
+            # layer = layers[l]
             input_shape = layer.output_shape[1]
             requires_cnn = map(lambda i: i in layer.__class__.__name__, CNN_COMPONENT_LIST)
             if any(requires_cnn):
                 module = cnn_for_cnn_layeroutputs(layer.output_shape)
             else:
-                module = fcn_module(input_shape, 100)
+                # module = fcn_module(input_shape, 100)
+                module = fcn_module(input_shape, 10)
             self.attackinputs.append(module.input)
             self.encoderinputs.append(module.output)
 
@@ -223,7 +223,8 @@ class initialize(object):
         """
         Creates component if loss value is to be exploited
         """
-        module = fcn_module(1, 100)
+        # module = fcn_module(1, 100)
+        module = fcn_module(1, 10)
         self.attackinputs.append(module.input)
         self.encoderinputs.append(module.output)
 
@@ -238,8 +239,8 @@ class initialize(object):
         variables = model.variables
         for layerindex in self.gradients_to_exploit:
             # For each gradient to exploit, module created and added to self.attackinputs and self.encoderinputs
-            # layer = grad_layers[layerindex - 1]
-            layer = grad_layers[layerindex]
+            layer = grad_layers[layerindex - 1]
+            # layer = grad_layers[layerindex]
             shape = self.attack_utils.get_gradshape(variables, layerindex)
             requires_cnn = map(lambda i: i in layer.__class__.__name__, CNN_COMPONENT_LIST)
             if any(requires_cnn):
@@ -279,8 +280,8 @@ class initialize(object):
         Initializes a `tf.keras.Model` object for attack model.
         The output of the attack is the output of the encoder module.
         """
-        output = self.encoder
-        self.attackmodel = tf.compat.v1.keras.Model(inputs=self.attackinputs, outputs=output)
+        outputs = self.encoder
+        self.attackmodel = tf.compat.v1.keras.Model(inputs=self.attackinputs, outputs=outputs)
 
     def get_layer_outputs(self, model, features):
         """
@@ -290,7 +291,8 @@ class initialize(object):
         layers = model.layers
         for l in self.layers_to_exploit:
             x = model.input
-            y = layers[l - 1].output
+            # y = layers[l - 1].output
+            y = layers[l].output
             # Model created to get output of specified layer
             new_model = tf.compat.v1.keras.Model(x, y)
             predicted = new_model(features)
@@ -312,15 +314,15 @@ class initialize(object):
 
         return loss
 
-    def ascent_gradients(self, model):
-        target_features = self.train_datahandler.exposed_member_features
-        target_labels = self.train_datahandler.exposed_member_labels
-        with tf.GradientTape() as tape:
-            logits = model(target_features)
-            loss = CrossEntropyLoss(logits, target_labels)
-        original_vars = model.variables
-        grads_ascent = tape.gradient(loss, original_vars)
-        return grads_ascent
+    # def ascent_gradients(self, model):
+    #     target_features = self.train_datahandler.exposed_member_features
+    #     target_labels = self.train_datahandler.exposed_member_labels
+    #     with tf.GradientTape() as tape:
+    #         logits = model(target_features)
+    #         loss = CrossEntropyLoss(logits, target_labels)
+    #     original_vars = model.variables
+    #     grads_ascent = tape.gradient(loss, original_vars)
+    #     return grads_ascent
 
 
 
