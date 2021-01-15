@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     """Target the attack."""
     target_cid = 1
-    target_ep = 4  # 45, 95
+    target_ep = 0  # 45, 95
     attacker.declare_attack("GGAA", target_cid, target_ep)
     attacker.generate_attack_data(client)
 

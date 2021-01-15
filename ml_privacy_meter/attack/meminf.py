@@ -1,6 +1,7 @@
 '''
 The Attack class.
 '''
+import copy
 import datetime
 import itertools
 import json
@@ -200,14 +201,12 @@ class initialize(object):
         for l in self.layers_to_exploit:
             # For each layer to exploit, module created and added to self.attackinputs and self.encoderinputs
             layer = layers[l - 1]
-            # layer = layers[l]
             input_shape = layer.output_shape[1]
             requires_cnn = map(lambda i: i in layer.__class__.__name__, CNN_COMPONENT_LIST)
             if any(requires_cnn):
                 module = cnn_for_cnn_layeroutputs(layer.output_shape)
             else:
-                # module = fcn_module(input_shape, 100)
-                module = fcn_module(input_shape, 10)
+                module = fcn_module(input_shape, 100)
             self.attackinputs.append(module.input)
             self.encoderinputs.append(module.output)
 
@@ -223,8 +222,7 @@ class initialize(object):
         """
         Creates component if loss value is to be exploited
         """
-        # module = fcn_module(1, 100)
-        module = fcn_module(1, 10)
+        module = fcn_module(1, 100)
         self.attackinputs.append(module.input)
         self.encoderinputs.append(module.output)
 
@@ -240,7 +238,6 @@ class initialize(object):
         for layerindex in self.gradients_to_exploit:
             # For each gradient to exploit, module created and added to self.attackinputs and self.encoderinputs
             layer = grad_layers[layerindex - 1]
-            # layer = grad_layers[layerindex]
             shape = self.attack_utils.get_gradshape(variables, layerindex)
             requires_cnn = map(lambda i: i in layer.__class__.__name__, CNN_COMPONENT_LIST)
             if any(requires_cnn):
@@ -291,8 +288,8 @@ class initialize(object):
         layers = model.layers
         for l in self.layers_to_exploit:
             x = model.input
-            # y = layers[l - 1].output
-            y = layers[l].output
+            y = layers[l - 1].output
+            # y = layers[l].output
             # Model created to get output of specified layer
             new_model = tf.compat.v1.keras.Model(x, y)
             predicted = new_model(features)
@@ -314,15 +311,10 @@ class initialize(object):
 
         return loss
 
-    # def ascent_gradients(self, model):
-    #     target_features = self.train_datahandler.exposed_member_features
-    #     target_labels = self.train_datahandler.exposed_member_labels
-    #     with tf.GradientTape() as tape:
-    #         logits = model(target_features)
-    #         loss = CrossEntropyLoss(logits, target_labels)
-    #     original_vars = model.variables
-    #     grads_ascent = tape.gradient(loss, original_vars)
-    #     return grads_ascent
+    def ascent_gradients_on_variables(self, gradients, variables):
+        assert len(gradients) == len(variables), "gradients can't match to variables!"
+        for (gradient, variable) in zip(gradients, variables):
+            variable.assign_add(0.0001 * gradient)
 
 
 
@@ -335,11 +327,15 @@ class initialize(object):
         split_labels = self.attack_utils.split(labels)
         gradient_arr = []
         for (feature, label) in zip(split_features, split_labels):
+            copied_model = copy.deepcopy(model)
             with tf.GradientTape() as tape:
-                logits = model(feature)
+                logits = copied_model(feature)
                 loss = CrossEntropyLoss(logits, label)
-            targetvars = model.variables
+            # targetvars = copy.deepcopy(model.variables)
+            targetvars = copied_model.variables
             grads = tape.gradient(loss, targetvars)
+            if self.is_gradient_ascent:
+                self.ascent_gradients_on_variables(grads, targetvars)
             # Add gradient wrt crossentropy loss to gradient_arr
             gradient_arr.append(grads)
 

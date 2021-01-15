@@ -16,13 +16,11 @@ def create_encoder(encoder_inputs):
         activation=tf.nn.relu,
         kernel_initializer=initializer,
         bias_initializer='zeros')(appended)
-    keraslayers.Dropout(0.2)
     encoder = keraslayers.Dense(
         128,
         activation=tf.nn.relu,
         kernel_initializer=initializer,
         bias_initializer='zeros')(encoder)
-    keraslayers.Dropout(0.2)
     encoder = keraslayers.Dense(
         64,
         activation=tf.nn.relu,

@@ -1,3 +1,4 @@
+import copy
 import tensorflow as tf
 from tensorflow.compat.v1.keras.utils import to_categorical
 
@@ -5,6 +6,7 @@ from membership_inference_attack.utils.attacker_utils import AttackerUtils
 from membership_inference_attack.attacker_components.feature_extraction_cnn import *
 from membership_inference_attack.attacker_components.feature_extraction_fcn import *
 from membership_inference_attack.attacker_components.encoder import *
+from membership_inference_attack.utils.losses import *
 
 CNN_COMPONENT_LIST = ["Conv", "MaxPool"]
 GRAD_LAYERS_LIST = ["Conv", "Dense"]
@@ -19,7 +21,8 @@ class MembershipInferenceAttack:
                  exploit_label=True,
                  exploit_loss=True,
                  learning_rate=0.001,
-                 epochs=10):
+                 epochs=10,
+                 gradient_ascent=False):
         layers = target_model.layers
         AttackerUtils.sanity_check(layers, exploited_layer_indexes)
         AttackerUtils.sanity_check(layers, exploited_gradient_indexes)
@@ -32,6 +35,8 @@ class MembershipInferenceAttack:
         self.exploit_loss = exploit_loss
         self.learning_rate = learning_rate
         self.epochs = epochs
+
+        self.gradient_ascent = gradient_ascent
 
         self.target_model_classes_num = int(target_model.output.shape[1])
         self.inference_model = None
@@ -52,9 +57,10 @@ class MembershipInferenceAttack:
 
 
 
+
     def create_layer_extraction_components(self, layers):
         for layer_index in self.exploited_layer_indexes:
-            layer = layers[layer_index]
+            layer = layers[layer_index - 1]
             input_shape = layer.output_shape[1]
             cnn_needed = map(lambda i: i in layers.__class__.__name__, CNN_COMPONENT_LIST)
             if any(cnn_needed):
@@ -81,7 +87,7 @@ class MembershipInferenceAttack:
                 gradient_layers.append(layer)
         variables = target_model.variables
         for layer_index in self.exploited_layer_indexes:
-            layer = gradient_layers[layer_index]
+            layer = gradient_layers[layer_index - 1]
             gradient_shape = AttackerUtils.get_gradient_shape(variables, layer_index)
             cnn_needed = map(lambda i: i in layer.__class__.__name__, CNN_COMPONENT_LIST)
             if any(cnn_needed):
@@ -114,7 +120,7 @@ class MembershipInferenceAttack:
         layers = target_model.layers
         for layer_index in self.exploited_layer_indexes:
             target_model_input= target_model.input
-            layer_output = layers[layer_index].output
+            layer_output = layers[layer_index - 1].output
             hidden_layer_model = tf.compat.v1.keras.Model(target_model_input, layer_output)
             prediction = hidden_layer_model(features)
             self.input_array.append(prediction)
@@ -125,3 +131,33 @@ class MembershipInferenceAttack:
 
     def get_loss(self, target_model, features, labels):
         logits = target_model(features)
+        loss = cross_entropy_loss(logits, labels)
+
+        return loss
+
+    def ascent_gradients_on_variables(self, gradients, variables):
+        assert len(gradients) == len(variables), "gradients can't match to variables!"
+        for (gradient, variable) in zip(gradients, variables):
+            variable.assign_add(0.0001 * gradient)
+
+    def compute_gradients(self, target_model, features, labels):
+        split_features = AttackerUtils.split_variable(features)
+        split_labels = AttackerUtils.split_variable(labels)
+        gradients_array = []
+        for (feature, label) in zip(split_features, split_labels):
+            copied_target_model = copy.deepcopy(target_model)
+            with tf.GradientTape() as tape:
+                logits = copied_target_model(feature)
+                loss = cross_entropy_loss(logits, label)
+            target_variables = copied_target_model.variables
+            gradients = tape.gradient(loss, target_variables)
+            if self.gradient_ascent:
+                self.ascent_gradients_on_variables(gradients, target_variables)
+                gradients = tape.gradient(loss, target_variables)
+            gradients_array.append(gradients)
+
+    def get_gradients(self, target_model, features, labels):
+        gradient_array = self.compute_gradients(target_model, features, labels)
+
+
+
