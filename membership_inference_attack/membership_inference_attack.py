@@ -1,4 +1,5 @@
 import copy
+import numpy as np
 import tensorflow as tf
 from tensorflow.compat.v1.keras.utils import to_categorical
 
@@ -22,7 +23,7 @@ class MembershipInferenceAttack:
                  exploit_loss=True,
                  learning_rate=0.001,
                  epochs=10,
-                 gradient_ascent=False):
+                 ascend_gradients=False):
         layers = target_model.layers
         AttackerUtils.sanity_check(layers, exploited_layer_indexes)
         AttackerUtils.sanity_check(layers, exploited_gradient_indexes)
@@ -36,7 +37,7 @@ class MembershipInferenceAttack:
         self.learning_rate = learning_rate
         self.epochs = epochs
 
-        self.gradient_ascent = gradient_ascent
+        self.ascend_gradients = ascend_gradients
 
         self.target_model_classes_num = int(target_model.output.shape[1])
         self.inference_model = None
@@ -53,10 +54,6 @@ class MembershipInferenceAttack:
         self.encoder = create_encoder(self.encoder_input_tensors)
         # initialize inference model
         self.inference_model = tf.compat.v1.keras.Model(inputs=self.attack_feature_tensors, outputs=self.encoder)
-
-
-
-
 
     def create_layer_extraction_components(self, layers):
         for layer_index in self.exploited_layer_indexes:
@@ -119,14 +116,25 @@ class MembershipInferenceAttack:
     def get_layer_outputs(self, target_model, features):
         layers = target_model.layers
         for layer_index in self.exploited_layer_indexes:
-            target_model_input= target_model.input
+            target_model_input = target_model.input
             layer_output = layers[layer_index - 1].output
             hidden_layer_model = tf.compat.v1.keras.Model(target_model_input, layer_output)
             prediction = hidden_layer_model(features)
             self.input_array.append(prediction)
 
+            layer_input_tensor = target_model.input
+            prior_layer_output_values = features
+            for layer in target_model.layers:
+                layer_output_tensor = layer.output
+                hidden_layer_model = tf.compat.v1.keras.Model(layer_input_tensor, layer_output_tensor)
+                layer_output_values = hidden_layer_model(prior_layer_output_values)
+                # craft the layer outputs
+                prior_layer_output_values = layer_output_values
+                layer_input_tensor = layer.output
+
     def get_one_hot_encoded_labels(self, labels):
         one_hot_encoded_labels = to_categorical(labels, self.target_model_classes_num)
+
         return one_hot_encoded_labels
 
     def get_loss(self, target_model, features, labels):
@@ -135,29 +143,70 @@ class MembershipInferenceAttack:
 
         return loss
 
-    def ascent_gradients_on_variables(self, gradients, variables):
+    def ascend_gradients_on_variables(self, gradients, variables):
         assert len(gradients) == len(variables), "gradients can't match to variables!"
         for (gradient, variable) in zip(gradients, variables):
             variable.assign_add(0.0001 * gradient)
 
+    def revert_variables(self, ascendant_variables, original_values):
+        assert len(ascendant_variables) == len(original_values), "values can't match to variables!"
+        for (value, variable) in zip(original_values, ascendant_variables):
+            variable.assign(value)
+
     def compute_gradients(self, target_model, features, labels):
         split_features = AttackerUtils.split_variable(features)
         split_labels = AttackerUtils.split_variable(labels)
-        gradients_array = []
-        for (feature, label) in zip(split_features, split_labels):
-            copied_target_model = copy.deepcopy(target_model)
+        gradients_array = [[]] * len(split_features)
+        for index, (feature, label) in enumerate(zip(split_features, split_labels)):
             with tf.GradientTape() as tape:
-                logits = copied_target_model(feature)
+                logits = target_model(feature)
                 loss = cross_entropy_loss(logits, label)
-            target_variables = copied_target_model.variables
+            target_variables = target_model.variables
+            copied_target_variables = copy.deepcopy(target_model.variables)
             gradients = tape.gradient(loss, target_variables)
-            if self.gradient_ascent:
-                self.ascent_gradients_on_variables(gradients, target_variables)
-                gradients = tape.gradient(loss, target_variables)
-            gradients_array.append(gradients)
+
+            if self.ascend_gradients:
+                self.ascend_gradients_on_variables(gradients, target_variables)
+                with tf.GradientTape() as ascendant_tape:
+                    logits = target_model(feature)
+                    loss = cross_entropy_loss(logits, label)
+                gradients = ascendant_tape.gradient(loss, target_variables)
+                self.revert_variables(target_variables, copied_target_variables)
+
+            gradients_array[index] = gradients
+
+        return gradients_array
 
     def get_gradients(self, target_model, features, labels):
-        gradient_array = self.compute_gradients(target_model, features, labels)
+        gradients_array = self.compute_gradients(target_model, features, labels)
+        gradients_batch = [[]] * len(gradients_array)
+        for gradients_index, gradients in enumerate(gradients_array):
+            gradient_per_layer = [[]] * len(self.exploited_gradient_indexes)
+            for index, gradient_index in enumerate(self.exploited_gradient_indexes):
+                gradient_index = (gradient_index - 1) * 2
+                gradient_shape = gradients[gradient_index].shape
+                reshaped = (int(gradient_shape[0]), int(gradient_shape[1]), 1)
+                gradient = tf.reshape(gradients[gradient_index], reshaped)
+                gradient_per_layer[index] = gradient
+            gradients_batch[gradients_index] = gradient_per_layer
 
+        gradients_batch = np.asarray(gradients_batch)
+        split_gradients_batch = np.hsplit(gradients_batch, gradients_batch.shape[1])
+        for split_gradients in split_gradients_batch:
+            split_gradients_array = [[]] * len(split_gradients)
+            for index in range(len(split_gradients)):
+                split_gradients_array[index] = split_gradients[index][0]
+            split_gradients_array = np.asarray(split_gradients_array)
 
+            self.input_array.append(split_gradients_array)
 
+    def get_gradient_norms(self, target_model, features, labels):
+        gradients_array = self.compute_gradients(target_model, features, labels)
+        gradients_batch = [[]] * len(gradients_array)
+        for index, gradients in enumerate(gradients_array):
+            gradients_batch[index] = np.linalg.norm(gradients[-1])
+
+        return gradients_batch
+
+    def forward_pass(self, target_model, features, labels):
+        pass

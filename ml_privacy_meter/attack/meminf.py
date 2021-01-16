@@ -316,6 +316,11 @@ class initialize(object):
         for (gradient, variable) in zip(gradients, variables):
             variable.assign_add(0.0001 * gradient)
 
+    def revert_variables(self, ascendant_variables, original_values):
+        assert len(ascendant_variables) == len(original_values), "values can't match to variables!"
+        for (value, variable) in zip(original_values, ascendant_variables):
+            variable.assign(value)
+
 
 
 
@@ -327,15 +332,20 @@ class initialize(object):
         split_labels = self.attack_utils.split(labels)
         gradient_arr = []
         for (feature, label) in zip(split_features, split_labels):
-            copied_model = copy.deepcopy(model)
             with tf.GradientTape() as tape:
-                logits = copied_model(feature)
+                logits = model(feature)
                 loss = CrossEntropyLoss(logits, label)
             # targetvars = copy.deepcopy(model.variables)
-            targetvars = copied_model.variables
+            targetvars = model.variables
+            copied_vars = copy.deepcopy(model.variables)
             grads = tape.gradient(loss, targetvars)
             if self.is_gradient_ascent:
                 self.ascent_gradients_on_variables(grads, targetvars)
+                with tf.GradientTape() as ascendant_tape:
+                    logits = model(feature)
+                    loss = CrossEntropyLoss(logits, label)
+                grads = ascendant_tape.gradient(loss, targetvars)
+                self.revert_variables(targetvars, copied_vars)
             # Add gradient wrt crossentropy loss to gradient_arr
             gradient_arr.append(grads)
 

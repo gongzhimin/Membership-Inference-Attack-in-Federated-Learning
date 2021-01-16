@@ -1,0 +1,10 @@
+#project:
+#  name: membership inference attack in federated learning
+#  author: mingo
+
+common:
+  clients_num: 4
+  fed_epochs: 5
+  local_epochs: 30
+  target_cid: 1
+  target_fed_epoch: 4
