@@ -1,4 +1,5 @@
 import copy
+import yaml
 from collections import namedtuple
 import tensorflow as tf
 
@@ -6,6 +7,8 @@ import ml_privacy_meter
 from ml_privacy_meter.utils.losses import CrossEntropyLoss
 
 ATTACK_MSG = namedtuple("ATTACK_MSG", "attack_type, cid, fed_ep")
+with open("hyper_parameters.yaml", mode='r', encoding="utf-8") as f:
+    hyper_parameters = yaml.load(f, Loader=yaml.FullLoader)
 
 class Attacker:
     def __init__(self):

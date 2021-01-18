@@ -1,0 +1,30 @@
+#project:
+#  name: membership inference attack in federated learning
+#  author: mingo
+
+dataset:
+  input_shape: [32, 32, 3]
+  classes_num: 10
+
+participants:
+  learning_rate: 0.0001
+  fed_epochs: 5
+  local_epochs: 15
+  clients_num: 4
+  client_ratio_per_round: 1.00
+  target_cid: 1
+  target_fed_epoch: 4
+
+attacker_participant:
+  local_epochs: 40
+  attacker_cid: 5
+
+attacker_data_handler:
+  exposed_percentage: 10
+
+inference_model:
+  epochs: 10
+  layers_to_exploit: [6]
+  gradient_to_exploit: [6]
+
+
