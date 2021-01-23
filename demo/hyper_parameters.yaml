@@ -6,7 +6,7 @@ dataset:
   input_shape: [32, 32, 3]
   classes_num: 10
 
-participants:
+participant:
   learning_rate: 0.0001
   fed_epochs: 5
   local_epochs: 15
@@ -17,15 +17,19 @@ participants:
 
 attacker_participant:
   local_epochs: 100
-
   attacker_cid: 2
 
 attacker_data_handler:
+  batch_size: 32
   exposed_percentage: 100
 
 inference_model:
   epochs: 10
-  layers_to_exploit: [6]
-  gradient_to_exploit: [6]
+  learning_rate: 0.0001
+  exploited_layer_indexes: [6]
+  exploited_gradient_indexes: [6]
+  exploit_label: True
+  exploit_loss: True
+  optimizer_name: adam
 
 

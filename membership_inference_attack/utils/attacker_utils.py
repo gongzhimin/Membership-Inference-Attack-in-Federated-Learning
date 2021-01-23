@@ -1,6 +1,5 @@
 import numpy as np
 import tensorflow as tf
-import copy
 
 
 class AttackerUtils:
@@ -17,6 +16,7 @@ class AttackerUtils:
     def get_gradient_shape(variables, layer_index):
         gradient_index = 2 * (layer_index - 1)
         gradient_shape = variables[gradient_index].shape
+
         return gradient_shape
 
     @staticmethod
@@ -26,6 +26,7 @@ class AttackerUtils:
 
     @staticmethod
     def create_one_hot_encoding_matrix(output_classes_num):
+
         return tf.one_hot(tf.range(0, output_classes_num),
                           output_classes_num,
                           dtype=tf.float32)
@@ -33,6 +34,7 @@ class AttackerUtils:
     @staticmethod
     def one_hot_encode(original_labels, one_hot_encoding_matrix):
         labels = tf.cast(original_labels, tf.int32).numpy()
+
         return tf.stack(list(map(lambda x: one_hot_encoding_matrix[x], labels)))
 
     @staticmethod
@@ -58,4 +60,5 @@ class AttackerUtils:
 
         subtraction_data_batch = tf.compat.v1.data.Dataset.from_tensor_slices(
             (subtraction_features, subtraction_labels))
+
         return subtraction_data_batch.batch(batch_size=batch_size)

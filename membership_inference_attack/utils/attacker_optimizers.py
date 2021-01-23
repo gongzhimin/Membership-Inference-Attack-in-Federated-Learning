@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 
-def generate_optimizer(optimizer_name, learning_rate, logger, momentum=0.9, decay=0.0005):
+def generate_optimizer(optimizer_name, learning_rate, logger=None, momentum=0.9, decay=0.0005):
     optimizer_name_lowercase = optimizer_name.lower()
     if optimizer_name_lowercase == "adam":
         return tf.optimizers.Adam(learning_rate)

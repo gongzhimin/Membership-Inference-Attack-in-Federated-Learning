@@ -38,38 +38,38 @@ class AttackerDataHandler():
         self.exposed_nonmember_labels = self.test_data.y[: self.exposed_size]
 
 
-    def load_train_dataset(self):
+    def load_train_data_batches(self):
         """Load data batches for training."""
         member_features, member_labels = self.exposed_member_features, self.exposed_member_labels
         nonmember_features, nonmember_labels = self.exposed_nonmember_features, self.exposed_nonmember_labels
 
-        member_train_dataset = generate_tf_dataset(member_features, member_labels).batch(self.batch_size)
-        nonmember_train_dataset = generate_tf_dataset(nonmember_features, nonmember_labels).batch(self.batch_size)
+        member_train_data_batches = generate_tf_dataset(member_features, member_labels).batch(self.batch_size)
+        nonmember_train_data_batches = generate_tf_dataset(nonmember_features, nonmember_labels).batch(self.batch_size)
 
-        return member_train_dataset, nonmember_train_dataset, nonmember_features, nonmember_labels
+        return member_train_data_batches, nonmember_train_data_batches, nonmember_features, nonmember_labels
 
 
-    def load_test_dataset(self):
+    def load_test_data_batches(self):
         """Load data batches for testing during training the attack model."""
         member_features = self.train_data.x[self.exposed_size : 2 * self.exposed_size]
         member_labels = self.train_data.y[self.exposed_size : 2 * self.exposed_size]
         nonmember_features = self.test_data.x[self.exposed_size : 2 * self.exposed_size]
         nonmember_labels = self.test_data.y[self.exposed_size : 2 * self.exposed_size]
 
-        member_test_dataset = generate_tf_dataset(member_features, member_labels).batch(self.batch_size)
-        nonmember_test_dataset = generate_tf_dataset(nonmember_features, nonmember_labels).batch(self.batch_size)
+        member_test_data_batches = generate_tf_dataset(member_features, member_labels).batch(self.batch_size)
+        nonmember_test_data_batches = generate_tf_dataset(nonmember_features, nonmember_labels).batch(self.batch_size)
 
-        return member_test_dataset, nonmember_test_dataset
+        return member_test_data_batches, nonmember_test_data_batches
 
 
-    def load_visual_dataset(self):
+    def load_visual_data_batches(self):
         """Load data batches for visualization."""
         member_features = self.train_data.x[2 * self.exposed_size:]
         member_labels = self.train_data.y[2 * self.exposed_size:]
         nonmember_features = self.test_data.x[2 * self.exposed_size:]
         nonmember_labels = self.test_data.y[2 * self.exposed_size:]
 
-        member_visual_dataset = generate_tf_dataset(member_features, member_labels).batch(self.batch_size)
-        nonmember_visual_dataset = generate_tf_dataset(nonmember_features, nonmember_labels).batch(self.batch_size)
+        member_visual_data_batches = generate_tf_dataset(member_features, member_labels).batch(self.batch_size)
+        nonmember_visual_data_batches = generate_tf_dataset(nonmember_features, nonmember_labels).batch(self.batch_size)
 
-        return member_visual_dataset, nonmember_visual_dataset, nonmember_features, nonmember_labels
+        return member_visual_data_batches, nonmember_visual_data_batches
