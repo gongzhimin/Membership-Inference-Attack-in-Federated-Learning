@@ -4,7 +4,7 @@ import logging
 
 from fed_exchange_weight_bias.client import *
 from fed_exchange_weight_bias.server import *
-from membership_inference_attack.Attacker import *
+from membership_inference_attack.attacker import *
 from fed_exchange_weight_bias.utils.logger import *
 
 with open("hyper_parameters.yaml", mode='r', encoding="utf-8") as f:

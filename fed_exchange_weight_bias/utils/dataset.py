@@ -35,8 +35,8 @@ def shuffle_data(features, labels):
 
 def load_cifar10():
     (features_train, labels_train), (features_test, labels_test) = tf.compat.v1.keras.datasets.cifar10.load_data()
-    features_train, labels_train = features_train[:100], labels_train[:100]
-    features_test, labels_test = features_test[:20], labels_test[:20]
+    # features_train, labels_train = features_train[:100], labels_train[:100]
+    # features_test, labels_test = features_test[:20], labels_test[:20]
 
     features_train, labels_train = shuffle_data(features_train, labels_train)
     features_test, labels_test = shuffle_data(features_test, labels_test)

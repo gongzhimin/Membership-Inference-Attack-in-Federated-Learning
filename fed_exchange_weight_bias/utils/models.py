@@ -125,16 +125,6 @@ def load_cifar10():
 
 
 
-def train_model(model, train_dataset, test_dataset, epochs):
-    for epoch in range(epochs):
-        if epoch == 25:
-            model.optimizer.lr.assign(model.optimizer.lr / 10)
-        elif epoch == 60:
-            model.optimizer.lr.assign(model.optimizer.lr / 10)
-
-
-
-
 
 if __name__ == '__main__':
     # training_size = 30000
