@@ -10,7 +10,7 @@ def create_cnn_for_fcn_gradients(input_shape):
 
     cnn_for_fcn_gradients = tf.compat.v1.keras.Sequential(
         [
-            keras_layers.Dropout(0.2, input_shpae=(dim0, dim1, 1, ), ),
+            keras_layers.Dropout(0.2, input_shape=(dim0, dim1, 1, ), ),
             keras_layers.Conv2D(
                 100,
                 kernel_size=(1, dim1),
@@ -58,7 +58,7 @@ def create_cnn_for_cnn_layer_outputs(input_shape):
         [
             keras_layers.Conv2D(
                 dim2,
-                kernel_size=(dim1, dim2),
+                kernel_size=(dim0, dim1),
                 strides=(1, 1),
                 padding="valid",
                 activation=tf.nn.relu,

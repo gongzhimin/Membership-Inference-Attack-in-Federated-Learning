@@ -1,7 +1,5 @@
-import copy
-import numpy as np
 import tensorflow as tf
-from tensorflow.compat.v1.keras.utils import to_categorical
+from contextlib import redirect_stdout
 from sklearn.metrics import accuracy_score
 
 from membership_inference_attack.utils.attacker_utils import AttackerUtils
@@ -27,6 +25,7 @@ class MembershipInferenceAttack:
                  learning_rate=0.001,
                  epochs=10,
                  optimizer_name="adam",
+                 logger=None,
                  ascend_gradients=False):
 
         layers = target_model.layers
@@ -43,11 +42,11 @@ class MembershipInferenceAttack:
         self.epochs = epochs
         self.optimizer = generate_optimizer(optimizer_name, learning_rate)
 
+        self.logger = logger
         self.ascend_gradients = ascend_gradients
 
         self.target_model_classes_num = int(target_model.output.shape[1])
-        self.inference_model = None
-        self.encoder = None
+        self.one_hot_encoding_matrix = AttackerUtils.create_one_hot_encoding_matrix(self.target_model_classes_num)
 
         # initialize input containers of inference model
         self.input_array = []
@@ -61,14 +60,33 @@ class MembershipInferenceAttack:
         # initialize inference model
         self.inference_model = tf.compat.v1.keras.Model(inputs=self.attack_feature_tensors, outputs=self.encoder)
 
-        self.logger = None
         self.visualizer = Visualizer()
+
+        self.log_info()
+
+    def log_info(self):
+        self.logger.info("[membership inference model] exploit label: {}, "
+                         "exploit loss: {}".format(self.exploit_label, self.exploit_loss))
+
+        self.logger.info("[membership inference model] exploit layer indexes: {}, "
+                         "exploit gradient indexes: {}".format(self.exploited_layer_indexes,
+                                                               self.exploited_gradient_indexes))
+
+        self.logger.info("[membership inference model] optimizer: {}, "
+                         "learning rate: {}, "
+                         "epochs: {}".format(self.optimizer._name, self.learning_rate, self.epochs))
+
+        self.logger.info("[membership inference model] inference model details: ")
+        filename = self.logger.root.handlers[0].baseFilename
+        with open(filename, "a") as f:
+            with redirect_stdout(f):
+                self.inference_model.summary()
 
     def create_layer_extraction_components(self, layers):
         for layer_index in self.exploited_layer_indexes:
             layer = layers[layer_index - 1]
             input_shape = layer.output_shape[1]
-            cnn_needed = map(lambda i: i in layers.__class__.__name__, CNN_COMPONENT_LIST)
+            cnn_needed = map(lambda i: i in layer.__class__.__name__, CNN_COMPONENT_LIST)
             if any(cnn_needed):
                 layer_extraction_component = create_cnn_for_cnn_layer_outputs(layer.output_shape)
             else:
@@ -132,7 +150,7 @@ class MembershipInferenceAttack:
             self.input_array.append(prediction)
 
     def generate_one_hot_encoded_labels(self, labels):
-        one_hot_encoded_labels = to_categorical(labels, self.target_model_classes_num)
+        one_hot_encoded_labels = AttackerUtils.one_hot_encode(labels, self.one_hot_encoding_matrix)
         self.input_array.append(one_hot_encoded_labels)
 
     def compute_loss(self, target_model, features, labels):
@@ -195,7 +213,6 @@ class MembershipInferenceAttack:
             for index in range(len(split_gradients)):
                 split_gradients_array[index] = split_gradients[index][0]
             split_gradients_array = np.asarray(split_gradients_array)
-
             self.input_array.append(split_gradients_array)
 
     def compute_gradient_norms(self, target_model, features, labels):
@@ -240,8 +257,8 @@ class MembershipInferenceAttack:
             nonmember_probabilities = self.forward_pass(target_model, nonmember_features, nonmember_labels)
             y_pred = tf.concat((member_probabilities, nonmember_probabilities), 0)
 
-            member_ones = tf.ones(member_probabilities, dtype=bool)
-            nonmember_zeros = tf.zeros(nonmember_probabilities, dtype=bool)
+            member_ones = tf.ones(member_probabilities.shape, dtype=bool)
+            nonmember_zeros = tf.zeros(nonmember_probabilities.shape, dtype=bool)
             y_true = tf.concat((member_ones, nonmember_zeros), 0)
 
             attack_accuracy(y_pred > 0.5, y_true)
@@ -258,6 +275,7 @@ class MembershipInferenceAttack:
         target_model_pred = target_model(nonmember_train_features)
         target_model_accuracy = accuracy_score(nonmember_train_labels, np.argmax(target_model_pred, axis=1))
         print("Target model test accuracy: ", target_model_accuracy)
+        self.logger.info("[membership inference model] target model test accuracy: {}".format(target_model_accuracy))
 
         member_test_data_batches, nonmember_test_data_batches = self.attacker_data_handler.load_test_data_batches()
         member_test_data_batches = AttackerUtils.generate_subtraction(member_train_data_batches,
@@ -271,6 +289,7 @@ class MembershipInferenceAttack:
         # attack_accuracy = tf.compat.v1.keras.metrics.Accuracy("attack_accuracy", dtype=tf.float32)
         zipped = zip(member_train_data_batches, nonmember_train_data_batches)
         print("Train membership inference attack model.")
+        self.logger.info("[membership inference model] train membership inference attack model")
         for epoch in range(self.epochs):
             for ((member_features, member_labels), (nonmember_features, nonmember_labels)) in zipped:
                 with tf.GradientTape() as tape:
@@ -297,12 +316,25 @@ class MembershipInferenceAttack:
             print("attack epoch {}: attack test accuracy: {}, best attack accuracy: {}".format((epoch + 1),
                                                                                                attack_accuracy,
                                                                                                best_attack_accuracy))
+            self.logger.info("[membership inference model] attack epoch: {}, "
+                             "attack test accuracy: {}, "
+                             "best attack accuracy: {}".format((epoch + 1),
+                                                               attack_accuracy,
+                                                               best_attack_accuracy))
 
-    def test_inference_model(self):
-        member_visual_data_batches, nonmember_visual_data_batches = \
-            self.attacker_data_handler.load_visual_data_batches()
+    def visually_test_inference_model(self, target_model):
+        member_visual_data_batches, nonmember_visual_data_batches, \
+            nonmember_visual_features, nonmember_visual_labels = self.attacker_data_handler.load_visual_data_batches()
         zipped = zip(member_visual_data_batches, nonmember_visual_data_batches)
-        target_model = self.target_model
+
+        target_model_pred = target_model(nonmember_visual_features)
+        target_model_accuracy = accuracy_score(nonmember_visual_labels, np.argmax(target_model_pred, axis=1))
+        print("Target model test accuracy: ", target_model_accuracy)
+        self.logger.info("[membership inference model] target model test accuracy: {}".format(target_model_accuracy))
+
+        attack_accuracy = self.compute_attack_accuracy(member_visual_data_batches, nonmember_visual_data_batches)
+        print("Attack accuracy: ", attack_accuracy)
+        self.logger.info("[membership inference model] attack accuracy: {}".format(attack_accuracy))
 
         member_true_list, nonmember_true_list = [], []
         member_preds_list, nonmember_preds_list = [], []

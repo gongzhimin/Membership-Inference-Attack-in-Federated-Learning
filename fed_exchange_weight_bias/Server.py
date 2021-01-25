@@ -1,5 +1,5 @@
-"""Server"""
 import copy
+
 
 class Server:
     def __init__(self):
@@ -26,5 +26,3 @@ class Server:
         size = len(self.local_parameters_sum)
         for i in range(size):
             self.global_parameters[i] = self.local_parameters_sum[i] / client_num
-        # for global_paras, local_paras_sum in zip(self.global_parameters, self.local_parameters_sum):
-        #     global_paras = local_paras_sum / client_num

@@ -25,16 +25,18 @@ class Visualizer:
     def plot_membership_probability_histogram(self, member_preds, nonmember_preds):
         self.membership_probability_histogram = plt.figure("membership probability histogram")
 
-        plt.hist(np.array(member_preds).flatten(),
-                 color="xkcd: blue", alpha=0.7,
-                 bins=20, histtype="bar", range=(0, 1),
-                 weights=(np.ones_like(member_preds) / len(member_preds)),
-                 label="Training Data (Members)")
-        plt.hist(np.array(nonmember_preds).flatten(),
-                 color="xkcd: light blue", alpha=0.7,
-                 bins=20, histtype="bar", range=(0, 1),
-                 weights=(np.ones_like(nonmember_preds) / len(nonmember_preds)),
-                 label="Population Data (Non-members)")
+        if member_preds and len(member_preds):
+            plt.hist(np.array(member_preds).flatten(),
+                     color="xkcd:blue", alpha=0.7,
+                     bins=20, histtype="bar", range=(0, 1),
+                     weights=(np.ones_like(member_preds) / len(member_preds)),
+                     label="Training Data (Members)")
+        if nonmember_preds and len(nonmember_preds):
+            plt.hist(np.array(nonmember_preds).flatten(),
+                     color="xkcd:light blue", alpha=0.7,
+                     bins=20, histtype="bar", range=(0, 1),
+                     weights=(np.ones_like(nonmember_preds) / len(nonmember_preds)),
+                     label="Population Data (Non-members)")
         plt.legend(loc="upper left")
 
         plt.ylabel("Fraction")
@@ -100,7 +102,7 @@ class Visualizer:
     def plot_per_label_membership_probability_histogram(self,
                                                         member_labels, member_preds,
                                                         nonmember_labels, nonmember_preds):
-        for label in range(len(self.unique_labels)):
+        for label in self.unique_labels:
             member_preds_per_label = []
             for (member_label, member_pred) in zip(member_labels, member_preds):
                 if member_label == label:
@@ -111,24 +113,26 @@ class Visualizer:
                 if nonmember_label == label:
                     nonmember_preds_per_label.append(nonmember_pred)
 
-            per_label_histogram = plt.figure("label {} membership probability histogram".format(str(label)))
+            per_label_histogram = plt.figure("label {} membership probability histogram".format(int(label)))
             self.per_label_membership_probability_histograms.append(per_label_histogram)
 
-            plt.hist(np.array(member_preds_per_label).flatten(),
-                     color="xkcd: blue", alpha=0.7,
-                     bins=20, histtype="bar", range=(0, 1),
-                     weights=(np.ones_like(member_preds_per_label) / len(member_preds_per_label)),
-                     label="Training Data (Members)")
-            plt.hist(np.array(nonmember_preds_per_label).flatten(),
-                     color="xkcd: light blue", alpha=0.7,
-                     bins=20, histtype="bar", range=(0, 1),
-                     weights=(np.ones_like(nonmember_preds_per_label) / len(nonmember_preds_per_label)),
-                     label="Population Data (Non-Members)")
+            if member_preds_per_label and len(member_preds_per_label):
+                plt.hist(np.array(member_preds_per_label).flatten(),
+                         color="xkcd:blue", alpha=0.7,
+                         bins=20, histtype="bar", range=(0, 1),
+                         weights=(np.ones_like(member_preds_per_label) / len(member_preds_per_label)),
+                         label="Training Data (Members)")
+            if nonmember_preds_per_label and len(nonmember_preds_per_label):
+                plt.hist(np.array(nonmember_preds_per_label).flatten(),
+                         color="xkcd:light blue", alpha=0.7,
+                         bins=20, histtype="bar", range=(0, 1),
+                         weights=(np.ones_like(nonmember_preds_per_label) / len(nonmember_preds_per_label)),
+                         label="Population Data (Non-Members)")
             plt.legend(loc="upper left")
 
             plt.ylabel("Fraction")
             plt.xlabel("Membership Probability")
-            plt.title("Privacy Risk - Label {}".format(str(label)))
+            plt.title("Privacy Risk - Label {}".format(int(label)))
 
-            plt.savefig("membership_probability_histogram_label{}.svg".format(str(label)))
+            plt.savefig("membership_probability_histogram_label{}.svg".format(int(label)))
             plt.close()

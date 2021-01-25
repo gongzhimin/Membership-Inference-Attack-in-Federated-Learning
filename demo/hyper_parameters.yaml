@@ -9,17 +9,24 @@ dataset:
 participant:
   learning_rate: 0.0001
   fed_epochs: 5
-  local_epochs: 15
+  batch_size: 32
+  local_epochs: 1
   clients_num: 4
   client_ratio_per_round: 1.00
+
+target_participant:
   target_cid: 1
   target_fed_epoch: 4
 
+isolated_participant:
+  isolated_cid: 2
+
 attacker_participant:
-  local_epochs: 100
-  attacker_cid: 2
+  attacker_cid: 0
+  local_epochs: 1
 
 attacker_data_handler:
+  train_ratio: 0.8
   batch_size: 32
   exposed_percentage: 100
 
@@ -31,5 +38,6 @@ inference_model:
   exploit_label: True
   exploit_loss: True
   optimizer_name: adam
+
 
 

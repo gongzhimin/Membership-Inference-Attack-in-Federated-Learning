@@ -33,7 +33,7 @@ class AttackerUtils:
 
     @staticmethod
     def one_hot_encode(original_labels, one_hot_encoding_matrix):
-        labels = tf.cast(original_labels, tf.int32).numpy()
+        labels = tf.cast(original_labels, tf.int64).numpy()
 
         return tf.stack(list(map(lambda x: one_hot_encoding_matrix[x], labels)))
 
@@ -52,7 +52,8 @@ class AttackerUtils:
 
         subtraction_dict = {key: value for (key, value) in minuend_dict.items() if key not in subtrahend_dict.keys()}
         subtraction_dataset = subtraction_dict.values()
-        stuff = [], subtraction_len = len(subtraction_dataset)
+        stuff = []
+        subtraction_len = len(subtraction_dataset)
         subtraction_features, subtraction_labels = [stuff] * subtraction_len, [stuff] * subtraction_len
         for i, e in enumerate(subtraction_dataset):
             subtraction_features[i] = e[0]

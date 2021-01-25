@@ -1,13 +1,7 @@
+import logging
 
-class FederatedLogger():
-    pass
 
-class ServerLogger():
-    pass
+def create_attacker_logger(logger_name="attacker"):
+    attacker_logger = logging.getLogger(logger_name)
 
-class ClientLogger():
-    pass
-
-class AttackerLogger():
-    pass
-
+    return attacker_logger

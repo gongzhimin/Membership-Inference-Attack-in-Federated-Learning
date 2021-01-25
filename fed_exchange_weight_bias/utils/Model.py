@@ -1,8 +1,8 @@
 import numpy as np
 import tensorflow as tf
 
-keras = tf.compat.v1.keras
 keraslayers = tf.compat.v1.keras.layers
+
 
 def alexnet(input_shape, classes_num=100):
     """
@@ -12,7 +12,7 @@ def alexnet(input_shape, classes_num=100):
     github.com/akrizhevsky/cuda-convnet2/blob/master/layers/
     """
     # Creating initializer, optimizer and the regularizer ops
-    initializer = tf.compat.v1.keras.initializers.random_normal(0.0, 0.01)
+    initializer = tf.compat.v1.keras.initializers.random_normal(0.0, 0.01, dtype=tf.float32)
     regularizer = tf.compat.v1.keras.regularizers.l2(5e-4)
 
     inputshape = (input_shape[0], input_shape[1], input_shape[2],)
@@ -78,6 +78,7 @@ def alexnet(input_shape, classes_num=100):
     )
     return model
 
+
 def scheduler(epoch):
     """
     Learning rate scheduler
@@ -108,7 +109,7 @@ def generate(dataset, input_shape):
     if input_shape:
         if len(input_shape) == 3:
             reshape_input = (
-                len(features),) + (input_shape[2], input_shape[0], input_shape[1])
+                                len(features),) + (input_shape[2], input_shape[0], input_shape[1])
             features = np.transpose(np.reshape(
                 features, reshape_input), (0, 2, 3, 1))
         else:
@@ -129,6 +130,7 @@ def extract(filepath):
     dataset = np.array(list(dataset))
     return dataset
 
+
 def compute_moments(features, input_channels=3):
     """
     Computes means and standard deviation for 3 dimensional input for normalization.
@@ -144,6 +146,7 @@ def compute_moments(features, input_channels=3):
     stddevs = list(map(lambda i: np.float32(i / 255), stddevs))
     return means, stddevs
 
+
 def normalize(f):
     """
     Normalizes data using means and stddevs
@@ -151,6 +154,7 @@ def normalize(f):
     means, stddevs = compute_moments(f)
     normalized = (np.divide(f, 255) - means) / stddevs
     return normalized
+
 
 def load_cifar100(input_shape):
     dataset_path = "../datasets/cifar100.txt"
@@ -163,11 +167,13 @@ def load_cifar100(input_shape):
 
     return features_train, labels_train, features_test, labels_test
 
+
 def load_cifar10():
     (features_train, labels_train), (features_test, labels_test) = tf.compat.v1.keras.datasets.cifar10.load_data()
     # features_train, labels_train = features_train[:10000], labels_train[:10000]
     # features_test, labels_test = features_test[:2000], labels_test[:2000]
     return features_train, labels_train, features_test, labels_test
+
 
 if __name__ == '__main__':
     # training_size = 30000
@@ -178,7 +184,7 @@ if __name__ == '__main__':
     # Load data.
     if classes_num == 100:
         features_train, labels_train, features_test, labels_test = load_cifar100(input_shape)
-    else:   # classes_num == 10
+    else:  # classes_num == 10
         features_train, labels_train, features_test, labels_test = load_cifar10()
 
     # Preprocess the data.
