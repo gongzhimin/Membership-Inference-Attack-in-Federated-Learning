@@ -2,8 +2,8 @@ import os
 import yaml
 import logging
 
-from fed_exchange_weight_bias.Client import *
-from fed_exchange_weight_bias.Server import *
+from fed_exchange_weight_bias.client import *
+from fed_exchange_weight_bias.server import *
 from membership_inference_attack.Attacker import *
 from fed_exchange_weight_bias.utils.logger import *
 
@@ -18,7 +18,7 @@ def initialize_logging(filepath="logs/", filename="out.log"):
     logging.basicConfig(level=logging.INFO,
                         filename=filename,
                         datefmt="%Y/%m%d %H:%M:%S",
-                        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+                        format="%(name)s - %(message)s")
 
 
 if __name__ == "__main__":
@@ -69,7 +69,7 @@ if __name__ == "__main__":
 
         for cid in activated_cid_list:
             client.current_cid = cid
-            print("[federated learning epoch - {}, current participant - cid {}]".format((epoch + 1), cid))
+            print("[federated learning epoch: {}, current participant (cid): {}]".format((epoch + 1), cid))
             federated_logger.info("federated training epoch: {}, "
                                   "current participant (cid): {}".format((epoch + 1), cid))
 
@@ -84,9 +84,9 @@ if __name__ == "__main__":
             server.accumulate_local_parameters(current_local_parameters)
 
             if epoch == target_fed_epoch and cid == attacker_cid:
-                print("train inference model on attacker - cid {} "
-                      "at federated learning epoch - {}".format(attacker_cid, (target_fed_epoch + 1)))
-                federated_logger.info("train inference model on attacker (cid: {}), "
+                print("train inference model on attacker (cid): {} "
+                      "at federated learning epoch: {}".format(attacker_cid, (target_fed_epoch + 1)))
+                federated_logger.info("train inference model on attacker (cid): {}, "
                                       "federated training epoch: {}".format(attacker_cid, (target_fed_epoch + 1)))
                 attacker.create_membership_inference_model(client)
                 attacker.train_inference_model()

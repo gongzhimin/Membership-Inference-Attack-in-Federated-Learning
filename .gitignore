@@ -1,5 +1,4 @@
 # Ignore some files when pushing to the repo.
-/demo/logs
+demo/logs
 .idea
 __pycache__
-/out

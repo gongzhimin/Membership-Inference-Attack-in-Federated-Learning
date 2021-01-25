@@ -329,11 +329,11 @@ class MembershipInferenceAttack:
 
         target_model_pred = target_model(nonmember_visual_features)
         target_model_accuracy = accuracy_score(nonmember_visual_labels, np.argmax(target_model_pred, axis=1))
-        print("Target model test accuracy: ", target_model_accuracy)
+        print("Target model test accuracy: {}".format(target_model_accuracy))
         self.logger.info("[membership inference model] target model test accuracy: {}".format(target_model_accuracy))
 
         attack_accuracy = self.compute_attack_accuracy(member_visual_data_batches, nonmember_visual_data_batches)
-        print("Attack accuracy: ", attack_accuracy)
+        print("Attack accuracy: {}".format(attack_accuracy))
         self.logger.info("[membership inference model] attack accuracy: {}".format(attack_accuracy))
 
         member_true_list, nonmember_true_list = [], []

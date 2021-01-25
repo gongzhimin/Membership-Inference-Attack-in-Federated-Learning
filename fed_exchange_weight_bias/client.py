@@ -3,8 +3,8 @@ import tensorflow as tf
 from contextlib import redirect_stdout
 
 
-from fed_exchange_weight_bias.utils.Model import *
-from fed_exchange_weight_bias.utils.Dataset import *
+from fed_exchange_weight_bias.utils.models import *
+from fed_exchange_weight_bias.utils.dataset import *
 from fed_exchange_weight_bias.utils.logger import *
 
 
@@ -14,13 +14,11 @@ class Clients:
         self.learning_rate = learning_rate
         self.classes_num = classes_num
         self.clients_num = clients_num
-        # Initialize the Keras model.
-        self.model = alexnet(self.input_shape, classes_num=classes_num)
-        # Compile the model.
-        self.opt = tf.compat.v1.keras.optimizers.Adam(learning_rate=self.learning_rate)
-        self.model.compile(loss='categorical_crossentropy',
-                           optimizer=self.opt,
-                           metrics=['accuracy'])
+
+        self.model = alexnet(input_shape=input_shape, classes_num=classes_num)
+        self.optimizer = tf.compat.v1.keras.optimizers.Adam(learning_rate=self.learning_rate)
+        self.compile_model()
+
         self.dataset = Dataset(classes_num=classes_num,
                                split=clients_num,
                                one_hot=True)
@@ -31,6 +29,11 @@ class Clients:
 
         self.logger = create_client_logger()
         self.log_info()
+
+    def compile_model(self):
+        self.model.compile(optimizer=self.optimizer,
+                           loss=tf.compat.v1.keras.losses.CategoricalCrossentropy(),
+                           metrics=[tf.compat.v1.keras.metrics.CategoricalAccuracy()])
 
     def log_info(self):
         self.logger.info("dataset: {}, "
@@ -58,23 +61,44 @@ class Clients:
         # The data held by each participant should be divided into tow parts:
         # train set and test set, both of which are used to train the local model.
         assert self.current_cid != -1, "Forget to register the current cid during federated training!"
-        dataset_train = self.dataset.train[self.current_cid]
-        dataset_test = self.dataset.test
-        size = len(dataset_train.x)
-        # features_train, labels_train = dataset_train.x[:int(0.8*size)], dataset_train.y[:int(0.8*size)]
-        # features_test, labels_test = dataset_train.x[int(0.8*size):], dataset_train.y[int(0.8*size):]
+        train_dataset = self.dataset.train[self.current_cid]
+        valid_dataset = self.dataset.test
 
-        features_train, labels_train = dataset_train.x, dataset_train.y
-        features_test, labels_test = dataset_test.x[:size], dataset_test.y[:size]
+        if len(train_dataset.x) <= len(valid_dataset.x):
+            size = len(train_dataset.x)
+        else:
+            size = len(valid_dataset.x)
 
-        # Define the callback method.
-        callback = tf.compat.v1.keras.callbacks.LearningRateScheduler(scheduler)
+        train_features, train_labels = train_dataset.x[: size], train_dataset.y[: size]
+        valid_features, valid_labels = valid_dataset.x[: size], valid_dataset.y[: size]
 
-        # Train the keras model with method `fit`.
-        self.model.fit(features_train, labels_train,
-                       batch_size=batch_size, epochs=local_epochs,
-                       validation_data=(features_test, labels_test),
-                       shuffle=True, callbacks=[callback])
+        train_data_batches = tf.data.Dataset.from_tensor_slices((train_features, train_labels)).batch(batch_size)
+        valid_data_batches = tf.data.Dataset.from_tensor_slices((valid_features, valid_labels)).batch(batch_size)
+
+        for epoch in range(local_epochs):
+            self.model.reset_metrics()
+
+            # learning rate scheduler
+            if epoch == 25:
+                self.model.optimizer.lr.assign(self.model.optimizer.lr / 10)
+            elif epoch == 60:
+                self.model.optimizer.lr.assign(self.model.optimizer.lr / 10)
+
+            train_result = None
+            for (features, labels) in train_data_batches:
+                train_result = self.model.train_on_batch(features, labels)
+
+            valid_result = None
+            for (features, labels) in valid_data_batches:
+                valid_result = self.model.test_on_batch(features, labels, reset_metrics=False)
+
+            print("local epoch: {}, learning rate: {}".format((epoch + 1), self.model.optimizer.lr.numpy()))
+            print("train: {}".format(dict(zip(self.model.metrics_names, train_result))))
+            print("valid: {}".format(dict(zip(self.model.metrics_names, valid_result))))
+
+            self.logger.info("local epoch: {}, learning rate: {}".format((epoch + 1), self.model.optimizer.lr.numpy()))
+            self.logger.info("train: {}".format(dict(zip(self.model.metrics_names, train_result))))
+            self.logger.info("valid: {}".format(dict(zip(self.model.metrics_names, valid_result))))
 
     def upload_local_parameters(self):
         """ Return all of the variables list"""
@@ -95,10 +119,7 @@ class Clients:
 
         if global_vars is None:
             # Clear the parameters.
-            self.model = alexnet(self.input_shape, classes_num=self.classes_num)
-            self.model.compile(loss='categorical_crossentropy',
-                               optimizer=self.opt,
-                               metrics=['accuracy'])
+            self.compile_model()
             return
 
         client_vars = self.model.trainable_variables

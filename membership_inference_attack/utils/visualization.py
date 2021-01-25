@@ -138,5 +138,5 @@ class Visualizer:
             plt.xlabel("Membership Probability")
             plt.title("Privacy Risk - Label {}".format(int(label)))
 
-            plt.savefig("{}membership_probability_histogram_label{}.svg".format(self.filepath, int(label)))
+            plt.savefig("{}membership_probability_histogram_label_{}.svg".format(self.filepath, int(label)))
             plt.close()

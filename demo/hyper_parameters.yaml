@@ -10,7 +10,7 @@ participant:
   learning_rate: 0.0001
   fed_epochs: 5
   batch_size: 32
-  local_epochs: 1
+  local_epochs: 15
   clients_num: 4
   client_ratio_per_round: 1.00
 
@@ -23,7 +23,7 @@ isolated_participant:
 
 attacker_participant:
   attacker_cid: 0
-  local_epochs: 1
+  local_epochs: 40
 
 attacker_data_handler:
   train_ratio: 0.8

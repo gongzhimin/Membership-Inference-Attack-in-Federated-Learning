@@ -1,6 +1,5 @@
 import numpy as np
 import tensorflow as tf
-from tensorflow.compat.v1.keras.utils import to_categorical
 
 
 def compute_moments(features, input_channels=3):
@@ -27,11 +26,21 @@ def normalize(features):
     normalized = (np.divide(features, 255) - means) / stddevs
     return normalized
 
+def shuffle_data(features, labels):
+    data_num = features.shape[0]
+    index = np.arange(data_num)
+    np.random.shuffle(index)
+
+    return features[index], labels[index]
 
 def load_cifar10():
     (features_train, labels_train), (features_test, labels_test) = tf.compat.v1.keras.datasets.cifar10.load_data()
     features_train, labels_train = features_train[:100], labels_train[:100]
     features_test, labels_test = features_test[:20], labels_test[:20]
+
+    features_train, labels_train = shuffle_data(features_train, labels_train)
+    features_test, labels_test = shuffle_data(features_test, labels_test)
+
     return features_train, labels_train, features_test, labels_test
 
 
@@ -51,7 +60,7 @@ class Dataset(object):
     Load the dataset from a specific file.
     """
 
-    def __init__(self, classes_num, split, one_hot):
+    def __init__(self, classes_num, split=1, one_hot=True):
         features_train, labels_train, features_test, labels_test = load_cifar10()
         # Normalize the train features and test features.
         features_train = normalize(features_train)
@@ -59,8 +68,8 @@ class Dataset(object):
 
         # Perform one-hot encoding.
         if one_hot:
-            labels_train = to_categorical(labels_train, classes_num)
-            labels_test = to_categorical(labels_test, classes_num)
+            labels_train = tf.compat.v1.keras.utils.to_categorical(labels_train, classes_num)
+            labels_test = tf.compat.v1.keras.utils.to_categorical(labels_test, classes_num)
 
         print("Dataset: train-%d, test-%d" % (len(features_train), len(features_test)))
 
