@@ -10,7 +10,7 @@ with open("hyper_parameters.yaml", mode='r', encoding="utf-8") as f:
     hyper_parameters = yaml.load(f, Loader=yaml.FullLoader)
 
 
-def initialize_logging(filename="output.log"):
+def initialize_logging(filename="logs/output.log"):
     logging.basicConfig(level=logging.INFO,
                         filename=filename,
                         datefmt="%Y/%m%d %H:%M:%S",

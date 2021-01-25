@@ -14,7 +14,8 @@ def set_matplotlib_font(font_weight="bold", font_size=10):
 
 
 class Visualizer:
-    def __init__(self, font_weight="bold", font_size=10):
+    def __init__(self, filepath="logs/plots", font_weight="bold", font_size=10):
+        self.filepath = filepath
         set_matplotlib_font(font_weight, font_size)
         self.membership_probability_histogram = None
         self.membership_inference_attack_roc_curve = None
@@ -43,7 +44,7 @@ class Visualizer:
         plt.xlabel("Membership probability")
         plt.title("Privacy Risk")
 
-        plt.savefig("membership_probability_histogram.svg")
+        plt.savefig("{}membership_probability_histogram.svg".format(self.filepath))
         plt.close()
 
     def plot_membership_inference_attack_roc_curve(self, y_true, y_pred):
@@ -62,7 +63,7 @@ class Visualizer:
         plt.xlabel("False Positive Rate")
         plt.title("ROC of Membership Inference Attack")
 
-        plt.savefig("membership_inference_attack_roc_curve.svg")
+        plt.savefig("{}membership_inference_attack_roc_curve.svg".format(self.filepath))
         plt.close()
 
     def plot_gradient_norm_scatter(self,
@@ -96,7 +97,7 @@ class Visualizer:
         plt.ylabel("Average Gradient Norm")
         plt.title("Average Gradient Norms per Label")
 
-        plt.savefig("gradient_norm_scatter.svg")
+        plt.savefig("{}gradient_norm_scatter.svg".format(self.filepath))
         plt.close()
 
     def plot_per_label_membership_probability_histogram(self,
@@ -134,5 +135,5 @@ class Visualizer:
             plt.xlabel("Membership Probability")
             plt.title("Privacy Risk - Label {}".format(int(label)))
 
-            plt.savefig("membership_probability_histogram_label{}.svg".format(int(label)))
+            plt.savefig("{}membership_probability_histogram_label{}.svg".format(self.filepath, int(label)))
             plt.close()
