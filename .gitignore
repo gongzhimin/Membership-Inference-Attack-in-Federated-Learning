@@ -1,16 +1,5 @@
 # Ignore some files when pushing to the repo.
-/datasets/cifar-100-python
-/datasets/*.txt
-/datasets/*.npy
-log
+/demo/logs
 .idea
 __pycache__
-/tutorials/models
-.ipynb_checkpoints
 /out
-#/global_gradient_ascent_attack_fed.py
-#/local_gradient_ascent_attack_fed.py
-#/isolating_gradient_ascent_attack_fed.py
-#/membership_inference_attack
-#/demo
-#/models

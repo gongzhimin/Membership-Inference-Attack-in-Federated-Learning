@@ -1,3 +1,4 @@
+import os
 import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
@@ -14,7 +15,9 @@ def set_matplotlib_font(font_weight="bold", font_size=10):
 
 
 class Visualizer:
-    def __init__(self, filepath="logs/plots", font_weight="bold", font_size=10):
+    def __init__(self, filepath="logs/plots/", font_weight="bold", font_size=10):
+        if not os.path.exists(filepath):
+            os.mkdir(filepath)
         self.filepath = filepath
         set_matplotlib_font(font_weight, font_size)
         self.membership_probability_histogram = None

@@ -1,3 +1,4 @@
+import os
 import yaml
 import logging
 
@@ -10,7 +11,10 @@ with open("hyper_parameters.yaml", mode='r', encoding="utf-8") as f:
     hyper_parameters = yaml.load(f, Loader=yaml.FullLoader)
 
 
-def initialize_logging(filename="logs/output.log"):
+def initialize_logging(filepath="logs/", filename="out.log"):
+    if not os.path.exists(filepath):
+        os.mkdir(filepath)
+    filename = filepath + filename
     logging.basicConfig(level=logging.INFO,
                         filename=filename,
                         datefmt="%Y/%m%d %H:%M:%S",
@@ -41,7 +45,7 @@ if __name__ == "__main__":
     attacker_cid = attacker_participant_config["attacker_cid"]
     attacker_local_epochs = attacker_participant_config["local_epochs"]
 
-    initialize_logging(filename="membership_inference_transfer_attack_fed.log")
+    initialize_logging(filepath="logs/", filename="membership_inference_transfer_attack_fed.log")
     federated_logger = create_federated_logger("MITA")
 
 

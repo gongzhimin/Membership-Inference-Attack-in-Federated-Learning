@@ -8,7 +8,7 @@ from membership_inference_attack.membership_inference_attack import *
 
 ATTACK_MSG = namedtuple("ATTACK_MSG", "attack_type, target_cid, target_fed_epoch")
 
-with open("..\demo\hyper_parameters.yaml", mode='r', encoding="utf-8") as f:
+with open("hyper_parameters.yaml", mode='r', encoding="utf-8") as f:
     hyper_parameters = yaml.load(f, Loader=yaml.FullLoader)
 
 
