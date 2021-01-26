@@ -8,6 +8,7 @@ dataset:
 
 participant:
   learning_rate: 0.0001
+  train_ratio: 0.8
   fed_epochs: 5
   batch_size: 32
   local_epochs: 15

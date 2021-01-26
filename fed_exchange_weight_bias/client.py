@@ -9,11 +9,14 @@ from fed_exchange_weight_bias.utils.logger import *
 
 
 class Clients:
-    def __init__(self, input_shape, classes_num, learning_rate, clients_num):
+    def __init__(self,
+                 input_shape, classes_num, clients_num,
+                 learning_rate=0.0001, train_ratio=0.8):
         self.input_shape = input_shape
         self.learning_rate = learning_rate
         self.classes_num = classes_num
         self.clients_num = clients_num
+        self.train_ratio = train_ratio
 
         self.model = alexnet(input_shape=input_shape, classes_num=classes_num)
         self.optimizer = tf.compat.v1.keras.optimizers.Adam(learning_rate=self.learning_rate)
@@ -33,7 +36,7 @@ class Clients:
     def compile_model(self):
         self.model.compile(optimizer=self.optimizer,
                            loss=tf.compat.v1.keras.losses.CategoricalCrossentropy(),
-                           metrics=[tf.compat.v1.keras.metrics.CategoricalAccuracy()])
+                           metrics=[tf.compat.v1.keras.metrics.Accuracy()])
 
     def log_info(self):
         self.logger.info("dataset: {}, "
@@ -61,16 +64,11 @@ class Clients:
         # The data held by each participant should be divided into tow parts:
         # train set and test set, both of which are used to train the local model.
         assert self.current_cid != -1, "Forget to register the current cid during federated training!"
-        train_dataset = self.dataset.train[self.current_cid]
-        valid_dataset = self.dataset.test
 
-        if len(train_dataset.x) <= len(valid_dataset.x):
-            size = len(train_dataset.x)
-        else:
-            size = len(valid_dataset.x)
-
-        train_features, train_labels = train_dataset.x[: size], train_dataset.y[: size]
-        valid_features, valid_labels = valid_dataset.x[: size], valid_dataset.y[: size]
+        local_dataset = self.dataset.train[self.current_cid]
+        train_size = int(self.train_ratio * len(local_dataset.x))
+        train_features, train_labels = local_dataset.x[: train_size], local_dataset.y[: train_size]
+        valid_features, valid_labels = local_dataset.x[train_size: ], local_dataset.y[train_size: ]
 
 
         train_data_batches = tf.data.Dataset.from_tensor_slices((train_features, train_labels)).batch(batch_size)
@@ -80,6 +78,7 @@ class Clients:
             self.model.reset_metrics()
 
             # learning rate scheduler
+            self.model.optimizer.lr.assign(self.learning_rate)
             if epoch == 25:
                 self.model.optimizer.lr.assign(self.model.optimizer.lr / 10)
             elif epoch == 60:

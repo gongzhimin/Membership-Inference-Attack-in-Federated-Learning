@@ -246,10 +246,12 @@ class MembershipInferenceAttack:
         return attack_outputs
 
     def compute_attack_accuracy(self, member_data_batches, nonmember_data_batches):
-        attack_accuracy = tf.compat.v1.keras.metrics.CategoricalAccuracy("attack_accuracy", dtype=tf.float32)
+        attack_accuracy = tf.compat.v1.keras.metrics.Accuracy("attack_accuracy", dtype=tf.float32)
         target_model = self.target_model
 
         for (member_data_batch, nonmember_data_batch) in zip(member_data_batches, nonmember_data_batches):
+            self.inference_model.reset_metrics()
+
             member_features, member_labels = member_data_batch
             nonmember_features, nonmember_labels = nonmember_data_batch
 
@@ -332,10 +334,6 @@ class MembershipInferenceAttack:
         print("Target model test accuracy: {}".format(target_model_accuracy))
         self.logger.info("[membership inference model] target model test accuracy: {}".format(target_model_accuracy))
 
-        attack_accuracy = self.compute_attack_accuracy(member_visual_data_batches, nonmember_visual_data_batches)
-        print("Attack accuracy: {}".format(attack_accuracy))
-        self.logger.info("[membership inference model] attack accuracy: {}".format(attack_accuracy))
-
         member_true_list, nonmember_true_list = [], []
         member_preds_list, nonmember_preds_list = [], []
         member_features_list, member_labels_list = [], []
@@ -365,6 +363,12 @@ class MembershipInferenceAttack:
 
         y_true = tf.concat((member_true_list, nonmember_true_list), 0)
         y_pred = tf.concat((member_preds_list, nonmember_preds_list), 0)
+
+        attack_accuracy = tf.compat.v1.keras.metrics.Accuracy("attack_accuracy", dtype=tf.float32)
+        attack_accuracy(y_pred > 0.5, y_true)
+        attack_accuracy_result = attack_accuracy.result()
+        print("Attack accuracy: {}".format(attack_accuracy_result))
+        self.logger.info("[membership inference model] attack accuracy: {}".format(attack_accuracy_result))
 
         self.visualizer.plot_membership_probability_histogram(member_preds_list, nonmember_preds_list)
         self.visualizer.plot_membership_inference_attack_roc_curve(y_true, y_pred)

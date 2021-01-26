@@ -33,6 +33,7 @@ if __name__ == "__main__":
     clients_num = participant_config["clients_num"]
     client_ratio_per_round = participant_config["client_ratio_per_round"]
     client_local_epochs = participant_config["local_epochs"]
+    train_ratio = participant_config["train_ratio"]
 
     target_participant_config = hyper_parameters["target_participant"]
     target_cid = target_participant_config["target_cid"]
@@ -52,7 +53,8 @@ if __name__ == "__main__":
     client = Clients(input_shape=input_shape,
                      classes_num=classes_num,
                      learning_rate=learning_rate,
-                     clients_num=clients_num)
+                     clients_num=clients_num,
+                     train_ratio=train_ratio)
     server = Server()
     attacker = Attacker(cid=attacker_cid,
                         local_epochs=attacker_local_epochs)
