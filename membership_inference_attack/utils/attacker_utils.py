@@ -44,10 +44,10 @@ class AttackerUtils:
 
         minuend_dict, subtrahend_dict = dict(), dict()
         for e in minuend_dataset:
-            hash_id = hash(bytes(np.array(e)))
+            hash_id = hash(bytes(np.array(e, dtype=object)))
             minuend_dict[hash_id] = e
         for e in subtrahend_dataset:
-            hash_id = hash(bytes(np.array(e)))
+            hash_id = hash(bytes(np.array(e, dtype=object)))
             subtrahend_dict[hash_id] = e
 
         subtraction_dict = {key: value for (key, value) in minuend_dict.items() if key not in subtrahend_dict.keys()}

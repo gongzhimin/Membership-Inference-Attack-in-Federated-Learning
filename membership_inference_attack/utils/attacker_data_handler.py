@@ -66,10 +66,15 @@ class AttackerDataHandler:
         self.nonmember_test_features = self.exposed_nonmember_features[split_boundary:]
         self.nonmember_test_labels = self.exposed_nonmember_labels[split_boundary:]
 
-        self.member_visual_features = self.visual_data.x
-        self.member_visual_labels = self.visual_data.y
-        self.nonmember_visual_features = self.train_data.x
-        self.nonmember_visual_labels = self.train_data.y
+        if len(self.visual_data.x) <= len(self.test_data.x):
+            size = len(self.visual_data.x)
+        else:
+            size = len(self.test_data.x)
+
+        self.member_visual_features = self.visual_data.x[: size]
+        self.member_visual_labels = self.visual_data.y[: size]
+        self.nonmember_visual_features = self.test_data.x[: size]
+        self.nonmember_visual_labels = self.test_data.y[: size]
 
         self.log_info()
 

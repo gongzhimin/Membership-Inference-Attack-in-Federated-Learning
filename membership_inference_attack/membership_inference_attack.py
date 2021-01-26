@@ -286,7 +286,7 @@ class MembershipInferenceAttack:
                                                                          self.attacker_data_handler.batch_size)
 
         best_attack_accuracy = 0
-        # attack_accuracy = tf.compat.v1.keras.metrics.Accuracy("attack_accuracy", dtype=tf.float32)
+        # metric_attack_accuracy = tf.compat.v1.keras.metrics.Accuracy("attack_accuracy", dtype=tf.float32)
         zipped = zip(member_train_data_batches, nonmember_train_data_batches)
         print("Train membership inference attack model.")
         self.logger.info("[membership inference model] train membership inference attack model")
@@ -307,7 +307,7 @@ class MembershipInferenceAttack:
                 grads = tape.gradient(attack_loss, self.inference_model.variables)
                 self.optimizer.apply_gradients(zip(grads, self.inference_model.variables))
 
-            # attack_accuracy(y_pred > 0.5, y_true)
+            # metric_attack_accuracy(y_pred > 0.5, y_true)
 
             attack_accuracy = self.compute_attack_accuracy(member_test_data_batches, nonmember_test_data_batches)
             if attack_accuracy > best_attack_accuracy:

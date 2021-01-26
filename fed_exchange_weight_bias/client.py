@@ -72,6 +72,7 @@ class Clients:
         train_features, train_labels = train_dataset.x[: size], train_dataset.y[: size]
         valid_features, valid_labels = valid_dataset.x[: size], valid_dataset.y[: size]
 
+
         train_data_batches = tf.data.Dataset.from_tensor_slices((train_features, train_labels)).batch(batch_size)
         valid_data_batches = tf.data.Dataset.from_tensor_slices((valid_features, valid_labels)).batch(batch_size)
 
@@ -90,13 +91,17 @@ class Clients:
 
             valid_result = None
             for (features, labels) in valid_data_batches:
-                valid_result = self.model.test_on_batch(features, labels, reset_metrics=False)
+                valid_result = self.model.test_on_batch(features, labels)
 
-            print("local epoch: {}, learning rate: {}".format((epoch + 1), self.model.optimizer.lr.numpy()))
+            print("local epoch: {}/{}, "
+                  "learning rate: {}".format((epoch + 1), local_epochs, self.model.optimizer.lr.numpy()))
+            print("train set: {}, valid set: {}".format(len(train_labels), len(valid_labels)))
             print("train: {}".format(dict(zip(self.model.metrics_names, train_result))))
             print("valid: {}".format(dict(zip(self.model.metrics_names, valid_result))))
 
-            self.logger.info("local epoch: {}, learning rate: {}".format((epoch + 1), self.model.optimizer.lr.numpy()))
+            self.logger.info("local epoch: {}/{}, "
+                             "learning rate: {}".format((epoch + 1), local_epochs, self.model.optimizer.lr.numpy()))
+            self.logger.info("train set: {}, valid set: {}".format(len(train_labels), len(valid_labels)))
             self.logger.info("train: {}".format(dict(zip(self.model.metrics_names, train_result))))
             self.logger.info("valid: {}".format(dict(zip(self.model.metrics_names, valid_result))))
 

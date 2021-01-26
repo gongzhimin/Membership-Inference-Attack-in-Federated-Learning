@@ -15,15 +15,15 @@ participant:
   client_ratio_per_round: 1.00
 
 target_participant:
-  target_cid: 1
-  target_fed_epoch: 4
+  target_cid: 2
+  target_fed_epoch: 0
 
 isolated_participant:
-  isolated_cid: 2
+  isolated_cid: 1
 
 attacker_participant:
-  attacker_cid: 0
-  local_epochs: 40
+  attacker_cid: 1
+  local_epochs: 15
 
 attacker_data_handler:
   train_ratio: 0.8
@@ -31,7 +31,7 @@ attacker_data_handler:
   exposed_percentage: 100
 
 inference_model:
-  epochs: 10
+  epochs: 2
   learning_rate: 0.0001
   exploited_layer_indexes: [6]
   exploited_gradient_indexes: [6]
