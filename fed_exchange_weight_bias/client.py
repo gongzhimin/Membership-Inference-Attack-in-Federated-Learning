@@ -91,11 +91,11 @@ class Clients:
                      val_loss_history, val_accuracy_history, learning_rate_history)
 
         for (epoch, loss, accuracy, val_loss, val_accuracy, learning_rate) in zipped:
-            self.logger.info("local epoch: {}, learning_rate: {:.3e}, "
+            self.logger.info("local epoch: {}, learning_rate: {:.2e}, "
                              "loss: {:.4f}, accuracy: {:.4f}, "
                              "val_loss: {:.4f}, val_accuracy: {:.4f}".format((epoch + 1), learning_rate,
-                                                                               loss, accuracy,
-                                                                               val_loss, val_accuracy))
+                                                                             loss, accuracy,
+                                                                             val_loss, val_accuracy))
 
     def upload_local_parameters(self):
         """ Return all of the variables list"""
