@@ -35,8 +35,8 @@ class Clients:
 
     def compile_model(self):
         self.model.compile(optimizer=self.optimizer,
-                           loss=tf.compat.v1.keras.losses.CategoricalCrossentropy(),
-                           metrics=[tf.compat.v1.keras.metrics.Accuracy()])
+                           loss="categorical_crossentropy",
+                           metrics=["accuracy"])
 
     def log_info(self):
         self.logger.info("dataset: {}, "
@@ -70,39 +70,32 @@ class Clients:
         train_features, train_labels = local_dataset.x[: train_size], local_dataset.y[: train_size]
         valid_features, valid_labels = local_dataset.x[train_size: ], local_dataset.y[train_size: ]
 
+        learning_rate_scheduler = tf.compat.v1.keras.callbacks.LearningRateScheduler(scheduler)
+        history_callback = self.model.fit(x=train_features, y=train_labels,
+                       batch_size=batch_size, epochs=local_epochs,
+                       verbose=1, callbacks=[learning_rate_scheduler],
+                       validation_data=(valid_features, valid_labels),
+                       shuffle=True, validation_batch_size=batch_size)
 
-        train_data_batches = tf.data.Dataset.from_tensor_slices((train_features, train_labels)).batch(batch_size)
-        valid_data_batches = tf.data.Dataset.from_tensor_slices((valid_features, valid_labels)).batch(batch_size)
+        self.log_local_history(history_callback)
 
-        for epoch in range(local_epochs):
-            self.model.reset_metrics()
 
-            # learning rate scheduler
-            self.model.optimizer.lr.assign(self.learning_rate)
-            if epoch == 25:
-                self.model.optimizer.lr.assign(self.model.optimizer.lr / 10)
-            elif epoch == 60:
-                self.model.optimizer.lr.assign(self.model.optimizer.lr / 10)
+    def log_local_history(self, history_callback):
+        epochs = history_callback.epoch
+        loss_history = history_callback.history["loss"]
+        accuracy_history = history_callback.history["accuracy"]
+        val_loss_history = history_callback.history["val_loss"]
+        val_accuracy_history = history_callback.history["val_accuracy"]
+        learning_rate_history = history_callback.history["lr"]
+        zipped = zip(epochs, loss_history, accuracy_history,
+                     val_loss_history, val_accuracy_history, learning_rate_history)
 
-            train_result = None
-            for (features, labels) in train_data_batches:
-                train_result = self.model.train_on_batch(features, labels)
-
-            valid_result = None
-            for (features, labels) in valid_data_batches:
-                valid_result = self.model.test_on_batch(features, labels)
-
-            print("local epoch: {}/{}, "
-                  "learning rate: {}".format((epoch + 1), local_epochs, self.model.optimizer.lr.numpy()))
-            print("train set: {}, valid set: {}".format(len(train_labels), len(valid_labels)))
-            print("train: {}".format(dict(zip(self.model.metrics_names, train_result))))
-            print("valid: {}".format(dict(zip(self.model.metrics_names, valid_result))))
-
-            self.logger.info("local epoch: {}/{}, "
-                             "learning rate: {}".format((epoch + 1), local_epochs, self.model.optimizer.lr.numpy()))
-            self.logger.info("train set: {}, valid set: {}".format(len(train_labels), len(valid_labels)))
-            self.logger.info("train: {}".format(dict(zip(self.model.metrics_names, train_result))))
-            self.logger.info("valid: {}".format(dict(zip(self.model.metrics_names, valid_result))))
+        for (epoch, loss, accuracy, val_loss, val_accuracy, learning_rate) in zipped:
+            self.logger.info("local epoch: {}, learning_rate: {:.3e}, "
+                             "loss: {:.4f}, accuracy: {:.4f}, "
+                             "val_loss: {:.4f}, val_accuracy: {:.4f}".format((epoch + 1), learning_rate,
+                                                                               loss, accuracy,
+                                                                               val_loss, val_accuracy))
 
     def upload_local_parameters(self):
         """ Return all of the variables list"""
