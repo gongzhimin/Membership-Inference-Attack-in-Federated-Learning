@@ -2,7 +2,6 @@ import math
 import tensorflow as tf
 from contextlib import redirect_stdout
 
-
 from fed_exchange_weight_bias.utils.models import *
 from fed_exchange_weight_bias.utils.dataset import *
 from fed_exchange_weight_bias.utils.logger import *
@@ -68,17 +67,16 @@ class Clients:
         local_dataset = self.dataset.train[self.current_cid]
         train_size = int(self.train_ratio * len(local_dataset.x))
         train_features, train_labels = local_dataset.x[: train_size], local_dataset.y[: train_size]
-        valid_features, valid_labels = local_dataset.x[train_size: ], local_dataset.y[train_size: ]
+        valid_features, valid_labels = local_dataset.x[train_size:], local_dataset.y[train_size:]
 
         learning_rate_scheduler = tf.compat.v1.keras.callbacks.LearningRateScheduler(scheduler)
         history_callback = self.model.fit(x=train_features, y=train_labels,
-                       batch_size=batch_size, epochs=local_epochs,
-                       verbose=1, callbacks=[learning_rate_scheduler],
-                       validation_data=(valid_features, valid_labels),
-                       shuffle=True, validation_batch_size=batch_size)
+                                          batch_size=batch_size, epochs=local_epochs,
+                                          verbose=1, callbacks=[learning_rate_scheduler],
+                                          validation_data=(valid_features, valid_labels),
+                                          shuffle=True, validation_batch_size=batch_size)
 
         self.log_local_history(history_callback)
-
 
     def log_local_history(self, history_callback):
         epochs = history_callback.epoch
