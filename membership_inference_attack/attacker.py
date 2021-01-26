@@ -31,13 +31,9 @@ class Attacker:
         self.attack_msg = ATTACK_MSG(attack_type, target_cid, target_fed_epoch)
 
     def generate_attacker_data_handler(self, client):
-        attacker_participant_config = hyper_parameters["attacker_participant"]
-        attacker_cid = attacker_participant_config["attacker_cid"]
-
-        clients_num = client.clients_num
         target_cid = self.attack_msg.target_cid
-        train_data = client.dataset.train[attacker_cid]
-        test_data = client.dataset.train[(attacker_cid - 1) % clients_num]
+        train_data = client.dataset.train[self.cid]
+        test_data = client.dataset.test
         visual_data = client.dataset.train[target_cid]
 
         attacker_data_handler_config = hyper_parameters["attacker_data_handler"]
