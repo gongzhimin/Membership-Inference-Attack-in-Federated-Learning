@@ -246,7 +246,7 @@ class MembershipInferenceAttack:
         return attack_outputs
 
     def compute_attack_accuracy(self, member_data_batches, nonmember_data_batches):
-        attack_accuracy = tf.compat.v1.keras.metrics.Accuracy("attack_accuracy", dtype=tf.float32)
+        attack_accuracy = tf.compat.v1.keras.metrics.CategoricalAccuracy("attack_accuracy", dtype=tf.float32)
         target_model = self.target_model
 
         for (member_data_batch, nonmember_data_batch) in zip(member_data_batches, nonmember_data_batches):
