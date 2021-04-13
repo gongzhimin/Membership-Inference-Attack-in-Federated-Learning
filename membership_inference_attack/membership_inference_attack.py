@@ -16,7 +16,7 @@ GRAD_LAYERS_LIST = ["Conv", "Dense"]
 
 class MembershipInferenceAttack:
     def __init__(self,
-                 target_model,
+                 local_model,
                  attacker_data_handler,
                  exploited_layer_indexes,
                  exploited_gradient_indexes,
@@ -28,11 +28,11 @@ class MembershipInferenceAttack:
                  logger=None,
                  ascend_gradients=False):
 
-        layers = target_model.layers
+        layers = local_model.layers
         AttackerUtils.sanity_check(layers, exploited_layer_indexes)
         AttackerUtils.sanity_check(layers, exploited_gradient_indexes)
 
-        self.target_model = target_model
+        self.local_model = local_model
         self.attacker_data_handler = attacker_data_handler
         self.exploited_layer_indexes = exploited_layer_indexes
         self.exploited_gradient_indexes = exploited_gradient_indexes
@@ -45,8 +45,8 @@ class MembershipInferenceAttack:
         self.logger = logger
         self.ascend_gradients = ascend_gradients
 
-        self.target_model_classes_num = int(target_model.output.shape[1])
-        self.one_hot_encoding_matrix = AttackerUtils.create_one_hot_encoding_matrix(self.target_model_classes_num)
+        self.local_model_classes_num = int(local_model.output.shape[1])
+        self.one_hot_encoding_matrix = AttackerUtils.create_one_hot_encoding_matrix(self.local_model_classes_num)
 
         # initialize input containers of inference model
         self.input_array = []
@@ -110,7 +110,7 @@ class MembershipInferenceAttack:
             if any(map(lambda i: i in layer.__class__.__name__, GRAD_LAYERS_LIST)):
                 gradient_layers.append(layer)
         variables = target_model.variables
-        for layer_index in self.exploited_layer_indexes:
+        for layer_index in self.exploited_gradient_indexes:
             layer = gradient_layers[layer_index - 1]
             gradient_shape = AttackerUtils.get_gradient_shape(variables, layer_index)
             cnn_needed = map(lambda i: i in layer.__class__.__name__, CNN_COMPONENT_LIST)
@@ -122,7 +122,7 @@ class MembershipInferenceAttack:
             self.encoder_input_tensors.append(gradients_extraction_component.output)
 
     def create_attack_features_extraction_components(self, layers):
-        target_model = self.target_model
+        target_model = self.local_model
 
         # for layer outputs
         if self.exploited_layer_indexes and len(self.exploited_layer_indexes):
@@ -130,7 +130,7 @@ class MembershipInferenceAttack:
 
         # for one hot encoded labels
         if self.exploit_label:
-            self.create_label_extraction_component(self.target_model_classes_num)
+            self.create_label_extraction_component(self.local_model_classes_num)
 
         # for loss
         if self.exploit_loss:
@@ -150,6 +150,7 @@ class MembershipInferenceAttack:
             self.input_array.append(prediction)
 
     def generate_one_hot_encoded_labels(self, labels):
+        one_hot_encoding_matrix = AttackerUtils.create_one_hot_encoding_matrix(self.local_model_classes_num)
         one_hot_encoded_labels = AttackerUtils.one_hot_encode(labels, self.one_hot_encoding_matrix)
         self.input_array.append(one_hot_encoded_labels)
 
@@ -247,7 +248,7 @@ class MembershipInferenceAttack:
 
     def compute_attack_accuracy(self, member_data_batches, nonmember_data_batches):
         attack_accuracy = tf.compat.v1.keras.metrics.Accuracy("attack_accuracy", dtype=tf.float32)
-        target_model = self.target_model
+        target_model = self.local_model
 
         for (member_data_batch, nonmember_data_batch) in zip(member_data_batches, nonmember_data_batches):
             self.inference_model.reset_metrics()
@@ -268,24 +269,27 @@ class MembershipInferenceAttack:
         attack_accuracy_result = attack_accuracy.result()
         return attack_accuracy_result
 
+    def set_one_hot_encoding_matrix(self, classes_num):
+        pass
+
     def train_inference_model(self):
         assert self.inference_model, "Inference model hasn't initialized!"
         member_train_data_batches, nonmember_train_data_batches, \
             nonmember_train_features, nonmember_train_labels = self.attacker_data_handler.load_train_data_batches()
 
-        target_model = self.target_model
+        target_model = self.local_model
         target_model_pred = target_model(nonmember_train_features)
         target_model_accuracy = accuracy_score(nonmember_train_labels, np.argmax(target_model_pred, axis=1))
         print("Target model test accuracy: ", target_model_accuracy)
         self.logger.info("[membership inference model] target model test accuracy: {}".format(target_model_accuracy))
 
         member_test_data_batches, nonmember_test_data_batches = self.attacker_data_handler.load_test_data_batches()
-        member_test_data_batches = AttackerUtils.generate_subtraction(member_train_data_batches,
-                                                                      member_test_data_batches,
-                                                                      self.attacker_data_handler.batch_size)
-        nonmember_test_data_batches = AttackerUtils.generate_subtraction(nonmember_train_data_batches,
-                                                                         nonmember_test_data_batches,
-                                                                         self.attacker_data_handler.batch_size)
+        # member_test_data_batches = AttackerUtils.generate_subtraction(member_train_data_batches,
+        #                                                               member_test_data_batches,
+        #                                                               self.attacker_data_handler.batch_size)
+        # nonmember_test_data_batches = AttackerUtils.generate_subtraction(nonmember_train_data_batches,
+        #                                                                  nonmember_test_data_batches,
+        #                                                                  self.attacker_data_handler.batch_size)
 
         best_attack_accuracy = 0
         # metric_attack_accuracy = tf.compat.v1.keras.metrics.Accuracy("attack_accuracy", dtype=tf.float32)
@@ -324,13 +328,16 @@ class MembershipInferenceAttack:
                                                                attack_accuracy,
                                                                best_attack_accuracy))
 
-    def visually_test_inference_model(self, target_model):
-        member_visual_data_batches, nonmember_visual_data_batches, \
-            nonmember_visual_features, nonmember_visual_labels = self.attacker_data_handler.load_visual_data_batches()
-        zipped = zip(member_visual_data_batches, nonmember_visual_data_batches)
+    def reset_target_model_visibility(self):
+        pass
 
-        target_model_pred = target_model(nonmember_visual_features)
-        target_model_accuracy = accuracy_score(nonmember_visual_labels, np.argmax(target_model_pred, axis=1))
+    def visually_test_inference_model(self, target_model, verifier_data_handler):
+        member_target_data_batches, nonmember_target_data_batches, \
+            nonmember_target_features, nonmember_target_labels = verifier_data_handler.load_target_data_batches()
+        zipped = zip(member_target_data_batches, nonmember_target_data_batches)
+
+        target_model_pred = target_model(nonmember_target_features)
+        target_model_accuracy = accuracy_score(nonmember_target_labels, np.argmax(target_model_pred, axis=1))
         print("Target model test accuracy: {}".format(target_model_accuracy))
         self.logger.info("[membership inference model] target model test accuracy: {}".format(target_model_accuracy))
 
