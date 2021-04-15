@@ -42,8 +42,8 @@ if __name__ == "__main__":
     attacker_cid = attacker_participant_config["attacker_cid"]
     attacker_local_epochs = attacker_participant_config["local_epochs"]
 
-    initialize_logging(filepath="logs/", filename="membership_inference_transfer_attack_fed.log")
-    federated_logger = create_federated_logger("MITA")
+    initialize_logging(filepath="logs/", filename="local_passive_attack.log")
+    federated_logger = create_federated_logger("local passive attack")
 
 
     client = Clients(input_shape=input_shape,
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     client.isolated_cid = isolated_cid
     federated_logger.info("isolated participant (cid): {}".format(isolated_cid))
 
-    attacker.declare_attack("MITA", target_cid, target_fed_epoch)
+    attacker.declare_attack("local passive attack", target_cid, target_fed_epoch)
     attacker.generate_attacker_data_handler(client)
 
     for epoch in range(fed_epochs):
@@ -86,12 +86,10 @@ if __name__ == "__main__":
                       "at federated learning epoch: {}".format(attacker_cid, (target_fed_epoch + 1)))
                 federated_logger.info("train inference model on attacker (cid): {}, "
                                       "federated training epoch: {}".format(attacker_cid, (target_fed_epoch + 1)))
-                attacker.create_membership_inference_model(client)
-                attacker.train_inference_model()
 
             if epoch == target_fed_epoch and cid == target_cid:
-                # attacker.create_membership_inference_model(client)
-                # attacker.train_inference_model()
+                attacker.create_membership_inference_model(client)
+                attacker.train_inference_model()
                 attacker.test_inference_model(client)
 
         server.update_global_parameters(len(activated_cid_list))

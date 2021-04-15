@@ -3,3 +3,4 @@ demo/logs
 .idea
 __pycache__
 demo/membership_inference_transfer_attack
+*.log

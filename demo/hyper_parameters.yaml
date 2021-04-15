@@ -17,7 +17,7 @@ participant:
 
 target_participant:
   target_cid: 1
-  target_fed_epoch: 0
+  target_fed_epoch: 4
 
 isolated_participant:
   isolated_cid: 0
