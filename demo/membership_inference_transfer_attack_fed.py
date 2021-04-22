@@ -7,16 +7,6 @@ with open("hyper_parameters.yaml", mode='r', encoding="utf-8") as f:
     hyper_parameters = yaml.load(f, Loader=yaml.FullLoader)
 
 
-def initialize_logging(filepath="logs/", filename="out.log"):
-    if not os.path.exists(filepath):
-        os.mkdir(filepath)
-    filename = filepath + filename
-    logging.basicConfig(level=logging.INFO,
-                        filename=filename,
-                        datefmt="%Y/%m%d %H:%M:%S",
-                        format="%(name)s - %(message)s")
-
-
 if __name__ == "__main__":
     dataset_config = hyper_parameters["dataset"]
     input_shape = dataset_config["input_shape"]

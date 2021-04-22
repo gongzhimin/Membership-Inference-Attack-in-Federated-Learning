@@ -1,10 +1,9 @@
 import math
-import tensorflow as tf
 from contextlib import redirect_stdout
 
-from fed_exchange_weight_bias.utils.models import *
 from fed_exchange_weight_bias.utils.dataset import *
 from fed_exchange_weight_bias.utils.logger import *
+from fed_exchange_weight_bias.utils.models import *
 
 
 class Clients:
@@ -76,24 +75,7 @@ class Clients:
                                           validation_data=(valid_features, valid_labels),
                                           shuffle=True, validation_batch_size=batch_size)
 
-        self.log_local_history(history_callback)
-
-    def log_local_history(self, history_callback):
-        epochs = history_callback.epoch
-        loss_history = history_callback.history["loss"]
-        accuracy_history = history_callback.history["accuracy"]
-        val_loss_history = history_callback.history["val_loss"]
-        val_accuracy_history = history_callback.history["val_accuracy"]
-        learning_rate_history = history_callback.history["lr"]
-        zipped = zip(epochs, loss_history, accuracy_history,
-                     val_loss_history, val_accuracy_history, learning_rate_history)
-
-        for (epoch, loss, accuracy, val_loss, val_accuracy, learning_rate) in zipped:
-            self.logger.info("local epoch: {}, learning_rate: {:.2e}, "
-                             "loss: {:.4f}, accuracy: {:.4f}, "
-                             "val_loss: {:.4f}, val_accuracy: {:.4f}".format((epoch + 1), learning_rate,
-                                                                             loss, accuracy,
-                                                                             val_loss, val_accuracy))
+        log_history(self.logger, history_callback)
 
     def upload_local_parameters(self):
         """ Return all of the variables list"""

@@ -1,6 +1,6 @@
-#project:
-#  name: membership inference attack in federated learning
-#  author: mingo
+project:
+  name: membership inference attack in federated learning
+  author: JiminKung
 
 dataset:
   input_shape: [32, 32, 3]
@@ -11,12 +11,12 @@ participant:
   train_ratio: 0.8
   fed_epochs: 5
   batch_size: 32
-  local_epochs: 40
+  local_epochs: 10
   clients_num: 4
   client_ratio_per_round: 1.00
 
 target_participant:
-  target_cid: 1
+  target_cid: 3
   target_fed_epoch: 4
 
 isolated_participant:
