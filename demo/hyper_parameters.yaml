@@ -20,7 +20,7 @@ target_participant:
   target_fed_epoch: 4
 
 isolated_participant:
-  isolated_cid: 0
+  isolated_cid: -1
 
 attacker_participant:
   attacker_cid: 0

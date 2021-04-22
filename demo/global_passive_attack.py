@@ -81,13 +81,11 @@ if __name__ == "__main__":
             current_local_parameters = client.upload_local_parameters()
             server.accumulate_local_parameters(current_local_parameters)
 
-            if epoch == target_fed_epoch and cid == attacker_cid:
-                print("train inference model on attacker (cid): {} "
-                      "at federated learning epoch: {}".format(attacker_cid, (target_fed_epoch + 1)))
-                federated_logger.info("train inference model on attacker (cid): {}, "
-                                      "federated training epoch: {}".format(attacker_cid, (target_fed_epoch + 1)))
-
             if epoch == target_fed_epoch and cid == target_cid:
+                print("train inference model on victim (cid): {} "
+                      "at federated learning epoch: {}".format(target_cid, (target_fed_epoch + 1)))
+                federated_logger.info("train inference model on victim (cid): {}, "
+                                      "federated training epoch: {}".format(target_cid, (target_fed_epoch + 1)))
                 attacker.create_membership_inference_model(client)
                 attacker.train_inference_model()
                 attacker.test_inference_model(client)
