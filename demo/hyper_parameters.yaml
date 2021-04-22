@@ -3,6 +3,7 @@ project:
   author: JiminKung
 
 dataset:
+  name: cifar10
   input_shape: [32, 32, 3]
   classes_num: 10
 
@@ -20,7 +21,7 @@ target_participant:
   target_fed_epoch: 4
 
 isolated_participant:
-  isolated_cid: -1
+  isolated_cid: 3
 
 attacker_participant:
   attacker_cid: 0

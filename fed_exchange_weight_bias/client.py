@@ -1,9 +1,11 @@
 import math
 from contextlib import redirect_stdout
 
-from fed_exchange_weight_bias.utils.dataset import *
-from fed_exchange_weight_bias.utils.logger import *
-from fed_exchange_weight_bias.utils.models import *
+import tensorflow as tf
+
+from fed_exchange_weight_bias.utils.dataset import Dataset
+from fed_exchange_weight_bias.utils.logger import create_client_logger, log_history
+from fed_exchange_weight_bias.utils.models import alexnet, scheduler
 
 
 class Clients:

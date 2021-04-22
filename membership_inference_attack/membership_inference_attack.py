@@ -25,6 +25,7 @@ class MembershipInferenceAttack:
                  learning_rate=0.001,
                  epochs=10,
                  optimizer_name="adam",
+                 attack_msg=None,
                  logger=None,
                  ascend_gradients=False):
 
@@ -60,7 +61,9 @@ class MembershipInferenceAttack:
         # initialize inference model
         self.inference_model = tf.compat.v1.keras.Model(inputs=self.attack_feature_tensors, outputs=self.encoder)
 
-        self.visualizer = Visualizer()
+        assert attack_msg != None, "No attack message"
+        filepath = "logs/{}/plots/".format(attack_msg.attack_type)
+        self.visualizer = Visualizer(filepath=filepath)
 
         self.log_info()
 

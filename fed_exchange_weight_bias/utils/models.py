@@ -92,67 +92,67 @@ def scheduler(epoch):
     return lr
 
 
-def compute_moments(features, input_channels=3):
-    """
-    Computes means and standard deviation for 3 dimensional input for normalization.
-    """
-    means = np.zeros(input_channels, dtype=np.float32)
-    stddevs = np.zeros(input_channels, dtype=np.float32)
-    for i in range(input_channels):
-        # very specific to 3-dimensional input
-        pixels = features[:, :, :, i].ravel()
-        means[i] = np.mean(pixels, dtype=np.float32)
-        stddevs[i] = np.std(pixels, dtype=np.float32)
-    means = list(map(lambda i: np.float32(i / 255), means))
-    stddevs = list(map(lambda i: np.float32(i / 255), stddevs))
-    return means, stddevs
-
-
-def normalize(f):
-    """
-    Normalizes data using means and stddevs
-    """
-    means, stddevs = compute_moments(f)
-    normalized = (np.divide(f, 255) - means) / stddevs
-    return normalized
-
-
-def load_cifar10():
-    (features_train, labels_train), (features_test, labels_test) = tf.compat.v1.keras.datasets.cifar10.load_data()
-    features_train, labels_train = features_train[:100], labels_train[:100]
-    features_test, labels_test = features_test[:20], labels_test[:20]
-    return features_train, labels_train, features_test, labels_test
-
-
-
-
-if __name__ == '__main__':
-    # training_size = 30000
-    # batch_size = 128
-
-    input_shape = (32, 32, 3)
-    classes_num = 10
-    # Load data.
-    features_train, labels_train, features_test, labels_test = load_cifar10()
-
-    # Preprocess the data.
-    features_train = normalize(features_train)
-    features_test = normalize(features_test)
-    labels_train = tf.compat.v1.keras.utils.to_categorical(labels_train, classes_num)
-    labels_test = tf.compat.v1.keras.utils.to_categorical(labels_test, classes_num)
-
-    # Train the model.
-    alexnet_model = alexnet(input_shape, classes_num)
-    opt = tf.compat.v1.keras.optimizers.Adam(learning_rate=0.0001)
-    alexnet_model.compile(optimizer=opt,
-                          loss=tf.compat.v1.keras.losses.CategoricalCrossentropy(),
-                          metrics=[tf.compat.v1.keras.metrics.CategoricalAccuracy()])
-    # alexnet_model.compile(loss='categorical_crossentropy',
-    #                       optimizer=opt,
-    #                       metrics=['accuracy'])
-    callback = tf.compat.v1.keras.callbacks.LearningRateScheduler(scheduler)
-    alexnet_model.fit(features_train, labels_train,
-                      batch_size=128,
-                      epochs=100,
-                      validation_data=(features_test, labels_test),
-                      shuffle=True, callbacks=[callback])
+# def compute_moments(features, input_channels=3):
+#     """
+#     Computes means and standard deviation for 3 dimensional input for normalization.
+#     """
+#     means = np.zeros(input_channels, dtype=np.float32)
+#     stddevs = np.zeros(input_channels, dtype=np.float32)
+#     for i in range(input_channels):
+#         # very specific to 3-dimensional input
+#         pixels = features[:, :, :, i].ravel()
+#         means[i] = np.mean(pixels, dtype=np.float32)
+#         stddevs[i] = np.std(pixels, dtype=np.float32)
+#     means = list(map(lambda i: np.float32(i / 255), means))
+#     stddevs = list(map(lambda i: np.float32(i / 255), stddevs))
+#     return means, stddevs
+#
+#
+# def normalize(f):
+#     """
+#     Normalizes data using means and stddevs
+#     """
+#     means, stddevs = compute_moments(f)
+#     normalized = (np.divide(f, 255) - means) / stddevs
+#     return normalized
+#
+#
+# def load_cifar10():
+#     (features_train, labels_train), (features_test, labels_test) = tf.compat.v1.keras.datasets.cifar10.load_data()
+#     features_train, labels_train = features_train[:100], labels_train[:100]
+#     features_test, labels_test = features_test[:20], labels_test[:20]
+#     return features_train, labels_train, features_test, labels_test
+#
+#
+#
+#
+# if __name__ == '__main__':
+#     # training_size = 30000
+#     # batch_size = 128
+#
+#     input_shape = (32, 32, 3)
+#     classes_num = 10
+#     # Load data.
+#     features_train, labels_train, features_test, labels_test = load_cifar10()
+#
+#     # Preprocess the data.
+#     features_train = normalize(features_train)
+#     features_test = normalize(features_test)
+#     labels_train = tf.compat.v1.keras.utils.to_categorical(labels_train, classes_num)
+#     labels_test = tf.compat.v1.keras.utils.to_categorical(labels_test, classes_num)
+#
+#     # Train the model.
+#     alexnet_model = alexnet(input_shape, classes_num)
+#     opt = tf.compat.v1.keras.optimizers.Adam(learning_rate=0.0001)
+#     alexnet_model.compile(optimizer=opt,
+#                           loss=tf.compat.v1.keras.losses.CategoricalCrossentropy(),
+#                           metrics=[tf.compat.v1.keras.metrics.CategoricalAccuracy()])
+#     # alexnet_model.compile(loss='categorical_crossentropy',
+#     #                       optimizer=opt,
+#     #                       metrics=['accuracy'])
+#     callback = tf.compat.v1.keras.callbacks.LearningRateScheduler(scheduler)
+#     alexnet_model.fit(features_train, labels_train,
+#                       batch_size=128,
+#                       epochs=100,
+#                       validation_data=(features_test, labels_test),
+#                       shuffle=True, callbacks=[callback])

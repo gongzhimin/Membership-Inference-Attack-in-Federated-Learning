@@ -32,7 +32,7 @@ if __name__ == "__main__":
     attacker_cid = attacker_participant_config["attacker_cid"]
     attacker_local_epochs = attacker_participant_config["local_epochs"]
 
-    initialize_logging(filepath="logs/", filename="local_passive_attack.log")
+    initialize_logging(filepath="logs/local_passive_attack/", filename="local_passive_attack.log")
     federated_logger = create_federated_logger("local passive attack")
 
 
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     client.isolated_cid = isolated_cid
     federated_logger.info("isolated participant (cid): {}".format(isolated_cid))
 
-    attacker.declare_attack("local passive attack", target_cid, target_fed_epoch)
+    attacker.declare_attack("local_passive_attack", target_cid, target_fed_epoch)
     attacker.generate_attacker_data_handler(client)
 
     for epoch in range(fed_epochs):

@@ -75,6 +75,7 @@ class Attacker:
                                                               learning_rate=learning_rate,
                                                               epochs=epochs,
                                                               optimizer_name=optimizer_name,
+                                                              attack_msg=self.attack_msg,
                                                               logger=self.logger)
         self.inference_model = self.membership_inference.inference_model
 
