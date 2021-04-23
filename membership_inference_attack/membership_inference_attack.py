@@ -62,7 +62,8 @@ class MembershipInferenceAttack:
         self.inference_model = tf.compat.v1.keras.Model(inputs=self.attack_feature_tensors, outputs=self.encoder)
 
         assert attack_msg != None, "No attack message"
-        filepath = "logs/{}/plots/".format(attack_msg.attack_type)
+        self.attack_msg = attack_msg
+        filepath = "logs/{}/plots/".format(self.attack_msg.attack_type)
         self.visualizer = Visualizer(filepath=filepath)
 
         self.log_info()
