@@ -15,16 +15,26 @@ def set_matplotlib_font(font_weight="bold", font_size=10):
 
 
 class Visualizer:
-    def __init__(self, filepath="logs/plots/", font_weight="bold", font_size=10):
+    def __init__(self, filepath="logs/plots/", attack_msg=None, font_weight="bold", font_size=10):
         if not os.path.exists(filepath):
             os.mkdir(filepath)
         self.filepath = filepath
+        self.attack_msg = attack_msg
+        self.attack_type = self.get_attack_type()
         set_matplotlib_font(font_weight, font_size)
         self.membership_probability_histogram = None
         self.membership_inference_attack_roc_curve = None
         self.unique_labels = None
         self.gradient_norm_scatter = None
         self.per_label_membership_probability_histograms = []
+
+    def get_attack_type(self):
+        attack_info = self.attack_msg.attack_type
+        attack_info = attack_info.title().split('_')
+        attack_obj = "({}, {})".format(attack_info[-2], attack_info[-1])
+        attack_info = attack_info[:-2] + [attack_obj]
+
+        return " ".join(attack_info)
 
     def plot_membership_probability_histogram(self, member_preds, nonmember_preds):
         self.membership_probability_histogram = plt.figure("membership probability histogram")
@@ -45,7 +55,7 @@ class Visualizer:
 
         plt.ylabel("Fraction")
         plt.xlabel("Membership probability")
-        plt.title("Privacy Risk")
+        plt.title("Privacy Risk of {}".format(self.attack_type))
 
         plt.savefig("{}membership_probability_histogram.svg".format(self.filepath))
         plt.close()
@@ -64,7 +74,7 @@ class Visualizer:
         plt.xlim([0, 1])
         plt.ylabel("True Positive Rate")
         plt.xlabel("False Positive Rate")
-        plt.title("ROC of Membership Inference Attack")
+        plt.title("ROC of {}".format(self.attack_type))
 
         plt.savefig("{}membership_inference_attack_roc_curve.svg".format(self.filepath))
         plt.close()

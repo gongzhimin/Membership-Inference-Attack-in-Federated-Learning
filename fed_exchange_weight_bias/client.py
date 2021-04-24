@@ -5,24 +5,29 @@ import tensorflow as tf
 
 from fed_exchange_weight_bias.utils.dataset import Dataset
 from fed_exchange_weight_bias.utils.logger import create_client_logger, log_history
-from fed_exchange_weight_bias.utils.models import alexnet, scheduler
+from fed_exchange_weight_bias.utils.models import create_model, scheduler
 
 
 class Clients:
     def __init__(self,
                  input_shape, classes_num, clients_num,
-                 learning_rate=0.0001, train_ratio=0.8):
+                 learning_rate=0.0001, train_ratio=0.8,
+                 dataset="cifar10", data_dir=None, model_name="alexnet"):
         self.input_shape = input_shape
         self.learning_rate = learning_rate
         self.classes_num = classes_num
         self.clients_num = clients_num
         self.train_ratio = train_ratio
 
-        self.model = alexnet(input_shape=input_shape, classes_num=classes_num)
+        self.model_name = model_name
+        self.model = create_model(model_name=self.model_name,
+                                  input_shape=input_shape, classes_num=classes_num)
         self.optimizer = tf.compat.v1.keras.optimizers.Adam(learning_rate=self.learning_rate)
         self.compile_model()
 
-        self.dataset = Dataset(classes_num=classes_num,
+        self.dataset = Dataset(dataset=dataset,
+                               data_dir=data_dir,
+                               classes_num=classes_num,
                                split=clients_num,
                                one_hot=True)
 
@@ -98,6 +103,9 @@ class Clients:
 
         if global_vars is None:
             # Clear the parameters.
+            self.model = create_model(model_name=self.model_name,
+                                      input_shape=self.input_shape,
+                                      classes_num=self.classes_num)
             self.compile_model()
             return
 

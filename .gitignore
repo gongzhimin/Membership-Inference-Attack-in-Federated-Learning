@@ -4,3 +4,4 @@ demo/logs
 __pycache__
 demo/membership_inference_transfer_attack
 *.log
+data

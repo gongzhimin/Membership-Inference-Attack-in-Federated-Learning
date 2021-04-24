@@ -8,9 +8,13 @@ with open("hyper_parameters.yaml", mode='r', encoding="utf-8") as f:
 
 
 if __name__ == "__main__":
-    dataset_config = hyper_parameters["dataset"]
+    dataset = hyper_parameters["dataset"]
+    model_name = hyper_parameters["model"]
+    attack_type = "isolated_attack_{}_{}".format(model_name, dataset)
+    dataset_config = hyper_parameters[dataset]
     input_shape = dataset_config["input_shape"]
     classes_num = dataset_config["classes_num"]
+    data_dir = dataset_config["data_dir"]
 
     participant_config = hyper_parameters["participant"]
     fed_epochs = participant_config["fed_epochs"]
@@ -33,10 +37,13 @@ if __name__ == "__main__":
     attacker_cid = attacker_participant_config["attacker_cid"]
     attacker_local_epochs = attacker_participant_config["local_epochs"]
 
-    initialize_logging(filepath="logs/isolated_attack/", filename="isolated_attack.log")
+    initialize_logging(filepath="logs/{}/".format(attack_type), filename="isolated_attack.log")
     federated_logger = create_federated_logger("isolated attack")
 
-    client = Clients(input_shape=input_shape,
+    client = Clients(dataset=dataset,
+                     data_dir=data_dir,
+                     model_name=model_name,
+                     input_shape=input_shape,
                      classes_num=classes_num,
                      learning_rate=learning_rate,
                      clients_num=clients_num,
@@ -48,7 +55,7 @@ if __name__ == "__main__":
     client.isolated_cid = isolated_cid
     federated_logger.info("isolated participant (cid): {}".format(isolated_cid))
 
-    attacker.declare_attack("isolated_attack", target_cid, target_fed_epoch)
+    attacker.declare_attack(attack_type, target_cid, target_fed_epoch)
     attacker.generate_attacker_data_handler(client)
 
     for epoch in range(fed_epochs):

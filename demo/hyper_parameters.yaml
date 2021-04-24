@@ -2,10 +2,23 @@ project:
   name: membership inference attack in federated learning
   author: JiminKung
 
-dataset:
-  name: cifar10
+model: alexnet  # alexnet | vgg16 | vgg19
+dataset: cifar10  # cifar10 | cifar100 | cars
+
+cifar10:
   input_shape: [32, 32, 3]
   classes_num: 10
+  data_dir: "../data/cifar-10"
+
+cifar100:
+  input_shape: [32, 32, 3]
+  classes_num: 100
+  data_dir: "../data/cifar-100"
+
+cars:
+  input_shape: [224, 224, 3]
+  classes_num: 196
+  data_dir: "../data/cars"
 
 participant:
   learning_rate: 0.0001

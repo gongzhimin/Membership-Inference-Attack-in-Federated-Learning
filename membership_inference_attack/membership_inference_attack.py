@@ -64,7 +64,7 @@ class MembershipInferenceAttack:
         assert attack_msg != None, "No attack message"
         self.attack_msg = attack_msg
         filepath = "logs/{}/plots/".format(self.attack_msg.attack_type)
-        self.visualizer = Visualizer(filepath=filepath)
+        self.visualizer = Visualizer(filepath=filepath, attack_msg=self.attack_msg)
 
         self.log_info()
 

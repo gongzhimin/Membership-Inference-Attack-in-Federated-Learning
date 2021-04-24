@@ -1,12 +1,12 @@
 import tensorflow as tf
 
-keras_layers = tf.compat.v1.keras.layers
+keras_layers = tf.keras.layers
 
 
 def create_cnn_for_fcn_gradients(input_shape):
     dim0 = int(input_shape[0])
     dim1 = int(input_shape[1])
-    initializer = tf.compat.v1.keras.initializers.random_normal(0.0, 0.01)
+    initializer = tf.keras.initializers.RandomNormal(0.0, 0.01)
 
     cnn_for_fcn_gradients = tf.compat.v1.keras.Sequential(
         [
@@ -132,5 +132,3 @@ def create_cnn_for_cnn_gradients(input_shape):
     )
 
     return cnn_for_cnn_gradients
-
-
