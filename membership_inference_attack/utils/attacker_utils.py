@@ -10,6 +10,7 @@ class AttackerUtils:
     def sanity_check(layers, layers_to_exploit):
         """Basic sanity check for layers and gradients to exploit based on model layers."""
         if layers_to_exploit and len(layers_to_exploit):
+            print(np.max(layers_to_exploit))
             assert np.max(layers_to_exploit) <= len(layers), "Exploited layer index overflows!"
 
     @staticmethod

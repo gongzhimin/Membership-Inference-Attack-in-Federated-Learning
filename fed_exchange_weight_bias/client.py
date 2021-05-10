@@ -56,11 +56,11 @@ class Clients:
 
         self.logger.info("model architecture: {}, learning rate: {}".format("AlexNet", self.learning_rate))
 
-        filename = self.logger.root.handlers[0].baseFilename
-        self.logger.info("model details: ")
-        with open(filename, "a") as f:
-            with redirect_stdout(f):
-                self.model.summary()
+        # filename = self.logger.root.handlers[0].baseFilename
+        # self.logger.info("model details: ")
+        # with open(filename, "a") as f:
+        #     with redirect_stdout(f):
+        #         self.model.summary()
 
     def train_local_model(self, batch_size=32, local_epochs=15):
         """

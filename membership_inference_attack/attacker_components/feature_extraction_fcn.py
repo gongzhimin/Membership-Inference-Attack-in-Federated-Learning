@@ -1,11 +1,11 @@
 import tensorflow as tf
 
-keras_layers = tf.compat.v1.keras.layers
+keras_layers = tf.keras.layers
 
 def create_fcn_component(input_size, layer_size=128):
-    initializer = tf.compat.v1.keras.initializers.random_normal(0.0, 0.01)
+    initializer = tf.keras.initializers.RandomNormal(0.0, 0.01)
 
-    fcn_component = tf.compat.v1.keras.Sequential(
+    fcn_component = tf.keras.Sequential(
         [
             keras_layers.Dense(
                 layer_size,

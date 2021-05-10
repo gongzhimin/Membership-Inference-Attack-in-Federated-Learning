@@ -1,11 +1,11 @@
 import tensorflow as tf
 
 
-keras_layers = tf.compat.v1.keras.layers
+keras_layers = tf.keras.layers
 
 
 def create_encoder(encoder_inputs):
-    initializer = tf.compat.v1.keras.initializers.random_normal(0.0, 0.01)
+    initializer = tf.keras.initializers.RandomNormal(0.0, 0.01)
     inputs = keras_layers.concatenate(encoder_inputs, axis=1)
 
     encoder = keras_layers.Dense(

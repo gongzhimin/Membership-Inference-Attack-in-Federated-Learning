@@ -81,8 +81,8 @@ def load_cifar10(data_dir):
     x_test = x_test.astype(x_train.dtype)
     y_test = y_test.astype(y_train.dtype)
 
-    x_train, y_train = x_train[:1000], y_train[:1000]
-    x_test, y_test = x_test[:200], y_test[:200]
+    # x_train, y_train = x_train[:1000], y_train[:1000]
+    # x_test, y_test = x_test[:200], y_test[:200]
 
     return x_train, y_train, x_test, y_test
 
@@ -103,8 +103,8 @@ def load_cifar100(data_dir, label_mode='fine'):
         x_train = x_train.transpose(0, 2, 3, 1)
         x_test = x_test.transpose(0, 2, 3, 1)
 
-    x_train, y_train = x_train[:1000], y_train[:1000]
-    x_test, y_test = x_test[:200], y_test[:200]
+    # x_train, y_train = x_train[:1000], y_train[:1000]
+    # x_test, y_test = x_test[:200], y_test[:200]
 
     return x_train, y_train, x_test, y_test
 
@@ -144,8 +144,8 @@ def load_cars(data_dir):
             y_train[train_counter] = label
             train_counter += 1
 
-    x_train, y_train = x_train[:1000], y_train[:1000]
-    x_test, y_test = x_test[:200], y_test[:200]
+    # x_train, y_train = x_train[:1000], y_train[:1000]
+    # x_test, y_test = x_test[:200], y_test[:200]
 
     return x_train, y_train, x_test, y_test, class_names
 
@@ -175,6 +175,10 @@ class Dataset(object):
             features_train, labels_train, features_test, labels_test, _ = load_cars(data_dir)
         else:
             raise Exception("No such dataset: {}".format(dataset))
+
+        # features_train, labels_train = features_train[:1000], labels_train[:1000]
+        # features_test, labels_test = features_test[:200], labels_test[:200]
+
         # Normalize the train features and test features.
         features_train = normalize(features_train)
         features_test = normalize(features_test)

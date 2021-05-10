@@ -1,10 +1,20 @@
-from fed_exchange_weight_bias.client import *
-from fed_exchange_weight_bias.server import *
-from fed_exchange_weight_bias.utils.logger import *
-from membership_inference_attack.attacker import *
+import os
+import sys
+import yaml
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR)
 
-with open("hyper_parameters.yaml", mode='r', encoding="utf-8") as f:
+from fed_exchange_weight_bias.client import Clients
+from fed_exchange_weight_bias.server import Server
+from membership_inference_attack.attacker import Attacker
+from fed_exchange_weight_bias.utils.logger import initialize_logging, create_federated_logger
+from demo.utils import capture_cmdline
+
+
+with open("./demo/hyper_parameters.yaml", mode='r', encoding="utf-8") as f:
     hyper_parameters = yaml.load(f, Loader=yaml.FullLoader)
+
+hyper_parameters = capture_cmdline(hyper_parameters)
 
 
 if __name__ == "__main__":
@@ -36,9 +46,9 @@ if __name__ == "__main__":
     attacker_cid = attacker_participant_config["attacker_cid"]
     attacker_local_epochs = attacker_participant_config["local_epochs"]
 
-    initialize_logging(filepath="logs/{}/".format(attack_type), filename="local_passive_attack.log")
+    initialize_logging(filepath="logs/{}/".format(attack_type),
+                       filename="local_passive_attack.log")
     federated_logger = create_federated_logger("local passive attack")
-
 
     client = Clients(dataset=dataset,
                      data_dir=data_dir,
@@ -74,16 +84,19 @@ if __name__ == "__main__":
                 attacker.train_inference_model()
                 attacker.test_inference_model(client)
 
-            print("[federated learning epoch: {}, current participant (cid): {}]".format((epoch + 1), cid))
+            print("[federated learning epoch: {}, "
+                  "current participant(cid): {}]".format((epoch + 1), cid))
             federated_logger.info("federated training epoch: {}, "
                                   "current participant (cid): {}".format((epoch + 1), cid))
 
             client.download_global_parameters(server.global_parameters)
 
             if cid == attacker_cid:
-                client.train_local_model(batch_size=batch_size, local_epochs=attacker_local_epochs)
+                client.train_local_model(batch_size=batch_size,
+                                         local_epochs=attacker_local_epochs)
             else:
-                client.train_local_model(batch_size=batch_size, local_epochs=client_local_epochs)
+                client.train_local_model(batch_size=batch_size,
+                                         local_epochs=client_local_epochs)
 
             current_local_parameters = client.upload_local_parameters()
             server.accumulate_local_parameters(current_local_parameters)

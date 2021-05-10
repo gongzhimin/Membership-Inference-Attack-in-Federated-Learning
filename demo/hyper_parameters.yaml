@@ -4,37 +4,50 @@ project:
 
 model: alexnet  # alexnet | vgg16 | vgg19
 dataset: cifar10  # cifar10 | cifar100 | cars
+attack_name: local_passive_attack # local_passive_attack | overfitting_attack | global_passive_attack | isolating_attack
+
+alexnet:
+  exploited_layer_indexes: [10]
+  exploited_gradient_indexes: [10]
+
+# vgg16:
+#   exploited_layer_indexes: [20]
+#   exploited_gradient_indexes: [13]
+
+# vgg19:
+#   exploited_layer_indexes: [21]
+#   exploited_gradient_indexes: [21]
 
 cifar10:
   input_shape: [32, 32, 3]
   classes_num: 10
-  data_dir: "../data/cifar-10"
+  data_dir: "./data/cifar-10"
 
 cifar100:
   input_shape: [32, 32, 3]
   classes_num: 100
-  data_dir: "../data/cifar-100"
+  data_dir: "./data/cifar-100"
 
 cars:
   input_shape: [224, 224, 3]
   classes_num: 196
-  data_dir: "../data/cars"
+  data_dir: "./data/stanford-cars"
 
 participant:
   learning_rate: 0.0001
   train_ratio: 0.8
-  fed_epochs: 5
+  fed_epochs: 10
   batch_size: 32
-  local_epochs: 10
+  local_epochs: 40
   clients_num: 4
   client_ratio_per_round: 1.00
 
 target_participant:
   target_cid: 3
-  target_fed_epoch: 4
+  target_fed_epoch: 9
 
 isolated_participant:
-  isolated_cid: 3
+  isolated_cid: -1
 
 attacker_participant:
   attacker_cid: 0
@@ -46,13 +59,10 @@ attacker_data_handler:
   exposed_percentage: 100
 
 inference_model:
-  epochs: 2
+  epochs: 10
   learning_rate: 0.0001
-  exploited_layer_indexes: [6]
-  exploited_gradient_indexes: [6]
+  exploited_layer_indexes: [10]
+  exploited_gradient_indexes: [10]
   exploit_label: True
   exploit_loss: True
   optimizer_name: adam
-
-
-

@@ -2,13 +2,14 @@ import copy
 import yaml
 from collections import namedtuple
 
-from membership_inference_attack.utils.logger import *
-from membership_inference_attack.utils.data_handler import *
-from membership_inference_attack.membership_inference_attack import *
+from membership_inference_attack.utils.logger import create_attacker_logger
+from membership_inference_attack.utils.data_handler import AttackerDataHandler, VerifierDataHandler
+from membership_inference_attack.membership_inference_attack import MembershipInferenceAttack
+
 
 ATTACK_MSG = namedtuple("ATTACK_MSG", "attack_type, target_cid, target_fed_epoch")
 
-with open("hyper_parameters.yaml", mode='r', encoding="utf-8") as f:
+with open("./demo/hyper_parameters.yaml", mode='r', encoding="utf-8") as f:
     hyper_parameters = yaml.load(f, Loader=yaml.FullLoader)
 
 

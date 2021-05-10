@@ -8,7 +8,7 @@ def create_cnn_for_fcn_gradients(input_shape):
     dim1 = int(input_shape[1])
     initializer = tf.keras.initializers.RandomNormal(0.0, 0.01)
 
-    cnn_for_fcn_gradients = tf.compat.v1.keras.Sequential(
+    cnn_for_fcn_gradients = tf.keras.Sequential(
         [
             keras_layers.Dropout(0.2, input_shape=(dim0, dim1, 1, ), ),
             keras_layers.Conv2D(
@@ -52,9 +52,9 @@ def create_cnn_for_cnn_layer_outputs(input_shape):
     dim0 = int(input_shape[1])
     dim1 = int(input_shape[2])
     dim2 = int(input_shape[3])
-    initializer = tf.compat.v1.keras.initializers.random_normal(0.0, 0.01)
+    initializer = tf.keras.initializers.RandomNormal(0.0, 0.01)
 
-    cnn_for_cnn_layer_output = tf.compat.v1.keras.Sequential(
+    cnn_for_cnn_layer_output = tf.keras.Sequential(
         [
             keras_layers.Conv2D(
                 dim2,
@@ -105,9 +105,9 @@ def create_cnn_for_cnn_gradients(input_shape):
     dim1 = int(input_shape[0])
     dim2 = int(input_shape[1])
     dim3 = int(input_shape[2])
-    initializer = tf.compat.v1.keras.initializers.random_normal(0.0, 0.01)
+    initializer = tf.keras.initializers.RandomNormal(0.0, 0.01)
 
-    cnn_for_cnn_gradients = tf.compat.v1.keras.Sequential(
+    cnn_for_cnn_gradients = tf.keras.Sequential(
         [
             keras_layers.Conv2D(
                 dim0,

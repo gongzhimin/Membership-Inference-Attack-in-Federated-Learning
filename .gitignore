@@ -5,3 +5,4 @@ __pycache__
 demo/membership_inference_transfer_attack
 *.log
 data
+*.svg

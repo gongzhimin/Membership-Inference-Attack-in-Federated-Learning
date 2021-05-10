@@ -1,10 +1,20 @@
-from fed_exchange_weight_bias.client import *
-from fed_exchange_weight_bias.server import *
-from membership_inference_attack.attacker import *
-from fed_exchange_weight_bias.utils.logger import *
+import os
+import sys
+import yaml
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR)
 
-with open("hyper_parameters.yaml", mode='r', encoding="utf-8") as f:
+from fed_exchange_weight_bias.client import Clients
+from fed_exchange_weight_bias.server import Server
+from membership_inference_attack.attacker import Attacker
+from fed_exchange_weight_bias.utils.logger import initialize_logging, create_federated_logger
+from demo.utils import capture_cmdline 
+
+
+with open("./demo/hyper_parameters.yaml", mode='r', encoding="utf-8") as f:
     hyper_parameters = yaml.load(f, Loader=yaml.FullLoader)
+
+# hyper_parameters = capture_cmdline(hyper_parameters)
 
 
 if __name__ == "__main__":
@@ -63,6 +73,7 @@ if __name__ == "__main__":
 
         for cid in activated_cid_list:
             client.current_cid = cid
+            
             print("[federated learning epoch: {}, current participant (cid): {}]".format((epoch + 1), cid))
             federated_logger.info("federated training epoch: {}, "
                                   "current participant (cid): {}".format((epoch + 1), cid))

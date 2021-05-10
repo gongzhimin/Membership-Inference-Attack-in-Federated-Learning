@@ -59,7 +59,7 @@ class MembershipInferenceAttack:
         # create encoder
         self.encoder = create_encoder(self.encoder_input_tensors)
         # initialize inference model
-        self.inference_model = tf.compat.v1.keras.Model(inputs=self.attack_feature_tensors, outputs=self.encoder)
+        self.inference_model = tf.keras.Model(inputs=self.attack_feature_tensors, outputs=self.encoder)
 
         assert attack_msg != None, "No attack message"
         self.attack_msg = attack_msg
@@ -80,11 +80,11 @@ class MembershipInferenceAttack:
                          "learning rate: {}, "
                          "epochs: {}".format(self.optimizer._name, self.learning_rate, self.epochs))
 
-        self.logger.info("[membership inference model] inference model details: ")
-        filename = self.logger.root.handlers[0].baseFilename
-        with open(filename, "a") as f:
-            with redirect_stdout(f):
-                self.inference_model.summary()
+        # self.logger.info("[membership inference model] inference model details: ")
+        # filename = self.logger.root.handlers[0].baseFilename
+        # with open(filename, "a") as f:
+        #     with redirect_stdout(f):
+        #         self.inference_model.summary()
 
     def create_layer_extraction_components(self, layers):
         for layer_index in self.exploited_layer_indexes:
@@ -149,12 +149,11 @@ class MembershipInferenceAttack:
         for layer_index in self.exploited_layer_indexes:
             target_model_input = target_model.input
             layer_output = layers[layer_index - 1].output
-            hidden_layer_model = tf.compat.v1.keras.Model(target_model_input, layer_output)
+            hidden_layer_model = tf.keras.Model(target_model_input, layer_output)
             prediction = hidden_layer_model(features)
             self.input_array.append(prediction)
 
     def generate_one_hot_encoded_labels(self, labels):
-        one_hot_encoding_matrix = AttackerUtils.create_one_hot_encoding_matrix(self.local_model_classes_num)
         one_hot_encoded_labels = AttackerUtils.one_hot_encode(labels, self.one_hot_encoding_matrix)
         self.input_array.append(one_hot_encoded_labels)
 
@@ -251,7 +250,7 @@ class MembershipInferenceAttack:
         return attack_outputs
 
     def compute_attack_accuracy(self, member_data_batches, nonmember_data_batches):
-        attack_accuracy = tf.compat.v1.keras.metrics.Accuracy("attack_accuracy", dtype=tf.float32)
+        attack_accuracy = tf.keras.metrics.Accuracy("attack_accuracy", dtype=tf.float32)
         target_model = self.local_model
 
         for (member_data_batch, nonmember_data_batch) in zip(member_data_batches, nonmember_data_batches):
@@ -296,7 +295,7 @@ class MembershipInferenceAttack:
         #                                                                  self.attacker_data_handler.batch_size)
 
         best_attack_accuracy = 0
-        # metric_attack_accuracy = tf.compat.v1.keras.metrics.Accuracy("attack_accuracy", dtype=tf.float32)
+        # metric_attack_accuracy = tf.keras.metrics.Accuracy("attack_accuracy", dtype=tf.float32)
         zipped = zip(member_train_data_batches, nonmember_train_data_batches)
         print("Train membership inference attack model.")
         self.logger.info("[membership inference model] train membership inference attack model")
@@ -375,7 +374,7 @@ class MembershipInferenceAttack:
         y_true = tf.concat((member_true_list, nonmember_true_list), 0)
         y_pred = tf.concat((member_preds_list, nonmember_preds_list), 0)
 
-        attack_accuracy = tf.compat.v1.keras.metrics.Accuracy("attack_accuracy", dtype=tf.float32)
+        attack_accuracy = tf.keras.metrics.Accuracy("attack_accuracy", dtype=tf.float32)
         attack_accuracy(y_pred > 0.5, y_true)
         attack_accuracy_result = attack_accuracy.result()
         print("Attack accuracy: {}".format(attack_accuracy_result))
