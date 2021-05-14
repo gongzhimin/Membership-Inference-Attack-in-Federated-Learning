@@ -19,7 +19,7 @@ def alexnet(input_shape, classes_num=100):
         input_shape = (input_shape[0], input_shape[1], input_shape[2],)
 
     # Creating the model
-    model = tf.compat.v1.keras.Sequential(
+    model = tf.keras.Sequential(
         [
             keras.layers.Conv2D(
                 64, 11, 4,

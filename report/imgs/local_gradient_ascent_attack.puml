@@ -1,9 +1,0 @@
-@startuml local_gradient_ascent_attack
-skinparam handwritten true
-cloud "Central Aggregator" as CA
-database "Target Participant" as TP
-database "Adversarial Participant" as AP
-
-AP -right-> CA : adversarial parameters in i-th epoch
-CA --> TP : accumulated global parameters in (i+1)-th epoch
-@enduml

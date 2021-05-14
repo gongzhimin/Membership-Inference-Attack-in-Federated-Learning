@@ -18,7 +18,7 @@ def capture_cmdline(params):
         params["isolated_participant"]["isolated_cid"] = isolated_cid
 
     elif attack_name == "overfitting_attack":
-        params["attacker_participant"]["attacker_local_epochs"] *= 2
+        params["attacker_participant"]["local_epochs"] *= 2
 
     layer_indexes = params[model]["exploited_layer_indexes"]
     params["inference_model"]["exploited_layer_indexes"] = layer_indexes

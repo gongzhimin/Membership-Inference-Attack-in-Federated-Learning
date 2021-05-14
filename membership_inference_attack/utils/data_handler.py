@@ -44,12 +44,16 @@ class AttackerDataHandler:
         self.logger = logger
 
         if len(self.train_data.x) <= len(self.test_data.x):
-            self.exposed_size = int(exposed_percentage / float(100) * len(self.train_data.x))
+            self.exposed_size = int(
+                exposed_percentage / float(100) * len(self.train_data.x))
         else:
-            self.exposed_size = int(exposed_percentage / float(100) * len(self.test_data.x))
+            self.exposed_size = int(
+                exposed_percentage / float(100) * len(self.test_data.x))
 
-        self.exposed_member_features, self.exposed_member_labels = self.train_data[: self.exposed_size]
-        self.exposed_nonmember_features, self.exposed_nonmember_labels = self.test_data[: self.exposed_size]
+        self.exposed_member_features, self.exposed_member_labels = self.train_data[
+            : self.exposed_size]
+        self.exposed_nonmember_features, self.exposed_nonmember_labels = self.test_data[
+            : self.exposed_size]
 
         split_boundary = int(train_ratio * self.exposed_size)
 
@@ -86,7 +90,7 @@ class AttackerDataHandler:
                                                            self.nonmember_train_labels).batch(self.batch_size)
 
         return member_train_data_batches, nonmember_train_data_batches, \
-               self.nonmember_train_features, self.nonmember_train_labels
+            self.nonmember_train_features, self.nonmember_train_labels
 
     def load_test_data_batches(self):
         """Load data batches for testing during training the attack model."""
@@ -96,6 +100,8 @@ class AttackerDataHandler:
                                                           self.nonmember_test_labels).batch(self.batch_size)
 
         return member_test_data_batches, nonmember_test_data_batches
+
+    
 
 
 class VerifierDataHandler:
@@ -116,8 +122,10 @@ class VerifierDataHandler:
         else:
             size = len(self.nonmember_target_data.y)
 
-        self.member_target_features, self.member_target_labels = self.member_target_data[:size]
-        self.nonmember_target_features, self.nonmember_target_labels = self.nonmember_target_data[:size]
+        self.member_target_features, self.member_target_labels = self.member_target_data[
+            :size]
+        self.nonmember_target_features, self.nonmember_target_labels = self.nonmember_target_data[
+            :size]
 
         self.log_info()
 
@@ -135,4 +143,4 @@ class VerifierDataHandler:
                                                             self.nonmember_target_labels).batch(self.batch_size)
 
         return member_target_data_batches, nonmember_target_data_batches, \
-               self.nonmember_target_features, self.nonmember_target_labels
+            self.nonmember_target_features, self.nonmember_target_labels

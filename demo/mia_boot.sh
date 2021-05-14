@@ -5,9 +5,6 @@
 # nohup bash ./demo/mia_boot.sh > mia.log 2>&1 &
 model="alexnet"
 
-####### Attack Features Comparison ######
-
-
 
 ###### Membership Inference Attack in Federated Learning ######
 # CIFAR-10
@@ -22,11 +19,11 @@ python ./demo/mia_fed.py ${model} ${dataset} ${attack_name}
 attack_name="global_passive_attack"
 python ./demo/mia_fed.py ${model} ${dataset} ${attack_name}
 
-attack_name="global_passive_attack"
+attack_name="isolating_attack"
 python ./demo/mia_fed.py ${model} ${dataset} ${attack_name}
 
 
-# CIFAR-100
+# # CIFAR-100
 dataset="cifar100"
 
 attack_name="local_passive_attack"
@@ -38,11 +35,11 @@ python ./demo/mia_fed.py ${model} ${dataset} ${attack_name}
 attack_name="global_passive_attack"
 python ./demo/mia_fed.py ${model} ${dataset} ${attack_name}
 
-attack_name="global_passive_attack"
+attack_name="isolating_attack"
 python ./demo/mia_fed.py ${model} ${dataset} ${attack_name}
 
 
-# Stanford-Cars
+# # Stanford-Cars
 dataset="cars"
 
 attack_name="local_passive_attack"
@@ -54,5 +51,5 @@ python ./demo/mia_fed.py ${model} ${dataset} ${attack_name}
 attack_name="global_passive_attack"
 python ./demo/mia_fed.py ${model} ${dataset} ${attack_name}
 
-attack_name="global_passive_attack"
+attack_name="isolating_attack"
 python ./demo/mia_fed.py ${model} ${dataset} ${attack_name}

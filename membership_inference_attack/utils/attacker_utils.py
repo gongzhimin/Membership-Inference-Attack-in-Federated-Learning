@@ -60,7 +60,7 @@ class AttackerUtils:
             subtraction_features[i] = e[0]
             subtraction_labels[i] = e[1]
 
-        subtraction_data_batch = tf.compat.v1.data.Dataset.from_tensor_slices(
+        subtraction_data_batch = tf.data.Dataset.from_tensor_slices(
             (subtraction_features, subtraction_labels))
 
         return subtraction_data_batch.batch(batch_size=batch_size)

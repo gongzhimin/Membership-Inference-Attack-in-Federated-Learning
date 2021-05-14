@@ -22,7 +22,7 @@ class Clients:
         self.model_name = model_name
         self.model = create_model(model_name=self.model_name,
                                   input_shape=input_shape, classes_num=classes_num)
-        self.optimizer = tf.compat.v1.keras.optimizers.Adam(learning_rate=self.learning_rate)
+        self.optimizer = tf.keras.optimizers.Adam(learning_rate=self.learning_rate)
         self.compile_model()
 
         self.dataset = Dataset(dataset=dataset,
@@ -75,7 +75,7 @@ class Clients:
         train_features, train_labels = local_dataset.x[: train_size], local_dataset.y[: train_size]
         valid_features, valid_labels = local_dataset.x[train_size:], local_dataset.y[train_size:]
 
-        learning_rate_scheduler = tf.compat.v1.keras.callbacks.LearningRateScheduler(scheduler)
+        learning_rate_scheduler = tf.keras.callbacks.LearningRateScheduler(scheduler)
         history_callback = self.model.fit(x=train_features, y=train_labels,
                                           batch_size=batch_size, epochs=local_epochs,
                                           verbose=1, callbacks=[learning_rate_scheduler],

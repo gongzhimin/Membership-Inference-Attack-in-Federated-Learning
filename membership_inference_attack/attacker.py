@@ -51,6 +51,7 @@ class Attacker:
                                                          input_shape=client.input_shape,
                                                          logger=self.logger)
 
+        visual_member_data = train_data
         self.verifier_data_handler = VerifierDataHandler(member_target_data=copy.deepcopy(visual_member_data),
                                                          nonmember_target_data=copy.deepcopy(test_data),
                                                          batch_size=batch_size)

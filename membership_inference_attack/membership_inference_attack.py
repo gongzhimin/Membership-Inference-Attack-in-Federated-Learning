@@ -176,7 +176,8 @@ class MembershipInferenceAttack:
     def compute_gradients(self, target_model, features, labels):
         split_features = AttackerUtils.split_variable(features)
         split_labels = AttackerUtils.split_variable(labels)
-        gradients_array = [[]] * len(split_features)
+        # gradients_array = [[]] * len(split_features)
+        gradients_array = []
         for index, (feature, label) in enumerate(zip(split_features, split_labels)):
             with tf.GradientTape() as tape:
                 logits = target_model(feature)
@@ -193,37 +194,46 @@ class MembershipInferenceAttack:
             #     gradients = ascendant_tape.gradient(loss, target_variables)
             #     self.revert_variables(target_variables, copied_target_variables)
 
-            gradients_array[index] = gradients
+            # gradients_array[index] = gradients
+            gradients_array.append(gradients)
 
         return gradients_array
 
     def generate_gradients(self, target_model, features, labels):
         gradients_array = self.compute_gradients(target_model, features, labels)
-        gradients_batch = [[]] * len(gradients_array)
+        # gradients_batch = [[]] * len(gradients_array)
+        gradients_batch = []
         for gradients_index, gradients in enumerate(gradients_array):
-            gradient_per_layer = [[]] * len(self.exploited_gradient_indexes)
+            # gradient_per_layer = [[]] * len(self.exploited_gradient_indexes)
+            gradient_per_layer = []
             for index, gradient_index in enumerate(self.exploited_gradient_indexes):
                 gradient_index = (gradient_index - 1) * 2
                 gradient_shape = gradients[gradient_index].shape
                 reshaped = (int(gradient_shape[0]), int(gradient_shape[1]), 1)
                 gradient = tf.reshape(gradients[gradient_index], reshaped)
-                gradient_per_layer[index] = gradient
-            gradients_batch[gradients_index] = gradient_per_layer
+                # gradient_per_layer[index] = gradient.numpy()
+                gradient_per_layer.append(gradient.numpy())
+            # gradients_batch[gradients_index] = gradient_per_layer
+            gradients_batch.append(gradient_per_layer)
 
         gradients_batch = np.asarray(gradients_batch)
         split_gradients_batch = np.hsplit(gradients_batch, gradients_batch.shape[1])
         for split_gradients in split_gradients_batch:
-            split_gradients_array = [[]] * len(split_gradients)
+            # split_gradients_array = [[]] * len(split_gradients)
+            split_gradients_array = []
             for index in range(len(split_gradients)):
-                split_gradients_array[index] = split_gradients[index][0]
+                # split_gradients_array[index] = split_gradients[index][0]
+                split_gradients_array.append(split_gradients[index][0])
             split_gradients_array = np.asarray(split_gradients_array)
             self.input_array.append(split_gradients_array)
 
     def compute_gradient_norms(self, target_model, features, labels):
         gradients_array = self.compute_gradients(target_model, features, labels)
-        gradients_batch = [[]] * len(gradients_array)
+        # gradients_batch = [[]] * len(gradients_array)
+        gradients_batch = []
         for (index, gradients) in enumerate(gradients_array):
-            gradients_batch[index] = np.linalg.norm(gradients[-1])
+            # gradients_batch[index] = np.linalg.norm(gradients[-1])
+            gradients_batch.append(np.linalg.norm(gradients[-1]))
 
         return gradients_batch
 

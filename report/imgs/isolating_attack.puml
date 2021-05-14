@@ -1,0 +1,7 @@
+@startuml isolating_attack
+cloud "中央服务器" as cs
+rectangle "被孤立参与者" as ip
+
+ip -up-> cs : "上传本地参数W<sub>i</sub>"
+cs -down-> ip : "下载聚合参数\n (仍为W<sub>i</sub>)"
+@enduml

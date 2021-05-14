@@ -1,0 +1,16 @@
+@startuml overfitting_attack
+' skinparam handwritten true
+' cloud "Central Aggregator" as CA
+' database "Target Participant" as TP
+' database "Adversarial Participant" as AP
+
+' AP -right-> CA : adversarial parameters in i-th epoch
+' CA --> TP : accumulated global parameters in (i+1)-th epoch
+
+cloud "中央服务器" as cs
+rectangle "敌对参与者(攻击者)" as ap
+rectangle "目标参与者" as tp
+
+ap -right-> cs : 恶意的参数上传 \n(第i轮)
+cs -down-> tp : 下载聚合参数 \n(第i+1轮)
+@enduml

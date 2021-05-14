@@ -1,0 +1,9 @@
+@startuml black_box
+storage "<b>x</b>" as inputNode
+rectangle "\t <b>f</b> \t" as model #pink;line.bold;text:red
+storage "<b>f(x)</b>" as outputNode
+
+inputNode -right-> model
+model -right-> outputNode
+
+@enduml

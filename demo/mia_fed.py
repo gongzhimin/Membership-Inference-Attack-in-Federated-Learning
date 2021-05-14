@@ -14,10 +14,10 @@ from demo.utils import capture_cmdline, map_mia
 with open("./demo/hyper_parameters.yaml", mode='r', encoding="utf-8") as f:
     params = yaml.load(f, Loader=yaml.FullLoader)
 
-params = capture_cmdline(params)
-
 
 if __name__ == "__main__":
+    params = capture_cmdline(params)
+
     dataset = params["dataset"]
     model_name = params["model"]
     attack_name = params["attack_name"]

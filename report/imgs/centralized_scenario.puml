@@ -1,0 +1,10 @@
+@startuml centralized_scenario
+rectangle "f" as model1
+rectangle "f<sub><b>△</b></sub>" as model2
+database "D  " as d1
+database "D<sub><b>△</b></sub>" as d2
+
+d1 -up-> model1
+model1 -right-> model2 : "\t 微调 \t"
+d2 -up-> model2
+@enduml

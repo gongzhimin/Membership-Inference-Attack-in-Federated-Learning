@@ -1,0 +1,15 @@
+@startuml white_box
+storage "<b>x</b>" as inputNode
+rectangle "f" as model #white;line.dashed{
+    queue "<b>L</b><sub>1</sub>" as L1
+    queue "<b>L</b><sub>2</sub>" as L2
+    queue "<b>L</b><sub>3</sub>" as L3
+    queue "..." as L
+    L1 -right-> L2 : "h<sub>1</sub>(<b>x</b>)"
+    L2 -right-> L3 : "h<sub>2</sub>(<b>x</b>)"
+    L3 -right-> L : "..."
+}
+storage "<b>f(x)</b>" as outputNode
+inputNode --> L1
+L --> outputNode
+@enduml

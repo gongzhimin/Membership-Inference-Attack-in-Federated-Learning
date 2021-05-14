@@ -36,7 +36,7 @@ cars:
 participant:
   learning_rate: 0.0001
   train_ratio: 0.8
-  fed_epochs: 10
+  fed_epochs: 5
   batch_size: 32
   local_epochs: 40
   clients_num: 4
@@ -44,7 +44,7 @@ participant:
 
 target_participant:
   target_cid: 3
-  target_fed_epoch: 9
+  target_fed_epoch: 4
 
 isolated_participant:
   isolated_cid: -1
@@ -62,7 +62,7 @@ inference_model:
   epochs: 10
   learning_rate: 0.0001
   exploited_layer_indexes: [10]
-  exploited_gradient_indexes: [10]
+  exploited_gradient_indexes: [6]
   exploit_label: True
   exploit_loss: True
   optimizer_name: adam
