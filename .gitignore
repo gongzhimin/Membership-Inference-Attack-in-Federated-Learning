@@ -2,9 +2,13 @@
 /datasets/cifar-100-python
 /datasets/*.txt
 /datasets/*.npy
-log
+/logs
 .idea
 __pycache__
 /tutorials/models
 .ipynb_checkpoints
 /out
+/data
+*.log
+*.svg
+/demo
