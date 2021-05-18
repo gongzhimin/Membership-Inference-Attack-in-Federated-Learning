@@ -344,9 +344,12 @@ class MembershipInferenceAttack:
     def reset_target_model_visibility(self):
         pass
 
-    def visually_test_inference_model(self, target_model, verifier_data_handler):
+    # def visually_test_inference_model(self, target_model, verifier_data_handler):
+    #     member_target_data_batches, nonmember_target_data_batches, \
+    #         nonmember_target_features, nonmember_target_labels = verifier_data_handler.load_target_data_batches()
+    def visually_test_inference_model(self, target_model):
         member_target_data_batches, nonmember_target_data_batches, \
-            nonmember_target_features, nonmember_target_labels = verifier_data_handler.load_target_data_batches()
+        nonmember_target_features, nonmember_target_labels = self.attacker_data_handler.load_train_data_batches()
         zipped = zip(member_target_data_batches, nonmember_target_data_batches)
 
         target_model_pred = target_model(nonmember_target_features)

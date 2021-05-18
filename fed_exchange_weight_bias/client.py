@@ -78,7 +78,7 @@ class Clients:
         learning_rate_scheduler = tf.keras.callbacks.LearningRateScheduler(scheduler)
         history_callback = self.model.fit(x=train_features, y=train_labels,
                                           batch_size=batch_size, epochs=local_epochs,
-                                          verbose=1, callbacks=[learning_rate_scheduler],
+                                          verbose=2, callbacks=[learning_rate_scheduler],
                                           validation_data=(valid_features, valid_labels),
                                           shuffle=True, validation_batch_size=batch_size)
 

@@ -61,7 +61,7 @@ attacker_data_handler:
 inference_model:
   epochs: 10
   learning_rate: 0.0001
-  exploited_layer_indexes: [10]
+  exploited_layer_indexes: [6]
   exploited_gradient_indexes: [6]
   exploit_label: True
   exploit_loss: True
