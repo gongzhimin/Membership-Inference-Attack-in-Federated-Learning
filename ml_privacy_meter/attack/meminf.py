@@ -579,7 +579,7 @@ class initialize(object):
         # Creates ROC curve for membership inference attack
         fpr, tpr, _ = roc_curve(target, probs)
         roc_auc = auc(fpr, tpr)
-        plt.title('ROC of Membership Inference Attack, cid:{} fed-ep:{} {}'.format(self.attack_msg.cid, self.attack_msg.fed_ep, self.attack_msg.attack_type))
+        plt.title('ROC of {}'.format(self.attack_msg.attack_type))
         plt.plot(fpr, tpr, 'b', label='AUC = %0.2f' % roc_auc)
         plt.legend(loc='lower right')
         plt.plot([0, 1], [0, 1], 'r--')
@@ -587,7 +587,8 @@ class initialize(object):
         plt.ylim([0, 1])
         plt.ylabel('True Positive Rate')
         plt.xlabel('False Positive Rate')
-        plt.savefig("{}/plots/roc.png".format(self.log_name))
+        attack_type = self.attack_msg.attack_type.lower().respace(" ", "_")
+        plt.savefig("{}/plots/{}_roc.png".format(self.log_name, attack_type))
         plt.close()
 
         # Creates plot for gradient norm per label

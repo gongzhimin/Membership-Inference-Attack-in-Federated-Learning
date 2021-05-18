@@ -25,9 +25,8 @@ if __name__ == "__main__":
                      dataset_path="./datasets/cifar100.txt")
     server = Server()
 
-    """Isolate target participant."""
+    """Target the attack."""
     target_cid = 1
-    client.isolated_cid = target_cid
 
     """Begin training."""
     for ep in range(epoch):
@@ -42,14 +41,18 @@ if __name__ == "__main__":
             # In each epoch, clients download parameters from the server,
             # and then train local models to adapt their parameters.
             client.download_global_parameters(server.global_parameters)
-            client.train_epoch()
+            # Perform passive local membership inference attack, since only get global parameters.
+            if client_id == target_cid and ep == 5:
+                print("overfitting attack on cid: {} in fed_ml-epoch: {}".format(client_id, (ep + 1)))
+                passive_local_attacker = Attacker("Overfitting Attack", client_id, (ep + 1))
+                passive_local_attacker.membership_inference_attack(client)
+            if client_id == target_cid - 1:
+                client.train_epoch(30)
+            else:
+                client.train_epoch(15)
             # Accumulate local parameters.
             current_local_parameters = client.upload_local_parameters()
             server.accumulate_local_parameters(current_local_parameters)
-            # Perform isolating attack.
-            if client_id == target_cid and ep == 5:
-                print("isolating attack on cid: {} in fed-epoch: {}".format(client_id, (ep + 1)))
-                isolating_attacker = Attacker("Isolating Attack", client_id, (ep + 1))
-                isolating_attacker.membership_inference_attack(client)
+            
         # Update global parameters in each epoch.
         server.update_global_parameters(len(active_clients))

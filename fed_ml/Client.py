@@ -28,7 +28,7 @@ class Clients:
         self.isolated_local_parameters = None
 
 
-    def train_epoch(self):
+    def train_epoch(self, epochs=15):
         """
         Train one client with its own data for one epoch.
         """
@@ -49,7 +49,7 @@ class Clients:
 
         # Train the keras model with method `fit`.
         self.model.fit(features_train, labels_train,
-                        batch_size=32, epochs=15,
+                        batch_size=32, epochs=epochs, verbose=2,
                         validation_data=(features_test, labels_test),
                         shuffle=True, callbacks=[callback])
 
