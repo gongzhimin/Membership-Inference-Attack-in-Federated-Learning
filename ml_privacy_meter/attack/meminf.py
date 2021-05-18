@@ -124,7 +124,7 @@ class initialize(object):
         # tf.keras.backend.set_floatx('float64')
         # Set self.loggers (directory according to todays date)
         self.attack_msg = attack_msg
-        self.log_name = "fed_ep={}-cid={}-{}-logs".format(attack_msg.fed_ep, attack_msg.cid, attack_msg.attack_type)
+        self.log_name = "fed_ep={}-cid={}-{}-logs".format(attack_msg.fed_ep, attack_msg.cid, attack_msg.attack_type.lower().replace(" ", "_"))
         time_stamp = datetime.datetime.today().strftime('%Y-%m-%d_%H:%M:%S')
         self.attack_utils = attack_utils(log_name=self.log_name)
         self.logger = get_logger(self.attack_utils.root_dir, attack_msg.attack_type,
