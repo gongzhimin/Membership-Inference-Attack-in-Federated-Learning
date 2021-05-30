@@ -507,7 +507,7 @@ class initialize(object):
         '''
         Test the attack model on dataset and save plots for visualization.
         '''
-        mtrainset, nmtrainset, _, _ = self.train_datahandler.load_vis(2048, log_name=self.log_name)
+        mtrainset, nmtrainset, _, _ = self.train_datahandler.load_vis(128, log_name=self.log_name)
         model = self.target_train_model
         mpreds = []
         mlab = []
@@ -522,36 +522,37 @@ class initialize(object):
         path = '{}/plots'.format(self.log_name)
         if not os.path.exists(path):
             os.makedirs(path)
-        with tf.device(self.device):
-            for (mfeatures, mlabels) in mtrainset:
-                # Getting outputs of forward pass of attack model
-                moutputs = self.forward_pass(model, mfeatures, mlabels)
-                mgradientnorm = self.get_gradient_norms(
+        # with tf.device(self.device):
+        for (mfeatures, mlabels) in mtrainset:
+            # Getting outputs of forward pass of attack model
+            moutputs = self.forward_pass(model, mfeatures, mlabels)
+            mgradientnorm = self.get_gradient_norms(
                     model, mfeatures, mlabels)
-                # Computing the true values for loss function according
-                mpreds.extend(moutputs.numpy())
-                mlab.extend(mlabels)
-                mfeat.extend(mfeatures)
-                mgradnorm.extend(mgradientnorm)
-                memtrue = np.ones(moutputs.shape)
-                mtrue.extend(memtrue)
+            # Computing the true values for loss function according
+            mpreds.extend(moutputs.numpy())
+            mlab.extend(mlabels)
+            mfeat.extend(mfeatures)
+            mgradnorm.extend(mgradientnorm)
+            memtrue = np.ones(moutputs.shape)
+            mtrue.extend(memtrue)
 
-            for (nmfeatures, nmlabels) in nmtrainset:
-                # Getting outputs of forward pass of attack model
-                nmoutputs = self.forward_pass(
+        for (nmfeatures, nmlabels) in nmtrainset:
+            # Getting outputs of forward pass of attack model
+            nmoutputs = self.forward_pass(
                     model, nmfeatures, nmlabels)
-                nmgradientnorm = self.get_gradient_norms(
+            nmgradientnorm = self.get_gradient_norms(
                     model, nmfeatures, nmlabels)
-                # Computing the true values for loss function according
-                nmpreds.extend(nmoutputs.numpy())
-                nmlab.extend(nmlabels)
-                nmfeat.extend(nmfeatures)
-                nmgradnorm.extend(nmgradientnorm)
-                nonmemtrue = np.zeros(nmoutputs.shape)
-                nmtrue.extend(nonmemtrue)
+            # Computing the true values for loss function according
+            nmpreds.extend(nmoutputs.numpy())
+            nmlab.extend(nmlabels)
+            nmfeat.extend(nmfeatures)
+            nmgradnorm.extend(nmgradientnorm)
+            nonmemtrue = np.zeros(nmoutputs.shape)
+            nmtrue.extend(nonmemtrue)
 
-            target = tf.concat((mtrue, nmtrue), 0)
-            probs = tf.concat((mpreds, nmpreds), 0)
+        target = tf.concat((mtrue, nmtrue), 0)
+        probs = tf.concat((mpreds, nmpreds), 0)
+        
 
         font = {
             'weight': 'bold',
@@ -571,9 +572,9 @@ class initialize(object):
                  label='Population Data (Non-members)')
         plt.xlabel('Membership Probability')
         plt.ylabel('Fraction')
-        plt.title('Privacy Risk, cid:{} fed-ep:{} {}'.format(self.attack_msg.cid, self.attack_msg.fed_ep, self.attack_msg.attack_type))
+        plt.title('Privacy Risk by {}'.format(self.attack_msg.attack_type))
         plt.legend(loc='upper left')
-        plt.savefig("{}/plots/privacy_risk.png".format(self.log_name))
+        plt.savefig("{}/plots/privacy_risk.svg".format(self.log_name))
         plt.close()
 
         # Creates ROC curve for membership inference attack
@@ -587,8 +588,8 @@ class initialize(object):
         plt.ylim([0, 1])
         plt.ylabel('True Positive Rate')
         plt.xlabel('False Positive Rate')
-        attack_type = self.attack_msg.attack_type.lower().respace(" ", "_")
-        plt.savefig("{}/plots/{}_roc.png".format(self.log_name, attack_type))
+        attack_type = self.attack_msg.attack_type.lower().replace(" ", "_")
+        plt.savefig("{}/plots/{}_roc.svg".format(self.log_name, attack_type))
         plt.close()
 
         # Creates plot for gradient norm per label
@@ -618,7 +619,7 @@ class initialize(object):
         plt.xlabel('Label')
         plt.ylabel('Average Gradient Norm')
         plt.legend(loc="upper left")
-        plt.savefig('{}/plots/gradient_norm.png'.format(self.log_name))
+        plt.savefig('{}/plots/gradient_norm.svg'.format(self.log_name))
         plt.close()
 
         # Collect data and creates histogram for each label separately
@@ -645,7 +646,7 @@ class initialize(object):
             plt.ylabel('Fraction')
 
             plt.title('Privacy Risk - Class ' + str(lab))
-            plt.savefig('{}/plots/privacy_risk_label'.format(self.log_name) + str(lab) + '.png')
+            plt.savefig('{}/plots/privacy_risk_label'.format(self.log_name) + str(lab) + '.svg')
             plt.close()
 
         np.save('{}/member_probs.npy'.format(self.log_name), np.array(mpreds))

@@ -24,7 +24,7 @@ class Attacker:
             train_datahandler=data_handler,
             attack_datahandler=data_handler,
             layers_to_exploit=[6],
-            # gradients_to_exploit=[6],
+            gradients_to_exploit=[6],
             device=None, epochs=10,
             attack_msg=self.attack_msg, model_name="meminf_fed")
         attackobj.train_attack()

@@ -1,9 +1,15 @@
+### Membership Inference Attack in Federated Learning ###
 # To run background:
-# nohub bash ./mia_boost.sh > mia_boost.log 2>&1 &
+# nohup bash ./mia_boost.sh > mia_boost.log 2>&1 &
 
-nohub python ./passive_attack_fed.py > passive_attack_fed.log 2>&1 &
+attack_name="passive local attack & passive global attack"
+# passive local attack & passive global attack
+python ./passive_attack_fed.py ${attack_name}
 
-nohub python ./isolating_attack_fed.py > isolating_attack_fed.log 2>&1 &
+attack_name="isolating attack"
+# isolating attack
+python ./isolating_attack_fed.py ${attack_name}
 
-nohub python ./overfitting_attack_fed.py > overfitting_attack_fed.log 2>&1 &
-
+attack_name="overfitting attack"
+# overfitting attack
+python ./overfitting_attack_fed.py ${attack_name}
